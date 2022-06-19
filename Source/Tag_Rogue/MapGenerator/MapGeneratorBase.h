@@ -36,14 +36,14 @@ private:
 		int32 Height;
 		int32 Width;
 		FRect(const FCell&, const FCell&);
-		TArray<FCell&> GetInnerBorderCells();
-		TArray<FCell&> GetOuterBorderCells();
-		TArray<FCell&> GetAllCells();
+		TArray<FCell*> GetInnerBorderCells(UMapGeneratorBase&) const;
+		TArray<FCell*> GetOuterBorderCells(UMapGeneratorBase&) const;
+		TArray<FCell*> GetAllCells(UMapGeneratorBase&) const;
 	};
 	struct FSpace: FRect //部屋などの構造体
 	{
 		ESpaceType Attribution;
-		FSpace(FRect&, ESpaceType&);
+		FSpace(FRect, ESpaceType);
 		void ChangeAttr(ESpaceType);
 	};
 	struct FPath: FRect //通路などの構造体
