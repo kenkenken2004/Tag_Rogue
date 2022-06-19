@@ -13,7 +13,6 @@ enum struct UMapGeneratorBase::ESpaceType
 {
 	Plaza,
 	Room,
-	Lane
 };
 
 UMapGeneratorBase::FCell::FCell(const int32 Y, const int32 X, const int32 TheID, const ECellType Attr)
@@ -46,4 +45,15 @@ UMapGeneratorBase::UMapGeneratorBase(const int32 Map_Height, const int32 Map_Wid
 			MapMatrix[i][j] = Num;
 		}
 	}
+}
+
+UMapGeneratorBase::FCell UMapGeneratorBase::GetCell(const int32 PosY, const int32 PosX)
+{
+	return this->CellList[this->MapMatrix[PosY][PosX]];
+	
+}
+
+UMapGeneratorBase::FCell UMapGeneratorBase::RefreshCell(const FCell Cell)
+{
+	return GetCell(Cell.Py, Cell.Px);
 }

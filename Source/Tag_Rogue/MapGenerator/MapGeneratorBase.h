@@ -16,9 +16,10 @@ class TAG_ROGUE_API UMapGeneratorBase : public UObject
 {
 	GENERATED_BODY()
 private:
-	enum struct ECellType;
-	enum struct ESpaceType;
-	struct FCell
+	enum struct ECellType; //マスの属性
+	enum struct ESpaceType;//部屋の属性
+	enum struct EDirection;//方向
+	struct FCell //マスの構造体
 	{
 		int32 Py, Px;
 		int32 ID;
@@ -28,25 +29,41 @@ private:
 		void ChangeAttr(ECellType);
 		
 	};
-	struct FRect
+	struct FRect //マスの長方形の領域の構造体
 	{
 		FCell LeftTopCell;
 		FCell RightBottomCell;
 		int32 Height;
 		int32 Width;
 		FRect(FCell, FCell);
+		void GetInnerBorderCells();
+		void GetOuterBorderCells();
+		void GetAllCells();
 	};
-	struct FSpace
+	struct FSpace: FRect //部屋などの構造体
 	{
-		FRect Rect;
 		ESpaceType Attribution;
 		FSpace(FRect, ESpaceType);
+		void ChangeAttr(ESpaceType);
 	};
-	int32 MapHeight, MapWidth;
-	TArray<FCell> CellList;
-	TArray<TArray<int>> MapMatrix;
+	struct FPath: FRect //通路などの構造体
+	{
+		FRect Node1, Node2;
+		int32 Length;
+		EDirection Direction;
+		FPath(FRect, FRect, FRect);
+		
+	};
+	struct FArea: FRect //仮想的な領域の構造体
+	{
+		FArea();
+		void Expand(EDirection);
+	};
+	int32 MapHeight, MapWidth; //マップのサイズ
+	TArray<FCell> CellList; //マスの実体が入っているリスト。
+	TArray<TArray<int>> MapMatrix; //CellListへの参照indexが入っている、マップを表現した二次元リスト。
 public:
 	UMapGeneratorBase(int32, int32);
-	FCell GetCell(int32 PosY, int32 PosX);
-	
+	FCell GetCell(int32, int32);
+	FCell RefreshCell(FCell);
 };
