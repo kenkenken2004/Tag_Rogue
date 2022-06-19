@@ -8,8 +8,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cf331540-c7ba-40e0-a96e-46ca470ed1b0" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Tag_Rogue.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Tag_Rogue.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/MapGenerator/MapGeneratorBase.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/MapGenerator/MapGeneratorBase.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/MapGenerator/MapGeneratorBase.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/MapGenerator/MapGeneratorBase.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -96,7 +94,7 @@
       <workItem from="1655631814886" duration="976000" />
       <workItem from="1655632826512" duration="1000" />
       <workItem from="1655632885273" duration="3622000" />
-      <workItem from="1655641858772" duration="5873000" />
+      <workItem from="1655641858772" duration="5991000" />
     </task>
     <servers />
   </component>
