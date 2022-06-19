@@ -17,8 +17,36 @@ class TAG_ROGUE_API UMapGeneratorBase : public UObject
 	GENERATED_BODY()
 private:
 	enum struct ECellType;
-	struct FCell;
+	enum struct ESpaceType;
+	struct FCell
+	{
+		int32 Py, Px;
+		int32 ID;
+		ECellType Attribution;
+		FCell(int32, int32, int32);
+		FCell(int32, int32, int32, ECellType);
+		void ChangeAttr(ECellType);
+		
+	};
+	struct FRect
+	{
+		FCell LeftTopCell;
+		FCell RightBottomCell;
+		int32 Height;
+		int32 Width;
+		FRect(FCell, FCell);
+	};
+	struct FSpace
+	{
+		FRect Rect;
+		ESpaceType Attribution;
+		FSpace(FRect, ESpaceType);
+	};
+	int32 MapHeight, MapWidth;
+	TArray<FCell> CellList;
+	TArray<TArray<int>> MapMatrix;
 public:
-	int32 Map_Height, Map_Width;
-	UMapGeneratorBase();
+	UMapGeneratorBase(int32, int32);
+	FCell GetCell(int32 PosY, int32 PosX);
+	
 };
