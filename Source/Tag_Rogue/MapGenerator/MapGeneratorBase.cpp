@@ -12,18 +12,37 @@ enum struct UMapGeneratorBase::ECellType
 enum struct UMapGeneratorBase::ESpaceType
 {
 	Plaza,
-	Room,
+	Room
 };
 
 UMapGeneratorBase::FCell::FCell(const int32 Y, const int32 X, const int32 TheID, const ECellType Attr)
 {
 	Py = Y;Px = X;
 	Attribution = Attr;
-	ID = TheID;
+	Index = TheID;
 }
 
 UMapGeneratorBase::FCell::FCell(const int32 Y, const int32 X, const int32 TheID) : FCell(Y,X,TheID, ECellType::Wall)
 {
+}
+
+void UMapGeneratorBase::FCell::ChangeAttr(const ECellType Type)
+{
+	this->Attribution = Type;
+}
+
+UMapGeneratorBase::FRect::FRect(const FCell& LeftTop, const FCell& RightBottom)
+{
+	this->LeftTopCell = LeftTop;
+	this->RightBottomCell = RightBottom;
+	this->Height = RightBottom.Py - LeftTop.Py + 1;
+	this->Width = RightBottom.Px - LeftTop.Px + 1;
+}
+
+
+TArray<UMapGeneratorBase::FCell&> UMapGeneratorBase::FRect::GetAllCells()
+{
+	
 }
 
 UMapGeneratorBase::UMapGeneratorBase(const int32 Map_Height, const int32 Map_Width)
@@ -51,9 +70,4 @@ UMapGeneratorBase::FCell UMapGeneratorBase::GetCell(const int32 PosY, const int3
 {
 	return this->CellList[this->MapMatrix[PosY][PosX]];
 	
-}
-
-UMapGeneratorBase::FCell UMapGeneratorBase::RefreshCell(const FCell Cell)
-{
-	return GetCell(Cell.Py, Cell.Px);
 }

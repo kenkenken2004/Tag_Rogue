@@ -22,7 +22,7 @@ private:
 	struct FCell //マスの構造体
 	{
 		int32 Py, Px;
-		int32 ID;
+		int32 Index;
 		ECellType Attribution;
 		FCell(int32, int32, int32);
 		FCell(int32, int32, int32, ECellType);
@@ -31,27 +31,27 @@ private:
 	};
 	struct FRect //マスの長方形の領域の構造体
 	{
-		FCell LeftTopCell;
-		FCell RightBottomCell;
+		FCell &LeftTopCell;
+		FCell &RightBottomCell;
 		int32 Height;
 		int32 Width;
-		FRect(FCell, FCell);
-		void GetInnerBorderCells();
-		void GetOuterBorderCells();
-		void GetAllCells();
+		FRect(const FCell&, const FCell&);
+		TArray<FCell&> GetInnerBorderCells();
+		TArray<FCell&> GetOuterBorderCells();
+		TArray<FCell&> GetAllCells();
 	};
 	struct FSpace: FRect //部屋などの構造体
 	{
 		ESpaceType Attribution;
-		FSpace(FRect, ESpaceType);
+		FSpace(FRect&, ESpaceType&);
 		void ChangeAttr(ESpaceType);
 	};
 	struct FPath: FRect //通路などの構造体
 	{
-		FRect Node1, Node2;
+		FRect &Node1, &Node2;
 		int32 Length;
 		EDirection Direction;
-		FPath(FRect, FRect, FRect);
+		FPath(FRect&, FRect&, FRect&);
 		
 	};
 	struct FArea: FRect //仮想的な領域の構造体
@@ -65,5 +65,4 @@ private:
 public:
 	UMapGeneratorBase(int32, int32);
 	FCell GetCell(int32, int32);
-	FCell RefreshCell(FCell);
 };
