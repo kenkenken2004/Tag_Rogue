@@ -15,35 +15,32 @@ enum struct UMapGeneratorBase::ESpaceType
 	Room
 };
 
-UMapGeneratorBase::FCell::FCell(const int32 Y, const int32 X, const int32 TheID, const ECellType Attr)
+UMapGeneratorBase::FCell::FCell(const int32 Y, const int32 X, const int32 TheID, const ECellType Attr, UMapGeneratorBase& Generator): Gen(Generator)
 {
 	Py = Y;Px = X;
 	Attribution = Attr;
 	Index = TheID;
 }
 
-UMapGeneratorBase::FCell::FCell(const int32 Y, const int32 X, const int32 TheID) : FCell(Y,X,TheID, ECellType::Wall)
+UMapGeneratorBase::FCell::FCell(const int32 Y, const int32 X, const int32 TheID, UMapGeneratorBase& Generator) : FCell(Y,X,TheID, ECellType::Wall, Generator)
 {
 }
 
 void UMapGeneratorBase::FCell::ChangeAttr(const ECellType Type)
 {
-	this->Attribution = Type;
+	Attribution = Type;
 }
 
-UMapGeneratorBase::FRect::FRect(const FCell& LeftTop, const FCell& RightBottom)
+UMapGeneratorBase::FRect::FRect(FCell& LeftTop,FCell& RightBottom): LeftTopCell(LeftTop), RightBottomCell(RightBottom), Gen(LeftTop.Gen)
 {
-	this->LeftTopCell = LeftTop;
-	this->RightBottomCell = RightBottom;
-	this->Height = RightBottom.Py - LeftTop.Py + 1;
-	this->Width = RightBottom.Px - LeftTop.Px + 1;
+	Height = RightBottom.Py - LeftTop.Py + 1;
+	Width = RightBottom.Px - LeftTop.Px + 1;
 }
 
 
-TArray<UMapGeneratorBase::FCell*> UMapGeneratorBase::FRect::GetAllCells(UMapGeneratorBase &Base) const
+TArray<UMapGeneratorBase::FCell*> UMapGeneratorBase::FRect::GetAllCells() const
 {
 	TArray<FCell*> Ret = TArray<FCell*>();
-	UMapGeneratorBase &Gen = Base;
 	for (int i=this->LeftTopCell.Py;i<=this->RightBottomCell.Py;i++)
 	{
 		for (int j=this->LeftTopCell.Px;j<=this->RightBottomCell.Px;j++)
@@ -54,10 +51,9 @@ TArray<UMapGeneratorBase::FCell*> UMapGeneratorBase::FRect::GetAllCells(UMapGene
 	return Ret;
 }
 
-TArray<UMapGeneratorBase::FCell*> UMapGeneratorBase::FRect::GetInnerBorderCells(UMapGeneratorBase &Base) const
+TArray<UMapGeneratorBase::FCell*> UMapGeneratorBase::FRect::GetInnerBorderCells() const
 {
 	TArray<FCell*> Ret = TArray<FCell*>();
-	UMapGeneratorBase &Gen = Base;
 	for (int i=this->LeftTopCell.Py;i<=this->RightBottomCell.Py;i++)
 	{
 		Ret.Add(&Gen.CellList[Gen.MapMatrix[i][LeftTopCell.Px]]);
@@ -71,10 +67,9 @@ TArray<UMapGeneratorBase::FCell*> UMapGeneratorBase::FRect::GetInnerBorderCells(
 	return Ret;
 }
 
-TArray<UMapGeneratorBase::FCell*> UMapGeneratorBase::FRect::GetOuterBorderCells(UMapGeneratorBase &Base) const
+TArray<UMapGeneratorBase::FCell*> UMapGeneratorBase::FRect::GetOuterBorderCells() const
 {
 	TArray<FCell*> Ret = TArray<FCell*>();
-	UMapGeneratorBase &Gen = Base;
 	for (int i=this->LeftTopCell.Py-1;i<=this->RightBottomCell.Py+1;i++)
 	{
 		const int32 t = LeftTopCell.Px - 1;
@@ -94,12 +89,12 @@ TArray<UMapGeneratorBase::FCell*> UMapGeneratorBase::FRect::GetOuterBorderCells(
  
 UMapGeneratorBase::FSpace::FSpace(const FRect Rect, const ESpaceType Type): FRect(Rect.LeftTopCell, Rect.RightBottomCell)
 {
-	this->Attribution = Type;
+	Attribution = Type;
 }
 
 void UMapGeneratorBase::FSpace::ChangeAttr(const ESpaceType Type)
 {
-	this->Attribution = Type;
+	Attribution = Type;
 }
 
 UMapGeneratorBase::UMapGeneratorBase(const int32 Map_Height, const int32 Map_Width)
@@ -116,7 +111,7 @@ UMapGeneratorBase::UMapGeneratorBase(const int32 Map_Height, const int32 Map_Wid
 		for (int j=0;j<Map_Width;j++)
 		{
 			const int32 Num = i*Map_Height+j;
-			CellList.Add(FCell(i, j, Num));
+			CellList.Add(FCell(i, j, Num, *this));
 			MapMatrix[i][j] = Num;
 		}
 	}

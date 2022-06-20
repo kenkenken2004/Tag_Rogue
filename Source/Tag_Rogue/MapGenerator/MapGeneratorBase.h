@@ -24,8 +24,9 @@ private:
 		int32 Py, Px;
 		int32 Index;
 		ECellType Attribution;
-		FCell(int32, int32, int32);
-		FCell(int32, int32, int32, ECellType);
+		UMapGeneratorBase& Gen;
+		FCell(int32, int32, int32, UMapGeneratorBase&);
+		FCell(int32, int32, int32, ECellType, UMapGeneratorBase&);
 		void ChangeAttr(ECellType);
 		
 	};
@@ -35,10 +36,11 @@ private:
 		FCell &RightBottomCell;
 		int32 Height;
 		int32 Width;
-		FRect(const FCell&, const FCell&);
-		TArray<FCell*> GetInnerBorderCells(UMapGeneratorBase&) const; //周上の内側のCellを取得
-		TArray<FCell*> GetOuterBorderCells(UMapGeneratorBase&) const; //周上の外側のCellを取得
-		TArray<FCell*> GetAllCells(UMapGeneratorBase&) const; //構成するCellを取得
+		UMapGeneratorBase& Gen;
+		FRect(FCell&,FCell&);
+		TArray<FCell*> GetInnerBorderCells() const; //周上の内側のCellを取得
+		TArray<FCell*> GetOuterBorderCells() const; //周上の外側のCellを取得
+		TArray<FCell*> GetAllCells() const; //構成するCellを取得
 	};
 	struct FSpace: FRect //部屋などの構造体
 	{
