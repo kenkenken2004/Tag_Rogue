@@ -16,24 +16,25 @@ class TAG_ROGUE_API UMapGeneratorBase : public UObject
 {
 	GENERATED_BODY()
 private:
-	enum struct ECellType; //マスの属性
-	enum struct ESpaceType;//部屋の属性
+	enum struct EType; //マス・部屋の属性
 	enum struct EDirection;//方向
 	struct FCell //マスの構造体
 	{
 		int32 Py, Px;
 		int32 Index;
-		ECellType Attribution;
+		int32 AreaIndex = -1;
+		EType Attribution;
 		UMapGeneratorBase& Gen;
 		FCell(int32, int32, int32, UMapGeneratorBase&);
-		FCell(int32, int32, int32, ECellType, UMapGeneratorBase&);
-		void ChangeAttr(ECellType);
+		FCell(int32, int32, int32, EType, UMapGeneratorBase&);
+		void ChangeAttr(EType);
 		
 	};
 	struct FRect //マスの長方形の領域の構造体
 	{
-		FCell &LeftTopCell;
-		FCell &RightBottomCell;
+		int32 Index = -1;
+		FCell *LeftTopCell;
+		FCell *RightBottomCell;
 		int32 Height;
 		int32 Width;
 		UMapGeneratorBase& Gen;
@@ -44,27 +45,41 @@ private:
 	};
 	struct FSpace: FRect //部屋などの構造体
 	{
-		ESpaceType Attribution; //部屋の種類
-		FSpace(FRect, ESpaceType);
-		void ChangeAttr(ESpaceType); //部屋の種類を変更
+		EType Attribution; //部屋の種類
+		FSpace(FRect, EType);
+		void ChangeAttr(EType); //部屋の種類を変更
+		bool CanPlace() const;
+		void Place();
 	};
 	struct FPath: FRect //通路などの構造体
 	{
-		FRect &Node1, &Node2;
+		FRect *Node1;
+		FRect *Node2;
 		int32 Length;
 		EDirection Direction;
-		FPath(FRect&, FRect&, FRect&);
-		
+		FPath(FRect*, FRect*, const FRect*);
+		bool CanPlace() const;
+		void Place();
 	};
 	struct FArea: FRect //仮想的な領域の構造体
 	{
-		FArea();
+		FArea(FRect);
+		TArray<FArea> Split(EDirection, int32);
+		void Expand(EDirection, int32);
 		void Expand(EDirection);
+		void Expand();
+		bool CanPlace() const;
+		void Place();
 	};
+	
 	int32 MapHeight, MapWidth; //マップのサイズ
+	TArray<FSpace*> SpaceList;
+	TArray<FArea*> AreaList;
+	TArray<FPath*> PathList;
 	TArray<FCell> CellList; //マスの実体が入っているリスト。
 	TArray<TArray<int>> MapMatrix; //CellListへの参照indexが入っている、マップを表現した二次元リスト。
+	
 public:
 	UMapGeneratorBase(int32, int32);
-	FCell GetCell(int32, int32);
+	FCell& GetCell(int32, int32);
 };
