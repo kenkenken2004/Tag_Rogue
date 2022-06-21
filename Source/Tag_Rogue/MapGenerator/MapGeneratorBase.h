@@ -18,7 +18,7 @@ UCLASS()
 class TAG_ROGUE_API UMapGeneratorBase : public UObject
 {
 	GENERATED_BODY()
-private:
+protected:
 	enum struct EType; //マス・部屋の属性
 	enum struct EDirection;//方向
 	struct FCell //マスの構造体
