@@ -7,4 +7,8 @@ URogueAlpha_MapGenerator::URogueAlpha_MapGenerator(const int32 MapHeight, const 
 
 URogueAlpha_MapGenerator::URogueAlpha_MapGenerator(): URogueAlpha_MapGenerator(1,1){}
 
+void URogueAlpha_MapGenerator::BuildSpacesLayer()
+{
+	
+}
 
