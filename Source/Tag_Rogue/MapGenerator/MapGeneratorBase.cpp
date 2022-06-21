@@ -31,11 +31,6 @@ UMapGeneratorBase::FCell::FCell(const int32 Y, const int32 X, const int32 TheID,
 {
 }
 
-void UMapGeneratorBase::FCell::ChangeAttr(const EType Type)
-{
-	Attribution = Type;
-}
-
 UMapGeneratorBase::FRect::FRect(FCell& LeftTop,FCell& RightBottom): Gen(LeftTop.Gen)
 {
 	Height = RightBottom.Py - LeftTop.Py + 1;
@@ -107,7 +102,7 @@ bool UMapGeneratorBase::FSpace::CanPlace() const
 
 void UMapGeneratorBase::FSpace::Place()
 {
-	if (!Gen.SpaceList.Contains(*this))
+	if (!Gen.SpaceList.Contains(this))
 	{
 		Index = Gen.SpaceList.Num();
 		Gen.SpaceList.Add(this);
@@ -118,6 +113,23 @@ void UMapGeneratorBase::FSpace::Place()
 		}
 	}
 }
+
+void UMapGeneratorBase::FSpace::Remove()
+{
+	if (Gen.SpaceList.Contains(this))
+	{
+		for (int i=Index+1;i<Gen.SpaceList.Num();i++)Gen.SpaceList[i]->Index -= 1;
+		Gen.SpaceList.RemoveAt(Index);
+		TArray<FCell*> Elements = GetAllCells();
+		for (int j=0;j<Elements.Num();j++)
+		{
+			Elements[j]->Attribution = EType::Wall;
+		}
+		Index = -1;
+	}
+	
+}
+
 
 UMapGeneratorBase::FPath::FPath(FRect* N1, FRect* N2, const FRect* Body): FRect(*Body)
 {
@@ -153,13 +165,28 @@ void UMapGeneratorBase::FPath::Place()
 	}
 }
 
+void UMapGeneratorBase::FPath::Remove()
+{
+	if (Gen.PathList.Contains(this))
+	{
+		for (int i=Index+1;i<Gen.PathList.Num();i++)Gen.PathList[i]->Index -= 1;
+		Gen.PathList.RemoveAt(Index);
+		TArray<FCell*> Elements = GetAllCells();
+		for (int j=0;j<Elements.Num();j++)
+		{
+			Elements[j]->Attribution = EType::Wall;
+		}
+		Index = -1;
+	}
+}
+
 bool UMapGeneratorBase::FArea::CanPlace() const
 {
 	bool Ret = true;
 	TArray<FCell*> Elements = this->GetAllCells();
 	for (int i=0;i<Elements.Num();i++)
 	{
-		Ret &= Elements[i]->Attribution == EType::Wall;
+		Ret &= Elements[i]->AreaIndex == -1;
 	}
 	return Ret;
 }
@@ -178,12 +205,33 @@ void UMapGeneratorBase::FArea::Place()
 	}
 }
 
+void UMapGeneratorBase::FArea::Remove()
+{
+	if (Gen.AreaList.Contains(this))
+	{
+		for (int i=Index+1;i<Gen.AreaList.Num();i++)Gen.AreaList[i]->Index -= 1;
+		Gen.AreaList.RemoveAt(Index);
+		TArray<FCell*> Elements = GetAllCells();
+		for (int j=0;j<Elements.Num();j++)
+		{
+			Elements[j]->AreaIndex = -1;
+		}
+		Index = -1;
+	}
+}
+
 
  
 UMapGeneratorBase::FSpace::FSpace(const FRect Rect, const EType Type): FRect(*Rect.LeftTopCell, *Rect.RightBottomCell)
 {
 	Attribution = Type;
 }
+
+UMapGeneratorBase::FSpace::FSpace(FCell& LeftTop, FCell& RightBottom, const EType Attr): FRect(LeftTop, RightBottom)
+{
+	Attribution = Attr;
+}
+
 
 void UMapGeneratorBase::FSpace::ChangeAttr(const EType Type)
 {
@@ -210,9 +258,11 @@ UMapGeneratorBase::UMapGeneratorBase(const int32 Map_Height, const int32 Map_Wid
 	}
 }
 
-UMapGeneratorBase::FArea::FArea(const FRect Rect): FRect(*Rect.LeftTopCell, *Rect.RightBottomCell)
+UMapGeneratorBase::FArea::FArea(FCell& LeftTop, FCell& RightBottom): FRect(LeftTop, RightBottom)
 {
 }
+
+
 
 
 void UMapGeneratorBase::FArea::Expand(const EDirection Dir, const int32 Num)
@@ -234,14 +284,68 @@ void UMapGeneratorBase::FArea::Expand(const EDirection Dir, const int32 Num)
 	}
 }
 
-void UMapGeneratorBase::FArea::Expand(const EDirection Dir)
+
+bool UMapGeneratorBase::FArea::Expand()
 {
-	Expand(Dir, 1);
+	bool Flag = false;
+	if (LeftTopCell->Py != 0)
+	{
+		if (FArea(Gen.GetCell(LeftTopCell->Py-1, LeftTopCell->Px),Gen.GetCell(LeftTopCell->Py-1,RightBottomCell->Px)).CanPlace())
+		{
+			Expand(EDirection::North, 1);
+			Flag = true;
+		}
+		if (FArea(Gen.GetCell(LeftTopCell->Py, RightBottomCell->Px+1),Gen.GetCell(RightBottomCell->Py,RightBottomCell->Px+1)).CanPlace())
+		{
+			Expand(EDirection::East, 1);
+			Flag = true;
+		}
+		if (FArea(Gen.GetCell(LeftTopCell->Py, RightBottomCell->Px-1),Gen.GetCell(RightBottomCell->Py,RightBottomCell->Px-1)).CanPlace())
+		{
+			Expand(EDirection::West, 1);
+			Flag = true;
+		}
+		if (FArea(Gen.GetCell(LeftTopCell->Py+1, LeftTopCell->Px),Gen.GetCell(LeftTopCell->Py+1,RightBottomCell->Px)).CanPlace())
+		{
+			Expand(EDirection::South, 1);
+			Flag = true;
+		}
+	}
+	return Flag;
 }
 
-TArray<UMapGeneratorBase::FArea> UMapGeneratorBase::FArea::Split(EDirection, int32)
+
+TArray<UMapGeneratorBase::FArea*> UMapGeneratorBase::FArea::Split(const EDirection Dir, int32 Num)
 {
-	
+	TArray<FArea*> Ret = TArray<FArea*>();
+	switch (Dir)
+	{
+	case EDirection::North:
+	case EDirection::South:
+		{
+			if(Dir == EDirection::South) Num = Height - Num;
+			FArea Area1 = FArea(*LeftTopCell, Gen.GetCell(LeftTopCell->Py+Num-1, RightBottomCell->Px));
+			FArea Area2 = FArea(Gen.GetCell(LeftTopCell->Py+Num, LeftTopCell->Px), *RightBottomCell);
+			Remove();
+			Area1.Place();
+			Area2.Place();
+			Ret.Add(&Area1);
+			Ret.Add(&Area2);
+		}
+	case EDirection::East:
+	case EDirection::West:
+		{
+			if(Dir == EDirection::West) Num = Width - Num;
+			FArea Area1 = FArea(Gen.GetCell(LeftTopCell->Py, RightBottomCell->Px-Num+1), *RightBottomCell);
+			FArea Area2 = FArea(*LeftTopCell, Gen.GetCell(RightBottomCell->Py, RightBottomCell->Px-Num));
+			Remove();
+			Area1.Place();
+			Area2.Place();
+			Ret.Add(&Area1);
+			Ret.Add(&Area2);
+		}
+	}
+	return Ret;
 }
 
 
