@@ -76,15 +76,15 @@ TArray<UMapGeneratorBase::FCell*> UMapGeneratorBase::FRect::GetOuterBorderCells(
 	{
 		const int32 t = LeftTopCell->Px - 1;
 		const int32 s = RightBottomCell->Px + 1;
-		if(0<=i & i<=Gen.MapHeight & 0<=t & t<=Gen.MapWidth)Ret.Add(&Gen.CellList[Gen.MapMatrix[i][t]]);
-		if(0<=i & i<=Gen.MapHeight & 0<=s & s<=Gen.MapWidth)Ret.Add(&Gen.CellList[Gen.MapMatrix[i][s]]);
+		if(0<=i && i<=Gen.MapHeight && 0<=t && t<=Gen.MapWidth)Ret.Add(&Gen.CellList[Gen.MapMatrix[i][t]]);
+		if(0<=i && i<=Gen.MapHeight && 0<=s && s<=Gen.MapWidth)Ret.Add(&Gen.CellList[Gen.MapMatrix[i][s]]);
 	}
 	for (int j=this->LeftTopCell->Px;j<=this->RightBottomCell->Px;j++)
 	{
 		const int32 t = LeftTopCell->Py - 1;
 		const int32 s = RightBottomCell->Py + 1;
-		if(0<=j & j<=Gen.MapWidth & 0<=t & t<=Gen.MapHeight)Ret.Add(&Gen.CellList[Gen.MapMatrix[LeftTopCell->Py][j]]);
-		if(0<=j & j<=Gen.MapWidth & 0<=s & s<=Gen.MapHeight)Ret.Add(&Gen.CellList[Gen.MapMatrix[RightBottomCell->Py][j]]);
+		if(0<=j && j<=Gen.MapWidth && 0<=t && t<=Gen.MapHeight)Ret.Add(&Gen.CellList[Gen.MapMatrix[LeftTopCell->Py][j]]);
+		if(0<=j && j<=Gen.MapWidth && 0<=s && s<=Gen.MapHeight)Ret.Add(&Gen.CellList[Gen.MapMatrix[RightBottomCell->Py][j]]);
 	}
 	return Ret;
 }
@@ -102,7 +102,7 @@ bool UMapGeneratorBase::FSpace::CanPlace() const
 
 void UMapGeneratorBase::FSpace::Place()
 {
-	if (!Gen.SpaceList.Contains(this))
+	if (Index != -1)
 	{
 		Index = Gen.SpaceList.Num();
 		Gen.SpaceList.Add(this);
@@ -153,7 +153,7 @@ bool UMapGeneratorBase::FPath::CanPlace() const
 
 void UMapGeneratorBase::FPath::Place()
 {
-	if (!Gen.PathList.Contains(*this))
+	if (Index != -1)
 	{
 		Index = Gen.PathList.Num();
 		Gen.PathList.Add(this);
@@ -193,7 +193,7 @@ bool UMapGeneratorBase::FArea::CanPlace() const
 
 void UMapGeneratorBase::FArea::Place()
 {
-	if (!Gen.AreaList.Contains(*this))
+	if (Index != -1)
 	{
 		Index = Gen.AreaList.Num();
 		Gen.AreaList.Add(this);
@@ -257,6 +257,8 @@ UMapGeneratorBase::UMapGeneratorBase(const int32 Map_Height, const int32 Map_Wid
 		}
 	}
 }
+
+UMapGeneratorBase::UMapGeneratorBase(): UMapGeneratorBase(1, 1){};
 
 UMapGeneratorBase::FArea::FArea(FCell& LeftTop, FCell& RightBottom): FRect(LeftTop, RightBottom)
 {

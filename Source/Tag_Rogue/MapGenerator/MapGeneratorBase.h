@@ -5,8 +5,6 @@
 #include "CoreMinimal.h"
 #include "UObject/NoExportTypes.h"
 #include "MapGeneratorBase.generated.h"
-#define WALL false
-#define PATH true
 
 /**
  ・FCellをマップの最小構成要素とする。
@@ -87,6 +85,7 @@ private:
 	TArray<TArray<int>> MapMatrix; //CellListへの参照indexが入っている、マップを表現した二次元リスト。
 	
 public:
+	UMapGeneratorBase();
 	UMapGeneratorBase(int32, int32); //マップのサイズを指定するコンストラクタ。(sizeY, sizeX), Array[Y][X]
 	FCell& GetCell(int32, int32); //指定座標のFCellを取得。
 };
