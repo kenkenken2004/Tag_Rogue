@@ -245,7 +245,7 @@ UMapGeneratorBase::UMapGeneratorBase(const int32 Map_Height, const int32 Map_Wid
 	TArray<int32> Instant = TArray<int32>();
 	Instant.Init(0, MapWidth);
 	MapMatrix = TArray<TArray<int32>>();
-	MapMatrix.Init(Instant, MapWidth);
+	MapMatrix.Init(Instant, MapHeight);
 	CellList = TArray<FCell>();
 	for (int i =0;i<Map_Height;i++)
 	{
