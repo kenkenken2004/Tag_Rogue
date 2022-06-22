@@ -32,7 +32,7 @@ protected:
 		West,
 		South
 	};
-
+	
 	struct FCell //マスの構造体
 	{
 		int32 Py, Px; //二次元配列における座標。アクセスはArray[Py][Px]。
@@ -53,8 +53,9 @@ protected:
 		int32 Width; //Z方向の辺の長さ。
 		UMapGeneratorBase& Gen; //同上
 		FRect(FCell&,FCell&); //角を指定するコンストラクタ。
-		TArray<FCell*> GetInnerBorderCells() const; //周上の内側のCellを取得
-		TArray<FCell*> GetOuterBorderCells() const; //周上の外側のCellを取得
+		FRect(FCell&, int32, int32);//左上端と、辺の長さを指定するコンストラクタ。
+		TArray<FCell*> GetInnerBorderCells(EDirection) const; //周上の内側のCellを取得
+		TArray<FCell*> GetOuterBorderCells(EDirection) const; //周上の外側のCellを取得
 		TArray<FCell*> GetAllCells() const; //構成するCellを取得
 	};
 	struct FSpace: FRect //部屋などの構造体
@@ -80,7 +81,9 @@ protected:
 	};
 	struct FArea: FRect //仮想的な領域の構造体
 	{
-		FArea(FCell&, FCell&); //角を入力するコンストラクタ。
+		FSpace *Owner;
+		FArea(FCell&, FCell&, FSpace*); //角と所有対象の構造体を入力するコンストラクタ。
+		FArea(FCell&, FCell&);
 		TArray<FArea*> Split(EDirection, int32); //EDirection側をint32だけ分割する。自身はRemoveされ新たに二つのFAreaが配置される。
 		void Expand(EDirection, int32); //指定方向に指定Cell数だけ拡張。可能かどうかは判定しない。
 		bool Expand(); //全方向に1Cellずつ拡張。できない方向へは拡張しない。

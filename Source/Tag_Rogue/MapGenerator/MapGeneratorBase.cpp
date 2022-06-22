@@ -22,6 +22,10 @@ UMapGeneratorBase::FRect::FRect(FCell& LeftTop,FCell& RightBottom): Gen(LeftTop.
 	RightBottomCell = &RightBottom;
 }
 
+UMapGeneratorBase::FRect::FRect(FCell& LeftTop, const int32 Height, const int32 Width): FRect(LeftTop, Gen.GetCell(LeftTop.Py-1+Height, LeftTop.Px-1+Width))
+{
+}
+
 
 TArray<UMapGeneratorBase::FCell*> UMapGeneratorBase::FRect::GetAllCells() const
 {
@@ -36,38 +40,40 @@ TArray<UMapGeneratorBase::FCell*> UMapGeneratorBase::FRect::GetAllCells() const
 	return Ret;
 }
 
-TArray<UMapGeneratorBase::FCell*> UMapGeneratorBase::FRect::GetInnerBorderCells() const
+TArray<UMapGeneratorBase::FCell*> UMapGeneratorBase::FRect::GetInnerBorderCells(const EDirection Dir) const
 {
 	TArray<FCell*> Ret = TArray<FCell*>();
-	for (int i=this->LeftTopCell->Py;i<=this->RightBottomCell->Py;i++)
+	switch (Dir)
 	{
-		Ret.Add(&Gen.CellList[Gen.MapMatrix[i][LeftTopCell->Px]]);
-		Ret.Add(&Gen.CellList[Gen.MapMatrix[i][RightBottomCell->Px]]);
-	}
-	for (int j=this->LeftTopCell->Px+1;j<this->RightBottomCell->Px;j++)
-	{
-		Ret.Add(&Gen.CellList[Gen.MapMatrix[LeftTopCell->Py][j]]);
-		Ret.Add(&Gen.CellList[Gen.MapMatrix[RightBottomCell->Py][j]]);
+	case EDirection::North:
+		for (int i=this->LeftTopCell->Py;i<=this->RightBottomCell->Py;i++)Ret.Add(&Gen.CellList[Gen.MapMatrix[i][LeftTopCell->Px]]);
+	case EDirection::East:
+		for (int i=this->LeftTopCell->Py;i<=this->RightBottomCell->Py;i++)Ret.Add(&Gen.CellList[Gen.MapMatrix[i][RightBottomCell->Px]]);
+	case EDirection::West:
+		for (int j=this->LeftTopCell->Px+1;j<this->RightBottomCell->Px;j++)Ret.Add(&Gen.CellList[Gen.MapMatrix[LeftTopCell->Py][j]]);
+	case EDirection::South:
+		for (int j=this->LeftTopCell->Px+1;j<this->RightBottomCell->Px;j++)Ret.Add(&Gen.CellList[Gen.MapMatrix[RightBottomCell->Py][j]]);
+
 	}
 	return Ret;
 }
 
-TArray<UMapGeneratorBase::FCell*> UMapGeneratorBase::FRect::GetOuterBorderCells() const
+TArray<UMapGeneratorBase::FCell*> UMapGeneratorBase::FRect::GetOuterBorderCells(const EDirection Dir) const
 {
 	TArray<FCell*> Ret = TArray<FCell*>();
 	for (int i=this->LeftTopCell->Py-1;i<=this->RightBottomCell->Py+1;i++)
 	{
 		const int32 t = LeftTopCell->Px - 1;
 		const int32 s = RightBottomCell->Px + 1;
-		if(0<=i && i<=Gen.MapHeight && 0<=t && t<=Gen.MapWidth)Ret.Add(&Gen.CellList[Gen.MapMatrix[i][t]]);
-		if(0<=i && i<=Gen.MapHeight && 0<=s && s<=Gen.MapWidth)Ret.Add(&Gen.CellList[Gen.MapMatrix[i][s]]);
+		if(Dir == EDirection::North && 0<=i && i<=Gen.MapHeight && 0<=t && t<=Gen.MapWidth)Ret.Add(&Gen.CellList[Gen.MapMatrix[i][t]]);
+		if(Dir == EDirection::South && 0<=i && i<=Gen.MapHeight && 0<=s && s<=Gen.MapWidth)Ret.Add(&Gen.CellList[Gen.MapMatrix[i][s]]);
 	}
 	for (int j=this->LeftTopCell->Px;j<=this->RightBottomCell->Px;j++)
 	{
 		const int32 t = LeftTopCell->Py - 1;
 		const int32 s = RightBottomCell->Py + 1;
-		if(0<=j && j<=Gen.MapWidth && 0<=t && t<=Gen.MapHeight)Ret.Add(&Gen.CellList[Gen.MapMatrix[LeftTopCell->Py][j]]);
-		if(0<=j && j<=Gen.MapWidth && 0<=s && s<=Gen.MapHeight)Ret.Add(&Gen.CellList[Gen.MapMatrix[RightBottomCell->Py][j]]);
+		if(Dir == EDirection::East && 0<=j && j<=Gen.MapWidth && 0<=t && t<=Gen.MapHeight)Ret.Add(&Gen.CellList[Gen.MapMatrix[s][j]]);
+		if(Dir == EDirection::West && 0<=j && j<=Gen.MapWidth && 0<=s && s<=Gen.MapHeight)Ret.Add(&Gen.CellList[Gen.MapMatrix[t][j]]);
 	}
 	return Ret;
 }
@@ -243,11 +249,15 @@ UMapGeneratorBase::UMapGeneratorBase(const int32 Map_Height, const int32 Map_Wid
 
 UMapGeneratorBase::UMapGeneratorBase(): UMapGeneratorBase(1, 1){};
 
-UMapGeneratorBase::FArea::FArea(FCell& LeftTop, FCell& RightBottom): FRect(LeftTop, RightBottom)
+UMapGeneratorBase::FArea::FArea(FCell& LeftTop, FCell& RightBottom, FSpace* OwnerSpace): FRect(LeftTop, RightBottom)
 {
+	Owner = OwnerSpace;
 }
 
-
+UMapGeneratorBase::FArea::FArea(FCell& LeftTop, FCell& RightBottom): FRect(LeftTop, RightBottom)
+{
+	Owner = nullptr;
+}
 
 
 void UMapGeneratorBase::FArea::Expand(const EDirection Dir, const int32 Num)
