@@ -3,23 +3,6 @@
 #include "MapGeneratorBase.h"
 
 
-enum struct UMapGeneratorBase::EType
-{
-	Wall,
-	Plaza,
-	Room,
-	Path
-};
-
-
-enum struct UMapGeneratorBase::EDirection
-{
-	North,
-	East,
-	West,
-	South
-};
-
 UMapGeneratorBase::FCell::FCell(const int32 Y, const int32 X, const int32 TheID, const EType Attr, UMapGeneratorBase& Generator): Gen(Generator)
 {
 	Py = Y;Px = X;

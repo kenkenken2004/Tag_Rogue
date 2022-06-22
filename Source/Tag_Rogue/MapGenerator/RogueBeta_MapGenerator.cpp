@@ -9,7 +9,8 @@ URogueBeta_MapGenerator::URogueBeta_MapGenerator(int32 MapHeight, int32 MapWidth
 	//
 
 	//‹æˆæ‘S‘Ì‚ðAreaList‚É’Ç‰Á
-	AreaList.Add(&FArea(CellList[MapMatrix[0][0]], CellList[MapMatrix[MapHeight - 1][MapWidth - 1]]));
+	FArea* WholeArea = new FArea(CellList[MapMatrix[0][0]], CellList[MapMatrix[MapHeight - 1][MapWidth - 1]]);
+	AreaList.Add(WholeArea);
 	
 	//
 	//2. ‹æˆæ‚ð’·•ûŒ`‚É•ªŠ„‚µ‚Ä‚¢‚­
@@ -59,7 +60,8 @@ URogueBeta_MapGenerator::URogueBeta_MapGenerator(int32 MapHeight, int32 MapWidth
 	for (int i = 0; i < AreaList.Num(); i++) {
 		FCell Cell1 = CellList[MapMatrix[AreaList[i]->LeftTopCell->Px + 1][AreaList[i]->LeftTopCell->Py + 1]];//ì‚é•”‰®‚Ì¶ã‚ÌCell
 		FCell Cell2 = CellList[MapMatrix[AreaList[i]->RightBottomCell->Px - 1][AreaList[i]->RightBottomCell->Py - 1]];//ì‚é•”‰®‚Ì‰E‰º‚ÌCell
-		SpaceList.Add(&FSpace(Cell1, Cell2, EType::Room));
+		FSpace* NewSpace = new FSpace(Cell1, Cell2, EType::Room);
+		SpaceList.Add(NewSpace);
 		SpaceList.Last()->Place();
 	}
 
