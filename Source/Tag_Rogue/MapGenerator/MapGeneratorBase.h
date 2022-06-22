@@ -19,8 +19,20 @@ class TAG_ROGUE_API UMapGeneratorBase : public UObject
 {
 	GENERATED_BODY()
 protected:
-	enum struct EType; //マス・部屋の属性
-	enum struct EDirection;//方向
+	enum struct EType {//マス・部屋の属性
+		Wall,
+		Plaza,
+		Room,
+		Path
+	}; 
+	
+	enum struct EDirection {//方向
+		North,
+		East,
+		West,
+		South
+	};
+
 	struct FCell //マスの構造体
 	{
 		int32 Py, Px; //二次元配列における座標。アクセスはArray[Py][Px]。
