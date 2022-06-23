@@ -346,6 +346,10 @@ TArray<UMapGeneratorBase::FArea*> UMapGeneratorBase::FArea::Split(const EDirecti
 
 UMapGeneratorBase::FCell& UMapGeneratorBase::GetCell(const int32 PosY, const int32 PosX)
 {
-	return this->CellList[this->MapMatrix[PosY][PosX]];
+	int32 Py = 0;
+	int32 Px = 0;
+	if (0<=PosY&&PosY<MapHeight)Py = PosY;
+	if (0<=PosX&&PosX<MapWidth)Px = PosX;
+	return this->CellList[this->MapMatrix[Py][Px]];
 	
 }
