@@ -5,16 +5,27 @@
 
 URogueAlpha_MapGenerator::URogueAlpha_MapGenerator(const int32 MapHeight, const int32 MapWidth): UMapGeneratorBase(MapHeight, MapWidth)
 {
+	SetStructureParam(EType::Plaza, 7, 7, 2);
+	SetStructureParam(EType::Room, 3, 3, 9);
+	BuildSpace();
+	//BuildArea();
+	
+	TArray<FString> Map = GetMapString();
+	for (int32 i=0;i<MapHeight;i++)
+	{
+		UE_LOG(LogTemp, Log,TEXT("%s"), *Map[i])
+	}
 }
 
-URogueAlpha_MapGenerator::URogueAlpha_MapGenerator(): URogueAlpha_MapGenerator(1,1){}
+URogueAlpha_MapGenerator::URogueAlpha_MapGenerator(): URogueAlpha_MapGenerator(100,100){}
 
 bool URogueAlpha_MapGenerator::RandomPlaceSpace(const EType SpaceType)
 {
 	for(int32 i=0;i<20;i++)
 	{
-		FCell Rand = GetCell(FMath::RandRange(1, MapHeight-1-StructureSize[SpaceType].Height), FMath::RandRange(1,MapWidth-1)-StructureSize[SpaceType].Width);
-		if (FSpace Space = FSpace(FRect(Rand, StructureSize[SpaceType].Height, StructureSize[SpaceType].Width),SpaceType); Space.CanPlace())
+		FCell *Rand = GetCell(FMath::RandRange(1, MapHeight-1-StructureSize[SpaceType].Height), FMath::RandRange(1,MapWidth-1-StructureSize[SpaceType].Width));
+		FSpace Space = FSpace(FRect(*Rand, StructureSize[SpaceType].Height, StructureSize[SpaceType].Width),SpaceType); //Problem here. Instancce are not independent
+		if (Space.CanPlace())
 		{
 			Space.Place();
 			return true;
@@ -32,7 +43,7 @@ bool URogueAlpha_MapGenerator::SetDirectPath(FArea* Area1, FArea* Area2)
 
 
 
-TArray<int32> URogueAlpha_MapGenerator::SpaceBuild()
+TArray<int32> URogueAlpha_MapGenerator::BuildSpace()
 {
 	TArray<int32> ActualNums = TArray<int32>();
 	int32 Count = 0;
@@ -50,7 +61,7 @@ TArray<int32> URogueAlpha_MapGenerator::SpaceBuild()
 
 
 
-void URogueAlpha_MapGenerator::AreaBuild()
+void URogueAlpha_MapGenerator::BuildArea()
 {
 	for (int32 i=0;i<SpaceList.Num();i++)
 	{
@@ -71,15 +82,29 @@ void URogueAlpha_MapGenerator::AreaBuild()
 	}
 }
 
-void URogueAlpha_MapGenerator::PathBuild()
+void URogueAlpha_MapGenerator::BuildPath()
 {
 }
 
 
-void URogueAlpha_MapGenerator::SetStructureParam(const EType Type, const int32 Height, const int32 Width, int32 Num)
+void URogueAlpha_MapGenerator::SetStructureParam(const EType Type, const int32 Height, const int32 Width, const int32 Num)
 {
-	const FRect Ins = FRect(GetCell(0,0), GetCell(Height-1, Width-1));
+	if (MapHeight <= Height || MapWidth <= Width)return;
+	const FRect Ins = FRect(*GetCell(0,0), *GetCell(Height-1, Width-1));
 	StructureSize.Add(Type, Ins);
 	StructureNumber.Add(Type, Num);
 }
 
+TArray<FString> URogueAlpha_MapGenerator::GetMapString()
+{
+	TArray<FString> Ret = TArray<FString>();
+	Ret.Init(FString(), MapHeight);
+	for (int i=0;i<MapHeight;i++)
+	{
+		for (int j=0;j<MapWidth;j++)
+		{
+			Ret[i]+= (*GetCell(i,j)).Attribution == EType::Wall ? '#' : ' ';
+		}
+	}
+	return Ret;
+}

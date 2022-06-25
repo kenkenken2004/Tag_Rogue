@@ -17,8 +17,12 @@
 UCLASS()
 class TAG_ROGUE_API UMapGeneratorBase : public UObject
 {
-protected:
+public:
 	GENERATED_BODY()
+
+	int32 MapHeight = 1;
+	int32 MapWidth = 1; //マップのサイズ
+	
 	enum struct EType {//マス・部屋の属性
 		Wall,
 		Plaza,
@@ -36,12 +40,11 @@ protected:
 	struct FCell //マスの構造体
 	{
 		int32 Py, Px; //二次元配列における座標。アクセスはArray[Py][Px]。
-		int32 Index;  //リストにおけるインデックス。
 		int32 AreaIndex = -1; //所属する領域のリストインデックス。所属していない場合は-1。
 		EType Attribution; //Cellの属性。
 		UMapGeneratorBase& Gen; //所有されるMapGenerator
-		FCell(int32, int32, int32, UMapGeneratorBase&); //属性無しのコンストラクタ。このとき属性はWallとなる。
-		FCell(int32, int32, int32, EType, UMapGeneratorBase&); //属性ありのコンストラクタ。
+		FCell(int32, int32, UMapGeneratorBase&); //属性無しのコンストラクタ。このとき属性はWallとなる。
+		FCell(int32, int32, EType, UMapGeneratorBase&); //属性ありのコンストラクタ。
 		
 	};
 	struct FRect //マスの長方形の領域の構造体
@@ -92,15 +95,13 @@ protected:
 		void Remove(); //同上
 	};
 	
-	int32 MapHeight, MapWidth; //マップのサイズ
 	TArray<FSpace*> SpaceList; //部屋類のポインタのリスト。
 	TArray<FArea*> AreaList; //仮想領域のポインタのリスト。
 	TArray<FPath*> PathList; //通路類のポインタのリスト。
-	TArray<FCell> CellList; //マスの実体が入っているリスト。
-	TArray<TArray<int>> MapMatrix; //CellListへの参照indexが入っている、マップを表現した二次元リスト。
+	TArray<TArray<FCell>> MapMatrix; //CellListへの参照indexが入っている、マップを表現した二次元リスト。
 	
 public:
 	UMapGeneratorBase();
 	UMapGeneratorBase(int32, int32); //マップのサイズを指定するコンストラクタ。(sizeY, sizeX), Array[Y][X]
-	FCell& GetCell(int32, int32); //指定座標のFCellを取得。
+	FCell* GetCell(int32, int32); //指定座標のFCellを取得。
 };

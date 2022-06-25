@@ -13,6 +13,9 @@
       <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/MapGenerator/MapGeneratorBase.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/MapGenerator/MapGeneratorBase.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/MapGenerator/RogueAlpha_MapGenerator.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/MapGenerator/RogueAlpha_MapGenerator.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/MapGenerator/RogueAlpha_MapGenerator.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/MapGenerator/RogueAlpha_MapGenerator.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/MapGenerator/RogueBeta_MapGenerator.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/MapGenerator/RogueBeta_MapGenerator.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tag_Rogue.uproject" beforeDir="false" afterPath="$PROJECT_DIR$/Tag_Rogue.uproject" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,6 +25,8 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Source/Tag_Rogue/MapGenerator/MapGeneratorBase.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Tag_Rogue/MapGenerator/MapGeneratorBase.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/Tag_Rogue/MapGenerator/RogueAlpha_MapGenerator.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/Tag_Rogue/MapGenerator/RogueAlpha_MapGenerator.h" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -36,6 +41,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.37272727&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -101,6 +107,11 @@
       <workItem from="1655641858772" duration="5991000" />
       <workItem from="1655801477730" duration="11213000" />
       <workItem from="1655970586500" duration="1987000" />
+      <workItem from="1655981862816" duration="1597000" />
+      <workItem from="1656057522423" duration="10352000" />
+      <workItem from="1656069418297" duration="9096000" />
+      <workItem from="1656135678834" duration="3253000" />
+      <workItem from="1656139308869" duration="3489000" />
     </task>
     <servers />
   </component>
@@ -109,7 +120,34 @@
   </component>
   <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/Source/Tag_Rogue/Levels/GameMap_Alpha.cpp</url>
+          <line>14</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/Source/Tag_Rogue/MapGenerator/RogueAlpha_MapGenerator.cpp</url>
+          <line>25</line>
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
