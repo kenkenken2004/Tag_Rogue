@@ -13,7 +13,7 @@ AGameMap_Alpha::AGameMap_Alpha()
 void AGameMap_Alpha::BeginPlay()
 {
 	URogueAlpha_MapGenerator Generator = URogueAlpha_MapGenerator(50, 50);
-	Generator.GetMapString();
+	Generator.GetStructureString();
 	Super::BeginPlay();
 }
 

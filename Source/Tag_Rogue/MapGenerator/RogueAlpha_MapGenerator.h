@@ -27,5 +27,6 @@ public:
 	URogueAlpha_MapGenerator(int32, int32);
 	URogueAlpha_MapGenerator();
 	void SetStructureParam(EType, int32, int32, int32);
-	TArray<FString> GetMapString();
+	TArray<FString> GetStructureString();
+	TArray<FString> GetAreaString();
 };

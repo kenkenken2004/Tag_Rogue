@@ -181,7 +181,7 @@ bool UMapGeneratorBase::FArea::CanPlace() const
 
 void UMapGeneratorBase::FArea::Place()
 {
-	if (Index != -1)
+	if (Index == -1)
 	{
 		Index = Gen.AreaList.Num();
 		Gen.AreaList.Add(this);
@@ -208,13 +208,6 @@ void UMapGeneratorBase::FArea::Remove()
 	}
 }
 
-
- 
-UMapGeneratorBase::FSpace::FSpace(const FRect Rect, const EType Type): FRect(*Rect.LeftTopCell, *Rect.RightBottomCell)
-{
-	Attribution = Type;
-}
-
 UMapGeneratorBase::FSpace::FSpace(FCell& LeftTop, FCell& RightBottom, const EType Attr): FRect(LeftTop, RightBottom)
 {
 	Attribution = Attr;
@@ -237,8 +230,7 @@ UMapGeneratorBase::UMapGeneratorBase(const int32 Map_Height, const int32 Map_Wid
 		MapMatrix.Add(TArray<FCell>());
 		for (int j=0;j<MapWidth;j++)
 		{
-			FCell Cell = FCell(i, j,EType::Wall, *this);
-			MapMatrix[i].Add(Cell);
+			MapMatrix[i].Add(FCell(i, j,EType::Wall, *this));
 		}
 	}
 }
@@ -272,6 +264,13 @@ void UMapGeneratorBase::FArea::Expand(const EDirection Dir, const int32 Num)
 	case EDirection::South:
 		RightBottomCell = Gen.GetCell(RightBottomCell->Py+Num, RightBottomCell->Px);
 		Height += Num;
+	}
+	for (int32 i=LeftTopCell->Py;i<=RightBottomCell->Py;i++)
+	{
+		for (int32 j=LeftTopCell->Px;j<=RightBottomCell->Px;j++)
+		{
+			Gen.GetCell(i, j)->AreaIndex = Index;
+		}
 	}
 }
 
@@ -315,25 +314,25 @@ TArray<UMapGeneratorBase::FArea*> UMapGeneratorBase::FArea::Split(const EDirecti
 	case EDirection::South:
 		{
 			if(Dir == EDirection::South) Num = Height - Num;
-			FArea Area1 = FArea(*LeftTopCell, *Gen.GetCell(LeftTopCell->Py+Num-1, RightBottomCell->Px));
-			FArea Area2 = FArea(*Gen.GetCell(LeftTopCell->Py+Num, LeftTopCell->Px), *RightBottomCell);
+			FArea* Area1 = new FArea(*LeftTopCell, *Gen.GetCell(LeftTopCell->Py+Num-1, RightBottomCell->Px));
+			FArea* Area2 = new FArea(*Gen.GetCell(LeftTopCell->Py+Num, LeftTopCell->Px), *RightBottomCell);
 			Remove();
-			Area1.Place();
-			Area2.Place();
-			Ret.Add(&Area1);
-			Ret.Add(&Area2);
+			Area1->Place();
+			Area2->Place();
+			Ret.Add(Area1);
+			Ret.Add(Area2);
 		}
 	case EDirection::East:
 	case EDirection::West:
 		{
 			if(Dir == EDirection::West) Num = Width - Num;
-			FArea Area1 = FArea(*Gen.GetCell(LeftTopCell->Py, RightBottomCell->Px-Num+1), *RightBottomCell);
-			FArea Area2 = FArea(*LeftTopCell, *Gen.GetCell(RightBottomCell->Py, RightBottomCell->Px-Num));
+			FArea* Area1 = new FArea(*Gen.GetCell(LeftTopCell->Py, RightBottomCell->Px-Num+1), *RightBottomCell);
+			FArea* Area2 = new FArea(*LeftTopCell, *Gen.GetCell(RightBottomCell->Py, RightBottomCell->Px-Num));
 			Remove();
-			Area1.Place();
-			Area2.Place();
-			Ret.Add(&Area1);
-			Ret.Add(&Area2);
+			Area1->Place();
+			Area2->Place();
+			Ret.Add(Area1);
+			Ret.Add(Area2);
 		}
 	}
 	return Ret;

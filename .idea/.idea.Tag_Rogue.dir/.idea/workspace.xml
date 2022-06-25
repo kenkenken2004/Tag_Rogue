@@ -9,13 +9,11 @@
   <component name="ChangeListManager">
     <list default="true" id="cf331540-c7ba-40e0-a96e-46ca470ed1b0" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Tag_Rogue.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Tag_Rogue.dir/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Levels/GameMap_Alpha.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Levels/GameMap_Alpha.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/MapGenerator/MapGeneratorBase.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/MapGenerator/MapGeneratorBase.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/MapGenerator/MapGeneratorBase.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/MapGenerator/MapGeneratorBase.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/MapGenerator/RogueAlpha_MapGenerator.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/MapGenerator/RogueAlpha_MapGenerator.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/MapGenerator/RogueAlpha_MapGenerator.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/MapGenerator/RogueAlpha_MapGenerator.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/MapGenerator/RogueBeta_MapGenerator.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/MapGenerator/RogueBeta_MapGenerator.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tag_Rogue.uproject" beforeDir="false" afterPath="$PROJECT_DIR$/Tag_Rogue.uproject" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,7 +109,7 @@
       <workItem from="1656057522423" duration="10352000" />
       <workItem from="1656069418297" duration="9096000" />
       <workItem from="1656135678834" duration="3253000" />
-      <workItem from="1656139308869" duration="3489000" />
+      <workItem from="1656139308869" duration="12336000" />
     </task>
     <servers />
   </component>
@@ -138,16 +136,16 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/Source/Tag_Rogue/Levels/GameMap_Alpha.cpp</url>
-          <line>14</line>
-          <option name="timeStamp" value="14" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/Source/Tag_Rogue/MapGenerator/RogueAlpha_MapGenerator.cpp</url>
-          <line>25</line>
-          <option name="timeStamp" value="18" />
+          <line>78</line>
+          <option name="timeStamp" value="34" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="Uproject">
+        <watch expression="Test[18]" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

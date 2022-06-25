@@ -64,7 +64,6 @@ public:
 	struct FSpace: FRect //部屋などの構造体
 	{
 		EType Attribution; //部屋の種類
-		FSpace(FRect, EType); //FRectと属性を入力するコンストラクタ。
 		FSpace(FCell&, FCell&, EType); //FCellと属性を入力するコンストラクタ。
 		void ChangeAttr(EType); //部屋の種類を変更
 		bool CanPlace() const; //構造体としてマップに配置可能か判断。

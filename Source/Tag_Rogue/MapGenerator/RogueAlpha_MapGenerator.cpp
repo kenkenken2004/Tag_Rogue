@@ -8,26 +8,22 @@ URogueAlpha_MapGenerator::URogueAlpha_MapGenerator(const int32 MapHeight, const 
 	SetStructureParam(EType::Plaza, 7, 7, 2);
 	SetStructureParam(EType::Room, 3, 3, 9);
 	BuildSpace();
-	//BuildArea();
+	BuildArea();
 	
-	TArray<FString> Map = GetMapString();
-	for (int32 i=0;i<MapHeight;i++)
-	{
-		UE_LOG(LogTemp, Log,TEXT("%s"), *Map[i])
-	}
 }
 
-URogueAlpha_MapGenerator::URogueAlpha_MapGenerator(): URogueAlpha_MapGenerator(100,100){}
+URogueAlpha_MapGenerator::URogueAlpha_MapGenerator(): URogueAlpha_MapGenerator(50,50){}
 
 bool URogueAlpha_MapGenerator::RandomPlaceSpace(const EType SpaceType)
 {
 	for(int32 i=0;i<20;i++)
 	{
+		
 		FCell *Rand = GetCell(FMath::RandRange(1, MapHeight-1-StructureSize[SpaceType].Height), FMath::RandRange(1,MapWidth-1-StructureSize[SpaceType].Width));
-		FSpace Space = FSpace(FRect(*Rand, StructureSize[SpaceType].Height, StructureSize[SpaceType].Width),SpaceType); //Problem here. Instancce are not independent
-		if (Space.CanPlace())
+		FSpace* Space = new FSpace(*Rand, *GetCell(Rand->Py+StructureSize[SpaceType].Height-1, Rand->Px+StructureSize[SpaceType].Width-1),SpaceType); //Problem here. Instancce are not independent
+		if (Space->CanPlace())
 		{
-			Space.Place();
+			Space->Place();
 			return true;
 		}
 	}
@@ -67,8 +63,11 @@ void URogueAlpha_MapGenerator::BuildArea()
 	{
 		FCell& Ins1 = *(SpaceList[i]->LeftTopCell);
 		FCell& Ins2 = *(SpaceList[i]->RightBottomCell);
-		FArea Ins3 = FArea(Ins1, Ins2);
-		AreaList.Add(&Ins3);
+		FArea* Ins3 = new FArea(Ins1, Ins2, SpaceList[i]);
+		if (Ins3->CanPlace())
+		{
+			Ins3->Place();
+		}
 	}
 	bool BigFlag = true;
 	while (BigFlag)
@@ -77,6 +76,7 @@ void URogueAlpha_MapGenerator::BuildArea()
 		for (int32 i=0;i<AreaList.Num();i++)
 		{
 			SmallFlag |= AreaList[i]->Expand();
+			TArray<FString> Test = GetAreaString();
 		}
 		BigFlag &= SmallFlag;
 	}
@@ -95,7 +95,7 @@ void URogueAlpha_MapGenerator::SetStructureParam(const EType Type, const int32 H
 	StructureNumber.Add(Type, Num);
 }
 
-TArray<FString> URogueAlpha_MapGenerator::GetMapString()
+TArray<FString> URogueAlpha_MapGenerator::GetStructureString()
 {
 	TArray<FString> Ret = TArray<FString>();
 	Ret.Init(FString(), MapHeight);
@@ -105,6 +105,24 @@ TArray<FString> URogueAlpha_MapGenerator::GetMapString()
 		{
 			Ret[i]+= (*GetCell(i,j)).Attribution == EType::Wall ? '#' : ' ';
 		}
+	}
+	return Ret;
+}
+
+TArray<FString> URogueAlpha_MapGenerator::GetAreaString()
+{
+	TArray<FString> Ret = TArray<FString>();
+	Ret.Init(FString(), MapHeight);
+	for (int i=0;i<MapHeight;i++)
+	{
+		for (int j=0;j<MapWidth;j++)
+		{
+			Ret[i]+= GetCell(i, j)->Attribution == EType::Wall ? static_cast<char>('A' + (GetCell(i, j))->AreaIndex) : ' ';
+		}
+	}
+	for (int32 i=0;i<MapHeight;i++)
+	{
+		UE_LOG(LogTemp, Log,TEXT("%s"), *Ret[i])
 	}
 	return Ret;
 }
