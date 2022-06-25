@@ -9,7 +9,7 @@ URogueAlpha_MapGenerator::URogueAlpha_MapGenerator(const int32 MapHeight, const 
 	SetStructureParam(EType::Room, 3, 3, 9);
 	BuildSpace();
 	BuildArea();
-	
+	GetAreaString();
 }
 
 URogueAlpha_MapGenerator::URogueAlpha_MapGenerator(): URogueAlpha_MapGenerator(50,50){}
@@ -70,13 +70,13 @@ void URogueAlpha_MapGenerator::BuildArea()
 		}
 	}
 	bool BigFlag = true;
-	while (BigFlag)
+	while (BigFlag) // infinite loop
 	{
 		bool SmallFlag = false;
 		for (int32 i=0;i<AreaList.Num();i++)
 		{
 			SmallFlag |= AreaList[i]->Expand();
-			TArray<FString> Test = GetAreaString();
+			
 		}
 		BigFlag &= SmallFlag;
 	}

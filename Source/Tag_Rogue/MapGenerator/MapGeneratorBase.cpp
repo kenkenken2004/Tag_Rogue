@@ -255,22 +255,24 @@ void UMapGeneratorBase::FArea::Expand(const EDirection Dir, const int32 Num)
 	case EDirection::North:
 		LeftTopCell = Gen.GetCell(LeftTopCell->Py-Num, LeftTopCell->Px);
 		Height += Num;
+		break;
 	case EDirection::East:
 		RightBottomCell = Gen.GetCell(RightBottomCell->Py, RightBottomCell->Px+Num);
 		Width += Num;
+		break;
 	case EDirection::West:
 		LeftTopCell = Gen.GetCell(LeftTopCell->Py, LeftTopCell->Px-Num);
 		Width += Num;
+		break;
 	case EDirection::South:
 		RightBottomCell = Gen.GetCell(RightBottomCell->Py+Num, RightBottomCell->Px);
 		Height += Num;
+		break;
 	}
-	for (int32 i=LeftTopCell->Py;i<=RightBottomCell->Py;i++)
+	TArray<FCell*> Elements = GetAllCells();
+	for (int32 i=0;i<Elements.Num();i++)
 	{
-		for (int32 j=LeftTopCell->Px;j<=RightBottomCell->Px;j++)
-		{
-			Gen.GetCell(i, j)->AreaIndex = Index;
-		}
+		Elements[i]->AreaIndex = Index;
 	}
 }
 
@@ -280,22 +282,22 @@ bool UMapGeneratorBase::FArea::Expand()
 	bool Flag = false;
 	if (LeftTopCell->Py != 0)
 	{
-		if (FArea(*Gen.GetCell(LeftTopCell->Py-1, LeftTopCell->Px),*Gen.GetCell(LeftTopCell->Py-1,RightBottomCell->Px)).CanPlace())
+		if ((LeftTopCell->Py>0) && FArea(*Gen.GetCell(LeftTopCell->Py-1, LeftTopCell->Px),*Gen.GetCell(LeftTopCell->Py-1,RightBottomCell->Px)).CanPlace())
 		{
 			Expand(EDirection::North, 1);
 			Flag = true;
 		}
-		if (FArea(*Gen.GetCell(LeftTopCell->Py, RightBottomCell->Px+1),*Gen.GetCell(RightBottomCell->Py,RightBottomCell->Px+1)).CanPlace())
+		if ((RightBottomCell->Px<Gen.MapWidth-1) && FArea(*Gen.GetCell(LeftTopCell->Py, RightBottomCell->Px+1),*Gen.GetCell(RightBottomCell->Py,RightBottomCell->Px+1)).CanPlace())
 		{
 			Expand(EDirection::East, 1);
 			Flag = true;
 		}
-		if (FArea(*Gen.GetCell(LeftTopCell->Py, RightBottomCell->Px-1),*Gen.GetCell(RightBottomCell->Py,RightBottomCell->Px-1)).CanPlace())
+		if ((LeftTopCell->Px>0) && FArea(*Gen.GetCell(LeftTopCell->Py, RightBottomCell->Px-1),*Gen.GetCell(RightBottomCell->Py,LeftTopCell->Px-1)).CanPlace())
 		{
 			Expand(EDirection::West, 1);
 			Flag = true;
 		}
-		if (FArea(*Gen.GetCell(LeftTopCell->Py+1, LeftTopCell->Px),*Gen.GetCell(LeftTopCell->Py+1,RightBottomCell->Px)).CanPlace())
+		if ((RightBottomCell->Py<Gen.MapHeight-1) && FArea(*Gen.GetCell(RightBottomCell->Py+1, LeftTopCell->Px),*Gen.GetCell(RightBottomCell->Py+1,RightBottomCell->Px)).CanPlace())
 		{
 			Expand(EDirection::South, 1);
 			Flag = true;
@@ -322,6 +324,7 @@ TArray<UMapGeneratorBase::FArea*> UMapGeneratorBase::FArea::Split(const EDirecti
 			Ret.Add(Area1);
 			Ret.Add(Area2);
 		}
+		break;
 	case EDirection::East:
 	case EDirection::West:
 		{
@@ -334,6 +337,7 @@ TArray<UMapGeneratorBase::FArea*> UMapGeneratorBase::FArea::Split(const EDirecti
 			Ret.Add(Area1);
 			Ret.Add(Area2);
 		}
+		break;
 	}
 	return Ret;
 }
