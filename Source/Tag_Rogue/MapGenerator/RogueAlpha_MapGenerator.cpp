@@ -134,5 +134,6 @@ TArray<FString> URogueAlpha_MapGenerator::GetAreaString()
 	{
 		UE_LOG(LogTemp, Log,TEXT("%s"), *Ret[i])
 	}
+	UE_LOG(LogTemp, Log, TEXT("\n"))
 	return Ret;
 }

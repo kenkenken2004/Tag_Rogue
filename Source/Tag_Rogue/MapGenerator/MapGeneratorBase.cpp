@@ -285,28 +285,24 @@ void UMapGeneratorBase::FArea::Expand(const EDirection Dir, const int32 Num)
 bool UMapGeneratorBase::FArea::Expand()
 {
 	bool Flag = false;
-	if (LeftTopCell->Py != 0)
+	if ((LeftTopCell->Py>0) && FArea(*Gen.GetCell(LeftTopCell->Py-1, LeftTopCell->Px),*Gen.GetCell(LeftTopCell->Py-1,RightBottomCell->Px)).CanPlace())
 	{
-		if ((LeftTopCell->Py>0) && FArea(*Gen.GetCell(LeftTopCell->Py-1, LeftTopCell->Px),*Gen.GetCell(LeftTopCell->Py-1,RightBottomCell->Px)).CanPlace())
-		{
-			Expand(EDirection::North, 1);
-			Flag = true;
-		}
-		if ((RightBottomCell->Px<Gen.MapWidth-1) && FArea(*Gen.GetCell(LeftTopCell->Py, RightBottomCell->Px+1),*Gen.GetCell(RightBottomCell->Py,RightBottomCell->Px+1)).CanPlace())
-		{
-			Expand(EDirection::East, 1);
-			Flag = true;
-		}
-		if ((LeftTopCell->Px>0) && FArea(*Gen.GetCell(LeftTopCell->Py, LeftTopCell->Px-1),*Gen.GetCell(RightBottomCell->Py,LeftTopCell->Px-1)).CanPlace())
-		{
-			Expand(EDirection::West, 1);
-			Flag = true;
-		}
-		if ((RightBottomCell->Py<Gen.MapHeight-1) && FArea(*Gen.GetCell(RightBottomCell->Py+1, LeftTopCell->Px),*Gen.GetCell(RightBottomCell->Py+1,RightBottomCell->Px)).CanPlace())
-		{
-			Expand(EDirection::South, 1);
-			Flag = true;
-		}
+		Expand(EDirection::North, 1);
+		Flag = true;
+	}
+	if ((RightBottomCell->Px<Gen.MapWidth-1) && FArea(*Gen.GetCell(LeftTopCell->Py, RightBottomCell->Px+1),*Gen.GetCell(RightBottomCell->Py,RightBottomCell->Px+1)).CanPlace())
+	{Expand(EDirection::East, 1);
+		Flag = true;
+	}
+	if ((LeftTopCell->Px>0) && FArea(*Gen.GetCell(LeftTopCell->Py, LeftTopCell->Px-1),*Gen.GetCell(RightBottomCell->Py,LeftTopCell->Px-1)).CanPlace())
+	{
+		Expand(EDirection::West, 1);
+		Flag = true;
+	}
+	if ((RightBottomCell->Py<Gen.MapHeight-1) && FArea(*Gen.GetCell(RightBottomCell->Py+1, LeftTopCell->Px),*Gen.GetCell(RightBottomCell->Py+1,RightBottomCell->Px)).CanPlace())
+	{
+		Expand(EDirection::South, 1);
+		Flag = true;
 	}
 	return Flag;
 }
