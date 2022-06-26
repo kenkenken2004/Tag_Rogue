@@ -219,7 +219,7 @@ void UMapGeneratorBase::FSpace::ChangeAttr(const EType Type)
 	Attribution = Type;
 }
 
-UMapGeneratorBase::UMapGeneratorBase(const int32 Map_Height, const int32 Map_Width)
+void UMapGeneratorBase::Construct(const int32 Map_Height, const int32 Map_Width)
 {
 	MapHeight = Map_Height;
 	MapWidth = Map_Width;
@@ -233,6 +233,11 @@ UMapGeneratorBase::UMapGeneratorBase(const int32 Map_Height, const int32 Map_Wid
 			MapMatrix[i].Add(FCell(i, j,EType::Wall, *this));
 		}
 	}
+}
+
+UMapGeneratorBase::UMapGeneratorBase(const int32 Map_Height, const int32 Map_Width)
+{
+	UMapGeneratorBase::Construct(Map_Height, Map_Width);
 }
 
 UMapGeneratorBase::UMapGeneratorBase(): UMapGeneratorBase(1, 1){};

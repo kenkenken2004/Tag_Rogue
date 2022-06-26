@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "UObject/NoExportTypes.h"
-//#include "MapGeneratorBase.generated.h"
+#include "MapGeneratorBase.generated.h"
 
 /**
  ・FCellをマップの最小構成要素とする。
@@ -14,11 +14,11 @@
  ・FAreaはFRectの派生クラスであり、抽象的領域を表し、マップには配置されない。拡張や分割といった操作を行える。
  ・基本的にこのUMapGeneratorBaseクラスを基底クラスとして派生させ、各マップアルゴリズムのクラスを実装する。
  */
-//UCLASS()
-class UMapGeneratorBase// : public UObject
+UCLASS()
+class TAG_ROGUE_API UMapGeneratorBase: public UObject
 {
 public:
-	//GENERATED_BODY()
+	GENERATED_BODY()
 
 	int32 MapHeight = 1;
 	int32 MapWidth = 1; //マップのサイズ
@@ -103,4 +103,5 @@ public:
 	UMapGeneratorBase();
 	UMapGeneratorBase(int32, int32); //マップのサイズを指定するコンストラクタ。(sizeY, sizeX), Array[Y][X]
 	FCell* GetCell(int32, int32); //指定座標のFCellを取得。
+	virtual void Construct(int32, int32);
 };

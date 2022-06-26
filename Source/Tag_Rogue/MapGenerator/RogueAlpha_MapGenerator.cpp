@@ -3,16 +3,26 @@
 
 #include "RogueAlpha_MapGenerator.h"
 
-URogueAlpha_MapGenerator::URogueAlpha_MapGenerator(const int32 MapHeight, const int32 MapWidth): UMapGeneratorBase(MapHeight, MapWidth)
+URogueAlpha_MapGenerator::URogueAlpha_MapGenerator(const int32 Map_Height, const int32 Map_Width): UMapGeneratorBase(Map_Height, Map_Width)
 {
+}
+
+URogueAlpha_MapGenerator::URogueAlpha_MapGenerator(): URogueAlpha_MapGenerator(50,50){}
+
+void URogueAlpha_MapGenerator::Construct(const int32 Map_Height, const int32 Map_Width)
+{
+	Super::Construct(Map_Height, Map_Width);
 	SetStructureParam(EType::Plaza, 7, 7, 2);
 	SetStructureParam(EType::Room, 3, 3, 9);
+}
+
+void URogueAlpha_MapGenerator::BuildMap()
+{
 	BuildSpace();
 	BuildArea();
 	GetAreaString();
 }
 
-URogueAlpha_MapGenerator::URogueAlpha_MapGenerator(): URogueAlpha_MapGenerator(50,50){}
 
 bool URogueAlpha_MapGenerator::RandomPlaceSpace(const EType SpaceType)
 {
