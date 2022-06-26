@@ -4,16 +4,16 @@
 
 #include "CoreMinimal.h"
 #include "MapGeneratorBase.h"
-#include "RogueAlpha_MapGenerator.generated.h"
+//#include "RogueAlpha_MapGenerator.generated.h"
 
 /**
  * 
  */
-UCLASS()
-class TAG_ROGUE_API URogueAlpha_MapGenerator : public UMapGeneratorBase
+//UCLASS()
+class URogueAlpha_MapGenerator : public UMapGeneratorBase //TAG_ROGUE_API
 {
 public:
-	GENERATED_BODY()
+	//GENERATED_BODY()
 	TMap<EType, FRect> StructureSize;
 	TMap<EType, int32> StructureNumber;
 	TArray<TArray<FSpace>> SpaceAdjacencyMatrix;

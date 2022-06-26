@@ -9,6 +9,7 @@
   <component name="ChangeListManager">
     <list default="true" id="cf331540-c7ba-40e0-a96e-46ca470ed1b0" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Tag_Rogue.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Tag_Rogue.dir/.idea/workspace.xml" afterDir="false" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/MapGenerator/MapGeneratorBase.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/MapGenerator/MapGeneratorBase.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/MapGenerator/MapGeneratorBase.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/MapGenerator/MapGeneratorBase.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/MapGenerator/RogueAlpha_MapGenerator.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/MapGenerator/RogueAlpha_MapGenerator.cpp" afterDir="false" />
@@ -16,6 +17,12 @@
       <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/MapGenerator/RogueBeta_MapGenerator.cpp" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/MapGenerator/RogueBeta_MapGenerator.h" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Tag_Rogue.uproject" beforeDir="false" afterPath="$PROJECT_DIR$/Tag_Rogue.uproject" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Levels/GameMap_Alpha.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Levels/GameMap_Alpha.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/MapGenerator/MapGeneratorBase.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/MapGenerator/MapGeneratorBase.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/MapGenerator/RogueAlpha_MapGenerator.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/MapGenerator/RogueAlpha_MapGenerator.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/MapGenerator/RogueAlpha_MapGenerator.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/MapGenerator/RogueAlpha_MapGenerator.h" afterDir="false" />
+>>>>>>> b21e3c7 (remove uclass marking)
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,6 +34,7 @@
     <setting file="file://$PROJECT_DIR$/Source/Tag_Rogue/MapGenerator/MapGeneratorBase.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Tag_Rogue/MapGenerator/RogueAlpha_MapGenerator.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Tag_Rogue/MapGenerator/RogueAlpha_MapGenerator.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../../Program Files/Epic Games/UE_5.0/Engine/Source/ThirdParty/mimalloc/include/mimalloc-internal.h" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -36,6 +44,7 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+<<<<<<< HEAD
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
@@ -47,6 +56,20 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+=======
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "XThreadsFramesViewSplitterKey": "0.35452586",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "settings.editor.selected.configurable": "CppUnrealEngineOptionsId",
+    "vue.rearranger.settings.migration": "true"
+>>>>>>> b21e3c7 (remove uclass marking)
   }
 }</component>
   <component name="RunManager">
@@ -111,7 +134,13 @@
       <workItem from="1656057522423" duration="10352000" />
       <workItem from="1656069418297" duration="9096000" />
       <workItem from="1656135678834" duration="3253000" />
+<<<<<<< HEAD
       <workItem from="1656139308869" duration="3489000" />
+=======
+      <workItem from="1656139308869" duration="12336000" />
+      <workItem from="1656213867119" duration="3412000" />
+      <workItem from="1656221681647" duration="4645000" />
+>>>>>>> b21e3c7 (remove uclass marking)
     </task>
     <servers />
   </component>
@@ -134,6 +163,7 @@
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>
+<<<<<<< HEAD
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
@@ -149,5 +179,10 @@
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+=======
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+>>>>>>> b21e3c7 (remove uclass marking)
   </component>
 </project>

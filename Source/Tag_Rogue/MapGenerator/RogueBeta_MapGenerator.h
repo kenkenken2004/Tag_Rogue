@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "MapGeneratorBase.h"
-#include "RogueBeta_MapGenerator.generated.h"
+//#include "RogueBeta_MapGenerator.generated.h"
 
 
 
@@ -35,10 +35,10 @@
  4. í òHÇê∂ê¨Ç∑ÇÈ
 
  */
-UCLASS()
+//UCLASS()
 class TAG_ROGUE_API URogueBeta_MapGenerator : public UMapGeneratorBase
 {
-	GENERATED_BODY()
+	//GENERATED_BODY()
 protected:
 	TMap<EType, int32> StructureSize;
 
