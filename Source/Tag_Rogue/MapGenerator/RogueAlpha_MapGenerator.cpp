@@ -83,6 +83,7 @@ void URogueAlpha_MapGenerator::BuildArea()
 
 void URogueAlpha_MapGenerator::BuildPath()
 {
+	
 }
 
 

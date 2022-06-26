@@ -12,11 +12,13 @@ AGameMap_Alpha::AGameMap_Alpha()
 
 void AGameMap_Alpha::BeginPlay()
 {
-	URogueAlpha_MapGenerator Generator = URogueAlpha_MapGenerator(50, 50);
-	Generator.GetStructureString();
+	
+	URogueAlpha_MapGenerator *Generator = new URogueAlpha_MapGenerator;
+	*Generator = URogueAlpha_MapGenerator(50,50);
+	//URogueAlpha_MapGenerator(50, 50);
+	//Generator.GetStructureString();
 	Super::BeginPlay();
 }
-
 void AGameMap_Alpha::EndPlay(const EEndPlayReason::Type EndPlayReason)
 {
 	Super::EndPlay(EndPlayReason);
