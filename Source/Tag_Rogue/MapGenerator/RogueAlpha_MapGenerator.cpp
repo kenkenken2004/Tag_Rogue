@@ -76,7 +76,6 @@ void URogueAlpha_MapGenerator::BuildArea()
 		for (int32 i=0;i<AreaList.Num();i++)
 		{
 			SmallFlag |= AreaList[i]->Expand();
-			
 		}
 		BigFlag &= SmallFlag;
 	}

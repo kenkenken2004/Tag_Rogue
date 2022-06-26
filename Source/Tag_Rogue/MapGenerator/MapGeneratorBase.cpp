@@ -292,7 +292,7 @@ bool UMapGeneratorBase::FArea::Expand()
 			Expand(EDirection::East, 1);
 			Flag = true;
 		}
-		if ((LeftTopCell->Px>0) && FArea(*Gen.GetCell(LeftTopCell->Py, RightBottomCell->Px-1),*Gen.GetCell(RightBottomCell->Py,LeftTopCell->Px-1)).CanPlace())
+		if ((LeftTopCell->Px>0) && FArea(*Gen.GetCell(LeftTopCell->Py, LeftTopCell->Px-1),*Gen.GetCell(RightBottomCell->Py,LeftTopCell->Px-1)).CanPlace())
 		{
 			Expand(EDirection::West, 1);
 			Flag = true;
