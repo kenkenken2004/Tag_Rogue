@@ -45,7 +45,6 @@ public:
 		UMapGeneratorBase& Gen; //所有されるMapGenerator
 		FCell(int32, int32, UMapGeneratorBase&); //属性無しのコンストラクタ。このとき属性はWallとなる。
 		FCell(int32, int32, EType, UMapGeneratorBase&); //属性ありのコンストラクタ。
-		
 	};
 	struct FRect //マスの長方形の領域の構造体
 	{
@@ -60,6 +59,7 @@ public:
 		TArray<FCell*> GetInnerBorderCells(EDirection) const; //周上の内側のCellを取得
 		TArray<FCell*> GetOuterBorderCells(EDirection) const; //周上の外側のCellを取得
 		TArray<FCell*> GetAllCells() const; //構成するCellを取得
+		FCell* GetCenterCell() const;
 	};
 	struct FSpace: FRect //部屋などの構造体
 	{
@@ -70,15 +70,20 @@ public:
 		void Place(); //構造体としてマップに配置(可能かは判断しない)。
 		void Remove(); //マップから削除。
 	};
-	struct FPath: FRect //通路などの構造体
+	struct FPath //通路などの構造体
 	{
-		FRect *Node1; //つないでる対象の一方。
-		FRect *Node2; //つないでる対称のもう一方。
+		int32 Index;
+		UMapGeneratorBase& Gen;
+		FSpace *Node1;
+		FSpace *Node2;
+		FCell* End1;
+		FCell* End2;
+		TArray<FCell*> Cells;//代入時に、End1からEnd2までの道筋順になることを要請する。
 		int32 Length; //通路の長さ。
-		EDirection Direction; //方向。
-		FPath(FRect*, FRect*, const FRect*); //つなぐ対象と本体のFRectを指定するコンストラクタ。
+		FPath(FSpace*, FSpace*, TArray<FCell*>, FCell&, FCell&); //つなぐ対象と本体のFRectを指定するコンストラクタ。
 		bool CanPlace() const; //同上
-		void Place(); //同上
+		bool IsValid();// まだ使用不可。というかいらない気がする。
+		void Place(); //同上 ただ、通路の両端が場合によっては変化することに注意。
 		void Remove(); //同上
 	};
 	struct FArea: FRect //仮想的な領域の構造体

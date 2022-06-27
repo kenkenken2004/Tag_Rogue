@@ -77,6 +77,14 @@ TArray<UMapGeneratorBase::FCell*> UMapGeneratorBase::FRect::GetOuterBorderCells(
 	return Ret;
 }
 
+UMapGeneratorBase::FCell* UMapGeneratorBase::FRect::GetCenterCell() const
+{
+	const int32 My = (Height%2==1)?(LeftTopCell->Py+RightBottomCell->Py)/2:(LeftTopCell->Py+RightBottomCell->Py-1)/2;
+	const int32 Mx = (Height%2==1)?(LeftTopCell->Px+RightBottomCell->Px)/2:(LeftTopCell->Px+RightBottomCell->Px-1)/2;
+	return Gen.GetCell(My, Mx);
+}
+
+
 bool UMapGeneratorBase::FSpace::CanPlace() const
 {
 	bool Ret = true;
@@ -119,36 +127,65 @@ void UMapGeneratorBase::FSpace::Remove()
 }
 
 
-UMapGeneratorBase::FPath::FPath(FRect* N1, FRect* N2, const FRect* Body): FRect(*Body)
+UMapGeneratorBase::FPath::FPath(FSpace* N1, FSpace* N2, TArray<FCell*> Elem, FCell& E1, FCell& E2):Gen(N1->Gen)
 {
+	Index = -1;
 	this->Node1 = N1;
 	this->Node2 = N2;
-	this->Length = FMath::Max(Body->Height, Body->Width);
-	this->Direction = Body->Height>Body->Width ? EDirection::North : EDirection::West;
+	this->Length = Elem.Num();
+	this->End1 = &E1;
+	this->End2 = &E2;
+	Cells = TArray<FCell*>();
+	Cells.Append(Elem);
 }
 
 
 bool UMapGeneratorBase::FPath::CanPlace() const
 {
 	bool Ret = true;
-	TArray<FCell*> Elements = this->GetAllCells();
+	TArray<FCell*> Elements = Cells;
 	for (int i=0;i<Elements.Num();i++)
 	{
-		Ret &= Elements[i]->Attribution == EType::Wall;
+		int32 Ins = Gen.AreaList[Elements[i]->AreaIndex]->Owner->Index;
+		Ret &= Elements[i]->Attribution == EType::Wall || Ins == Node1->Index || Ins == Node2->Index;
 	}
 	return Ret;
 }
 
+bool UMapGeneratorBase::FPath::IsValid()// yet to use
+{
+	bool Ret = true;
+	bool FinFlag = true;
+	FCell* PrevCell = nullptr;
+	FCell* CurCell = End1;
+	while (FinFlag)
+	{
+		TArray<FCell*> NextCan = TArray<FCell*>();
+		
+	}
+}
+
+
 void UMapGeneratorBase::FPath::Place()
 {
-	if (Index != -1)
+	if (Index == -1)
 	{
 		Index = Gen.PathList.Num();
 		Gen.PathList.Add(this);
-		TArray<FCell*> Elements = this->GetAllCells();
-		for (int i=0;i<Elements.Num();i++)
+		for (int i=0;i<Cells.Num();i++)
 		{
-			Elements[i]->Attribution = EType::Path;
+			if (Cells[i]->Attribution == EType::Wall)
+			{
+				Cells[i]->Attribution = EType::Path;
+			}
+			else
+			{
+				Length--;
+				Cells.RemoveAt(i);
+				i--;
+				End1 = Cells[0];
+				End2 = Cells[Cells.Num()-1];
+			}
 		}
 	}
 }
@@ -159,7 +196,7 @@ void UMapGeneratorBase::FPath::Remove()
 	{
 		for (int i=Index+1;i<Gen.PathList.Num();i++)Gen.PathList[i]->Index -= 1;
 		Gen.PathList.RemoveAt(Index);
-		TArray<FCell*> Elements = GetAllCells();
+		TArray<FCell*> Elements = Cells;
 		for (int j=0;j<Elements.Num();j++)
 		{
 			Elements[j]->Attribution = EType::Wall;

@@ -40,10 +40,16 @@ bool URogueAlpha_MapGenerator::RandomPlaceSpace(const EType SpaceType)
 	return false;
 }
 
-bool URogueAlpha_MapGenerator::SetDirectPath(FArea* Area1, FArea* Area2)
+bool URogueAlpha_MapGenerator::SetPath(FArea* Area1, FArea* Area2)
 {
-	FSpace* Space1 = Area1->Owner;
-	FSpace* Space2 = Area2->Owner;
+	FCell* Spc1 = Area1->Owner->GetCenterCell();
+	FCell* Spc2 = Area2->Owner->GetCenterCell();
+	FCell* In1 = GetCell(Spc1->Py, Spc2->Px);
+	FCell* In2 = GetCell(Spc2->Py, Spc1->Px);
+	bool Flag1 = true;
+	FSpace Path1_1 = FSpace((Spc1->Px<In1->Px)?*Spc1:*In1,(Spc1->Px<In1->Px)?*In1:*Spc1,EType::Path);
+	FSpace Path1_2 = FSpace((Spc2->Py<In1->Py)?*Spc2:*GetCell(),(Spc2->Py<In1->Py)?*In1:*Spc2,EType::Path);
+	Flag1 &= 
 	return true;
 }
 
@@ -97,7 +103,7 @@ void URogueAlpha_MapGenerator::BuildPath()
 }
 
 
-void URogueAlpha_MapGenerator::SetStructureParam(const EType Type, const int32 Height, const int32 Width, const int32 Num)
+void URogueAlpha_MapGenerator::SetStructureParam(const EType Type, const int32 Height, const int32 Width, const int32 Num) // Both size must be odd numbers.
 {
 	if (MapHeight <= Height || MapWidth <= Width)return;
 	const FRect Ins = FRect(*GetCell(0,0), *GetCell(Height-1, Width-1));
