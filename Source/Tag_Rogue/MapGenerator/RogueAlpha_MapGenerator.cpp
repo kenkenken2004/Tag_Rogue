@@ -30,7 +30,7 @@ bool URogueAlpha_MapGenerator::RandomPlaceSpace(const EType SpaceType)
 	{
 		
 		FCell *Rand = GetCell(FMath::RandRange(1, MapHeight-1-StructureSize[SpaceType].Height), FMath::RandRange(1,MapWidth-1-StructureSize[SpaceType].Width));
-		FSpace* Space = new FSpace(*Rand, *GetCell(Rand->Py+StructureSize[SpaceType].Height-1, Rand->Px+StructureSize[SpaceType].Width-1),SpaceType); //Problem here. Instancce are not independent
+		FSpace* Space = new FSpace(Rand, GetCell(Rand->Py+StructureSize[SpaceType].Height-1, Rand->Px+StructureSize[SpaceType].Width-1),SpaceType); //Problem here. Instancce are not independent
 		if (Space->CanPlace())
 		{
 			Space->Place();
@@ -39,7 +39,7 @@ bool URogueAlpha_MapGenerator::RandomPlaceSpace(const EType SpaceType)
 	}
 	return false;
 }
-
+/*
 bool URogueAlpha_MapGenerator::SetPath(FArea* Area1, FArea* Area2)
 {
 	FCell* Spc1 = Area1->Owner->GetCenterCell();
@@ -47,12 +47,12 @@ bool URogueAlpha_MapGenerator::SetPath(FArea* Area1, FArea* Area2)
 	FCell* In1 = GetCell(Spc1->Py, Spc2->Px);
 	FCell* In2 = GetCell(Spc2->Py, Spc1->Px);
 	bool Flag1 = true;
-	FSpace Path1_1 = FSpace((Spc1->Px<In1->Px)?*Spc1:*In1,(Spc1->Px<In1->Px)?*In1:*Spc1,EType::Path);
-	FSpace Path1_2 = FSpace((Spc2->Py<In1->Py)?*Spc2:*GetCell(),(Spc2->Py<In1->Py)?*In1:*Spc2,EType::Path);
+	FSpace Path1_1 = FSpace((Spc1->Px<In1->Px)?Spc1:In1,(Spc1->Px<In1->Px)?In1:Spc1,EType::Path);
+	FSpace Path1_2 = FSpace((Spc2->Py<In1->Py)?*Spc2:*GetCell(),(Spc2->Py<In1->Py)?In1:*Spc2,EType::Path);
 	Flag1 &= 
 	return true;
 }
-
+*/
 
 
 TArray<int32> URogueAlpha_MapGenerator::BuildSpace()
@@ -77,8 +77,8 @@ void URogueAlpha_MapGenerator::BuildArea()
 {
 	for (int32 i=0;i<SpaceList.Num();i++)
 	{
-		FCell& Ins1 = *(SpaceList[i]->LeftTopCell);
-		FCell& Ins2 = *(SpaceList[i]->RightBottomCell);
+		FCell* Ins1 = SpaceList[i]->LeftTopCell;
+		FCell* Ins2 = SpaceList[i]->RightBottomCell;
 		FArea* Ins3 = new FArea(Ins1, Ins2, SpaceList[i]);
 		if (Ins3->CanPlace())
 		{
@@ -106,7 +106,7 @@ void URogueAlpha_MapGenerator::BuildPath()
 void URogueAlpha_MapGenerator::SetStructureParam(const EType Type, const int32 Height, const int32 Width, const int32 Num) // Both size must be odd numbers.
 {
 	if (MapHeight <= Height || MapWidth <= Width)return;
-	const FRect Ins = FRect(*GetCell(0,0), *GetCell(Height-1, Width-1));
+	const FRect Ins = FRect(GetCell(0,0), GetCell(Height-1, Width-1));
 	StructureSize.Add(Type, Ins);
 	StructureNumber.Add(Type, Num);
 }
