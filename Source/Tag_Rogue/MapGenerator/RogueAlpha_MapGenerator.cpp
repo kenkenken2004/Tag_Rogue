@@ -39,20 +39,48 @@ bool URogueAlpha_MapGenerator::RandomPlaceSpace(const EType SpaceType)
 	}
 	return false;
 }
-/*
-bool URogueAlpha_MapGenerator::SetPath(FArea* Area1, FArea* Area2)
+
+bool URogueAlpha_MapGenerator::SetPath(const FArea* Area1, const FArea* Area2)
 {
-	FCell* Spc1 = Area1->Owner->GetCenterCell();
-	FCell* Spc2 = Area2->Owner->GetCenterCell();
-	FCell* In1 = GetCell(Spc1->Py, Spc2->Px);
-	FCell* In2 = GetCell(Spc2->Py, Spc1->Px);
-	bool Flag1 = true;
-	FSpace Path1_1 = FSpace((Spc1->Px<In1->Px)?Spc1:In1,(Spc1->Px<In1->Px)?In1:Spc1,EType::Path);
-	FSpace Path1_2 = FSpace((Spc2->Py<In1->Py)?*Spc2:*GetCell(),(Spc2->Py<In1->Py)?In1:*Spc2,EType::Path);
-	Flag1 &= 
-	return true;
+	FSpace* Spc1 = Area1->Owner;
+	FSpace* Spc2 = Area2->Owner;
+	FCell* C1 = Spc1->GetCenterCell();
+	FCell* C2 = Spc2->GetCenterCell();
+	FCell* In1 = GetCell(C1->Py, C2->Px);
+	FCell* In2 = GetCell(C2->Py, C1->Px);
+	bool Flag = false;
+	TArray<FCell*> Cells1 = TArray<FCell*>();
+	TArray<FCell*> Cells2 = TArray<FCell*>();
+	
+	Cells1.Append(FRect(GetCell(C1->Py, C1->Px<In1->Px?C1->Px:In1->Px), GetCell(C1->Py,C1->Px<In1->Px?In1->Px:C1->Px)).GetAllCells());
+	if(C1->Px>=In1->Px)Algo::Reverse(Cells1);
+	TArray<FCell*> Ins = FRect(GetCell(C2->Py<In1->Py?C2->Py:In1->Py, C2->Px), GetCell(C2->Py<In1->Py?In1->Py:C2->Py,C2->Px)).GetAllCells();
+	if(C2->Py>=In1->Py)Algo::Reverse(Ins);
+	Cells1.Pop();
+	Cells1.Append(Ins);
+
+	Cells2.Append(FRect(GetCell(C1->Py<In2->Py?C1->Py:In2->Py, C1->Px), GetCell(C1->Py<In2->Py?In2->Py:C1->Py,C1->Px)).GetAllCells());
+	if(C1->Py>=In2->Py)Algo::Reverse(Ins);
+	Ins = FRect(GetCell(C2->Py, C2->Px<In2->Px?C2->Px:In2->Px), GetCell(C2->Py,C2->Px<In2->Px?In2->Px:C2->Px)).GetAllCells();
+	if(C2->Px>=In2->Px)Algo::Reverse(Cells2);
+	Cells2.Pop();
+	Cells2.Append(Ins);
+	
+	FPath Path1 = FPath(Spc1, Spc2, Cells1, C1, C2);
+	FPath Path2 = FPath(Spc1, Spc2, Cells2, C1, C2);
+	if (Path1.CanPlace())
+	{
+		Path1.Place();
+		Flag = true;
+	}
+	else if (Path2.CanPlace())
+	{
+		Path2.Place();
+		Flag = true;
+	}
+	return Flag;
 }
-*/
+
 
 
 TArray<int32> URogueAlpha_MapGenerator::BuildSpace()

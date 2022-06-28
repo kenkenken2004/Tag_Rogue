@@ -82,7 +82,6 @@ public:
 		int32 Length; //通路の長さ。
 		FPath(FSpace*, FSpace*, TArray<FCell*>, FCell*, FCell*); //つなぐ対象と本体のFRectを指定するコンストラクタ。
 		bool CanPlace() const; //同上
-		bool IsValid();// まだ使用不可。というかいらない気がする。
 		void Place(); //同上 ただ、通路の両端が場合によっては変化することに注意。
 		void Remove(); //同上
 	};

@@ -150,25 +150,10 @@ bool UMapGeneratorBase::FPath::CanPlace() const
 	for (int i=0;i<Elements.Num();i++)
 	{
 		int32 Ins = Gen->AreaList[Elements[i]->AreaIndex]->Owner->Index;
-		Ret &= Elements[i]->Attribution == EType::Wall || Ins == Node1->Index || Ins == Node2->Index;
+		Ret &= Elements[i]->Attribution == EType::Wall || (Ins == Node1->Index || Ins == Node2->Index) && Elements[i]->Attribution != EType::Path;
 	}
 	return Ret;
 }
-
-bool UMapGeneratorBase::FPath::IsValid()// yet to use
-{
-	bool Ret = true;
-	bool FinFlag = true;
-	FCell* PrevCell = nullptr;
-	FCell* CurCell = End1;
-	while (FinFlag)
-	{
-		TArray<FCell*> NextCan = TArray<FCell*>();
-		
-	}
-	return Ret;
-}
-
 
 void UMapGeneratorBase::FPath::Place()
 {
@@ -198,7 +183,7 @@ void UMapGeneratorBase::FPath::Remove()
 {
 	if (Gen->PathList.Contains(this))
 	{
-		for (int i=Index+1;i<Gen->PathList.Num();i++)Gen->PathList[i]->Index -= 1;
+		for (int i=Index+1;i<Gen->PathList.Num();i++)Gen->PathList[i]->Index--;
 		Gen->PathList.RemoveAt(Index);
 		TArray<FCell*> Elements = Cells;
 		for (int j=0;j<Elements.Num();j++)
@@ -387,11 +372,14 @@ TArray<UMapGeneratorBase::FArea*> UMapGeneratorBase::FArea::Split(const EDirecti
 
 UMapGeneratorBase::FCell* UMapGeneratorBase::GetCell(const int32 PosY, const int32 PosX)
 {
-	int32 Py = 0;
-	int32 Px = 0;
 	//UE_LOG(LogTemp, Log, TEXT("DATA=%d, %d"), PosY, PosX)
-	if (0<=PosY && PosY<MapHeight)Py = PosY;
-	if (0<=PosX && PosX<MapWidth)Px = PosX;
-	return &MapMatrix[Py][Px];
+	if (0<=PosY && PosY<MapHeight && 0<=PosX && PosX<MapWidth)
+	{
+		return &MapMatrix[PosY][PosX];
+	}
+	else
+	{
+		return nullptr;
+	}
 	
 }

@@ -18,7 +18,7 @@ public:
 	TMap<EType, int32> StructureNumber;
 	TArray<TArray<FSpace>> SpaceAdjacencyMatrix;
 	bool RandomPlaceSpace(EType);
-	bool SetPath(FArea*, FArea*);
+	bool SetPath(const FArea*, const FArea*);
 	TArray<int32> BuildSpace();
 	void BuildArea();
 	void BuildPath();
