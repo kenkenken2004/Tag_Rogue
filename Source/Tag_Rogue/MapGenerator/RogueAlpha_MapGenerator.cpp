@@ -20,6 +20,7 @@ void URogueAlpha_MapGenerator::BuildMap()
 {
 	BuildSpace();
 	BuildArea();
+	SetPath(AreaList[0], AreaList[1]);
 	GetAreaString();
 }
 
@@ -30,7 +31,7 @@ bool URogueAlpha_MapGenerator::RandomPlaceSpace(const EType SpaceType)
 	{
 		
 		FCell *Rand = GetCell(FMath::RandRange(1, MapHeight-1-StructureSize[SpaceType].Height), FMath::RandRange(1,MapWidth-1-StructureSize[SpaceType].Width));
-		FSpace* Space = new FSpace(Rand, GetCell(Rand->Py+StructureSize[SpaceType].Height-1, Rand->Px+StructureSize[SpaceType].Width-1),SpaceType); //Problem here. Instancce are not independent
+		FSpace* Space = new FSpace(Rand, GetCell(Rand->Py+StructureSize[SpaceType].Height-1, Rand->Px+StructureSize[SpaceType].Width-1),SpaceType); //Problem here. Instance are not independent
 		if (Space->CanPlace())
 		{
 			Space->Place();
@@ -46,8 +47,8 @@ bool URogueAlpha_MapGenerator::SetPath(const FArea* Area1, const FArea* Area2)
 	FSpace* Spc2 = Area2->Owner;
 	FCell* C1 = Spc1->GetCenterCell();
 	FCell* C2 = Spc2->GetCenterCell();
-	FCell* In1 = GetCell(C1->Py, C2->Px);
-	FCell* In2 = GetCell(C2->Py, C1->Px);
+	const FCell* In1 = GetCell(C1->Py, C2->Px);
+	const FCell* In2 = GetCell(C2->Py, C1->Px);
 	bool Flag = false;
 	TArray<FCell*> Cells1 = TArray<FCell*>();
 	TArray<FCell*> Cells2 = TArray<FCell*>();

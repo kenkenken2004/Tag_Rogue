@@ -10,7 +10,7 @@
  * 
  */
 UCLASS()
-class TAG_ROGUE_API URogueAlpha_MapGenerator : public UMapGeneratorBase
+class TAG_ROGUE_API URogueAlpha_MapGenerator final : public UMapGeneratorBase
 {
 public:
 	GENERATED_BODY()
