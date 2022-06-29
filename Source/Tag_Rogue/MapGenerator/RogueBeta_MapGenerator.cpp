@@ -5,68 +5,68 @@
 
 URogueBeta_MapGenerator::URogueBeta_MapGenerator(int32 MapHeight, int32 MapWidth) :UMapGeneratorBase(MapHeight,MapWidth) {
 	//
-	//1. ‰Šú‰»‚·‚é
+	//1. åˆæœŸåŒ–ã™ã‚‹
 	//
 
-	//‹æˆæ‘S‘Ì‚ğAreaList‚É’Ç‰Á
-	FArea* WholeArea = new FArea(CellList[MapMatrix[0][0]], CellList[MapMatrix[MapHeight - 1][MapWidth - 1]]);
+	//åŒºåŸŸå…¨ä½“ã‚’AreaListã«è¿½åŠ 
+	FArea* WholeArea = new FArea(GetCell(0,0), GetCell(MapHeight - 1, MapWidth - 1));
 	AreaList.Add(WholeArea);
 	
 	//
-	//2. ‹æˆæ‚ğ’·•ûŒ`‚É•ªŠ„‚µ‚Ä‚¢‚­
+	//2. åŒºåŸŸã‚’é•·æ–¹å½¢ã«åˆ†å‰²ã—ã¦ã„ã
 	//
 
-	for (int i = 0; i < MaxTrial; i++) {
-		//‚±‚ê‚©‚ç•ªŠ„‚·‚é—Ìˆæ‚ğ‘I‚Ô
-		//’·•Ó‚Ì’·‚³‚ªMinDivisionTarget‚ÆMinSize*2ˆÈã‚Å‚ ‚é’†‚ÅA–ÊÏ‚ªÅ‘å‚Ì‚à‚Ì‚ğ‘I‚Ô
-		int ToDivideId = -1;
-		int ToDivideAreaSize = 0;
-		for (int j = 0; j < AreaList.Num(); j++) {
-			int AreaHeight = AreaList[j]->Height;
-			int AreaWidth = AreaList[j]->Width;
+	for (int32 i = 0; i < MaxTrial; i++) {
+		//ã“ã‚Œã‹ã‚‰åˆ†å‰²ã™ã‚‹é ˜åŸŸã‚’é¸ã¶
+		//é•·è¾ºã®é•·ã•ãŒMinDivisionTargetã¨MinSize*2ä»¥ä¸Šã§ã‚ã‚‹ä¸­ã§ã€é¢ç©ãŒæœ€å¤§ã®ã‚‚ã®ã‚’é¸ã¶
+		int32 ToDivideId = -1;
+		int32 ToDivideAreaSize = 0;
+		for (int32 j = 0; j < AreaList.Num(); j++) {
+			int32 AreaHeight = AreaList[j]->Height;
+			int32 AreaWidth = AreaList[j]->Width;
 			if (AreaHeight * AreaWidth > ToDivideAreaSize && FMath::Max(AreaHeight, AreaWidth) >= FMath::Max(MinDivisionTarget, MinSize * 2)) {
 				ToDivideId = j;
 				ToDivideAreaSize = AreaHeight * AreaWidth;
 			}
 		}
 
-		//•ªŠ„‘ÎÛ‚ª‚È‚­‚È‚Á‚½‚çI‚í‚è
+		//åˆ†å‰²å¯¾è±¡ãŒãªããªã£ãŸã‚‰çµ‚ã‚ã‚Š
 		if (ToDivideId == -1)break;
 
-		//•ªŠ„‚·‚é
-		if (AreaList[ToDivideId]->Height >= AreaList[ToDivideId]->Width) {//c‚ª‰¡ˆÈã‚Ìê‡‰¡‚É•ªŠ„
-			//ã‘¤‚Ì‚¢‚­‚Â‚ğØ‚è—£‚·‚©ƒ‰ƒ“ƒ_ƒ€‚ÉŒˆ‚ß‚é
-			int border = FMath::RandRange(MinSize, AreaList[ToDivideId]->Height - MinSize);
-			//Ø‚è—£‚·
+		//åˆ†å‰²ã™ã‚‹
+		if (AreaList[ToDivideId]->Height >= AreaList[ToDivideId]->Width) {//ç¸¦ãŒæ¨ªä»¥ä¸Šã®å ´åˆæ¨ªã«åˆ†å‰²
+			//ä¸Šå´ã®ã„ãã¤ã‚’åˆ‡ã‚Šé›¢ã™ã‹ãƒ©ãƒ³ãƒ€ãƒ ã«æ±ºã‚ã‚‹
+			int32 border = FMath::RandRange(MinSize, AreaList[ToDivideId]->Height - MinSize);
+			//åˆ‡ã‚Šé›¢ã™
 			AreaList[ToDivideId]->Split(EDirection::South, border);
 		}
-		else {//‰¡‚Ì•û‚ª’·‚¢ê‡‰¡‚É•ªŠ„
-			int border = FMath::RandRange(MinSize, AreaList[ToDivideId]->Width - MinSize);
-			//Ø‚è—£‚·
+		else {//æ¨ªã®æ–¹ãŒé•·ã„å ´åˆæ¨ªã«åˆ†å‰²
+			int32 border = FMath::RandRange(MinSize, AreaList[ToDivideId]->Width - MinSize);
+			//åˆ‡ã‚Šé›¢ã™
 			AreaList[ToDivideId]->Split(EDirection::West, border);
 
 		}
 
 	}
 
-	//•ªŠ„‚µ‚½—Ìˆæ‚ğ”z’u‚·‚é
-	for (int i = 0; i < AreaList.Num(); i++) {
+	//åˆ†å‰²ã—ãŸé ˜åŸŸã‚’é…ç½®ã™ã‚‹
+	for (int32 i = 0; i < AreaList.Num(); i++) {
 		AreaList[i]->Place();
 	}
 
 	//
-	//3. •”‰®‚ğ¶¬‚·‚é
+	//3. éƒ¨å±‹ã‚’ç”Ÿæˆã™ã‚‹
 	//
-	for (int i = 0; i < AreaList.Num(); i++) {
-		FCell Cell1 = CellList[MapMatrix[AreaList[i]->LeftTopCell->Px + 1][AreaList[i]->LeftTopCell->Py + 1]];//ì‚é•”‰®‚Ì¶ã‚ÌCell
-		FCell Cell2 = CellList[MapMatrix[AreaList[i]->RightBottomCell->Px - 1][AreaList[i]->RightBottomCell->Py - 1]];//ì‚é•”‰®‚Ì‰E‰º‚ÌCell
+	for (int32 i = 0; i < AreaList.Num(); i++) {
+		FCell* Cell1 = GetCell(AreaList[i]->LeftTopCell->Px + 1, AreaList[i]->LeftTopCell->Py + 1);//ä½œã‚‹éƒ¨å±‹ã®å·¦ä¸Šã®Cell
+		FCell* Cell2 = GetCell(AreaList[i]->RightBottomCell->Px - 1, AreaList[i]->RightBottomCell->Py - 1);//ä½œã‚‹éƒ¨å±‹ã®å³ä¸‹ã®Cell
 		FSpace* NewSpace = new FSpace(Cell1, Cell2, EType::Room);
 		SpaceList.Add(NewSpace);
 		SpaceList.Last()->Place();
 	}
 
 	//
-	//4. ’Ê˜H‚ğ¶¬‚·‚é
+	//4. é€šè·¯ã‚’ç”Ÿæˆã™ã‚‹
 	//
 
 }

@@ -7,24 +7,28 @@
 #include "RogueAlpha_MapGenerator.generated.h"
 
 /**
- * 
+MapGeneratorBaseの派生。
+最初に部屋を配置し、その後に領域を設定、隣接する部屋を通路で接続する。
  */
 UCLASS()
-class TAG_ROGUE_API URogueAlpha_MapGenerator : public UMapGeneratorBase
+class TAG_ROGUE_API URogueAlpha_MapGenerator final : public UMapGeneratorBase
 {
-	GENERATED_BODY()
 protected:
-	TMap<EType, int32> StructureSize;
+	GENERATED_BODY()
+	TMap<EType, FRect> StructureSize;
 	TMap<EType, int32> StructureNumber;
 	TArray<TArray<FSpace>> SpaceAdjacencyMatrix;
-	void RandomPlaceSpace();
-	void DivideAreas();
-	void SetDirectPath();
-	void SetTurnedPath();
-	void BuildSpacesLayer();
-	void BuildAreasLayer();
-	void BuildPathLayer();
+	bool RandomPlaceSpace(EType);
+	bool SetPath(const FArea*, const FArea*);
+	TArray<int32> BuildSpace();
+	void BuildArea();
+	void BuildPath();
 public:
 	URogueAlpha_MapGenerator(int32, int32);
 	URogueAlpha_MapGenerator();
+	void SetStructureParam(EType, int32, int32, int32);
+	TArray<FString> GetStructureString();
+	TArray<FString> GetAreaString();
+	void Construct(int32, int32) override;
+	void BuildMap();
 };
