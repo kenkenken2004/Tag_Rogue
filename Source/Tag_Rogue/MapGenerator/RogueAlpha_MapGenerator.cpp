@@ -11,6 +11,7 @@ URogueAlpha_MapGenerator::URogueAlpha_MapGenerator(): URogueAlpha_MapGenerator(5
 
 void URogueAlpha_MapGenerator::Construct(const int32 Map_Height, const int32 Map_Width)
 {
+	Space_Margin = 3;
 	Super::Construct(Map_Height, Map_Width);
 	SetStructureParam(EType::Plaza, 7, 7, 2);
 	SetStructureParam(EType::Room, 3, 3, 9);
@@ -25,14 +26,15 @@ void URogueAlpha_MapGenerator::BuildMap()
 }
 
 
-bool URogueAlpha_MapGenerator::RandomPlaceSpace(const EType SpaceType)
+bool URogueAlpha_MapGenerator::RandomPlaceSpace(const EType SpaceType, const int32 Margin)
 {
 	for(int32 i=0;i<20;i++)
 	{
 		
 		FCell *Rand = GetCell(FMath::RandRange(1, MapHeight-1-StructureSize[SpaceType].Height), FMath::RandRange(1,MapWidth-1-StructureSize[SpaceType].Width));
 		FSpace* Space = new FSpace(Rand, GetCell(Rand->Py+StructureSize[SpaceType].Height-1, Rand->Px+StructureSize[SpaceType].Width-1),SpaceType); //Problem here. Instance are not independent
-		if (Space->CanPlace())
+		FSpace Surround = FSpace(GetCell(FMath::Max(0, Space->LeftTopCell->Py-Margin), FMath::Max(0, Space->LeftTopCell->Px-Margin)), GetCell(FMath::Min(MapHeight-1, Space->RightBottomCell->Py+Margin), FMath::Min(MapWidth-1, Space->RightBottomCell->Px+Margin)), Space->Attribution);
+		if (Surround.CanPlace())
 		{
 			Space->Place();
 			return true;
@@ -91,7 +93,7 @@ TArray<int32> URogueAlpha_MapGenerator::BuildSpace()
 		ActualNums.Add(0);
 		for (int32 i=0;i<StructureNumber[Structure.Key];i++)
 		{
-			if (RandomPlaceSpace(Structure.Key))ActualNums[Count]++;
+			if (RandomPlaceSpace(Structure.Key, Space_Margin))ActualNums[Count]++;
 		}
 		Count++;
 	}

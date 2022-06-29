@@ -13,13 +13,15 @@ UCLASS()
 class TAG_ROGUE_API AGameMap_Alpha : public ALevelScriptActor
 {
 	GENERATED_BODY()
+protected:
+	float CellSize;
+	virtual void BeginPlay() override;
+	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
+	FVector Cie_Convert(int32,int32, float) const;
+	static TArray<int32> Cie_Invert(FVector);
 	
 public:
 	AGameMap_Alpha();
-protected:
-	void BeginPlay() override;
-	void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
+
 public:
-	UFUNCTION(BlueprintImplementableEvent)
-	void MyEvent();
 };
