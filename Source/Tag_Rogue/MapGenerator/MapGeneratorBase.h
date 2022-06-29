@@ -17,7 +17,7 @@
 UCLASS()
 class TAG_ROGUE_API UMapGeneratorBase: public UObject
 {
-public:
+protected:
 	GENERATED_BODY()
 
 	int32 MapHeight = 1;
@@ -101,6 +101,7 @@ public:
 	TArray<FSpace*> SpaceList; //部屋類のポインタのリスト。
 	TArray<FArea*> AreaList; //仮想領域のポインタのリスト。
 	TArray<FPath*> PathList; //通路類のポインタのリスト。
+	
 	TArray<TArray<FCell>> MapMatrix; //CellListへの参照indexが入っている、マップを表現した二次元リスト。
 	
 public:

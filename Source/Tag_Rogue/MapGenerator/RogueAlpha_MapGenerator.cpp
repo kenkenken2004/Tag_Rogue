@@ -20,7 +20,7 @@ void URogueAlpha_MapGenerator::BuildMap()
 {
 	BuildSpace();
 	BuildArea();
-	SetPath(AreaList[0], AreaList[1]);
+	BuildPath();
 	GetAreaString();
 }
 
@@ -82,8 +82,6 @@ bool URogueAlpha_MapGenerator::SetPath(const FArea* Area1, const FArea* Area2)
 	return Flag;
 }
 
-
-
 TArray<int32> URogueAlpha_MapGenerator::BuildSpace()
 {
 	TArray<int32> ActualNums = TArray<int32>();
@@ -100,8 +98,6 @@ TArray<int32> URogueAlpha_MapGenerator::BuildSpace()
 	return ActualNums;
 }
 
-
-
 void URogueAlpha_MapGenerator::BuildArea()
 {
 	for (int32 i=0;i<SpaceList.Num();i++)
@@ -115,7 +111,7 @@ void URogueAlpha_MapGenerator::BuildArea()
 		}
 	}
 	bool BigFlag = true;
-	while (BigFlag) // infinite loop
+	while (BigFlag)
 	{
 		bool SmallFlag = false;
 		for (int32 i=0;i<AreaList.Num();i++)
@@ -128,9 +124,37 @@ void URogueAlpha_MapGenerator::BuildArea()
 
 void URogueAlpha_MapGenerator::BuildPath()
 {
-	
+	TArray<TArray<bool>> Edges = TArray<TArray<bool>>();
+	TArray<bool> Ins = TArray<bool>();
+	Ins.Init(false, SpaceList.Num());
+	Edges.Init(Ins, SpaceList.Num());
+	for (int32 i=0;i<MapHeight;i++)
+	{
+		for (int32 j=0;j<MapWidth;j++)
+		{
+			const FCell* Cell1 = GetCell(i, j);
+			if(Cell1->AreaIndex==-1)continue;
+			if(const FCell* Cell2 = GetCell(i-1, j); Cell2!=nullptr && Cell2->AreaIndex!=-1)
+			{
+				Edges[Cell1->AreaIndex][Cell2->AreaIndex] = true;
+			}
+			if(const FCell* Cell2 = GetCell(i, j-1); Cell2!=nullptr && Cell2->AreaIndex!=-1)
+			{
+				Edges[Cell1->AreaIndex][Cell2->AreaIndex] = true;
+			}
+		}
+	}
+	for (int32 i=0;i<Edges.Num();i++)
+	{
+		for(int32 j=0;j<Edges.Num();j++)
+		{
+			if(i!=j&&Edges[i][j])
+			{
+				SetPath(AreaList[i], AreaList[j]);
+			}
+		}
+	}
 }
-
 
 void URogueAlpha_MapGenerator::SetStructureParam(const EType Type, const int32 Height, const int32 Width, const int32 Num) // Both size must be odd numbers.
 {

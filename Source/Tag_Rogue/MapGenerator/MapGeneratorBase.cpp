@@ -149,6 +149,11 @@ bool UMapGeneratorBase::FPath::CanPlace() const
 	TArray<FCell*> Elements = Cells;
 	for (int i=0;i<Elements.Num();i++)
 	{
+		if (Elements[i]->AreaIndex==-1)
+		{
+			Ret &= Elements[i]->Attribution == EType::Wall;
+			continue;
+		}
 		const int32 Ins = Gen->AreaList[Elements[i]->AreaIndex]->Owner->Index;
 		Ret &= Elements[i]->Attribution == EType::Wall || (Ins == Node1->Index || Ins == Node2->Index) && Elements[i]->Attribution != EType::Path;
 	}
@@ -377,9 +382,6 @@ UMapGeneratorBase::FCell* UMapGeneratorBase::GetCell(const int32 PosY, const int
 	{
 		return &MapMatrix[PosY][PosX];
 	}
-	else
-	{
 		return nullptr;
-	}
 	
 }

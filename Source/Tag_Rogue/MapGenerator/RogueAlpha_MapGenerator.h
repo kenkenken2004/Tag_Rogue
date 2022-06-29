@@ -7,12 +7,13 @@
 #include "RogueAlpha_MapGenerator.generated.h"
 
 /**
- * 
+MapGeneratorBaseの派生。
+最初に部屋を配置し、その後に領域を設定、隣接する部屋を通路で接続する。
  */
 UCLASS()
 class TAG_ROGUE_API URogueAlpha_MapGenerator final : public UMapGeneratorBase
 {
-public:
+protected:
 	GENERATED_BODY()
 	TMap<EType, FRect> StructureSize;
 	TMap<EType, int32> StructureNumber;
