@@ -228,7 +228,11 @@ void UMapGeneratorBase::FArea::Remove()
 {
 	if (Gen->AreaList.Contains(this))
 	{
-		for (int i=Index+1;i<Gen->AreaList.Num();i++)Gen->AreaList[i]->Index -= 1;
+		for (int i=Index+1;i<Gen->AreaList.Num();i++)
+		{
+			Gen->AreaList[i]->Index--;
+			for(FCell *Cell : Gen->AreaList[i]->GetAllCells())Cell->AreaIndex--;
+		}
 		Gen->AreaList.RemoveAt(Index);
 		TArray<FCell*> Elements = GetAllCells();
 		for (int j=0;j<Elements.Num();j++)
