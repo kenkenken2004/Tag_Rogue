@@ -15,10 +15,11 @@ class TAG_ROGUE_API URogueAlpha_MapGenerator final : public UMapGeneratorBase
 {
 protected:
 	GENERATED_BODY()
+	int32 Space_Margin = 0;
 	TMap<EType, FRect> StructureSize;
 	TMap<EType, int32> StructureNumber;
 	TArray<TArray<FSpace>> SpaceAdjacencyMatrix;
-	bool RandomPlaceSpace(EType);
+	bool RandomPlaceSpace(EType, int32);
 	bool SetPath(const FArea*, const FArea*);
 	TArray<int32> BuildSpace();
 	void BuildArea();
