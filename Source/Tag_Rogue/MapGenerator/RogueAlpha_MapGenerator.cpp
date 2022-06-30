@@ -13,8 +13,6 @@ void URogueAlpha_MapGenerator::Construct(const int32 Map_Height, const int32 Map
 {
 	Space_Margin = 3;
 	Super::Construct(Map_Height, Map_Width);
-	SetStructureParam(EType::Plaza, 7, 7, 2);
-	SetStructureParam(EType::Room, 3, 3, 9);
 }
 
 void URogueAlpha_MapGenerator::BuildMap()

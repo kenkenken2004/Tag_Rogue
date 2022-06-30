@@ -17,7 +17,7 @@
 UCLASS()
 class TAG_ROGUE_API UMapGeneratorBase: public UObject
 {
-protected:
+public:
 	GENERATED_BODY()
 
 	int32 MapHeight = 1;
