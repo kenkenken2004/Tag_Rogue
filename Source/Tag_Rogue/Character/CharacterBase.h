@@ -4,10 +4,10 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
-#include "TP_ThirdPersonCharacter.generated.h"
+#include "CharacterBase.generated.h"
 
 UCLASS(config=Game)
-class ATP_ThirdPersonCharacter : public ACharacter
+class ACharacterBase : public ACharacter
 {
 	GENERATED_BODY()
 
@@ -19,7 +19,7 @@ class ATP_ThirdPersonCharacter : public ACharacter
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	class UCameraComponent* FollowCamera;
 public:
-	ATP_ThirdPersonCharacter();
+	ACharacterBase();
 
 	/** Base turn rate, in deg/sec. Other scaling may affect final turn rate. */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Input)
