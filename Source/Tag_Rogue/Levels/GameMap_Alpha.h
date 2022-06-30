@@ -15,6 +15,7 @@ class TAG_ROGUE_API AGameMap_Alpha : public ALevelScriptActor
 	GENERATED_BODY()
 protected:
 	float CellSize;
+	
 	virtual void BeginPlay() override;
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 	FVector Cie_Convert(int32,int32, float) const;
@@ -22,6 +23,4 @@ protected:
 	
 public:
 	AGameMap_Alpha();
-
-public:
 };

@@ -6,7 +6,6 @@
 
 AGameMap_Alpha::AGameMap_Alpha()
 {
-	
 }
 
 
@@ -16,6 +15,11 @@ void AGameMap_Alpha::BeginPlay()
 	URogueAlpha_MapGenerator* Generator = NewObject<URogueAlpha_MapGenerator>(GetWorld());
 	Generator->Construct(50,50);
 	Generator->BuildMap();
+	const TSubclassOf<class AActor> SubClass = TSoftClassPtr<AActor>(FSoftObjectPath(TEXT("/Game/MapObject/MapUnit/MapBasicWall.MapBasicWall"))).LoadSynchronous();
+	const FActorSpawnParameters SpawnParameters = FActorSpawnParameters();
+	const AActor* Instance = GetWorld()->SpawnActor<AActor>(FVector(0,0,100),FRotator(0,0,0));
+	const FString Name = Instance->GetName();
+	UE_LOG(LogTemp, Log,TEXT("%s"), *Name)
 	Super::BeginPlay();
 }
 
