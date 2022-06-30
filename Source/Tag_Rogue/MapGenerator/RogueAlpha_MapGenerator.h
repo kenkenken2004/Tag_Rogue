@@ -13,7 +13,7 @@ MapGeneratorBaseの派生。
 UCLASS()
 class TAG_ROGUE_API URogueAlpha_MapGenerator final : public UMapGeneratorBase
 {
-protected:
+public:
 	GENERATED_BODY()
 	int32 Space_Margin = 0;
 	TMap<EType, FRect> StructureSize;
