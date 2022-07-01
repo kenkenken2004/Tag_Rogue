@@ -10,7 +10,12 @@ UCLASS()
 class TAG_ROGUE_API AMapUnitBase : public AActor
 {
 	GENERATED_BODY()
-	
+	UPROPERTY()
+	UStaticMeshComponent* BodyComponent;
+	UPROPERTY()
+	UStaticMesh* BodyMesh;
+	UPROPERTY()
+	UMaterial* BodyMaterial;
 public:	
 	// Sets default values for this actor's properties
 	AMapUnitBase();

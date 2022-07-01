@@ -1,6 +1,9 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 #include "GameMap_Alpha.h"
 
+#include "Tag_Rogue/MapObject/InteriorOne.h"
+#include "Tag_Rogue/MapObject/MapUnitBase.h"
+
 
 AGameMap_Alpha::AGameMap_Alpha()
 {
@@ -17,6 +20,7 @@ void AGameMap_Alpha::BeginPlay()
     Generator->SetStructureParam(UMapGeneratorBase::EType::Room, 5, 5, 9);
 	Generator->BuildMap();
 	AddClass(TEXT("MapUnitBase"), TEXT("/Game/MapObject/MapUnit/MapBasicWall.MapBasicWall_C"));
+	AddClass(TEXT("InteriorOne"), TEXT("/Game/MapObject/InteriorOne/InteriorOne.InteriorOne_C"));
 	PlaceCubes();
 	Super::BeginPlay();
 }
@@ -29,9 +33,19 @@ void AGameMap_Alpha::PlaceCubes()
 		{
 			if (Generator->GetCell(y, x)->Attribution==UMapGeneratorBase::EType::Wall)
 			{
-				GetWorld()->SpawnActor<AActor>(GetClass(TEXT("MapUnitBase")), Cie_Convert(y,x,50), FRotator(0,0,0));
+				//GetWorld()->SpawnActor<AActor>(GetClass(TEXT("MapUnitBase")), Cie_Convert(y,x,0), FRotator(0,0,0));
+				GetWorld()->SpawnActor<AMapUnitBase>(Cie_Convert(y,x,0), FRotator(0,0,0));
 			}
 			
+		}
+	}
+	for(int32 i=0;i<Generator->SpaceList.Num();i++)
+	{
+		if(Generator->SpaceList[i]->Attribution == UMapGeneratorBase::EType::Plaza)
+		{
+			FVector Pos = Cie_Convert(Generator->SpaceList[i]->GetCenterCell()->Py, Generator->SpaceList[i]->GetCenterCell()->Px, 0);
+			//GetWorld()->SpawnActor<AActor>(GetClass(TEXT("InteriorOne")), Pos, FRotator(0,0,0));
+			GetWorld()->SpawnActor<AInteriorOne>(Pos, FRotator(0,0,0));
 		}
 	}
 }
