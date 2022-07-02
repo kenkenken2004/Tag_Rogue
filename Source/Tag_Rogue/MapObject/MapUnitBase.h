@@ -7,7 +7,7 @@
 #include "MapUnitBase.generated.h"
 
 UCLASS()
-class TAG_ROGUE_API AMapUnitBase : public AActor
+class TAG_ROGUE_API AMapUnitBase final : public AActor
 {
 	GENERATED_BODY()
 	UPROPERTY()
