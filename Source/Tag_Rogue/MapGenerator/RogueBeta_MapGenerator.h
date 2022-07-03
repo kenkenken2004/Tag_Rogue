@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "MapGeneratorBase.h"
-//#include "RogueBeta_MapGenerator.generated.h"
+#include "RogueBeta_MapGenerator.generated.h"
 
 
 
@@ -35,38 +35,16 @@
  4. 通路を生成する
 
  */
-//UCLASS()
+UCLASS()
 class TAG_ROGUE_API URogueBeta_MapGenerator : public UMapGeneratorBase
 {
-	//GENERATED_BODY()
-protected:
-	TMap<EType, int32> StructureSize;
+	GENERATED_BODY()
 
-	//パラメーター
-	int32 MaxTrial = 35;//区域分割の、最大試行回数
-	int32 MinDivisionTarget = 15;//分割対象の最小長辺長
-	int32 MinSize = 3;//区域の最小辺長
+	public:
+		URogueBeta_MapGenerator() {}
 
-public:
-	URogueBeta_MapGenerator() {}
+		//マップの縦横サイズを引数にとってマップを生成するコンストラクタ
+		URogueBeta_MapGenerator(int32 MapHeight, int32 MapWidth, int32 MaxTrial, int32 MinDivisionTarget, int32 MinSize);
 
-	//マップの縦横サイズを引数にとってマップを生成するコンストラクタ
-	URogueBeta_MapGenerator(int32, int32);
-
-	//パラメーターのセッター
-	void SetMaxTrial(int32 value) {
-		if (value >= 0) {
-			MaxTrial = value;
-		}
-	}
-	void SetMinDivisionTarget(int32 value) {
-		if (value >= 0) {
-			MinDivisionTarget = value;
-		}
-	}
-	void SetMinSize(int32 value) {
-		if (value >= 3) {
-			MinSize = value;
-		}
-	}
+		void PrintMap();
 };

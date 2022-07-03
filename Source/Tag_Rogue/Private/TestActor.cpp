@@ -13,32 +13,14 @@ ATestActor::ATestActor()
 }
 #pragma optimize("", off)
 
-class Hoge{
-private:
-	int number;
-public:
-	Hoge(int num);
-	int baka;
-};
-
-Hoge::Hoge(int num) {
-	number = num * 2;
-}
 
 // Called when the game starts or when spawned
 void ATestActor::BeginPlay()
 {
 	Super::BeginPlay();
 	UE_LOG(LogTemp, Error, TEXT("Let's Start!"));
-	int32 a = 1;
-	//auto hoge1 = NewObject<Hoge>();
-	Hoge hoge2 = Hoge(5);
-	hoge2->baka = 10;
 	
-	//UMapGeneratorBase uMapBase = UMapGeneratorBase(30, 30);
-	//int output = uMapBase.GetCell(1, 1)->AreaIndex;
-	//UE_LOG(LogTemp, Error, TEXT("%d"), output);
-	URogueBeta_MapGenerator uMapBeta = URogueBeta_MapGenerator(30, 30);
+	URogueBeta_MapGenerator uMapBeta = URogueBeta_MapGenerator(30, 30, 35, 15, 3);
 }
 
 // Called every frame
