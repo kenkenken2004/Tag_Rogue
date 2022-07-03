@@ -38,13 +38,15 @@
 UCLASS()
 class TAG_ROGUE_API URogueBeta_MapGenerator : public UMapGeneratorBase
 {
-	GENERATED_BODY()
 
 	public:
+		GENERATED_BODY()
 		URogueBeta_MapGenerator() {}
 
-		//マップの縦横サイズを引数にとってマップを生成するコンストラクタ
-		URogueBeta_MapGenerator(int32 MapHeight, int32 MapWidth, int32 MaxTrial, int32 MinDivisionTarget, int32 MinSize);
+		void Construct(int32 Map_Height, int32 Map_Width) override;
+
+		//パラメーターを引数にとってマップを生成するコンストラクタ
+		void GenerateMap(int32 MaxTrial, int32 MinDivisionTarget, int32 MinSize);
 
 		void PrintMap();
 };

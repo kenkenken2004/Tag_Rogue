@@ -3,10 +3,15 @@
 
 #include "RogueBeta_MapGenerator.h"
 
-URogueBeta_MapGenerator::URogueBeta_MapGenerator(int32 MapHeight, int32 MapWidth, int32 MaxTrial, int32 MinDivisionTarget, int32 MinSize) :UMapGeneratorBase(MapHeight, MapWidth) {
+void URogueBeta_MapGenerator::Construct(int32 Map_Height, int32 Map_Width) {
+	Super::Construct(Map_Height, Map_Width);
+}
+
+void URogueBeta_MapGenerator::GenerateMap(int32 MaxTrial, int32 MinDivisionTarget, int32 MinSize) {
 	//
 	//1. ‰Šú‰»‚·‚é
 	//
+
 
 	//‹æˆæ‘S‘Ì‚ğAreaList‚É’Ç‰Á
 	FArea* WholeArea = new FArea(&MapMatrix[0][0], &MapMatrix[MapHeight - 1][MapWidth - 1]);
@@ -129,6 +134,6 @@ void URogueBeta_MapGenerator::PrintMap() {
 			}
 			output += cellChar;
 		}
-		UE_LOG(LogTemp, Error, TEXT("%s"), *output);
+		UE_LOG(LogTemp, Warning, TEXT("%s"), *output);
 	}
 }

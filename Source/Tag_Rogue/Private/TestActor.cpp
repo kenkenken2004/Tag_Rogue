@@ -19,8 +19,10 @@ void ATestActor::BeginPlay()
 {
 	Super::BeginPlay();
 	UE_LOG(LogTemp, Error, TEXT("Let's Start!"));
-	
-	URogueBeta_MapGenerator uMapBeta = URogueBeta_MapGenerator(30, 30, 35, 15, 3);
+
+	URogueBeta_MapGenerator* uMapBeta = NewObject<URogueBeta_MapGenerator>(GetWorld());
+	uMapBeta->Construct(30, 30);
+	uMapBeta->GenerateMap(35, 15, 3);
 }
 
 // Called every frame
