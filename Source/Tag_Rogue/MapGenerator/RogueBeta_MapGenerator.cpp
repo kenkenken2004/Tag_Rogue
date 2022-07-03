@@ -129,6 +129,6 @@ void URogueBeta_MapGenerator::PrintMap() {
 			}
 			output += cellChar;
 		}
-		UE_LOG(LogTemp, Warning, TEXT("%s"), output);
+		UE_LOG(LogTemp, Error, TEXT("%s"), *output);
 	}
 }
