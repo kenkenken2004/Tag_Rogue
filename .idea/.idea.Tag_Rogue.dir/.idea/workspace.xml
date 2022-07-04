@@ -9,9 +9,18 @@
   <component name="ChangeListManager">
     <list default="true" id="cf331540-c7ba-40e0-a96e-46ca470ed1b0" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Tag_Rogue.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Tag_Rogue.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Config/DefaultEngine.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultEngine.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Characters/CharacterBase.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Characters/CharacterBase.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/MainWorld.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/MainWorld.umap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/MapObject/MapUnitBase.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/MapObject/MapUnitBase.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/MapObject/Corridor.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/MapObject/Light1.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/MapObject/Light1.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/MapObject/Light1_001.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/MapObject/Metal1.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/MapObject/Metal1.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/MapObject/Metal1_001.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/MapObject/Metal2.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/MapObject/Metal2_001.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/MapObject/Metal3.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/MapObject/Metal3.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/MapObject/Metal3_001.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/MapObject/SF_Corridor.uasset" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,20 +42,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "XThreadsFramesViewSplitterKey": "0.39590853",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.39590853&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="Tag_Rogue" type="Uproject" factoryName="rider.uproject">
       <option name="PROJECT_FILE_PATH" value="$PROJECT_DIR$/Tag_Rogue.uproject" />
@@ -121,7 +130,9 @@
       <workItem from="1656644608122" duration="13260000" />
       <workItem from="1656676149036" duration="4068000" />
       <workItem from="1656745495415" duration="229000" />
-      <workItem from="1656745913088" duration="2387000" />
+      <workItem from="1656745913088" duration="2389000" />
+      <workItem from="1656846368309" duration="757000" />
+      <workItem from="1656932990383" duration="1219000" />
     </task>
     <servers />
   </component>
