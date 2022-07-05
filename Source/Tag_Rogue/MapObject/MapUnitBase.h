@@ -32,7 +32,8 @@ public:
 		PathTJunction,
 		RoomCorner,
 		RoomNormal,
-		RoomSide
+		RoomSide,
+		Null
 	};
 	
 protected:

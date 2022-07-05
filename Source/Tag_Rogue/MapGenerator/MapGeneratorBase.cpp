@@ -201,7 +201,7 @@ void UMapGeneratorBase::FPath::Place()
 							Length--;
 							Cells.RemoveAt(i);
 							i--;
-							if(i<=CornerIndex)CornerIndex--;
+							if(i<CornerIndex)CornerIndex--;
 							End1 = Cells[0];
 							End2 = Cells[Cells.Num()-1];
 						}

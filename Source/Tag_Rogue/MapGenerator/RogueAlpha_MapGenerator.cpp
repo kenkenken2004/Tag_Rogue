@@ -20,7 +20,6 @@ void URogueAlpha_MapGenerator::BuildMap()
 	BuildSpace();
 	BuildArea();
 	BuildPath();
-	GetAreaString();
 }
 
 
@@ -54,6 +53,7 @@ bool URogueAlpha_MapGenerator::SetPath(const FArea* Area1, const FArea* Area2)
 	TArray<FCell*> Cells2 = TArray<FCell*>();
 	
 	Cells1.Append(FRect(GetCell(C1->Py, C1->Px<In1->Px?C1->Px:In1->Px), GetCell(C1->Py,C1->Px<In1->Px?In1->Px:C1->Px)).GetAllCells());
+	const int32 Corner1 = (C1->Px<In1->Px?In1->Px:C1->Px) - (C1->Px<In1->Px?C1->Px:In1->Px);
 	if(C1->Px>=In1->Px)Algo::Reverse(Cells1);
 	TArray<FCell*> Ins = FRect(GetCell(C2->Py<In1->Py?C2->Py:In1->Py, C2->Px), GetCell(C2->Py<In1->Py?In1->Py:C2->Py,C2->Px)).GetAllCells();
 	if(C2->Py>=In1->Py)Algo::Reverse(Ins);
@@ -61,14 +61,15 @@ bool URogueAlpha_MapGenerator::SetPath(const FArea* Area1, const FArea* Area2)
 	Cells1.Append(Ins);
 
 	Cells2.Append(FRect(GetCell(C1->Py<In2->Py?C1->Py:In2->Py, C1->Px), GetCell(C1->Py<In2->Py?In2->Py:C1->Py,C1->Px)).GetAllCells());
+	const int32 Corner2 = (C1->Py<In2->Py?In2->Py:C1->Py) - (C1->Py<In2->Py?C1->Py:In2->Py);
 	if(C1->Py>=In2->Py)Algo::Reverse(Ins);
 	Ins = FRect(GetCell(C2->Py, C2->Px<In2->Px?C2->Px:In2->Px), GetCell(C2->Py,C2->Px<In2->Px?In2->Px:C2->Px)).GetAllCells();
 	if(C2->Px>=In2->Px)Algo::Reverse(Cells2);
 	Cells2.Pop();
 	Cells2.Append(Ins);
 	
-	FPath Path1 = FPath(Spc1, Spc2, Cells1, C1, C2);
-	FPath Path2 = FPath(Spc1, Spc2, Cells2, C1, C2);
+	FPath Path1 = FPath(Spc1, Spc2, Cells1, C1, C2, Corner1);
+	FPath Path2 = FPath(Spc1, Spc2, Cells2, C1, C2, Corner2);
 	if (Path1.CanPlace())
 	{
 		Path1.Place();
@@ -186,7 +187,10 @@ TArray<FString> URogueAlpha_MapGenerator::GetAreaString()
 	{
 		for (int j=0;j<MapWidth;j++)
 		{
-			Ret[i]+= GetCell(i, j)->Attribution == EType::Wall ? static_cast<char>('A' + (GetCell(i, j))->AreaIndex) : ' ';
+			//Ret[i]+= GetCell(i, j)->Attribution != EType::Path ? static_cast<char>('A' + (GetCell(i, j))->AreaIndex) : '#';
+			if(GetCell(i,j)->Attribution==EType::Path)Ret[i]+='*';
+			else if(GetCell(i,j)->Attribution==EType::Plaza||GetCell(i,j)->Attribution==EType::Room)Ret[i]+=' ';
+			else Ret[i]+='#';
 		}
 	}
 	for (int32 i=0;i<MapHeight;i++)

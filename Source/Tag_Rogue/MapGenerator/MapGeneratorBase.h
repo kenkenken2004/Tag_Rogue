@@ -50,6 +50,10 @@ public:
 		UMapGeneratorBase* Gen; //所有されるMapGenerator
 		FCell(int32, int32, UMapGeneratorBase*); //属性無しのコンストラクタ。このとき属性はWallとなる。
 		FCell(int32, int32, EType, UMapGeneratorBase*); //属性ありのコンストラクタ。
+		FCell* North() const {return Gen->GetCell(Py-1,Px);}
+		FCell* East() const {return Gen->GetCell(Py,Px+1);}
+		FCell* West() const {return Gen->GetCell(Py,Px-1);}
+		FCell* South() const {return Gen->GetCell(Py+1,Px);}
 	};
 	struct FRect //マスの長方形の領域の構造体
 	{
