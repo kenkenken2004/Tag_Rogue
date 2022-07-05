@@ -3,18 +3,11 @@
 
 #include "Tag_RogueGameInstance.h"
 
+#include "AssetRegistry/AssetRegistryModule.h"
+
 UTag_RogueGameInstance::UTag_RogueGameInstance()
-{/*
-	ObjectLibrary = UObjectLibrary::CreateLibrary(UWorld::StaticClass(), true, true);
-	ObjectLibrary->AddToRoot();
-	ObjectLibrary->LoadAssetDataFromPath(TEXT("/Game"));
-	ObjectLibrary->LoadAssetsFromAssetData();
-	
-	for(int32 i=0;i<AssetDatas.Num();i++)
-	{
-		FAssetData& AssetData = AssetDatas[i];
-		UE_LOG(LogTemp, Log, TEXT("%s"), *AssetData.GetFullName())
-	}*/
+{
+	AssetDatas = TMap<FName, FAssetData>();
 }
 
 UTag_RogueGameInstance* UTag_RogueGameInstance::GetInstance()
@@ -28,11 +21,14 @@ void UTag_RogueGameInstance::DisplayDebugMessage(const FString Message)
 	if(GEngine)GEngine->AddOnScreenDebugMessage(-1,5.0f,FColor::Green,Message);
 }
 
-void UTag_RogueGameInstance::AddClass(FString)
+void UTag_RogueGameInstance::LoadAssets(const FName Path)
 {
+	const FAssetRegistryModule& AssetRegistryModule = FModuleManager::LoadModuleChecked<FAssetRegistryModule>(FName(TEXT("AssetRegistry")));
+	const IAssetRegistry& AssetRegistry = AssetRegistryModule.Get();
+	TArray<FAssetData> AssetDatasInstant;
+	AssetRegistry.GetAssetsByPath(Path, AssetDatasInstant);
+	for(int32 i=0;i<AssetDatasInstant.Num();i++)
+	{
+		AssetDatas.Add(AssetDatasInstant[i].AssetName,AssetDatasInstant[i]);
+	}
 }
-
-void UTag_RogueGameInstance::AddObject(FString)
-{
-}
-

@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Engine/LevelScriptActor.h"
+#include "Tag_Rogue/Tag_RogueGameInstance.h"
 #include "Tag_Rogue/MapGenerator/RogueAlpha_MapGenerator.h"
 #include "GameMap_Alpha.generated.h"
 
@@ -18,14 +19,13 @@ protected:
 	float CellSize;
 	UPROPERTY()
 	URogueAlpha_MapGenerator* Generator;
-	TMap<FString, TSubclassOf<AActor>> BP_Reference;
+	UPROPERTY()
+	UTag_RogueGameInstance* GameInstance;
 	virtual void BeginPlay() override;
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 	FVector Cie_Convert(int32,int32, float) const;
 	static TArray<int32> Cie_Invert(FVector);
-	TSubclassOf<AActor> GetClass(FString);
-	void AddClass(FString,FString);
-	void PlaceCubes();
+	void PlaceCubes() const;
 public:
 	AGameMap_Alpha();
 };

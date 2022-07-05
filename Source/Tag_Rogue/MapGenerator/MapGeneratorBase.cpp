@@ -8,6 +8,10 @@ UMapGeneratorBase::FCell::FCell(const int32 Y, const int32 X,const EType Attr, U
 	Gen = Generator;
 	Py = Y;Px = X;
 	Attribution = Attr;
+	IsJunction = false;
+	IsCorner = false;
+	IsGate = false;
+	Direction = EDirection::Null;
 }
 
 UMapGeneratorBase::FCell::FCell(const int32 Y, const int32 X, UMapGeneratorBase* Generator) : FCell(Y,X,EType::Wall, Generator)
@@ -54,7 +58,8 @@ TArray<UMapGeneratorBase::FCell*> UMapGeneratorBase::FRect::GetInnerBorderCells(
 		for (int j=this->LeftTopCell->Px+1;j<this->RightBottomCell->Px;j++)Ret.Add(Gen->GetCell(LeftTopCell->Py, j));
 	case EDirection::South:
 		for (int j=this->LeftTopCell->Px+1;j<this->RightBottomCell->Px;j++)Ret.Add(Gen->GetCell(RightBottomCell->Py, j));
-
+	default:
+		break;
 	}
 	return Ret;
 }
@@ -129,7 +134,7 @@ void UMapGeneratorBase::FSpace::Remove()
 }
 
 
-UMapGeneratorBase::FPath::FPath(FSpace* N1, FSpace* N2, const TArray<FCell*> Elem, FCell* E1, FCell* E2)
+UMapGeneratorBase::FPath::FPath(FSpace* N1, FSpace* N2, const TArray<FCell*> Elem, FCell* E1, FCell* E2, int32 Corner)
 {
 	Gen = N1->Gen;
 	Index = -1;
@@ -140,6 +145,7 @@ UMapGeneratorBase::FPath::FPath(FSpace* N1, FSpace* N2, const TArray<FCell*> Ele
 	this->End2 = E2;
 	Cells = TArray<FCell*>();
 	Cells.Append(Elem);
+	CornerIndex = Corner;
 }
 
 
@@ -164,19 +170,67 @@ void UMapGeneratorBase::FPath::Place()
 {
 	if (Index == -1)
 	{
+		EDirection CurD = EDirection::Null; //現在の道の方向を宣言
+		if(Cells[0]->Px==Cells[1]->Px)CurD=EDirection::North; //道の方向を初期化
+		else if(Cells[0]->Py==Cells[1]->Py)CurD=EDirection::East;
 		Index = Gen->PathList.Num();
 		Gen->PathList.Add(this);
 		for (int i=0;i<Cells.Num();i++)
 		{
-			if (Cells[i]->Attribution == EType::Wall)
+			if(i==CornerIndex) //現在のセルが角に該当するとき（既に他の道がおかれているかを問わない）
+			{
+				if(CurD==EDirection::North)CurD=EDirection::East; //道の方向を転換
+				else if(CurD==EDirection::East)CurD=EDirection::North;
+			}
+			if (Cells[i]->Attribution == EType::Path) //現在のセルが既にほかの道を構成するとき
+			{
+				if(Cells[i]->IsCorner) //現在のセルが他の道の角であるとき⇒そこが交差点であることの十分条件
+				{
+					Cells[i]->IsJunction = true; //交差点に設定（T字か十字かは問わず）
+				}
+				else //現在のセルが他の道の直進部分であるとき
+				{
+					if(i==CornerIndex) //現在のセルがこの道の角であるとき⇒交差点であることの十分条件
+					{
+						Cells[i]->IsJunction = true; //交差点に設定（T字か十字かは問わず）
+					}
+					else //そうでないとき
+					{
+						if(CurD==Cells[i]->Direction) //この道での方向と他の道での方向が一致するとき⇒この道から削除可能
+						{
+							Length--;
+							Cells.RemoveAt(i);
+							i--;
+							if(i<=CornerIndex)CornerIndex--;
+							End1 = Cells[0];
+							End2 = Cells[Cells.Num()-1];
+						}
+						else //この道での直進方向と他の道での直進方向が違うとき⇒交差点であることの十分条件
+						{
+							Cells[i]->IsJunction = true;
+						}
+					}
+					
+				}
+				
+			}
+			else if (Cells[i]->Attribution == EType::Wall) //現在のセルに道が置かれておらず部屋でもないとき
 			{
 				Cells[i]->Attribution = EType::Path;
+				Cells[i]->Direction = CurD;
+				if(i==CornerIndex)Cells[i]->IsCorner = true;
+
 			}
-			else
+			else //部屋のとき
 			{
+				if((i+1<Cells.Num()&&Cells[i+1]->Attribution==EType::Path)||(i-1>=0&&Cells[i-1]->Attribution==EType::Path)) //部屋と通路の接続部分(部屋側)であるとき
+				{
+					Cells[i]->IsGate = true;
+				}
 				Length--;
 				Cells.RemoveAt(i);
 				i--;
+				if(i<=CornerIndex)CornerIndex--;
 				End1 = Cells[0];
 				End2 = Cells[Cells.Num()-1];
 			}
@@ -308,6 +362,8 @@ void UMapGeneratorBase::FArea::Expand(const EDirection Dir, const int32 Num)
 		RightBottomCell = Gen->GetCell(RightBottomCell->Py+Num, RightBottomCell->Px);
 		Height += Num;
 		break;
+	default:
+		break;
 	}
 	TArray<FCell*> Elements = GetAllCells();
 	for (int32 i=0;i<Elements.Num();i++)
@@ -373,6 +429,8 @@ TArray<UMapGeneratorBase::FArea*> UMapGeneratorBase::FArea::Split(const EDirecti
 			Ret.Add(Area1);
 			Ret.Add(Area2);
 		}
+		break;
+	default:
 		break;
 	}
 	return Ret;

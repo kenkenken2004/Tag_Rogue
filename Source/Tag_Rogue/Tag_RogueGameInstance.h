@@ -16,17 +16,17 @@ class TAG_ROGUE_API UTag_RogueGameInstance final : public UGameInstance
 	GENERATED_BODY()
 public:
 	//Member Variable
-	//UObjectLibrary* ObjectLibrary;
-	//TArray<FAssetData> AssetDatas;
-	
-	
-	
+	TMap<FName,FAssetData> AssetDatas;
 	
 	UTag_RogueGameInstance();
 	static UTag_RogueGameInstance* GetInstance();
 	static void DisplayDebugMessage(FString Message);
 
-	void AddClass(FString);
-	void AddObject(FString);
+	void LoadAssets(FName);
+	template <typename T> T* GetAssetObject(const FName AssetName)
+	{
+		UObject* Instant = AssetDatas[AssetName].GetAsset();
+		return static_cast<T*>(Instant);
+	};
 	
 };

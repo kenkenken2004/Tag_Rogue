@@ -31,6 +31,7 @@ public:
 	}; 
 	
 	enum struct EDirection {//方向
+		Null,
 		North,
 		East,
 		West,
@@ -42,6 +43,10 @@ public:
 		int32 Py, Px; //二次元配列における座標。アクセスはArray[Py][Px]。
 		int32 AreaIndex = -1; //所属する領域のリストインデックス。所属していない場合は-1。
 		EType Attribution; //Cellの属性。
+		bool IsJunction;
+		bool IsCorner;
+		bool IsGate;
+		EDirection Direction;
 		UMapGeneratorBase* Gen; //所有されるMapGenerator
 		FCell(int32, int32, UMapGeneratorBase*); //属性無しのコンストラクタ。このとき属性はWallとなる。
 		FCell(int32, int32, EType, UMapGeneratorBase*); //属性ありのコンストラクタ。
@@ -80,7 +85,8 @@ public:
 		FCell* End2;
 		TArray<FCell*> Cells;//代入時に、End1からEnd2までの道筋順になることを要請する。
 		int32 Length; //通路の長さ。
-		FPath(FSpace*, FSpace*, TArray<FCell*>, FCell*, FCell*); //つなぐ対象と本体のFRectを指定するコンストラクタ。
+		int32 CornerIndex;
+		FPath(FSpace*, FSpace*, TArray<FCell*>, FCell*, FCell*, int32); //つなぐ対象と本体のFRectを指定するコンストラクタ。
 		bool CanPlace() const; //同上
 		void Place(); //同上 ただ、通路の両端が場合によっては変化することに注意。
 		void Remove(); //同上
