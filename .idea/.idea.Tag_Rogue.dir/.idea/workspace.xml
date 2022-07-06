@@ -9,8 +9,18 @@
   <component name="ChangeListManager">
     <list default="true" id="cf331540-c7ba-40e0-a96e-46ca470ed1b0" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Tag_Rogue.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Tag_Rogue.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Config/DefaultEngine.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultEngine.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Config/DefaultGame.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultGame.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/MainWorld.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/MainWorld.umap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/MapObject/Mesh/GateCornerOne.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/MapObject/Mesh/GateCornerOne.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/MapObject/Mesh/GateCornerTwo.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/MapObject/Mesh/GateCornerTwo.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/MapObject/Mesh/GateNormal.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/MapObject/Mesh/GateNormal.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/MapObject/Mesh/PathCorner.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/MapObject/Mesh/PathCorner.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/MapObject/Mesh/PathCrossRoad.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/MapObject/Mesh/PathCrossRoad.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/MapObject/Mesh/PathStraight.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/MapObject/Mesh/PathStraight.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/MapObject/Mesh/PathTJunction.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/MapObject/Mesh/PathTJunction.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/MapObject/Mesh/RoomCorner.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/MapObject/Mesh/RoomCorner.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/MapObject/Mesh/RoomNormal.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/MapObject/Mesh/RoomNormal.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/MapObject/Mesh/RoomSide.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/MapObject/Mesh/RoomSide.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Level/GameMap_Alpha.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Level/GameMap_Alpha.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,6 +136,7 @@
       <workItem from="1656996495718" duration="29627000" />
       <workItem from="1657062630935" duration="15304000" />
       <workItem from="1657080028974" duration="989000" />
+      <workItem from="1657087155684" duration="1085000" />
     </task>
     <servers />
   </component>
