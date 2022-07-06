@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 #include "GameMap_Alpha.h"
 #include "Kismet/GameplayStatics.h"
+#include "Tag_Rogue/MapObject/HoloGlobe.h"
 #include "Tag_Rogue/MapObject/MapUnitBase.h"
 
 
@@ -21,6 +22,11 @@ void AGameMap_Alpha::BeginPlay()
     Generator->SetStructureParam(UMapGeneratorBase::EType::Room, 5, 5, 9);
 	Generator->BuildMap();
 	PlaceCubes();
+	for(int32 i=0;i<Generator->SpaceList.Num();i++)
+	{
+		const UMapGeneratorBase::FCell* Cell =  Generator->SpaceList[i]->GetCenterCell();
+		AHoloGlobe* Globe = GetWorld()->SpawnActor<AHoloGlobe>(Cie_Convert(Cell->Py,Cell->Px,0),FRotator(0,0,0));
+	}
 	Generator->GetAreaString();
 	APawn* Player0Pawn = UGameplayStatics::GetPlayerPawn(this, 0);
 	int32 X=0;int32 Y=0;

@@ -1,0 +1,55 @@
+// Fill out your copyright notice in the Description page of Project Settings.
+
+#pragma once
+
+#include "CoreMinimal.h"
+#include "Components/BoxComponent.h"
+#include "GameFramework/Actor.h"
+#include "Tag_Rogue/Tag_RogueGameInstance.h"
+#include "HoloGlobe.generated.h"
+
+UCLASS()
+class TAG_ROGUE_API AHoloGlobe : public AActor
+{
+	GENERATED_BODY()
+	UPROPERTY()
+	UTag_RogueGameInstance* GameInstance = nullptr;
+	UPROPERTY()
+	UStaticMeshComponent* Globe = nullptr;
+	UPROPERTY()
+	UStaticMeshComponent* Grid = nullptr;
+	UPROPERTY()
+	UStaticMeshComponent* Orbit1 = nullptr;
+	UPROPERTY()
+	UStaticMeshComponent* Orbit2 = nullptr;
+	UPROPERTY()
+	UStaticMeshComponent* Orbit3 = nullptr;
+	UPROPERTY()
+	UBoxComponent* CollisionMesh = nullptr;
+	UPROPERTY()
+	UStaticMesh* GlobeMesh = nullptr;
+	UPROPERTY()
+	UStaticMesh* GridMesh = nullptr;
+	UPROPERTY()
+	UStaticMesh* Orbit1Mesh = nullptr;
+	UPROPERTY()
+	UStaticMesh* Orbit2Mesh = nullptr;
+	UPROPERTY()
+	UStaticMesh* Orbit3Mesh = nullptr;
+	UPROPERTY()
+	FVector GlobeInitialPos = FVector(0,0,0);
+	UPROPERTY(EditAnywhere)
+	float TimeSinceCreated = 0;
+public:	
+	// Sets default values for this actor's properties
+	AHoloGlobe();
+
+protected:
+	// Called when the game starts or when spawned
+	virtual void BeginPlay() override;
+
+public:	
+	// Called every frame
+	virtual void Tick(float DeltaTime) override;
+
+};
