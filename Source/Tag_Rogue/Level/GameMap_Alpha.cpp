@@ -30,7 +30,7 @@ void AGameMap_Alpha::PlaceCubes() const
 	{
 		for (int32 x=0;x<Generator->MapWidth;x++)
 		{
-			AMapUnitBase::EMeshType MeshType = AMapUnitBase::EMeshType::PathStraight;
+			AMapUnitBase::EMeshType MeshType = AMapUnitBase::EMeshType::Null;
 			FRotator Rotator = FRotator(0,0,0);
 			bool bIsXReversed = false;
 			const UMapGeneratorBase::FCell* Cell = Generator->GetCell(y, x);
@@ -44,10 +44,10 @@ void AGameMap_Alpha::PlaceCubes() const
 					if(Cell->West() ->Attribution!=Cell->Attribution)Count1++;
 					if(Cell->South()->Attribution!=Cell->Attribution)Count1++;
 					int32 Count2 = 0;
-					if(Cell->North()->Attribution==UMapGeneratorBase::EType::Path&&Cell->North()->Direction==UMapGeneratorBase::EDirection::North)Count2++;
-					if(Cell->East() ->Attribution==UMapGeneratorBase::EType::Path&&Cell->North()->Direction==UMapGeneratorBase::EDirection::East)Count2++;
-					if(Cell->West() ->Attribution==UMapGeneratorBase::EType::Path&&Cell->North()->Direction==UMapGeneratorBase::EDirection::East)Count2++;
-					if(Cell->South()->Attribution==UMapGeneratorBase::EType::Path&&Cell->North()->Direction==UMapGeneratorBase::EDirection::North)Count2++;
+					if(Cell->North()->Attribution==UMapGeneratorBase::EType::Path&&(Cell->North()->Direction==UMapGeneratorBase::EDirection::North&&!Cell->North()->IsCorner)||Cell->North()->IsJunction)Count2++;
+					if(Cell->East() ->Attribution==UMapGeneratorBase::EType::Path&&(Cell->East()->Direction==UMapGeneratorBase::EDirection::East&&!Cell->East()->IsCorner)||Cell->East()->IsJunction)Count2++;
+					if(Cell->West() ->Attribution==UMapGeneratorBase::EType::Path&&(Cell->West()->Direction==UMapGeneratorBase::EDirection::East&&!Cell->West()->IsCorner)||Cell->West()->IsJunction)Count2++;
+					if(Cell->South()->Attribution==UMapGeneratorBase::EType::Path&&(Cell->South()->Direction==UMapGeneratorBase::EDirection::North&&!Cell->South()->IsCorner)||Cell->South()->IsJunction)Count2++;
 					if(Count1==1)
 					{
 						MeshType = AMapUnitBase::EMeshType::GateNormal;
@@ -166,19 +166,19 @@ void AGameMap_Alpha::PlaceCubes() const
 				if(Cell->IsJunction) //交差点のとき
 					{
 					MeshType = AMapUnitBase::EMeshType::PathTJunction;
-					if(Cell->North()->Attribution!=UMapGeneratorBase::EType::Path)
+					if(!Cell->North()->IsGate && Cell->North()->Direction!=UMapGeneratorBase::EDirection::North && !Cell->North()->IsJunction && !(Cell->North()->IsCorner && (Cell->North()->North()->Direction!=Cell->Direction || !Cell->North()->North()->IsJunction)))
 					{
 						Rotator = FRotator(0,90,0);
 					}
-					else if(Cell->East() ->Attribution!=UMapGeneratorBase::EType::Path)
+					else if(!Cell->East()->IsGate && Cell->East()->Direction!=UMapGeneratorBase::EDirection::East && !Cell->East()->IsJunction && !(Cell->East()->IsCorner && (Cell->East()->East()->Direction!=Cell->Direction || !Cell->East()->East()->IsJunction)))
 					{
 						Rotator = FRotator(0,180,0);
 					}
-					else if(Cell->West() ->Attribution!=UMapGeneratorBase::EType::Path)
+					else if(!Cell->West()->IsGate && Cell->West()->Direction!=UMapGeneratorBase::EDirection::East && !Cell->West()->IsJunction && !(Cell->West()->IsCorner && (Cell->West()->West()->Direction!=Cell->Direction || !Cell->West()->West()->IsJunction)))
 					{
 						Rotator = FRotator(0,0,0);
 					}
-					else if(Cell->South()->Attribution!=UMapGeneratorBase::EType::Path)
+					else if(!Cell->South()->IsGate && Cell->South()->Direction!=UMapGeneratorBase::EDirection::North && !Cell->South()->IsJunction && !(Cell->South()->IsCorner && (Cell->South()->South()->Direction!=Cell->Direction || !Cell->South()->South()->IsJunction)))
 					{
 						Rotator = FRotator(0,270,0);
 					}
@@ -190,38 +190,50 @@ void AGameMap_Alpha::PlaceCubes() const
 				else //交差点でないとき
 					{
 					if(Cell->IsCorner) //角のとき
+					{
+						MeshType = AMapUnitBase::EMeshType::PathCorner;
+						bool bNorth = Cell->North()->Direction==UMapGeneratorBase::EDirection::North;
+						bool bEast = Cell->East()->Direction==UMapGeneratorBase::EDirection::East;
+						bool bWest = Cell->West()->Direction==UMapGeneratorBase::EDirection::East;
+						bool bSouth = Cell->South()->Direction==UMapGeneratorBase::EDirection::North;
+						bool bNorthI = Cell->North()->IsJunction && !bSouth;
+						bool bEastI  = Cell->East() ->IsJunction && !bWest;
+						bool bWestI  = Cell->West()->IsJunction && !bEast;
+						bool bSouthI = Cell->South()->IsJunction && !bNorth;
+						bNorth |= bNorthI;
+						bEast |= bEastI;
+						bWest |= bWestI;
+						bSouth |= bSouthI;
+						if (bNorth&&bEast)
 						{
-							MeshType = AMapUnitBase::EMeshType::PathCorner;
-							if (Cell->North()->Direction==UMapGeneratorBase::EDirection::North&&Cell->East()->Direction==UMapGeneratorBase::EDirection::East)
-							{
-								Rotator = FRotator(0,90,0);
-							}
-							else if (Cell->East()->Direction==UMapGeneratorBase::EDirection::East&&Cell->South()->Direction==UMapGeneratorBase::EDirection::South)
-							{
-								Rotator = FRotator(0,180,0);
-							}
-							else if (Cell->South()->Direction==UMapGeneratorBase::EDirection::South&&Cell->West()->Direction==UMapGeneratorBase::EDirection::West)
-							{
-								Rotator = FRotator(0,270,0);
-							}
-							else if (Cell->West()->Direction==UMapGeneratorBase::EDirection::West&&Cell->North()->Direction==UMapGeneratorBase::EDirection::North)
-							{
-								Rotator = FRotator(0,0,0);
-							}
+							Rotator = FRotator(0,90,0);
 						}
-					else //直進路のとき
+						else if (bEast&&bSouth)
 						{
-							MeshType = AMapUnitBase::EMeshType::PathStraight;
-							if (Cell->Direction==UMapGeneratorBase::EDirection::North)
-							{
-								Rotator = FRotator(0,0,0);
-							}
-							else if (Cell->Direction==UMapGeneratorBase::EDirection::East)
-							{
-								Rotator = FRotator(0,90,0);
-							}
+							Rotator = FRotator(0,180,0);
+						}
+						else if (bSouth&&bWest)
+						{
+							Rotator = FRotator(0,270,0);
+						}
+						else if (bWest&&bNorth)
+						{
+							Rotator = FRotator(0,0,0);
 						}
 					}
+					else //直進路のとき
+					{
+						MeshType = AMapUnitBase::EMeshType::PathStraight;
+						if (Cell->Direction==UMapGeneratorBase::EDirection::North)
+						{
+							Rotator = FRotator(0,0,0);
+						}
+						else if (Cell->Direction==UMapGeneratorBase::EDirection::East)
+						{
+							Rotator = FRotator(0,90,0);
+						}
+					}
+				}
 			}
 			if(Cell->Attribution!=UMapGeneratorBase::EType::Wall && MeshType!=AMapUnitBase::EMeshType::Null)
 			{

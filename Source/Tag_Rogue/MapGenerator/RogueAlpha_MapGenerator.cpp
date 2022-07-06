@@ -56,15 +56,15 @@ bool URogueAlpha_MapGenerator::SetPath(const FArea* Area1, const FArea* Area2)
 	const int32 Corner1 = (C1->Px<In1->Px?In1->Px:C1->Px) - (C1->Px<In1->Px?C1->Px:In1->Px);
 	if(C1->Px>=In1->Px)Algo::Reverse(Cells1);
 	TArray<FCell*> Ins = FRect(GetCell(C2->Py<In1->Py?C2->Py:In1->Py, C2->Px), GetCell(C2->Py<In1->Py?In1->Py:C2->Py,C2->Px)).GetAllCells();
-	if(C2->Py>=In1->Py)Algo::Reverse(Ins);
+	if(C2->Py<=In1->Py)Algo::Reverse(Ins);
 	Cells1.Pop();
 	Cells1.Append(Ins);
 
 	Cells2.Append(FRect(GetCell(C1->Py<In2->Py?C1->Py:In2->Py, C1->Px), GetCell(C1->Py<In2->Py?In2->Py:C1->Py,C1->Px)).GetAllCells());
 	const int32 Corner2 = (C1->Py<In2->Py?In2->Py:C1->Py) - (C1->Py<In2->Py?C1->Py:In2->Py);
-	if(C1->Py>=In2->Py)Algo::Reverse(Ins);
+	if(C1->Py>=In2->Py)Algo::Reverse(Cells2);
 	Ins = FRect(GetCell(C2->Py, C2->Px<In2->Px?C2->Px:In2->Px), GetCell(C2->Py,C2->Px<In2->Px?In2->Px:C2->Px)).GetAllCells();
-	if(C2->Px>=In2->Px)Algo::Reverse(Cells2);
+	if(C2->Px<=In2->Px)Algo::Reverse(Ins);
 	Cells2.Pop();
 	Cells2.Append(Ins);
 	
@@ -188,7 +188,14 @@ TArray<FString> URogueAlpha_MapGenerator::GetAreaString()
 		for (int j=0;j<MapWidth;j++)
 		{
 			//Ret[i]+= GetCell(i, j)->Attribution != EType::Path ? static_cast<char>('A' + (GetCell(i, j))->AreaIndex) : '#';
-			if(GetCell(i,j)->Attribution==EType::Path)Ret[i]+='*';
+			if(GetCell(i,j)->Attribution==EType::Path)
+			{
+				if(GetCell(i,j)->Direction == EDirection::North)Ret[i]+=TEXT("↑");
+				else if(GetCell(i,j)->Direction == EDirection::East)Ret[i]+=TEXT("→");
+				else if(GetCell(i,j)->Direction == EDirection::West)Ret[i]+=TEXT("←");
+				else if(GetCell(i,j)->Direction == EDirection::South)Ret[i]+=TEXT("↓");
+				else Ret[i]+='.';
+			}
 			else if(GetCell(i,j)->Attribution==EType::Plaza||GetCell(i,j)->Attribution==EType::Room)Ret[i]+=' ';
 			else Ret[i]+='#';
 		}

@@ -155,13 +155,7 @@ bool UMapGeneratorBase::FPath::CanPlace() const
 	TArray<FCell*> Elements = Cells;
 	for (int i=0;i<Elements.Num();i++)
 	{
-		if (Elements[i]->AreaIndex==-1)
-		{
-			Ret &= Elements[i]->Attribution == EType::Wall;
-			continue;
-		}
-		const int32 Ins = Gen->AreaList[Elements[i]->AreaIndex]->Owner->Index;
-		Ret &= Elements[i]->Attribution == EType::Wall || (Ins == Node1->Index || Ins == Node2->Index) && Elements[i]->Attribution != EType::Path;
+		Ret &= !(Elements[i]->Attribution!=EType::Path&&Elements[i]->Attribution!=EType::Wall&&Elements[i]->AreaIndex!=End1->AreaIndex&&Elements[i]->AreaIndex!=End2->AreaIndex);
 	}
 	return Ret;
 }
@@ -173,10 +167,16 @@ void UMapGeneratorBase::FPath::Place()
 		EDirection CurD = EDirection::Null; //現在の道の方向を宣言
 		if(Cells[0]->Px==Cells[1]->Px)CurD=EDirection::North; //道の方向を初期化
 		else if(Cells[0]->Py==Cells[1]->Py)CurD=EDirection::East;
+		if(CornerIndex==0)
+		{
+			if(CurD==EDirection::North)CurD=EDirection::East;
+			else if(CurD==EDirection::East)CurD=EDirection::North;
+		}
 		Index = Gen->PathList.Num();
 		Gen->PathList.Add(this);
 		for (int i=0;i<Cells.Num();i++)
 		{
+			bool bDoesPlace = true;
 			if(i==CornerIndex) //現在のセルが角に該当するとき（既に他の道がおかれているかを問わない）
 			{
 				if(CurD==EDirection::North)CurD=EDirection::East; //道の方向を転換
@@ -204,6 +204,7 @@ void UMapGeneratorBase::FPath::Place()
 							if(i<CornerIndex)CornerIndex--;
 							End1 = Cells[0];
 							End2 = Cells[Cells.Num()-1];
+							bDoesPlace = false;
 						}
 						else //この道での直進方向と他の道での直進方向が違うとき⇒交差点であることの十分条件
 						{
@@ -212,28 +213,35 @@ void UMapGeneratorBase::FPath::Place()
 					}
 					
 				}
-				
 			}
 			else if (Cells[i]->Attribution == EType::Wall) //現在のセルに道が置かれておらず部屋でもないとき
 			{
-				Cells[i]->Attribution = EType::Path;
 				Cells[i]->Direction = CurD;
 				if(i==CornerIndex)Cells[i]->IsCorner = true;
 
 			}
 			else //部屋のとき
 			{
-				if((i+1<Cells.Num()&&Cells[i+1]->Attribution==EType::Path)||(i-1>=0&&Cells[i-1]->Attribution==EType::Path)) //部屋と通路の接続部分(部屋側)であるとき
+				int32 Count = 0;
+				if(Cells[i]->North()->Attribution==EType::Path)Count++;
+				if(Cells[i]->East() ->Attribution==EType::Path)Count++;
+				if(Cells[i]->West() ->Attribution==EType::Path)Count++;
+				if(Cells[i]->South()->Attribution==EType::Path)Count++;
+				if(i==0&&Cells[i+1]->Attribution==EType::Wall)Count++;
+				if(Count!=0) //部屋と通路の接続部分(部屋側)であるとき
 				{
 					Cells[i]->IsGate = true;
+					Cells[i]->Direction = CurD;
 				}
 				Length--;
 				Cells.RemoveAt(i);
 				i--;
-				if(i<=CornerIndex)CornerIndex--;
+				if(i<CornerIndex)CornerIndex--;
 				End1 = Cells[0];
 				End2 = Cells[Cells.Num()-1];
+				bDoesPlace = false;
 			}
+			if(bDoesPlace)Cells[i]->Attribution = EType::Path;
 		}
 	}
 }
