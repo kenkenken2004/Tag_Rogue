@@ -9,10 +9,8 @@
   <component name="ChangeListManager">
     <list default="true" id="cf331540-c7ba-40e0-a96e-46ca470ed1b0" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Tag_Rogue.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Tag_Rogue.dir/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/MainWorld.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/MainWorld.umap" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Level/GameMap_Alpha.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Level/GameMap_Alpha.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/MapGenerator/MapGeneratorBase.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/MapGenerator/MapGeneratorBase.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/MapGenerator/RogueAlpha_MapGenerator.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/MapGenerator/RogueAlpha_MapGenerator.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/MapObject/MapUnitBase.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/MapObject/MapUnitBase.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,7 +124,7 @@
       <workItem from="1656846368309" duration="757000" />
       <workItem from="1656932990383" duration="1285000" />
       <workItem from="1656996495718" duration="29627000" />
-      <workItem from="1657062630935" duration="14428000" />
+      <workItem from="1657062630935" duration="15304000" />
     </task>
     <servers />
   </component>

@@ -1,5 +1,6 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 #include "GameMap_Alpha.h"
+#include "Kismet/GameplayStatics.h"
 #include "Tag_Rogue/MapObject/MapUnitBase.h"
 
 
@@ -21,6 +22,16 @@ void AGameMap_Alpha::BeginPlay()
 	Generator->BuildMap();
 	PlaceCubes();
 	Generator->GetAreaString();
+	APawn* Player0Pawn = UGameplayStatics::GetPlayerPawn(this, 0);
+	int32 X=0;int32 Y=0;
+	while (Generator->GetCell(Y,X)->Attribution==UMapGeneratorBase::EType::Wall)
+	{
+		X = FMath::RandRange(0,Generator->MapWidth-1);
+		Y = FMath::RandRange(0,Generator->MapHeight-1);
+	}
+	
+	Player0Pawn->SetActorLocation(Cie_Convert(Y,X,CellSize/2));
+	
 	Super::BeginPlay();
 }
 
