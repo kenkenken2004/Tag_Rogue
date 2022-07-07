@@ -13,29 +13,29 @@ class TAG_ROGUE_API AHoloGlobe : public AActor
 {
 	GENERATED_BODY()
 	UPROPERTY()
-	UTag_RogueGameInstance* GameInstance = nullptr;
+	UTag_RogueGameInstance* GameInstance;
 	UPROPERTY()
-	UStaticMeshComponent* Globe = nullptr;
+	UStaticMeshComponent* Globe;
 	UPROPERTY()
-	UStaticMeshComponent* Grid = nullptr;
+	UStaticMeshComponent* Grid;
 	UPROPERTY()
-	UStaticMeshComponent* Orbit1 = nullptr;
+	UStaticMeshComponent* Orbit1;
 	UPROPERTY()
-	UStaticMeshComponent* Orbit2 = nullptr;
+	UStaticMeshComponent* Orbit2;
 	UPROPERTY()
-	UStaticMeshComponent* Orbit3 = nullptr;
+	UStaticMeshComponent* Orbit3;
 	UPROPERTY()
-	UBoxComponent* CollisionMesh = nullptr;
+	UBoxComponent* CollisionMesh;
 	UPROPERTY()
-	UStaticMesh* GlobeMesh = nullptr;
+	UStaticMesh* GlobeMesh;
 	UPROPERTY()
-	UStaticMesh* GridMesh = nullptr;
+	UStaticMesh* GridMesh;
 	UPROPERTY()
-	UStaticMesh* Orbit1Mesh = nullptr;
+	UStaticMesh* Orbit1Mesh;
 	UPROPERTY()
-	UStaticMesh* Orbit2Mesh = nullptr;
+	UStaticMesh* Orbit2Mesh;
 	UPROPERTY()
-	UStaticMesh* Orbit3Mesh = nullptr;
+	UStaticMesh* Orbit3Mesh;
 	UPROPERTY()
 	FVector GlobeInitialPos = FVector(0,0,0);
 	UPROPERTY(EditAnywhere)
