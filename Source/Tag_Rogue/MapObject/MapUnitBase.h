@@ -17,8 +17,6 @@ class TAG_ROGUE_API AMapUnitBase final : public AActor
 	UStaticMeshComponent* BodyComponent;
 	UPROPERTY()
 	UStaticMesh* BodyMesh;
-	UPROPERTY()
-	UMaterial* BodyMaterial;
 public:
 	
 	enum struct EMeshType
