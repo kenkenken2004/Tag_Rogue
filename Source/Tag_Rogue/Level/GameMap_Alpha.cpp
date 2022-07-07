@@ -2,8 +2,8 @@
 #include "GameMap_Alpha.h"
 #include "Kismet/GameplayStatics.h"
 #include "Tag_Rogue/MapObject/HoloGlobe.h"
+#include "Tag_Rogue/MapObject/MapGate.h"
 #include "Tag_Rogue/MapObject/MapUnitBase.h"
-
 
 AGameMap_Alpha::AGameMap_Alpha()
 {
@@ -36,7 +36,7 @@ void AGameMap_Alpha::BeginPlay()
 		Y = FMath::RandRange(0,Generator->MapHeight-1);
 	}
 	
-	Player0Pawn->SetActorLocation(Cie_Convert(Y,X,CellSize/2));
+	Player0Pawn->SetActorLocation(Cie_Convert(Y,X,CellSize));
 	
 	Super::BeginPlay();
 }
@@ -68,10 +68,26 @@ void AGameMap_Alpha::PlaceCubes() const
 					if(Count1==1)
 					{
 						MeshType = AMapUnitBase::EMeshType::GateNormal;
-						if(Cell->North()->Attribution!=Cell->Attribution)Rotator = FRotator(0,180,0);
-						if(Cell->East() ->Attribution!=Cell->Attribution)Rotator = FRotator(0,270,0);
-						if(Cell->West() ->Attribution!=Cell->Attribution)Rotator = FRotator(0,90,0);
-						if(Cell->South()->Attribution!=Cell->Attribution)Rotator = FRotator(0,0,0);
+						if(Cell->North()->Attribution!=Cell->Attribution)
+						{
+							Rotator = FRotator(0,180,0);
+							AddGate(Cell,UMapGeneratorBase::EDirection::North);
+						}
+						if(Cell->East() ->Attribution!=Cell->Attribution)
+						{
+							Rotator = FRotator(0,270,0);
+							AddGate(Cell,UMapGeneratorBase::EDirection::East);
+						}
+						if(Cell->West() ->Attribution!=Cell->Attribution)
+						{
+							Rotator = FRotator(0,90,0);
+							AddGate(Cell,UMapGeneratorBase::EDirection::West);
+						}
+						if(Cell->South()->Attribution!=Cell->Attribution)
+						{
+							Rotator = FRotator(0,0,0);
+							AddGate(Cell,UMapGeneratorBase::EDirection::South);
+						}
 					}
 					else if(Count1==2&&Count2==1)
 					{
@@ -83,6 +99,7 @@ void AGameMap_Alpha::PlaceCubes() const
 							{
 								bIsXReversed = true;
 								Rotator.Yaw+=90;
+								AddGate(Cell,UMapGeneratorBase::EDirection::East);
 							}
 						}
 						else if (Cell->East()->Attribution!=Cell->Attribution&&Cell->South()->Attribution!=Cell->Attribution)
@@ -92,6 +109,7 @@ void AGameMap_Alpha::PlaceCubes() const
 							{
 								bIsXReversed = true;
 								Rotator.Yaw+=90;
+								AddGate(Cell,UMapGeneratorBase::EDirection::South);
 							}
 						}
 						else if (Cell->South()->Attribution!=Cell->Attribution&&Cell->West()->Attribution!=Cell->Attribution)
@@ -101,6 +119,7 @@ void AGameMap_Alpha::PlaceCubes() const
 							{
 								bIsXReversed = true;
 								Rotator.Yaw+=90;
+								AddGate(Cell,UMapGeneratorBase::EDirection::West);
 							}
 						}
 						else if (Cell->West()->Attribution!=Cell->Attribution&&Cell->North()->Attribution!=Cell->Attribution)
@@ -110,6 +129,7 @@ void AGameMap_Alpha::PlaceCubes() const
 							{
 								bIsXReversed = true;
 								Rotator.Yaw+=90;
+								AddGate(Cell,UMapGeneratorBase::EDirection::North);
 							}
 						}
 					}
@@ -119,18 +139,26 @@ void AGameMap_Alpha::PlaceCubes() const
 						if (Cell->North()->Attribution!=Cell->Attribution&&Cell->East()->Attribution!=Cell->Attribution)
 						{
 							Rotator = FRotator(0,270,0);
+							AddGate(Cell,UMapGeneratorBase::EDirection::North);
+							AddGate(Cell,UMapGeneratorBase::EDirection::East);
 						}
 						else if (Cell->East()->Attribution!=Cell->Attribution&&Cell->South()->Attribution!=Cell->Attribution)
 						{
 							Rotator = FRotator(0,0,0);
+							AddGate(Cell,UMapGeneratorBase::EDirection::East);
+							AddGate(Cell,UMapGeneratorBase::EDirection::South);
 						}
 						else if (Cell->South()->Attribution!=Cell->Attribution&&Cell->West()->Attribution!=Cell->Attribution)
 						{
 							Rotator = FRotator(0,90,0);
+							AddGate(Cell,UMapGeneratorBase::EDirection::South);
+							AddGate(Cell,UMapGeneratorBase::EDirection::West);
 						}
 						else if (Cell->West()->Attribution!=Cell->Attribution&&Cell->North()->Attribution!=Cell->Attribution)
 						{
 							Rotator = FRotator(0,180,0);
+							AddGate(Cell,UMapGeneratorBase::EDirection::West);
+							AddGate(Cell,UMapGeneratorBase::EDirection::North);
 						}
 					}
 				}
@@ -254,13 +282,42 @@ void AGameMap_Alpha::PlaceCubes() const
 			}
 			if(Cell->Attribution!=UMapGeneratorBase::EType::Wall && MeshType!=AMapUnitBase::EMeshType::Null)
 			{
-				AMapUnitBase* Base = GetWorld()->SpawnActor<AMapUnitBase>(Cie_Convert(y,x,CellSize/2), Rotator);
+				AMapUnitBase* Base = GetWorld()->SpawnActor<AMapUnitBase>(Cie_Convert(y,x,CellSize), Rotator);
 				Base->SetActorScale3D(FVector(CellSize/100*(bIsXReversed?-1:1),CellSize/100,CellSize/100));
 				Base->SetMeshType(MeshType);
 			}
 		}
 	}
 	
+}
+
+void AGameMap_Alpha::AddGate(const URogueAlpha_MapGenerator::FCell* Cell, const URogueAlpha_MapGenerator::EDirection Dir) const
+{
+	FVector Location = Cie_Convert(Cell->Py,Cell->Px,CellSize);
+	FVector OffSet = FVector(0,0,0);
+	FRotator Rotator = FRotator(0,0,0);
+	switch (Dir)
+	{
+	case UMapGeneratorBase::EDirection::North:
+		OffSet =  FVector(0,-CellSize/2,0);
+		Rotator = FRotator(0,90,0);
+		break;
+	case UMapGeneratorBase::EDirection::East:
+		OffSet =  FVector(CellSize/2,0,0);
+		break;
+	case UMapGeneratorBase::EDirection::West:
+		OffSet =  FVector(-CellSize/2,0,0);
+		break;
+	case UMapGeneratorBase::EDirection::South:
+		OffSet =  FVector(0,CellSize/2,0);
+		Rotator = FRotator(0,90,0);
+		break;
+	default:
+		break;
+	}
+	Location += OffSet;
+	AMapGate* MapGate = GetWorld()->SpawnActor<AMapGate>(Location, Rotator);
+	MapGate->SetActorScale3D(FVector(CellSize/100,CellSize/100,CellSize/100));
 }
 
 

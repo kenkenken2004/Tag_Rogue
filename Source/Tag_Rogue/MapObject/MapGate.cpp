@@ -24,12 +24,10 @@ AMapGate::AMapGate()
 	Collision->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
 	Collision->SetCollisionResponseToAllChannels(ECR_Ignore);
 	Collision->SetCollisionResponseToChannel(ECC_Pawn, ECR_Overlap);
-	Collision->InitBoxExtent(FVector(150,100,100));
-	TFunction<void(void)> Func = [this]()
-	{
-		OnOverlapBegin();
-	};
-	Collision->OnComponentBeginOverlap.Add()
+	Collision->InitBoxExtent(FVector(75,50,50));
+	Collision->OnComponentBeginOverlap.AddDynamic(this, &AMapGate::OnOverlapBegin);
+	Collision->OnComponentEndOverlap.AddDynamic(this, &AMapGate::OnComponentOverlapEnd);
+	
 }
 
 // Called when the game starts or when spawned
@@ -37,6 +35,8 @@ void AMapGate::BeginPlay()
 {
 	Super::BeginPlay();
 	GameInstance = Cast<UTag_RogueGameInstance, UGameInstance>(GetGameInstance());
+	GameInstance->LoadAssets(FName(TEXT("/Game/MapObject/Mesh/")));
+	GameInstance->LoadAssets(FName(TEXT("/Game/MapObject/Material/")));
 	InnerBottomGateMesh = GameInstance->GetAssetObject<UStaticMesh>(TEXT("SF_Gate_InnerBottomGate"));
 	InnerTopGateMesh    = GameInstance->GetAssetObject<UStaticMesh>(TEXT("SF_Gate_InnerTopGate"));
 	OuterBottomGateMesh = GameInstance->GetAssetObject<UStaticMesh>(TEXT("SF_Gate_OuterBottomGate"));
@@ -47,31 +47,79 @@ void AMapGate::BeginPlay()
 	OuterTopGate->SetStaticMesh(OuterTopGateMesh);
 }
 
-void AMapGate::Open()
+void AMapGate::DoorManipulation(const float DeltaTime)
 {
-}
-
-void AMapGate::Close()
-{
+	switch (GateState)
+	{
+	case EGateState::Closing:
+		if(OuterTopGate->GetRelativeLocation().Z==0 && OuterBottomGate->GetRelativeLocation().Z==0)
+		{
+			GateState = EGateState::Closed;
+		}
+		else if(InnerTopGate->GetRelativeLocation().Z==0 && InnerBottomGate->GetRelativeLocation().Z==0)
+		{
+			OuterTopGate->AddRelativeLocation(FVector(0,0,-1*(DeltaTime/(GateOpenCloseTime/2))*GateOpenedHeight));
+			OuterBottomGate->AddRelativeLocation(FVector(0,0,1*(DeltaTime/(GateOpenCloseTime/2))*GateOpenedHeight));
+			if(OuterTopGate->GetRelativeLocation().Z<0)OuterTopGate->SetRelativeLocation(FVector(0,0,0));
+			if(OuterBottomGate->GetRelativeLocation().Z>0)OuterBottomGate->SetRelativeLocation(FVector(0,0,0));
+		}
+		else
+		{
+			InnerTopGate->AddRelativeLocation(FVector(0,0,-1*(DeltaTime/(GateOpenCloseTime/2))*GateOpenedHeight));
+			InnerBottomGate->AddRelativeLocation(FVector(0,0,1*(DeltaTime/(GateOpenCloseTime/2))*GateOpenedHeight));
+			if(InnerTopGate->GetRelativeLocation().Z<0)InnerTopGate->SetRelativeLocation(FVector(0,0,0));
+			if(InnerBottomGate->GetRelativeLocation().Z>0)InnerBottomGate->SetRelativeLocation(FVector(0,0,0));
+		}
+		break;
+	case EGateState::Opening:
+		if(InnerTopGate->GetRelativeLocation().Z==GateOpenedHeight && InnerBottomGate->GetRelativeLocation().Z==-GateOpenedHeight)
+		{
+			GateState = EGateState::Opened;
+		}
+		else if(OuterTopGate->GetRelativeLocation().Z==GateOpenedHeight && OuterBottomGate->GetRelativeLocation().Z==-GateOpenedHeight)
+		{
+			InnerTopGate->AddRelativeLocation(FVector(0,0,1*(DeltaTime/(GateOpenCloseTime/2))*GateOpenedHeight));
+			InnerBottomGate->AddRelativeLocation(FVector(0,0,-1*(DeltaTime/(GateOpenCloseTime/2))*GateOpenedHeight));
+			if(InnerTopGate->GetRelativeLocation().Z>GateOpenedHeight)InnerTopGate->SetRelativeLocation(FVector(0,0,GateOpenedHeight));
+			if(InnerBottomGate->GetRelativeLocation().Z<-GateOpenedHeight)InnerBottomGate->SetRelativeLocation(FVector(0,0,-GateOpenedHeight));
+		}
+		else
+		{
+			OuterTopGate->AddRelativeLocation(FVector(0,0,1*(DeltaTime/(GateOpenCloseTime/2))*GateOpenedHeight));
+			OuterBottomGate->AddRelativeLocation(FVector(0,0,-1*(DeltaTime/(GateOpenCloseTime/2))*GateOpenedHeight));
+			if(OuterTopGate->GetRelativeLocation().Z>GateOpenedHeight)OuterTopGate->SetRelativeLocation(FVector(0,0,GateOpenedHeight));
+			if(OuterBottomGate->GetRelativeLocation().Z<-GateOpenedHeight)OuterBottomGate->SetRelativeLocation(FVector(0,0,-GateOpenedHeight));
+		}
+		break;
+	default:
+		break;
+	}
 }
 
 void AMapGate::OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
-	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+                              UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
+	OverlappingNumber++;
+	if(GateState!=EGateState::Opened)
+	{
+		GateState=EGateState::Opening;
+	}
+}
+
+void AMapGate::OnComponentOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
+	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
+{
+	OverlappingNumber--;
+	if(OverlappingNumber<=0&&GateState!=EGateState::Closed)
+	{
+		GateState=EGateState::Closing;
+	}
 }
 
 // Called every frame
 void AMapGate::Tick(const float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	LastApproach+=DeltaTime;
-	
-	switch (GateState)
-	{
-	case EGateState::Closing:
-	case EGateState::Opening:
-	case EGateState::Closed:
-	case EGateState::Opened:;
-	}
+	DoorManipulation(DeltaTime);
 }
 

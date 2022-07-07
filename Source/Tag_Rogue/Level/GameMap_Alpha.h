@@ -26,6 +26,7 @@ protected:
 	FVector Cie_Convert(int32,int32, float) const;
 	static TArray<int32> Cie_Invert(FVector);
 	void PlaceCubes() const;
+	void AddGate(const URogueAlpha_MapGenerator::FCell*,const URogueAlpha_MapGenerator::EDirection) const;
 public:
 	AGameMap_Alpha();
 };
