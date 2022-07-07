@@ -9,13 +9,6 @@
   <component name="ChangeListManager">
     <list default="true" id="cf331540-c7ba-40e0-a96e-46ca470ed1b0" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Tag_Rogue.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Tag_Rogue.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/MainWorld.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/MainWorld.umap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/MapObject/Mesh/SF_Gate_InnerBottomGate.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/MapObject/Mesh/SF_Gate_InnerBottomGate.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Level/GameMap_Alpha.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Level/GameMap_Alpha.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Level/GameMap_Alpha.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Level/GameMap_Alpha.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/MapObject/MapGate.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/MapObject/MapGate.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/MapObject/MapGate.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/MapObject/MapGate.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/MapObject/MapUnitBase.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/MapObject/MapUnitBase.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -135,7 +128,7 @@
       <workItem from="1657103076896" duration="1449000" />
       <workItem from="1657106802336" duration="1723000" />
       <workItem from="1657149926242" duration="8685000" />
-      <workItem from="1657188879471" duration="6568000" />
+      <workItem from="1657188879471" duration="6872000" />
     </task>
     <servers />
   </component>
