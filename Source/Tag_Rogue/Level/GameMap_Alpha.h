@@ -25,12 +25,21 @@ protected:
 	UPROPERTY()
 	UTag_RogueGameInstance* GameInstance;
 
+
+	TArray<FName> AssetsPathArray = TArray<FName>
+	(
+		{
+			TEXT("/Game/MapObject/Mesh/"),
+			TEXT("/Game/MapObject/Material/"),
+			TEXT("/Game/Interface/Display/")
+		}
+	);
+	
 	//Functions
 	virtual void BeginPlay() override;
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 	void Initialize(int32,int32,int32);
 	APawn* SpawnPlayer() const;
-
 public:
 	AGameMap_Alpha();
 };

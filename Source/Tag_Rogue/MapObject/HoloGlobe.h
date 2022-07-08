@@ -12,6 +12,7 @@ UCLASS()
 class TAG_ROGUE_API AHoloGlobe : public AActor
 {
 	GENERATED_BODY()
+public:
 	UPROPERTY()
 	UTag_RogueGameInstance* GameInstance;
 	UPROPERTY()

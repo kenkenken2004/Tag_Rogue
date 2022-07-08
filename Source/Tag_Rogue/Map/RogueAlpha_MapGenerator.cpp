@@ -176,6 +176,10 @@ TArray<FString> URogueAlpha_MapGenerator::GetStructureString()
 			Ret[i]+= (*GetCell(i,j)).Attribution == EType::Wall ? '#' : ' ';
 		}
 	}
+	for (int32 i=0;i<MapHeight;i++)
+	{
+		UE_LOG(LogTemp, Log,TEXT("%s"), *Ret[i])
+	}
 	return Ret;
 }
 

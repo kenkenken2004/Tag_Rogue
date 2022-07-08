@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 #include "GameMap_Alpha.h"
 #include "Kismet/GameplayStatics.h"
+#include "Tag_Rogue/Interface/MiniMap.h"
 #include "Tag_Rogue/MapObject/HoloGlobe.h"
 
 AGameMap_Alpha::AGameMap_Alpha()
@@ -15,6 +16,9 @@ void AGameMap_Alpha::BeginPlay()
 	Generator->BuildMap();
 	TerrainMaker->Build();
 	SpawnPlayer();
+	Generator->GetStructureString();
+	AMiniMap* MiniMap = GetWorld()->SpawnActor<AMiniMap>(FVector(0,0,400), FRotator(0,180,0));
+	MiniMap->Initialize(Generator);
 	Super::BeginPlay();
 }
 
@@ -25,9 +29,8 @@ void AGameMap_Alpha::EndPlay(const EEndPlayReason::Type EndPlayReason)
 
 void AGameMap_Alpha::Initialize(const int32 MapCellSize, const int32 MapHeight, const int32 MapWidth)
 {
-	GameInstance = Cast<UTag_RogueGameInstance, UGameInstance>(GetGameInstance());
-	GameInstance->LoadAssets(FName(TEXT("/Game/MapObject/Mesh/")));
-	GameInstance->LoadAssets(FName(TEXT("/Game/MapObject/Material/")));
+	GameInstance = static_cast<UTag_RogueGameInstance*>(GetGameInstance());
+	for(int32 i=0;i<AssetsPathArray.Num();i++)GameInstance->LoadAssets(AssetsPathArray[i]);
 	CellSize = MapCellSize;
 	Generator = NewObject<URogueAlpha_MapGenerator>(GetWorld());
 	Generator->Construct(MapHeight,MapWidth);
@@ -35,6 +38,7 @@ void AGameMap_Alpha::Initialize(const int32 MapCellSize, const int32 MapHeight, 
 	Generator->SetStructureParam(UMapGeneratorBase::EType::Room, 5, 5, 9);
 	TerrainMaker = NewObject<UTerrainMaker>(GetWorld());
 	TerrainMaker->Construct(Generator,GameInstance,MapCellSize);
+	
 }
 
 APawn* AGameMap_Alpha::SpawnPlayer() const

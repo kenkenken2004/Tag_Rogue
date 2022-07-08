@@ -31,5 +31,4 @@ public:
 	FVector Cie_Convert(int32,int32, float) const;
 	static TArray<int32> Cie_Invert(FVector);
 	void Build();
-
 };

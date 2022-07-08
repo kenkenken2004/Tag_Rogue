@@ -5,47 +5,31 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "Tag_Rogue/Tag_RogueGameInstance.h"
-#include "MapUnitBase.generated.h"
+#include "Tag_Rogue/Map/RogueAlpha_MapGenerator.h"
+#include "MiniMap.generated.h"
 
 UCLASS()
-class TAG_ROGUE_API AMapUnitBase final : public AActor
+class TAG_ROGUE_API AMiniMap : public AActor
 {
 	GENERATED_BODY()
 	UPROPERTY()
 	UTag_RogueGameInstance* GameInstance;
 	UPROPERTY()
-	UStaticMeshComponent* BodyComponent;
+	UStaticMeshComponent* Display;
 	UPROPERTY()
-	UStaticMesh* BodyMesh;
+	UStaticMesh* DisplayMesh;
+	UPROPERTY()
+	URogueAlpha_MapGenerator* Generater;
 public:
-	
-	enum struct EMeshType
-	{
-		GateCornerOne,
-		GateCornerTwo,
-		GateNormal,
-		PathCorner,
-		PathCrossRoad,
-		PathStraight,
-		PathTJunction,
-		RoomCorner,
-		RoomNormal,
-		RoomSide,
-		Null
-	};
 	// Sets default values for this actor's properties
-	AMapUnitBase();
-
+	AMiniMap();
+	void Initialize(URogueAlpha_MapGenerator* Gen);
+	UTexture* CreateMiniMapTexture() const;
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-	void SetMesh(FName);
 
 public:
-	TMap<EMeshType, FName> EnumName;
-	void InitEnumName();
-	EMeshType MeshType;
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-	void SetMeshType(EMeshType);
 };
