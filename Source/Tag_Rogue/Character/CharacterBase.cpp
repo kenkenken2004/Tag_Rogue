@@ -7,6 +7,8 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/Controller.h"
 #include "GameFramework/SpringArmComponent.h"
+#include "Tag_Rogue/Interface/MiniMap.h"
+#include "Tag_Rogue/Interface/MiniMapComponent.h"
 
 //////////////////////////////////////////////////////////////////////////
 // ACharacterBase
@@ -35,7 +37,7 @@ ACharacterBase::ACharacterBase()
 	GetCharacterMovement()->MaxWalkSpeed = 500.f;
 	GetCharacterMovement()->MinAnalogWalkSpeed = 20.f;
 	GetCharacterMovement()->BrakingDecelerationWalking = 2000.f;
-
+	
 	// Create a camera boom (pulls in towards the player if there is a collision)
 	CameraBoom = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraBoom"));
 	CameraBoom->SetupAttachment(RootComponent);
@@ -47,6 +49,12 @@ ACharacterBase::ACharacterBase()
 	FollowCamera->SetupAttachment(CameraBoom, USpringArmComponent::SocketName); // Attach the camera to the end of the boom and let the boom adjust to match the controller orientation
 	FollowCamera->bUsePawnControlRotation = false; // Camera does not rotate relative to arm
 
+	MiniMap = CreateDefaultSubobject<UMiniMapComponent>(TEXT("MiniMap"));
+	MiniMap->SetupAttachment(CameraBoom);
+	MiniMap->SetRelativeLocation(FVector(200,0,-30));
+	MiniMap->SetRelativeRotation(FRotator(0,270,0));
+	MiniMap->SetRelativeScale3D(FVector(0.3,0.3,0.3));
+	MiniMap->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named ThirdPersonCharacter (to avoid direct content references in C++)
 }
@@ -97,6 +105,24 @@ void ACharacterBase::LookUpAtRate(float Rate)
 {
 	// calculate delta for this frame from the rate information
 	AddControllerPitchInput(Rate * TurnRateGamepad * GetWorld()->GetDeltaSeconds());
+}
+
+void ACharacterBase::BeginPlay()
+{
+	Super::BeginPlay();
+	MiniMap->SetRelativeLocation(FVector(100,0,-50));
+	MiniMap->SetRelativeRotation(FRotator(0,270,60));
+	MiniMap->SetRelativeScale3D(FVector(0.3,0.3,0.3));
+	MiniMap->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+
+}
+
+void ACharacterBase::Tick(const float DeltaSeconds)
+{
+	Super::Tick(DeltaSeconds);
+	MiniMap->MapMaterial->SetScalarParameterValue(TEXT("Rotation"),(GetControlRotation().Yaw+90)/360.0);
+	MiniMap->AddRelativeLocation(FVector(0,0,3*DeltaSeconds*FMath::Cos(TimeSinceCreated/1.0*2*PI)));
+	TimeSinceCreated+=DeltaSeconds;
 }
 
 void ACharacterBase::MoveForward(float Value)

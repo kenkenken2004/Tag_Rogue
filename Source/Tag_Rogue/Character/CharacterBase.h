@@ -18,15 +18,19 @@ class ACharacterBase : public ACharacter
 	/** Follow camera */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	class UCameraComponent* FollowCamera;
+	float TimeSinceCreated = 0;
+
 public:
 	ACharacterBase();
-
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
+	class UMiniMapComponent* MiniMap;
 	/** Base turn rate, in deg/sec. Other scaling may affect final turn rate. */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Input)
 	float TurnRateGamepad;
 
 protected:
-
+	virtual void BeginPlay() override;
+	virtual void Tick(float DeltaSeconds) override;
 	/** Called for forwards/backward input */
 	void MoveForward(float Value);
 

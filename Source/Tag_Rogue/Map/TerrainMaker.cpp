@@ -30,14 +30,43 @@ void UTerrainMaker::Build()
 	SpawnGlobe();
 }
 
-FVector UTerrainMaker::Cie_Convert(const int32 PosY, const int32 PosX, const float Height) const
+void UTerrainMaker::AddGate(const URogueAlpha_MapGenerator::FCell* Cell,
+							const URogueAlpha_MapGenerator::EDirection Dir) const
 {
-	return FVector((PosX + 0.5) * CellSize, (PosY + 0.5) * CellSize, Height);
+	FVector Location = Cie_Convert(Cell->Py, Cell->Px, CellSize);
+	FVector OffSet = FVector(0, 0, 0);
+	FRotator Rotator = FRotator(0, 0, 0);
+	switch (Dir)
+	{
+	case UMapGeneratorBase::EDirection::North:
+		OffSet = FVector(0, -CellSize / 2, 0);
+		Rotator = FRotator(0, 90, 0);
+		break;
+	case UMapGeneratorBase::EDirection::East:
+		OffSet = FVector(CellSize / 2, 0, 0);
+		break;
+	case UMapGeneratorBase::EDirection::West:
+		OffSet = FVector(-CellSize / 2, 0, 0);
+		break;
+	case UMapGeneratorBase::EDirection::South:
+		OffSet = FVector(0, CellSize / 2, 0);
+		Rotator = FRotator(0, 90, 0);
+		break;
+	default:
+		break;
+	}
+	Location += OffSet;
+	AMapGate* MapGate = GetWorld()->SpawnActor<AMapGate>(Location, Rotator);
+	MapGate->SetActorScale3D(FVector(CellSize / 100, CellSize / 100, CellSize / 100));
 }
 
-TArray<int32> UTerrainMaker::Cie_Invert(const FVector PosVector)
+void UTerrainMaker::SpawnGlobe()
 {
-	return {FMath::RoundToInt32(PosVector.Y), FMath::RoundToInt32(PosVector.X)};
+	for (int32 i = 0; i < Generator->SpaceList.Num(); i++)
+	{
+		const UMapGeneratorBase::FCell* Cell = Generator->SpaceList[i]->GetCenterCell();
+		GetWorld()->SpawnActor<AHoloGlobe>(Cie_Convert(Cell->Py, Cell->Px, 0), FRotator(0, 0, 0));
+	}
 }
 
 void UTerrainMaker::PlaceMapUnitBase(int32 Py, int32 Px) const
@@ -353,42 +382,12 @@ void UTerrainMaker::PlaceMapUnitBase(int32 Py, int32 Px) const
 	}
 }
 
-void UTerrainMaker::AddGate(const URogueAlpha_MapGenerator::FCell* Cell,
-                            const URogueAlpha_MapGenerator::EDirection Dir) const
+FVector UTerrainMaker::Cie_Convert(const int32 PosY, const int32 PosX, const float Height) const
 {
-	FVector Location = Cie_Convert(Cell->Py, Cell->Px, CellSize);
-	FVector OffSet = FVector(0, 0, 0);
-	FRotator Rotator = FRotator(0, 0, 0);
-	switch (Dir)
-	{
-	case UMapGeneratorBase::EDirection::North:
-		OffSet = FVector(0, -CellSize / 2, 0);
-		Rotator = FRotator(0, 90, 0);
-		break;
-	case UMapGeneratorBase::EDirection::East:
-		OffSet = FVector(CellSize / 2, 0, 0);
-		break;
-	case UMapGeneratorBase::EDirection::West:
-		OffSet = FVector(-CellSize / 2, 0, 0);
-		break;
-	case UMapGeneratorBase::EDirection::South:
-		OffSet = FVector(0, CellSize / 2, 0);
-		Rotator = FRotator(0, 90, 0);
-		break;
-	default:
-		break;
-	}
-	Location += OffSet;
-	AMapGate* MapGate = GetWorld()->SpawnActor<AMapGate>(Location, Rotator);
-	MapGate->SetActorScale3D(FVector(CellSize / 100, CellSize / 100, CellSize / 100));
+	return FVector((PosX + 0.5) * CellSize, (PosY + 0.5) * CellSize, Height);
 }
 
-void UTerrainMaker::SpawnGlobe()
+TArray<int32> UTerrainMaker::Cie_Invert(const FVector PosVector)
 {
-	for (int32 i = 0; i < Generator->SpaceList.Num(); i++)
-	{
-		const UMapGeneratorBase::FCell* Cell = Generator->SpaceList[i]->GetCenterCell();
-		/*AHoloGlobe* Globe =*/
-		GetWorld()->SpawnActor<AHoloGlobe>(Cie_Convert(Cell->Py, Cell->Px, 0), FRotator(0, 0, 0));
-	}
+	return {FMath::RoundToInt32(PosVector.Y), FMath::RoundToInt32(PosVector.X)};
 }
