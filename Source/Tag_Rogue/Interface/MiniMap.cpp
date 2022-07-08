@@ -3,6 +3,8 @@
 
 #include "MiniMap.h"
 
+#include "Tag_Rogue/Map/TerrainMaker.h"
+
 
 // Sets default values
 AMiniMap::AMiniMap()
@@ -13,15 +15,19 @@ AMiniMap::AMiniMap()
 	SetRootComponent(Display);
 }
 
-void AMiniMap::Initialize(URogueAlpha_MapGenerator* Gen)
+void AMiniMap::Initialize(URogueAlpha_MapGenerator* Gen, UTerrainMaker* Ter)
 {
 	Generater = Gen;
+	Maker = Ter;
 	GameInstance = static_cast<UTag_RogueGameInstance*>(GetGameInstance());
 	GameInstance->LoadAssets(TEXT("/Game/Interface/Display/"));
 	DisplayMesh = GameInstance->GetAssetObject<UStaticMesh>(TEXT("SF_Display"));
 	Display->SetStaticMesh(DisplayMesh);
-	UMaterialInstanceDynamic* MatInst = Display->CreateAndSetMaterialInstanceDynamic(0);
-	MatInst->SetTextureParameterValue(TEXT("MiniMap"),CreateMiniMapTexture());
+	MapMaterial = Display->CreateAndSetMaterialInstanceDynamic(0);
+	MapMaterial->SetTextureParameterValue(TEXT("MiniMap"),CreateMiniMapTexture());
+	MapMaterial->SetScalarParameterValue(TEXT("MapHeight"),Generater->MapHeight*Maker->CellSize);
+	MapMaterial->SetScalarParameterValue(TEXT("MapWidth"),Generater->MapWidth*Maker->CellSize);
+	MapMaterial->SetScalarParameterValue(TEXT("Scale"),0.125);
 }
 
 // Called when the game starts or when spawned
@@ -34,6 +40,7 @@ void AMiniMap::BeginPlay()
 void AMiniMap::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	MapMaterial->SetScalarParameterValue(TEXT("Rotation"),GetOwner()->GetActorRotation().Yaw/360.0);
 }
 
 UTexture* AMiniMap::CreateMiniMapTexture() const

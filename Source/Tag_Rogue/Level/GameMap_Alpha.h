@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "Engine/LevelScriptActor.h"
 #include "Tag_Rogue/Tag_RogueGameInstance.h"
+#include "Tag_Rogue/Character/CharacterBase.h"
 #include "Tag_Rogue/Map/RogueAlpha_MapGenerator.h"
 #include "Tag_Rogue/Map/TerrainMaker.h"
 #include "GameMap_Alpha.generated.h"
@@ -24,6 +25,8 @@ protected:
 	UTerrainMaker* TerrainMaker;
 	UPROPERTY()
 	UTag_RogueGameInstance* GameInstance;
+	UPROPERTY()
+	ACharacterBase* Player0;
 
 
 	TArray<FName> AssetsPathArray = TArray<FName>
@@ -42,4 +45,5 @@ protected:
 	APawn* SpawnPlayer() const;
 public:
 	AGameMap_Alpha();
+	virtual void Tick(float DeltaSeconds) override;
 };

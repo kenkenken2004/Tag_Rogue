@@ -29,7 +29,7 @@ public:
 
 protected:
 	virtual void BeginPlay() override;
-	
+	virtual void Tick(float DeltaSeconds) override;
 	/** Called for forwards/backward input */
 	void MoveForward(float Value);
 

@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "Tag_Rogue/Tag_RogueGameInstance.h"
 #include "Tag_Rogue/Map/RogueAlpha_MapGenerator.h"
+#include "Tag_Rogue/Map/TerrainMaker.h"
 #include "MiniMapComponent.generated.h"
 
 
@@ -19,6 +20,10 @@ public:
 	UStaticMesh* DisplayMesh;
 	UPROPERTY()
 	URogueAlpha_MapGenerator* Generater;
+	UPROPERTY()
+	UTerrainMaker* Maker;
+	UPROPERTY()
+	UMaterialInstanceDynamic* MapMaterial;
 	// Sets default values for this component's properties
 	UMiniMapComponent();
 
@@ -31,6 +36,6 @@ public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType,
 	                           FActorComponentTickFunction* ThisTickFunction) override;
 
-	void Initialize(URogueAlpha_MapGenerator* Gen);
+	void Initialize(URogueAlpha_MapGenerator* Gen, UTerrainMaker*);
 	UTexture* CreateMiniMapTexture() const;
 };

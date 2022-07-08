@@ -10,15 +10,20 @@ AGameMap_Alpha::AGameMap_Alpha()
 {
 }
 
+void AGameMap_Alpha::Tick(float DeltaSeconds)
+{
+	Super::Tick(DeltaSeconds);
+}
+
 
 void AGameMap_Alpha::BeginPlay()
 {
+	Player0 = static_cast<ACharacterBase*>(UGameplayStatics::GetPlayerPawn(this, 0));
 	Initialize(300,50,50);
 	Generator->BuildMap();
 	TerrainMaker->Build();
 	SpawnPlayer();
 	Generator->GetStructureString();
-	
 	Super::BeginPlay();
 }
 
@@ -43,7 +48,7 @@ void AGameMap_Alpha::Initialize(const int32 MapCellSize, const int32 MapHeight, 
 
 APawn* AGameMap_Alpha::SpawnPlayer() const
 {
-	APawn* Player0Pawn = UGameplayStatics::GetPlayerPawn(this, 0);
+	
 	int32 X=0;int32 Y=0;
 	while (Generator->GetCell(Y,X)->Attribution==UMapGeneratorBase::EType::Wall)
 	{
@@ -51,8 +56,7 @@ APawn* AGameMap_Alpha::SpawnPlayer() const
 		Y = FMath::RandRange(0,Generator->MapHeight-1);
 	}
 	
-	Player0Pawn->SetActorLocation(TerrainMaker->Cie_Convert(Y,X,CellSize));
-	const ACharacterBase* Char = static_cast<ACharacterBase*>(Player0Pawn);
-	Char->MiniMap->Initialize(Generator);
-	return Player0Pawn;
+	Player0->SetActorLocation(TerrainMaker->Cie_Convert(Y,X,CellSize));
+	Player0->MiniMap->Initialize(Generator, TerrainMaker);
+	return Player0;
 }

@@ -118,6 +118,12 @@ void ACharacterBase::BeginPlay()
 
 }
 
+void ACharacterBase::Tick(float DeltaSeconds)
+{
+	Super::Tick(DeltaSeconds);
+	MiniMap->MapMaterial->SetScalarParameterValue(TEXT("Rotation"),(GetActorRotation().Yaw+90)/360.0);
+}
+
 void ACharacterBase::MoveForward(float Value)
 {
 	if ((Controller != nullptr) && (Value != 0.0f))

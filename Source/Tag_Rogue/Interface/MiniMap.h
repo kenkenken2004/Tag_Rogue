@@ -6,6 +6,7 @@
 #include "GameFramework/Actor.h"
 #include "Tag_Rogue/Tag_RogueGameInstance.h"
 #include "Tag_Rogue/Map/RogueAlpha_MapGenerator.h"
+#include "Tag_Rogue/Map/TerrainMaker.h"
 #include "MiniMap.generated.h"
 
 UCLASS()
@@ -20,10 +21,14 @@ class TAG_ROGUE_API AMiniMap : public AActor
 	UStaticMesh* DisplayMesh;
 	UPROPERTY()
 	URogueAlpha_MapGenerator* Generater;
+	UPROPERTY()
+	UTerrainMaker* Maker;
+	UPROPERTY()
+	UMaterialInstanceDynamic* MapMaterial;
 public:
 	// Sets default values for this actor's properties
 	AMiniMap();
-	void Initialize(URogueAlpha_MapGenerator* Gen);
+	void Initialize(URogueAlpha_MapGenerator* Gen, UTerrainMaker*);
 	UTexture* CreateMiniMapTexture() const;
 protected:
 	// Called when the game starts or when spawned

@@ -15,7 +15,6 @@ UCLASS()
 class TAG_ROGUE_API UTerrainMaker final : public UObject
 {
 	GENERATED_BODY()
-	float CellSize;
 	UPROPERTY()
 	URogueAlpha_MapGenerator* Generator;
 	UPROPERTY()
@@ -26,6 +25,7 @@ class TAG_ROGUE_API UTerrainMaker final : public UObject
 	void SpawnGlobe();
 
 public:
+	float CellSize;
 	UTerrainMaker();
 	void Construct(URogueAlpha_MapGenerator*, UTag_RogueGameInstance*, float);
 	FVector Cie_Convert(int32,int32, float) const;

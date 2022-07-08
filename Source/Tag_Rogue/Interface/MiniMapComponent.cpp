@@ -36,15 +36,19 @@ void UMiniMapComponent::TickComponent(float DeltaTime, ELevelTick TickType,
 	// ...
 }
 
-void UMiniMapComponent::Initialize(URogueAlpha_MapGenerator* Gen)
+void UMiniMapComponent::Initialize(URogueAlpha_MapGenerator* Gen, UTerrainMaker* Ter)
 {
 	Generater = Gen;
+	Maker = Ter;
 	GameInstance = static_cast<UTag_RogueGameInstance*>(GetOwner()->GetGameInstance());
 	GameInstance->LoadAssets(TEXT("/Game/Interface/Display/"));
 	DisplayMesh = GameInstance->GetAssetObject<UStaticMesh>(TEXT("SF_Display"));
 	SetStaticMesh(DisplayMesh);
-	UMaterialInstanceDynamic* MatInst = CreateAndSetMaterialInstanceDynamic(0);
-	MatInst->SetTextureParameterValue(TEXT("MiniMap"),CreateMiniMapTexture());
+	MapMaterial = CreateAndSetMaterialInstanceDynamic(0);
+	MapMaterial->SetTextureParameterValue(TEXT("MiniMap"),CreateMiniMapTexture());
+	MapMaterial->SetScalarParameterValue(TEXT("MapHeight"),Generater->MapHeight*Maker->CellSize);
+	MapMaterial->SetScalarParameterValue(TEXT("MapWidth"),Generater->MapWidth*Maker->CellSize);
+	MapMaterial->SetScalarParameterValue(TEXT("Scale"),0.5);
 }
 
 UTexture* UMiniMapComponent::CreateMiniMapTexture() const
