@@ -5,7 +5,8 @@
 #include "CoreMinimal.h"
 #include "Engine/LevelScriptActor.h"
 #include "Tag_Rogue/Tag_RogueGameInstance.h"
-#include "Tag_Rogue/MapGenerator/RogueAlpha_MapGenerator.h"
+#include "Tag_Rogue/Map/RogueAlpha_MapGenerator.h"
+#include "Tag_Rogue/Map/TerrainMaker.h"
 #include "GameMap_Alpha.generated.h"
 
 /**
@@ -20,13 +21,16 @@ protected:
 	UPROPERTY()
 	URogueAlpha_MapGenerator* Generator;
 	UPROPERTY()
+	UTerrainMaker* TerrainMaker;
+	UPROPERTY()
 	UTag_RogueGameInstance* GameInstance;
+
+	//Functions
 	virtual void BeginPlay() override;
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
-	FVector Cie_Convert(int32,int32, float) const;
-	static TArray<int32> Cie_Invert(FVector);
-	void PlaceCubes() const;
-	void AddGate(const URogueAlpha_MapGenerator::FCell*,const URogueAlpha_MapGenerator::EDirection) const;
+	void Initialize(int32,int32,int32);
+	APawn* SpawnPlayer() const;
+
 public:
 	AGameMap_Alpha();
 };
