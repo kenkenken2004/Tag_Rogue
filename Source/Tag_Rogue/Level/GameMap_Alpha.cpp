@@ -1,7 +1,9 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 #include "GameMap_Alpha.h"
 #include "Kismet/GameplayStatics.h"
+#include "Tag_Rogue/Character/CharacterBase.h"
 #include "Tag_Rogue/Interface/MiniMap.h"
+#include "Tag_Rogue/Interface/MiniMapComponent.h"
 #include "Tag_Rogue/MapObject/HoloGlobe.h"
 
 AGameMap_Alpha::AGameMap_Alpha()
@@ -12,13 +14,11 @@ AGameMap_Alpha::AGameMap_Alpha()
 void AGameMap_Alpha::BeginPlay()
 {
 	Initialize(300,50,50);
-	
 	Generator->BuildMap();
 	TerrainMaker->Build();
 	SpawnPlayer();
 	Generator->GetStructureString();
-	AMiniMap* MiniMap = GetWorld()->SpawnActor<AMiniMap>(FVector(0,0,400), FRotator(0,180,0));
-	MiniMap->Initialize(Generator);
+	
 	Super::BeginPlay();
 }
 
@@ -52,5 +52,7 @@ APawn* AGameMap_Alpha::SpawnPlayer() const
 	}
 	
 	Player0Pawn->SetActorLocation(TerrainMaker->Cie_Convert(Y,X,CellSize));
+	const ACharacterBase* Char = static_cast<ACharacterBase*>(Player0Pawn);
+	Char->MiniMap->Initialize(Generator);
 	return Player0Pawn;
 }
