@@ -48,7 +48,7 @@ void UMiniMapComponent::Initialize(URogueAlpha_MapGenerator* Gen, UTerrainMaker*
 	MapMaterial->SetTextureParameterValue(TEXT("MiniMap"),CreateMiniMapTexture());
 	MapMaterial->SetScalarParameterValue(TEXT("MapHeight"),Generater->MapHeight*Maker->CellSize);
 	MapMaterial->SetScalarParameterValue(TEXT("MapWidth"),Generater->MapWidth*Maker->CellSize);
-	MapMaterial->SetScalarParameterValue(TEXT("Scale"),0.5);
+	MapMaterial->SetScalarParameterValue(TEXT("Scale"),0.25);
 }
 
 UTexture* UMiniMapComponent::CreateMiniMapTexture() const
@@ -79,7 +79,8 @@ UTexture* UMiniMapComponent::CreateMiniMapTexture() const
 	Texture->GetPlatformData()->PixelFormat = PF_R8G8B8A8;
 
 	// Passing the pixels information to the texture
-	FTexture2DMipMap* Mip = new(Texture->GetPlatformData()->Mips) FTexture2DMipMap();
+	FTexture2DMipMap* Mip = new FTexture2DMipMap();
+	Texture->GetPlatformData()->Mips.Add(Mip);
 	Mip->SizeX = Width;
 	Mip->SizeY = Height;
 	Mip->BulkData.Lock(LOCK_READ_WRITE);
@@ -91,5 +92,5 @@ UTexture* UMiniMapComponent::CreateMiniMapTexture() const
 	Texture->UpdateResource();
 	free(Pixels);
 	Pixels = nullptr;
-	return static_cast<UTexture2D*>(Texture);
+	return Texture;
 }

@@ -9,7 +9,6 @@
 #include "GameFramework/SpringArmComponent.h"
 #include "Tag_Rogue/Interface/MiniMap.h"
 #include "Tag_Rogue/Interface/MiniMapComponent.h"
-#include "Tag_Rogue/Level/GameMap_Alpha.h"
 
 //////////////////////////////////////////////////////////////////////////
 // ACharacterBase
@@ -121,7 +120,7 @@ void ACharacterBase::BeginPlay()
 void ACharacterBase::Tick(float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
-	MiniMap->MapMaterial->SetScalarParameterValue(TEXT("Rotation"),(GetActorRotation().Yaw+90)/360.0);
+	MiniMap->MapMaterial->SetScalarParameterValue(TEXT("Rotation"),(GetControlRotation().Yaw+90)/360.0);
 }
 
 void ACharacterBase::MoveForward(float Value)
