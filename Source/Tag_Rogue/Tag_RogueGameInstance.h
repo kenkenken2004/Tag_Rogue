@@ -17,11 +17,11 @@ class TAG_ROGUE_API UTag_RogueGameInstance final : public UGameInstance
 public:
 	//Member Variable
 	TMap<FName,FAssetData> AssetDatas;
-	
 	UTag_RogueGameInstance();
 	static UTag_RogueGameInstance* GetInstance();
 	static void DisplayDebugMessage(FString Message);
-
+	float FloatRemainingTime = 0;
+	int32 IntRemainingTime = 0;
 	void LoadAssets(FName);
 	template <typename T> T* GetAssetObject(const FName AssetName)
 	{

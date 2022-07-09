@@ -27,14 +27,17 @@ protected:
 	UTag_RogueGameInstance* GameInstance;
 	UPROPERTY()
 	ACharacterBase* Player0;
-
+	UPROPERTY()
+	int32 GameTimeLimit = 60;
 
 	TArray<FName> AssetsPathArray = TArray<FName>
 	(
 		{
 			TEXT("/Game/MapObject/Mesh/"),
 			TEXT("/Game/MapObject/Material/"),
-			TEXT("/Game/Interface/Display/")
+			TEXT("/Game/Interface/Display/"),
+			TEXT("/Game/Interface/Font/Tr2n/"),
+			TEXT("/Game/Interface/Count/")
 		}
 	);
 	

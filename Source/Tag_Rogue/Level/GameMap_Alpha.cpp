@@ -2,29 +2,43 @@
 #include "GameMap_Alpha.h"
 #include "Kismet/GameplayStatics.h"
 #include "Tag_Rogue/Character/CharacterBase.h"
+#include "Tag_Rogue/Interface/LimitCountComponent.h"
 #include "Tag_Rogue/Interface/MiniMap.h"
 #include "Tag_Rogue/Interface/MiniMapComponent.h"
 #include "Tag_Rogue/MapObject/HoloGlobe.h"
 
 AGameMap_Alpha::AGameMap_Alpha()
 {
+	PrimaryActorTick.bCanEverTick = true;
+	PrimaryActorTick.bStartWithTickEnabled = true;
 }
 
-void AGameMap_Alpha::Tick(float DeltaSeconds)
+void AGameMap_Alpha::Tick(const float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
+	if(IsValidChecked(GameInstance))
+	{
+		if(GameInstance->FloatRemainingTime>0)GameInstance->FloatRemainingTime -= DeltaSeconds;
+        	if(FMath::CeilToInt32(GameInstance->FloatRemainingTime) < GameInstance->IntRemainingTime)
+        	{
+        		GameInstance->IntRemainingTime = FMath::CeilToInt32(GameInstance->FloatRemainingTime);
+        		Player0->LimitCount->UpdateNumbers();
+        	}
+	}
 }
 
 
 void AGameMap_Alpha::BeginPlay()
 {
+	Super::BeginPlay();
 	Player0 = static_cast<ACharacterBase*>(UGameplayStatics::GetPlayerPawn(this, 0));
 	Initialize(300,50,50);
 	Generator->BuildMap();
 	TerrainMaker->Build();
 	SpawnPlayer();
 	Generator->GetStructureString();
-	Super::BeginPlay();
+	GameInstance->FloatRemainingTime = GameTimeLimit;
+	GameInstance->IntRemainingTime = GameTimeLimit;
 }
 
 void AGameMap_Alpha::EndPlay(const EEndPlayReason::Type EndPlayReason)
@@ -58,5 +72,7 @@ APawn* AGameMap_Alpha::SpawnPlayer() const
 	
 	Player0->SetActorLocation(TerrainMaker->Cie_Convert(Y,X,CellSize));
 	Player0->MiniMap->Initialize(Generator, TerrainMaker);
+	Player0->LimitCount->Initialize();
+	Player0->LimitCount->UpdateNumbers();
 	return Player0;
 }
