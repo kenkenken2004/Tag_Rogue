@@ -18,6 +18,7 @@ class ACharacterBase : public ACharacter
 	/** Follow camera */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	class UCameraComponent* FollowCamera;
+	float TimeSinceCreated = 0;
 
 public:
 	ACharacterBase();

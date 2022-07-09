@@ -117,10 +117,12 @@ void ACharacterBase::BeginPlay()
 
 }
 
-void ACharacterBase::Tick(float DeltaSeconds)
+void ACharacterBase::Tick(const float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
 	MiniMap->MapMaterial->SetScalarParameterValue(TEXT("Rotation"),(GetControlRotation().Yaw+90)/360.0);
+	MiniMap->AddRelativeLocation(FVector(0,0,3*DeltaSeconds*FMath::Cos(TimeSinceCreated/1.0*2*PI)));
+	TimeSinceCreated+=DeltaSeconds;
 }
 
 void ACharacterBase::MoveForward(float Value)
