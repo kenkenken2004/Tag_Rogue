@@ -7,6 +7,7 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/Controller.h"
 #include "GameFramework/SpringArmComponent.h"
+#include "Tag_Rogue/Interface/LimitCountComponent.h"
 #include "Tag_Rogue/Interface/MiniMap.h"
 #include "Tag_Rogue/Interface/MiniMapComponent.h"
 
@@ -55,6 +56,10 @@ ACharacterBase::ACharacterBase()
 	MiniMap->SetRelativeRotation(FRotator(0,270,0));
 	MiniMap->SetRelativeScale3D(FVector(0.3,0.3,0.3));
 	MiniMap->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+
+	LimitCount = CreateDefaultSubobject<ULimitCountComponent>(TEXT("LimitCount"));
+	LimitCount->SetupAttachment(CameraBoom);
+	LimitCount->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named ThirdPersonCharacter (to avoid direct content references in C++)
 }
@@ -113,8 +118,7 @@ void ACharacterBase::BeginPlay()
 	MiniMap->SetRelativeLocation(FVector(100,0,-50));
 	MiniMap->SetRelativeRotation(FRotator(0,270,60));
 	MiniMap->SetRelativeScale3D(FVector(0.3,0.3,0.3));
-	MiniMap->SetCollisionEnabled(ECollisionEnabled::NoCollision);
-
+	
 }
 
 void ACharacterBase::Tick(const float DeltaSeconds)
