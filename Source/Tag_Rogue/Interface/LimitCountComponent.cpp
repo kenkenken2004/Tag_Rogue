@@ -19,6 +19,7 @@ ULimitCountComponent::ULimitCountComponent()
 void ULimitCountComponent::BeginPlay()
 {
 	Super::BeginPlay();
+	OwnerPlayer = static_cast<ACharacterBase*>(GetAttachmentRootActor());
 }
 
 
@@ -27,13 +28,14 @@ void ULimitCountComponent::TickComponent(float DeltaTime, ELevelTick TickType,
                                          FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
+	AddRelativeLocation(FVector(0,0,3*DeltaTime*FMath::Cos(OwnerPlayer->TimeSinceCreated/0.5*2*PI)));
 	// ...
 }
 
 void ULimitCountComponent::Initialize()
 {
 	GameInstance = static_cast<UTag_RogueGameInstance*>(GetOwner()->GetGameInstance());
-	GameInstance->LoadAssets(TEXT("/Game/Interface/Count/"));
+	GameInstance->LoadAssets();
 	DisplayMesh = GameInstance->GetAssetObject<UStaticMesh>(TEXT("CountDisplay"));
 	SetStaticMesh(DisplayMesh);
 	DigitLeft = CreateAndSetMaterialInstanceDynamic(0);

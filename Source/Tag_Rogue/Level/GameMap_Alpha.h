@@ -29,22 +29,12 @@ protected:
 	ACharacterBase* Player0;
 	UPROPERTY()
 	int32 GameTimeLimit = 60;
-
-	TArray<FName> AssetsPathArray = TArray<FName>
-	(
-		{
-			TEXT("/Game/MapObject/Mesh/"),
-			TEXT("/Game/MapObject/Material/"),
-			TEXT("/Game/Interface/Display/"),
-			TEXT("/Game/Interface/Font/Tr2n/"),
-			TEXT("/Game/Interface/Count/")
-		}
-	);
 	
 	//Functions
 	virtual void BeginPlay() override;
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
-	void Initialize(int32,int32,int32);
+	UFUNCTION(BlueprintCallable)
+	void Initialize(const int32 MapCellSize, const int32 MapHeight, const int32 MapWidth, UGameInstance* GameIns);
 	APawn* SpawnPlayer() const;
 public:
 	AGameMap_Alpha();

@@ -35,8 +35,7 @@ void AMapGate::BeginPlay()
 {
 	Super::BeginPlay();
 	GameInstance = Cast<UTag_RogueGameInstance, UGameInstance>(GetGameInstance());
-	GameInstance->LoadAssets(FName(TEXT("/Game/MapObject/Mesh/")));
-	GameInstance->LoadAssets(FName(TEXT("/Game/MapObject/Material/")));
+	GameInstance->LoadAssets();
 	InnerBottomGateMesh = GameInstance->GetAssetObject<UStaticMesh>(TEXT("SF_Gate_InnerBottomGate"));
 	InnerTopGateMesh    = GameInstance->GetAssetObject<UStaticMesh>(TEXT("SF_Gate_InnerTopGate"));
 	OuterBottomGateMesh = GameInstance->GetAssetObject<UStaticMesh>(TEXT("SF_Gate_OuterBottomGate"));
@@ -94,6 +93,16 @@ void AMapGate::DoorManipulation(const float DeltaTime)
 	default:
 		break;
 	}
+}
+
+void AMapGate::Open()
+{
+	if(GateState!=EGateState::Opened)GateState=EGateState::Opening;
+}
+
+void AMapGate::Close()
+{
+	if(GateState!=EGateState::Closed)GateState=EGateState::Closing;
 }
 
 void AMapGate::OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,

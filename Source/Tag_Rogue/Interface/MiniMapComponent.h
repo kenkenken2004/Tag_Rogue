@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Tag_Rogue/Tag_RogueGameInstance.h"
+#include "Tag_Rogue/Character/CharacterBase.h"
 #include "Tag_Rogue/Map/RogueAlpha_MapGenerator.h"
 #include "Tag_Rogue/Map/TerrainMaker.h"
 #include "MiniMapComponent.generated.h"
@@ -14,6 +15,8 @@ class TAG_ROGUE_API UMiniMapComponent final : public UStaticMeshComponent
 {
 	GENERATED_BODY()
 public:
+	UPROPERTY()
+	ACharacterBase* OwnerPlayer;
 	UPROPERTY()
 	UTag_RogueGameInstance* GameInstance;
 	UPROPERTY()

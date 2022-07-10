@@ -115,7 +115,7 @@ void ACharacterBase::LookUpAtRate(float Rate)
 void ACharacterBase::BeginPlay()
 {
 	Super::BeginPlay();
-	MiniMap->SetRelativeLocation(FVector(100,0,-50));
+	MiniMap->SetRelativeLocation(FVector(100,0,-40));
 	MiniMap->SetRelativeRotation(FRotator(0,270,60));
 	MiniMap->SetRelativeScale3D(FVector(0.3,0.3,0.3));
 	
@@ -124,8 +124,6 @@ void ACharacterBase::BeginPlay()
 void ACharacterBase::Tick(const float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
-	MiniMap->MapMaterial->SetScalarParameterValue(TEXT("Rotation"),(GetControlRotation().Yaw+90)/360.0);
-	MiniMap->AddRelativeLocation(FVector(0,0,3*DeltaSeconds*FMath::Cos(TimeSinceCreated/1.0*2*PI)));
 	TimeSinceCreated+=DeltaSeconds;
 }
 
