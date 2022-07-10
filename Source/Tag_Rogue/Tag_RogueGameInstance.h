@@ -22,7 +22,21 @@ public:
 	static void DisplayDebugMessage(FString Message);
 	float FloatRemainingTime = 0;
 	int32 IntRemainingTime = 0;
-	void LoadAssets(FName);
+
+	TArray<FName> AssetsPathArray = TArray<FName>
+	(
+		{
+			TEXT("/Game/MapObject/Earth/"),
+			TEXT("/Game/MapObject/Gate/"),
+			TEXT("/Game/MapObject/MapUnit/"),
+			TEXT("/Game/MapObject/Material/"),
+			TEXT("/Game/Interface/Display/"),
+			TEXT("/Game/Interface/Font/Tr2n/"),
+			TEXT("/Game/Interface/Count/")
+		}
+	);
+	
+	void LoadAssets();
 	template <typename T> T* GetAssetObject(const FName AssetName)
 	{
 		UObject* Instant = AssetDatas[AssetName].GetAsset();

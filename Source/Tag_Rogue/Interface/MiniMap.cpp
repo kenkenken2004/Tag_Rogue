@@ -20,7 +20,7 @@ void AMiniMap::Initialize(URogueAlpha_MapGenerator* Gen, UTerrainMaker* Ter)
 	Generater = Gen;
 	Maker = Ter;
 	GameInstance = static_cast<UTag_RogueGameInstance*>(GetGameInstance());
-	GameInstance->LoadAssets(TEXT("/Game/Interface/Display/"));
+	GameInstance->LoadAssets();
 	DisplayMesh = GameInstance->GetAssetObject<UStaticMesh>(TEXT("SF_Display"));
 	Display->SetStaticMesh(DisplayMesh);
 	MapMaterial = Display->CreateAndSetMaterialInstanceDynamic(0);

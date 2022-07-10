@@ -11,112 +11,93 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cf331540-c7ba-40e0-a96e-46ca470ed1b0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Count/CountDisplay.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Count/CountMaterial.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_100.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_101.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_102.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_103.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_104.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_105.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_106.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_107.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_108.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_109.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_110.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_111.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_112.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_113.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_114.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_115.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_116.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_117.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_118.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_119.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_120.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_121.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_122.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_124.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_160.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_169.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_174.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_255.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_32.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_33.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_34.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_36.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_37.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_39.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_40.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_41.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_43.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_44.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_45.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_46.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_47.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_48.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_49.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_50.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_51.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_52.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_53.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_54.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_55.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_56.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_57.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_58.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_59.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_60.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_61.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_62.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_65.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_66.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_67.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_68.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_69.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_70.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_71.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_72.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_73.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_733.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_74.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_75.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_76.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_77.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_78.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_79.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_80.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_81.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_82.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_83.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_84.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_85.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_86.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_87.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_88.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_89.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_90.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_91.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_92.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_93.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_94.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_95.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_97.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_98.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n/Tr2n_99.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Interface/LimitCountComponent.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Interface/LimitCountComponent.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Characters/MenuViewer.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/GamePlayWorld.umap" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/MapObject/Earth/EarthTexture.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/MapObject/Earth/FineSphere.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/MapObject/Earth/HoloBase.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/MapObject/Earth/SF_Globe_GlobeTexture.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/MapObject/Earth/SF_Globe_Orbit1.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/MapObject/Earth/SF_Globe_Orbit2.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/MapObject/Earth/SF_Globe_Orbit3.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/MapObject/Earth/SF_Glove_GlobeGrid.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/MapObject/Earth/StarSkayMaterial.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/MapObject/Earth/TitleEarth.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/MapObject/Earth/TitleEarthCloudMaterial.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/MapObject/Earth/TitleEarthMaterial.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/MapObject/Gate/SF_Gate_InnerBottomGate.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/MapObject/Gate/SF_Gate_InnerTopGate.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/MapObject/Gate/SF_Gate_OuterBottomGate.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/MapObject/Gate/SF_Gate_OuterTopGate.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/MapObject/Gate/TitleMapGate.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/MapObject/MapUnit/GateCornerOne.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/MapObject/MapUnit/GateCornerTwo.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/MapObject/MapUnit/GateNormal.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/MapObject/MapUnit/PathCorner.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/MapObject/MapUnit/PathCrossRoad.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/MapObject/MapUnit/PathStraight.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/MapObject/MapUnit/PathTJunction.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/MapObject/MapUnit/RoomCorner.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/MapObject/MapUnit/RoomNormal.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/MapObject/MapUnit/RoomSide.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/MapObject/Texture/8k_earth_clouds.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/MapObject/Texture/8k_earth_daymap.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/MapObject/Texture/8k_earth_nightmap.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/MapObject/Texture/8k_earth_specular_map.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/MapObject/Texture/8k_stars_milky_way.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/MenuWorld.umap" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Tag_Rogue.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Tag_Rogue.dir/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Config/DefaultEngine.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultEngine.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Characters/CharacterBase.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Interface/Count/CountMaterial.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Interface/Count/CountMaterial.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Interface/Display/DisplayMaterial.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Interface/Display/DisplayMaterial.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/MainWorld.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/MainWorld.umap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Interface/Display/MiniMapPointer.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Interface/Display/MiniMapPointer.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Interface/Display/SideMaterial.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Interface/Display/SideMaterial.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/MainWorld.umap" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/MapObject/Material/EarthTexture.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/MapObject/Material/HoloBase.uasset" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/MapObject/Material/Light1.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/MapObject/Material/Light1.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/MapObject/Mesh/GateCornerOne.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/MapObject/Mesh/GateCornerTwo.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/MapObject/Mesh/GateNormal.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/MapObject/Mesh/PathCorner.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/MapObject/Mesh/PathCrossRoad.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/MapObject/Mesh/PathStraight.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/MapObject/Mesh/PathTJunction.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/MapObject/Mesh/RoomCorner.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/MapObject/Mesh/RoomNormal.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/MapObject/Mesh/RoomSide.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/MapObject/Mesh/SF_Gate_InnerBottomGate.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/MapObject/Mesh/SF_Gate_InnerTopGate.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/MapObject/Mesh/SF_Gate_OuterBottomGate.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/MapObject/Mesh/SF_Gate_OuterTopGate.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/MapObject/Mesh/SF_Globe_GlobeTexture.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/MapObject/Mesh/SF_Globe_Orbit1.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/MapObject/Mesh/SF_Globe_Orbit2.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/MapObject/Mesh/SF_Globe_Orbit3.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/MapObject/Mesh/SF_Glove_GlobeGrid.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/MapObject/Texture/2_no_clouds_16k.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/MapObject/Texture/2_no_clouds_16k.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/MapObject/Texture/5_night_16k.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/MapObject/Texture/5_night_16k.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/MapObject/Texture/8k_earth_normal_map.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/MapObject/Texture/8k_earth_normal_map.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/MapObject/Texture/Scanlines_T.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/MapObject/Texture/Scanlines_T.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/MapObject/Texture/TilingNoise03.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/MapObject/Texture/TilingNoise03.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/MapObject/Texture/boundaries_16k.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/MapObject/Texture/boundaries_16k.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/MapObject/Texture/elev_bump_16k.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/MapObject/Texture/elev_bump_16k.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/MapObject/Texture/water_16k.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/MapObject/Texture/water_16k.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Untitled.umap" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Character/CharacterBase.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Character/CharacterBase.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Character/CharacterBase.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Character/CharacterBase.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Interface/LimitCountComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Interface/LimitCountComponent.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Interface/LimitCountComponent.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Interface/LimitCountComponent.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Interface/MiniMap.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Interface/MiniMap.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Interface/MiniMapComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Interface/MiniMapComponent.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Interface/MiniMapComponent.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Interface/MiniMapComponent.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Level/GameMap_Alpha.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Level/GameMap_Alpha.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Level/GameMap_Alpha.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Level/GameMap_Alpha.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/MapObject/HoloGlobe.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/MapObject/HoloGlobe.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/MapObject/MapGate.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/MapObject/MapGate.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/MapObject/MapGate.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/MapObject/MapGate.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Tag_RogueGameInstance.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Tag_RogueGameInstance.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Tag_RogueGameInstance.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Tag_RogueGameInstance.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -250,6 +231,7 @@
       <workItem from="1657287829168" duration="3248000" />
       <workItem from="1657326851813" duration="12816000" />
       <workItem from="1657378041496" duration="2675000" />
+      <workItem from="1657413298315" duration="8361000" />
     </task>
     <servers />
   </component>

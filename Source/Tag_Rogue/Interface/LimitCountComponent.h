@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
 #include "Tag_Rogue/Tag_RogueGameInstance.h"
+#include "Tag_Rogue/Character/CharacterBase.h"
 #include "LimitCountComponent.generated.h"
 
 
@@ -24,6 +25,8 @@ public:
 	UMaterialInstanceDynamic* DigitLeft;
 	UPROPERTY()
 	UMaterialInstanceDynamic* DigitRight;
+	UPROPERTY()
+	ACharacterBase* OwnerPlayer; 
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;

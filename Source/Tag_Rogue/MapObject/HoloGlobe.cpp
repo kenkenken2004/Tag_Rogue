@@ -31,6 +31,7 @@ void AHoloGlobe::BeginPlay()
 {
 	Super::BeginPlay();
 	GameInstance = Cast<UTag_RogueGameInstance, UGameInstance>(GetGameInstance());
+	GameInstance->LoadAssets();
 	GlobeMesh = GameInstance->GetAssetObject<UStaticMesh>(TEXT("SF_Globe_GlobeTexture"));
 	GridMesh = GameInstance->GetAssetObject<UStaticMesh>(TEXT("SF_Glove_GlobeGrid"));
 	Orbit1Mesh = GameInstance->GetAssetObject<UStaticMesh>(TEXT("SF_Globe_Orbit1"));

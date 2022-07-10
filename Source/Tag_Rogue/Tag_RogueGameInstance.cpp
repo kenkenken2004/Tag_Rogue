@@ -21,14 +21,17 @@ void UTag_RogueGameInstance::DisplayDebugMessage(const FString Message)
 	if(GEngine)GEngine->AddOnScreenDebugMessage(-1,5.0f,FColor::Green,Message);
 }
 
-void UTag_RogueGameInstance::LoadAssets(const FName Path)
+void UTag_RogueGameInstance::LoadAssets()
 {
 	const FAssetRegistryModule& AssetRegistryModule = FModuleManager::LoadModuleChecked<FAssetRegistryModule>(FName(TEXT("AssetRegistry")));
 	const IAssetRegistry& AssetRegistry = AssetRegistryModule.Get();
-	TArray<FAssetData> AssetDatasInstant;
-	AssetRegistry.GetAssetsByPath(Path, AssetDatasInstant);
-	for(int32 i=0;i<AssetDatasInstant.Num();i++)
+	for(int32 i=0;i<AssetsPathArray.Num();i++)
 	{
-		AssetDatas.Add(AssetDatasInstant[i].AssetName,AssetDatasInstant[i]);
+		TArray<FAssetData> AssetDatasInstant;
+		AssetRegistry.GetAssetsByPath(AssetsPathArray[i], AssetDatasInstant);
+		for(int32 j=0;j<AssetDatasInstant.Num();j++)
+		{
+			AssetDatas.Add(AssetDatasInstant[j].AssetName,AssetDatasInstant[j]);
+		}
 	}
 }

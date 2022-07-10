@@ -4,6 +4,7 @@
 #include "MiniMapComponent.h"
 
 #include "CADKernel/UI/Display.h"
+#include "Tag_Rogue/Character/CharacterBase.h"
 
 
 // Sets default values for this component's properties
@@ -21,7 +22,7 @@ UMiniMapComponent::UMiniMapComponent()
 void UMiniMapComponent::BeginPlay()
 {
 	Super::BeginPlay();
-
+	OwnerPlayer = static_cast<ACharacterBase*>(GetAttachmentRootActor());
 	// ...
 	
 }
@@ -32,7 +33,8 @@ void UMiniMapComponent::TickComponent(float DeltaTime, ELevelTick TickType,
                                       FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-	
+	MapMaterial->SetScalarParameterValue(TEXT("Rotation"),(OwnerPlayer->GetControlRotation().Yaw+90)/360.0);
+	AddRelativeLocation(FVector(0,0,3*DeltaTime*FMath::Cos(OwnerPlayer->TimeSinceCreated/1.0*2*PI)));
 	// ...
 }
 
@@ -41,7 +43,7 @@ void UMiniMapComponent::Initialize(URogueAlpha_MapGenerator* Gen, UTerrainMaker*
 	Generater = Gen;
 	Maker = Ter;
 	GameInstance = static_cast<UTag_RogueGameInstance*>(GetOwner()->GetGameInstance());
-	GameInstance->LoadAssets(TEXT("/Game/Interface/Display/"));
+	GameInstance->LoadAssets();
 	DisplayMesh = GameInstance->GetAssetObject<UStaticMesh>(TEXT("SF_Display"));
 	SetStaticMesh(DisplayMesh);
 	MapMaterial = CreateAndSetMaterialInstanceDynamic(0);

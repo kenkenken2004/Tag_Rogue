@@ -40,12 +40,12 @@ class TAG_ROGUE_API AMapGate final : public AActor
 	UStaticMesh* InnerBottomGateMesh;
 	UPROPERTY()
 	UStaticMesh* InnerTopGateMesh;
-	
 	EGateState GateState = EGateState::Closed;
 	const float GateOpenedHeight = 60.0;
 	float GateHeight = 0;
 	int32 OverlappingNumber = 0;
-	const float GateOpenCloseTime = 0.5;
+	UPROPERTY(EditAnywhere)
+	float GateOpenCloseTime = 0.5;
 public:
 	// Sets default values for this actor's properties
 	AMapGate();
@@ -54,6 +54,10 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 	void DoorManipulation(float);
+	UFUNCTION(BlueprintCallable)
+	void Open();
+	UFUNCTION(BlueprintCallable)
+	void Close();
 	UFUNCTION()
 	void OnOverlapBegin(UPrimitiveComponent* OverlappedComponent,AActor* OtherActor,UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult &SweepResult);
 	UFUNCTION()
