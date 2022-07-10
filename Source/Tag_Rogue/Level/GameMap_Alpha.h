@@ -33,7 +33,8 @@ protected:
 	//Functions
 	virtual void BeginPlay() override;
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
-	void Initialize(int32,int32,int32);
+	UFUNCTION(BlueprintCallable)
+	void Initialize(const int32 MapCellSize, const int32 MapHeight, const int32 MapWidth, UGameInstance* GameIns);
 	APawn* SpawnPlayer() const;
 public:
 	AGameMap_Alpha();

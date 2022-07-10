@@ -22,7 +22,8 @@ public:
 	static void DisplayDebugMessage(FString Message);
 	float FloatRemainingTime = 0;
 	int32 IntRemainingTime = 0;
-
+	bool bIsAssetDataLoaded = false;
+	
 	TArray<FName> AssetsPathArray = TArray<FName>
 	(
 		{

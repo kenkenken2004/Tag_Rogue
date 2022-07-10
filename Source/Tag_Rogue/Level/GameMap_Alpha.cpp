@@ -31,14 +31,7 @@ void AGameMap_Alpha::Tick(const float DeltaSeconds)
 void AGameMap_Alpha::BeginPlay()
 {
 	Super::BeginPlay();
-	Player0 = static_cast<ACharacterBase*>(UGameplayStatics::GetPlayerPawn(this, 0));
-	Initialize(300,50,50);
-	Generator->BuildMap();
-	TerrainMaker->Build();
-	SpawnPlayer();
-	Generator->GetStructureString();
-	GameInstance->FloatRemainingTime = GameTimeLimit;
-	GameInstance->IntRemainingTime = GameTimeLimit;
+	Initialize(300,50,50, GetGameInstance());
 }
 
 void AGameMap_Alpha::EndPlay(const EEndPlayReason::Type EndPlayReason)
@@ -46,9 +39,10 @@ void AGameMap_Alpha::EndPlay(const EEndPlayReason::Type EndPlayReason)
 	Super::EndPlay(EndPlayReason);
 }
 
-void AGameMap_Alpha::Initialize(const int32 MapCellSize, const int32 MapHeight, const int32 MapWidth)
+void AGameMap_Alpha::Initialize(const int32 MapCellSize, const int32 MapHeight, const int32 MapWidth, UGameInstance* GameIns)
 {
-	GameInstance = static_cast<UTag_RogueGameInstance*>(GetGameInstance());
+	Player0 = static_cast<ACharacterBase*>(UGameplayStatics::GetPlayerPawn(this, 0));
+	GameInstance = static_cast<UTag_RogueGameInstance*>(GameIns);
 	GameInstance->LoadAssets();
 	CellSize = MapCellSize;
 	Generator = NewObject<URogueAlpha_MapGenerator>(GetWorld());
@@ -57,7 +51,12 @@ void AGameMap_Alpha::Initialize(const int32 MapCellSize, const int32 MapHeight, 
 	Generator->SetStructureParam(UMapGeneratorBase::EType::Room, 5, 5, 9);
 	TerrainMaker = NewObject<UTerrainMaker>(GetWorld());
 	TerrainMaker->Construct(Generator,GameInstance,MapCellSize);
-	
+	Generator->BuildMap();
+	TerrainMaker->Build();
+	SpawnPlayer();
+	Generator->GetStructureString();
+	GameInstance->FloatRemainingTime = GameTimeLimit;
+	GameInstance->IntRemainingTime = GameTimeLimit;
 }
 
 APawn* AGameMap_Alpha::SpawnPlayer() const

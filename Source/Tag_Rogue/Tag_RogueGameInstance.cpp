@@ -23,6 +23,7 @@ void UTag_RogueGameInstance::DisplayDebugMessage(const FString Message)
 
 void UTag_RogueGameInstance::LoadAssets()
 {
+	if(bIsAssetDataLoaded)return;
 	const FAssetRegistryModule& AssetRegistryModule = FModuleManager::LoadModuleChecked<FAssetRegistryModule>(FName(TEXT("AssetRegistry")));
 	const IAssetRegistry& AssetRegistry = AssetRegistryModule.Get();
 	for(int32 i=0;i<AssetsPathArray.Num();i++)
@@ -34,4 +35,5 @@ void UTag_RogueGameInstance::LoadAssets()
 			AssetDatas.Add(AssetDatasInstant[j].AssetName,AssetDatasInstant[j]);
 		}
 	}
+	bIsAssetDataLoaded = true;
 }

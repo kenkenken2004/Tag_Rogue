@@ -11,92 +11,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cf331540-c7ba-40e0-a96e-46ca470ed1b0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Content/Characters/MenuViewer.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/GamePlayWorld.umap" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapObject/Earth/EarthTexture.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapObject/Earth/FineSphere.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapObject/Earth/HoloBase.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapObject/Earth/SF_Globe_GlobeTexture.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapObject/Earth/SF_Globe_Orbit1.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapObject/Earth/SF_Globe_Orbit2.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapObject/Earth/SF_Globe_Orbit3.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapObject/Earth/SF_Glove_GlobeGrid.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapObject/Earth/StarSkayMaterial.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapObject/Earth/TitleEarth.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapObject/Earth/TitleEarthCloudMaterial.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapObject/Earth/TitleEarthMaterial.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapObject/Gate/SF_Gate_InnerBottomGate.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapObject/Gate/SF_Gate_InnerTopGate.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapObject/Gate/SF_Gate_OuterBottomGate.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapObject/Gate/SF_Gate_OuterTopGate.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapObject/Gate/TitleMapGate.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapObject/MapUnit/GateCornerOne.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapObject/MapUnit/GateCornerTwo.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapObject/MapUnit/GateNormal.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapObject/MapUnit/PathCorner.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapObject/MapUnit/PathCrossRoad.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapObject/MapUnit/PathStraight.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapObject/MapUnit/PathTJunction.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapObject/MapUnit/RoomCorner.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapObject/MapUnit/RoomNormal.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapObject/MapUnit/RoomSide.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapObject/Texture/8k_earth_clouds.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapObject/Texture/8k_earth_daymap.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapObject/Texture/8k_earth_nightmap.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapObject/Texture/8k_earth_specular_map.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapObject/Texture/8k_stars_milky_way.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MenuWorld.umap" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/FontMaterial.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Interface/Font/Tr2n_Font.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Interface/Widget/Title.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Level/FadeIn.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Level/FadeOut.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Level/GamePlayWorld.umap" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Level/MenuWorld.umap" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Level/TitleLevel.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Level/TitleLevel.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Tag_Rogue.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Tag_Rogue.dir/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Config/DefaultEngine.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultEngine.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Characters/CharacterBase.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Config/DefaultGame.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultGame.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Characters/MenuViewer.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Characters/MenuViewer.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/GamePlayWorld.umap" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Interface/Count/CountMaterial.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Interface/Count/CountMaterial.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Interface/Display/DisplayMaterial.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Interface/Display/DisplayMaterial.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Interface/Display/MiniMapPointer.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Interface/Display/MiniMapPointer.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Interface/Display/SideMaterial.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Interface/Display/SideMaterial.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/MainWorld.umap" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/MapObject/Material/EarthTexture.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/MapObject/Material/HoloBase.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/MapObject/Material/Light1.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/MapObject/Material/Light1.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/MapObject/Mesh/GateCornerOne.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/MapObject/Mesh/GateCornerTwo.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/MapObject/Mesh/GateNormal.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/MapObject/Mesh/PathCorner.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/MapObject/Mesh/PathCrossRoad.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/MapObject/Mesh/PathStraight.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/MapObject/Mesh/PathTJunction.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/MapObject/Mesh/RoomCorner.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/MapObject/Mesh/RoomNormal.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/MapObject/Mesh/RoomSide.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/MapObject/Mesh/SF_Gate_InnerBottomGate.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/MapObject/Mesh/SF_Gate_InnerTopGate.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/MapObject/Mesh/SF_Gate_OuterBottomGate.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/MapObject/Mesh/SF_Gate_OuterTopGate.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/MapObject/Mesh/SF_Globe_GlobeTexture.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/MapObject/Mesh/SF_Globe_Orbit1.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/MapObject/Mesh/SF_Globe_Orbit2.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/MapObject/Mesh/SF_Globe_Orbit3.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/MapObject/Mesh/SF_Glove_GlobeGrid.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/MapObject/Texture/2_no_clouds_16k.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/MapObject/Texture/2_no_clouds_16k.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/MapObject/Texture/5_night_16k.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/MapObject/Texture/5_night_16k.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/MapObject/Texture/8k_earth_normal_map.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/MapObject/Texture/8k_earth_normal_map.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/MapObject/Texture/Scanlines_T.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/MapObject/Texture/Scanlines_T.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/MapObject/Texture/TilingNoise03.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/MapObject/Texture/TilingNoise03.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/MapObject/Texture/boundaries_16k.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/MapObject/Texture/boundaries_16k.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/MapObject/Texture/elev_bump_16k.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/MapObject/Texture/elev_bump_16k.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/MapObject/Texture/water_16k.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/MapObject/Texture/water_16k.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Untitled.umap" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Character/CharacterBase.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Character/CharacterBase.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Character/CharacterBase.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Character/CharacterBase.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Interface/LimitCountComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Interface/LimitCountComponent.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Interface/LimitCountComponent.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Interface/LimitCountComponent.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Interface/MiniMap.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Interface/MiniMap.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Interface/MiniMapComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Interface/MiniMapComponent.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Interface/MiniMapComponent.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Interface/MiniMapComponent.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/MenuWorld.umap" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Level/GameMap_Alpha.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Level/GameMap_Alpha.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Level/GameMap_Alpha.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Level/GameMap_Alpha.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/MapObject/HoloGlobe.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/MapObject/HoloGlobe.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/MapObject/MapGate.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/MapObject/MapGate.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/MapObject/MapGate.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/MapObject/MapGate.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Tag_RogueGameInstance.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Tag_RogueGameInstance.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Tag_RogueGameInstance.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Tag_RogueGameInstance.h" afterDir="false" />
     </list>
@@ -231,7 +165,7 @@
       <workItem from="1657287829168" duration="3248000" />
       <workItem from="1657326851813" duration="12816000" />
       <workItem from="1657378041496" duration="2675000" />
-      <workItem from="1657413298315" duration="8361000" />
+      <workItem from="1657413298315" duration="13605000" />
     </task>
     <servers />
   </component>
