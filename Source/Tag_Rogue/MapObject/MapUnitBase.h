@@ -3,12 +3,13 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Engine/StaticMeshActor.h"
 #include "GameFramework/Actor.h"
 #include "Tag_Rogue/Tag_RogueGameInstance.h"
 #include "MapUnitBase.generated.h"
 
 UCLASS()
-class TAG_ROGUE_API AMapUnitBase final : public AActor
+class TAG_ROGUE_API AMapUnitBase final : public AStaticMeshActor
 {
 	GENERATED_BODY()
 	UPROPERTY()
