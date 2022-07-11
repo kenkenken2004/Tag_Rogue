@@ -13,12 +13,13 @@
 /**
  * 
  */
-UCLASS()
-class TAG_ROGUE_API AGameMap_Alpha : public ALevelScriptActor
+UCLASS(Config=Game)
+class TAG_ROGUE_API AGameMap_Alpha final : public ALevelScriptActor
 {
 	GENERATED_BODY()
 protected:
-	float CellSize;
+	UPROPERTY(Config)
+	float CellSize = 300;
 	UPROPERTY()
 	URogueAlpha_MapGenerator* Generator;
 	UPROPERTY()
@@ -27,14 +28,25 @@ protected:
 	UTag_RogueGameInstance* GameInstance;
 	UPROPERTY()
 	ACharacterBase* Player0;
-	UPROPERTY()
-	int32 GameTimeLimit = 60;
-	
+	UPROPERTY(Config)
+	float GameTimeLimit = 60;
+	UPROPERTY(Config)
+	int32 GameMapHeight = 50;
+	UPROPERTY(Config)
+	int32 GameMapWidth = 50;
+	UPROPERTY(Config)
+	int32 PlazaSize = 9;
+	UPROPERTY(Config)
+	int32 RoomSize = 5;
+	UPROPERTY(Config)
+	int32 PlazaNum = 4;
+	UPROPERTY(Config)
+	int32 RoomNum = 9;
 	//Functions
 	virtual void BeginPlay() override;
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 	UFUNCTION(BlueprintCallable)
-	void Initialize(const int32 MapCellSize, const int32 MapHeight, const int32 MapWidth, UGameInstance* GameIns);
+	void Initialize(UGameInstance* GameIns);
 	APawn* SpawnPlayer() const;
 public:
 	AGameMap_Alpha();

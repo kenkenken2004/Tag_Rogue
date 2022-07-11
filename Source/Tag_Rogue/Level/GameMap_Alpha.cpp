@@ -5,7 +5,6 @@
 #include "Tag_Rogue/Interface/LimitCountComponent.h"
 #include "Tag_Rogue/Interface/MiniMap.h"
 #include "Tag_Rogue/Interface/MiniMapComponent.h"
-#include "Tag_Rogue/MapObject/HoloGlobe.h"
 
 AGameMap_Alpha::AGameMap_Alpha()
 {
@@ -31,7 +30,7 @@ void AGameMap_Alpha::Tick(const float DeltaSeconds)
 void AGameMap_Alpha::BeginPlay()
 {
 	Super::BeginPlay();
-	Initialize(300,50,50, GetGameInstance());
+	Initialize(GetGameInstance());
 }
 
 void AGameMap_Alpha::EndPlay(const EEndPlayReason::Type EndPlayReason)
@@ -39,18 +38,17 @@ void AGameMap_Alpha::EndPlay(const EEndPlayReason::Type EndPlayReason)
 	Super::EndPlay(EndPlayReason);
 }
 
-void AGameMap_Alpha::Initialize(const int32 MapCellSize, const int32 MapHeight, const int32 MapWidth, UGameInstance* GameIns)
+void AGameMap_Alpha::Initialize(UGameInstance* GameIns)
 {
 	Player0 = static_cast<ACharacterBase*>(UGameplayStatics::GetPlayerPawn(this, 0));
 	GameInstance = static_cast<UTag_RogueGameInstance*>(GameIns);
 	GameInstance->LoadAssets();
-	CellSize = MapCellSize;
 	Generator = NewObject<URogueAlpha_MapGenerator>(GetWorld());
-	Generator->Construct(MapHeight,MapWidth);
-	Generator->SetStructureParam(UMapGeneratorBase::EType::Plaza, 9, 9, 4);
-	Generator->SetStructureParam(UMapGeneratorBase::EType::Room, 5, 5, 9);
+	Generator->Construct(GameMapHeight,GameMapWidth);
+	Generator->SetStructureParam(UMapGeneratorBase::EType::Plaza, PlazaSize, PlazaSize, PlazaNum);
+	Generator->SetStructureParam(UMapGeneratorBase::EType::Room, RoomSize, RoomSize, RoomNum);
 	TerrainMaker = NewObject<UTerrainMaker>(GetWorld());
-	TerrainMaker->Construct(Generator,GameInstance,MapCellSize);
+	TerrainMaker->Construct(Generator,GameInstance,CellSize);
 	Generator->BuildMap();
 	TerrainMaker->Build();
 	SpawnPlayer();

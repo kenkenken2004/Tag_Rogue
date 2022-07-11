@@ -20,9 +20,13 @@ public:
 	UTag_RogueGameInstance();
 	static UTag_RogueGameInstance* GetInstance();
 	static void DisplayDebugMessage(FString Message);
+	UPROPERTY(VisibleAnywhere)
 	float FloatRemainingTime = 0;
+	UPROPERTY(VisibleAnywhere)
 	int32 IntRemainingTime = 0;
 	bool bIsAssetDataLoaded = false;
+	
+	
 	
 	TArray<FName> AssetsPathArray = TArray<FName>
 	(
@@ -42,6 +46,6 @@ public:
 	{
 		UObject* Instant = AssetDatas[AssetName].GetAsset();
 		return static_cast<T*>(Instant);
-	};
+	}
 	
 };
