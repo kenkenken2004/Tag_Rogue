@@ -2,7 +2,6 @@
 
 
 #include "TerrainMaker.h"
-
 #include "Tag_Rogue/MapObject/HoloGlobe.h"
 #include "Tag_Rogue/MapObject/MapGate.h"
 #include "Tag_Rogue/MapObject/MapUnitBase.h"
@@ -11,10 +10,9 @@ UTerrainMaker::UTerrainMaker()
 {
 }
 
-void UTerrainMaker::Construct(URogueAlpha_MapGenerator* Gen, UTag_RogueGameInstance* GameIns, const float MapCellSize)
+void UTerrainMaker::Construct(URogueAlpha_MapGenerator* Gen, const float MapCellSize)
 {
 	Generator = Gen;
-	GameInstance = GameIns;
 	CellSize = MapCellSize;
 }
 

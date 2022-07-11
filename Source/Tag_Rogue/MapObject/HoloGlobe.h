@@ -4,12 +4,13 @@
 
 #include "CoreMinimal.h"
 #include "Components/BoxComponent.h"
+#include "Engine/StaticMeshActor.h"
 #include "GameFramework/Actor.h"
 #include "Tag_Rogue/Tag_RogueGameInstance.h"
 #include "HoloGlobe.generated.h"
 
 UCLASS()
-class TAG_ROGUE_API AHoloGlobe : public AActor
+class TAG_ROGUE_API AHoloGlobe : public AStaticMeshActor
 {
 	GENERATED_BODY()
 public:

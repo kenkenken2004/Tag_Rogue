@@ -3,12 +3,15 @@
 
 #include "MapGate.h"
 
+#include "Net/UnrealNetwork.h"
+
 
 // Sets default values
 AMapGate::AMapGate()
 {
 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
+	bReplicates = true;
 	Collision = CreateDefaultSubobject<UBoxComponent>(FName("CollisionMesh"));
 	OuterBottomGate = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("OuterBottom"));
 	OuterTopGate = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("OuterTop"));
@@ -27,7 +30,12 @@ AMapGate::AMapGate()
 	Collision->InitBoxExtent(FVector(75,50,50));
 	Collision->OnComponentBeginOverlap.AddDynamic(this, &AMapGate::OnOverlapBegin);
 	Collision->OnComponentEndOverlap.AddDynamic(this, &AMapGate::OnComponentOverlapEnd);
-	
+
+	OuterBottomGate->SetCollisionResponseToChannel(ECC_Camera, ECR_Ignore);
+	OuterTopGate->SetCollisionResponseToChannel(ECC_Camera, ECR_Ignore);
+	InnerBottomGate->SetCollisionResponseToChannel(ECC_Camera, ECR_Ignore);
+	InnerTopGate->SetCollisionResponseToChannel(ECC_Camera, ECR_Ignore);
+
 }
 
 // Called when the game starts or when spawned
@@ -132,3 +140,9 @@ void AMapGate::Tick(const float DeltaTime)
 	DoorManipulation(DeltaTime);
 }
 
+void AMapGate::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
+{
+	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+	DOREPLIFETIME(AMapGate, GateState);
+	
+}

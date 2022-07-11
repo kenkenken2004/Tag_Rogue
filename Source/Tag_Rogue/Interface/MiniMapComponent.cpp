@@ -4,6 +4,7 @@
 #include "MiniMapComponent.h"
 
 #include "CADKernel/UI/Display.h"
+#include "Net/UnrealNetwork.h"
 #include "Tag_Rogue/Character/CharacterBase.h"
 
 
@@ -13,7 +14,6 @@ UMiniMapComponent::UMiniMapComponent()
 	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
 	// off to improve performance if you don't need them.
 	PrimaryComponentTick.bCanEverTick = true;
-
 	// ...
 }
 
@@ -22,9 +22,6 @@ UMiniMapComponent::UMiniMapComponent()
 void UMiniMapComponent::BeginPlay()
 {
 	Super::BeginPlay();
-	OwnerPlayer = static_cast<ACharacterBase*>(GetAttachmentRootActor());
-	// ...
-	
 }
 
 
@@ -33,38 +30,76 @@ void UMiniMapComponent::TickComponent(float DeltaTime, ELevelTick TickType,
                                       FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-	MapMaterial->SetScalarParameterValue(TEXT("Rotation"),(OwnerPlayer->GetControlRotation().Yaw+90)/360.0);
-	AddRelativeLocation(FVector(0,0,3*DeltaTime*FMath::Cos(OwnerPlayer->TimeSinceCreated/1.0*2*PI)));
 	// ...
 }
 
-void UMiniMapComponent::Initialize(URogueAlpha_MapGenerator* Gen, UTerrainMaker* Ter)
+void UMiniMapComponent::InitializeByServer()
 {
-	Generater = Gen;
-	Maker = Ter;
-	GameInstance = static_cast<UTag_RogueGameInstance*>(GetOwner()->GetGameInstance());
-	GameInstance->LoadAssets();
-	DisplayMesh = GameInstance->GetAssetObject<UStaticMesh>(TEXT("SF_Display"));
-	SetStaticMesh(DisplayMesh);
+	if(!IsValid(GameInstance))
+	{
+		OwnerPlayer = static_cast<ACharacterBase*>(GetAttachmentRootActor());
+		GameInstance = UTag_RogueGameInstance::GetInstance();
+		GameInstance->InitializeMapBuilders();
+		Generater = GameInstance->MapGenerator;
+		Maker = GameInstance->TerrainMaker;
+		GameInstance->LoadAssets();
+		DisplayMesh = GameInstance->GetAssetObject<UStaticMesh>(TEXT("SF_Display"));
+		SetStaticMesh(DisplayMesh);
+	}
+	
+	MapHeight = Generater->MapHeight;
+	MapWidth = Generater->MapWidth;
+	CellSize = Maker->CellSize;
+	Scale = GameInstance->MapScale;
+	TextureBitArray = TArray<bool>();
+	for (int32 y=0;y<MapHeight;y++)
+	{
+		for(int32 x=0;x<MapWidth;x++)
+		{
+			TextureBitArray.Add(Generater->GetCell(y,x)->Attribution==URogueAlpha_MapGenerator::EType::Wall);
+		}
+	}
+}
+
+void UMiniMapComponent::Initialize_Implementation()
+{
+	if(!IsValid(GameInstance))
+	{
+		OwnerPlayer = static_cast<ACharacterBase*>(GetAttachmentRootActor());
+		GameInstance = UTag_RogueGameInstance::GetInstance();
+		GameInstance->InitializeMapBuilders();
+		Generater = GameInstance->MapGenerator;
+        Maker = GameInstance->TerrainMaker;
+        GameInstance->LoadAssets();
+		DisplayMesh = GameInstance->GetAssetObject<UStaticMesh>(TEXT("SF_Display"));
+		SetStaticMesh(DisplayMesh);
+	}
+	
 	MapMaterial = CreateAndSetMaterialInstanceDynamic(0);
 	MapMaterial->SetTextureParameterValue(TEXT("MiniMap"),CreateMiniMapTexture());
-	MapMaterial->SetScalarParameterValue(TEXT("MapHeight"),Generater->MapHeight*Maker->CellSize);
-	MapMaterial->SetScalarParameterValue(TEXT("MapWidth"),Generater->MapWidth*Maker->CellSize);
-	MapMaterial->SetScalarParameterValue(TEXT("Scale"),0.25);
+	MapMaterial->SetScalarParameterValue(TEXT("MapHeight"),MapHeight*CellSize);
+	MapMaterial->SetScalarParameterValue(TEXT("MapWidth"),MapWidth*CellSize);
+	MapMaterial->SetScalarParameterValue(TEXT("Scale"),Scale);
+}
+
+void UMiniMapComponent::UpdateMapDirection_Implementation()
+{
+	if(!IsValid(GameInstance))Initialize();
+	MapMaterial->SetScalarParameterValue(TEXT("Rotation"),(OwnerPlayer->GetControlRotation().Yaw+90)/360.0);
 }
 
 UTexture* UMiniMapComponent::CreateMiniMapTexture() const
 {
 	// Texture Information
-	const int Width = Generater->MapWidth;
-	const int Height = Generater->MapHeight;
+	const int Width = MapWidth;
+	const int Height = MapHeight;
 	uint8 * Pixels = static_cast<uint8*>(malloc(Height * Width * 4)); // x4 because it's RGBA. 4 integers, one for Red, one for Green, one for Blue, one for Alpha
 	// filling the pixels with dummy data (4 boxes: red, green, blue and white)
 	for (int y = 0; y < Height; y++)
 	{
 		for (int x = 0; x < Width; x++)
 		{
-			const int32 Val = (Generater->GetCell(y,x)->Attribution==URogueAlpha_MapGenerator::EType::Wall)?255:0;
+			const int32 Val = TextureBitArray[y*Width+x] ?255:0;
 			Pixels[y * 4 * Width + x * 4 + 0] = Val; // R
 			Pixels[y * 4 * Width + x * 4 + 1] = Val; // G
 			Pixels[y * 4 * Width + x * 4 + 2] = Val; // B
@@ -95,4 +130,16 @@ UTexture* UMiniMapComponent::CreateMiniMapTexture() const
 	free(Pixels);
 	Pixels = nullptr;
 	return Texture;
+}
+
+void UMiniMapComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
+{
+	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+	DOREPLIFETIME(UMiniMapComponent, OwnerPlayer);
+	DOREPLIFETIME(UMiniMapComponent, DisplayMesh);
+	DOREPLIFETIME(UMiniMapComponent, CellSize);
+	DOREPLIFETIME(UMiniMapComponent, MapHeight);
+	DOREPLIFETIME(UMiniMapComponent, MapWidth);
+	DOREPLIFETIME(UMiniMapComponent, Scale);
+	DOREPLIFETIME(UMiniMapComponent, TextureBitArray);
 }
