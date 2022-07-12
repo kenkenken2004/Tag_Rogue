@@ -42,6 +42,10 @@
 				"Win64",
 				"Linux"
 			]
+		},
+		{
+			"Name": "RTXGI",
+			"Enabled": true
 		}
 	]
 }
