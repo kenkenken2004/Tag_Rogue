@@ -21,18 +21,28 @@
 ACharacterBase::ACharacterBase()
 {
 	//コライダーの形を初期化
-	GetCapsuleComponent()->InitCapsuleSize(84.f, 96.0f);
+	GetCapsuleComponent()->InitCapsuleSize(ColliderDiameter, ColliderHeight);
+
+	//パラメーターの初期値を適用
+	ReloadVariables();
+
+	//本番要らなさそうな設定
+	//マウスを動かすと視点が動くが、このときカメラしか動かさないようにする
+	bUseControllerRotationPitch = true;
+	bUseControllerRotationYaw = true;
+	bUseControllerRotationRoll = true;
+	//動いている方向を向かせる
+	GetCharacterMovement()->bOrientRotationToMovement = false;
+	
+
 	/*よくわからん設定を一旦ポイ
 	// set our turn rate for input
 	TurnRateGamepad = 50.f;
 
-	// Don't rotate when the controller rotates. Let that just affect the camera.
-	bUseControllerRotationPitch = true;
-	bUseControllerRotationYaw = true;
-	bUseControllerRotationRoll = true;
+	
 
 	// Configure character movement
-	GetCharacterMovement()->bOrientRotationToMovement = true; // Character moves in the direction of input...	
+	 // Character moves in the direction of input...	
 	GetCharacterMovement()->RotationRate = FRotator(0.0f, 500.0f, 0.0f); // ...at this rotation rate
 
 	// Note: For faster iteration times these variables, and many more, can be tweaked in the Character Blueprint
@@ -47,14 +57,14 @@ ACharacterBase::ACharacterBase()
 
 	// CameraBoomを設定
 	CameraBoom = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraBoom"));
-	CameraBoom->SetupAttachment(RootComponent);
+	CameraBoom->SetupAttachment(GetCapsuleComponent());
 	CameraBoom->TargetArmLength = 400.0f; // The camera follows at this distance behind the character	
 	CameraBoom->bUsePawnControlRotation = true; // Rotate the arm based on the controller
 
 	// カメラを設定
 	FollowCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("FollowCamera"));
 	FollowCamera->SetupAttachment(CameraBoom, USpringArmComponent::SocketName); // Attach the camera to the end of the boom and let the boom adjust to match the controller orientation
-	FollowCamera->bUsePawnControlRotation = false; // Camera does not rotate relative to arm
+	FollowCamera->bUsePawnControlRotation = true;
 
 	/*一旦MiniMapとLimitCountはなしで
 	MiniMap = CreateDefaultSubobject<UMiniMapComponent>(TEXT("MiniMap"));
@@ -69,34 +79,172 @@ ACharacterBase::ACharacterBase()
 	LimitCount->SetupAttachment(CameraBoom);
 	LimitCount->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 	*/
-	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
-	// are set in the derived blueprint asset named ThirdPersonCharacter (to avoid direct content references in C++)
 }
+
+
+void ACharacterBase::SetMesh(FString path) {
+	//SkeletalMeshで作成
+	RobotMesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("RobotMesh"));
+	USkeletalMesh* MeshTmp = LoadObject<USkeletalMesh>(NULL, *path, NULL, LOAD_None, NULL);
+	RobotMesh->SetSkeletalMesh(MeshTmp);
+	//Rootにアタッチ
+	RobotMesh->SetupAttachment(RootComponent);
+	//地面に着くようにする
+	RobotMesh->SetRelativeLocation(FVector(0, 0, -ColliderHeight));
+}
+
+void ACharacterBase::ReloadVariables() {
+	GetCharacterMovement()->MaxWalkSpeed = MaxSpeed;
+}
+
 
 //////////////////////////////////////////////////////////////////////////
 // Input
 
 void ACharacterBase::SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent)
 {
+	//使用したもの
+	PlayerInputComponent->BindAxis("Move Forward / Backward", this, &ACharacterBase::MoveForward);//前後の動きをバインド
+	PlayerInputComponent->BindAxis("Move Right / Left", this, &ACharacterBase::MoveRight);
+	PlayerInputComponent->BindAction("Action1", IE_Pressed, this, &ACharacterBase::Action1);//アクション1ボタンが押されたらアクション1
+
+
 	// Set up gameplay key bindings
 	check(PlayerInputComponent);
 	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
 	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
 
-	PlayerInputComponent->BindAxis("Move Forward / Backward", this, &ACharacterBase::MoveForward);
-	PlayerInputComponent->BindAxis("Move Right / Left", this, &ACharacterBase::MoveRight);
+	
 
 	// We have 2 versions of the rotation bindings to handle different kinds of devices differently
 	// "turn" handles devices that provide an absolute delta, such as a mouse.
 	// "turnrate" is for devices that we choose to treat as a rate of change, such as an analog joystick
-	PlayerInputComponent->BindAxis("Turn Right / Left Mouse", this, &APawn::AddControllerYawInput);
+	//PlayerInputComponent->BindAxis("Turn Right / Left Mouse", this, &APawn::AddControllerYawInput);
 	PlayerInputComponent->BindAxis("Turn Right / Left Gamepad", this, &ACharacterBase::TurnAtRate);
-	PlayerInputComponent->BindAxis("Look Up / Down Mouse", this, &APawn::AddControllerPitchInput);
+	//PlayerInputComponent->BindAxis("Look Up / Down Mouse", this, &APawn::AddControllerPitchInput);
 	PlayerInputComponent->BindAxis("Look Up / Down Gamepad", this, &ACharacterBase::LookUpAtRate);
 
 	// handle touch devices
 	PlayerInputComponent->BindTouch(IE_Pressed, this, &ACharacterBase::TouchStarted);
 	PlayerInputComponent->BindTouch(IE_Released, this, &ACharacterBase::TouchStopped);
+}
+
+
+
+
+void ACharacterBase::BeginPlay()
+{
+	Super::BeginPlay();
+	//MiniMap->SetRelativeLocation(FVector(100,0,-40));
+	//MiniMap->SetRelativeRotation(FRotator(0,270,60));
+	//MiniMap->SetRelativeScale3D(FVector(0.3,0.3,0.3));
+	
+	//各Behaviourの初期設定
+	BH1.TurboDuration = 3;
+	BH1.RotateSpeed = 30;
+	BH1.RotateDir = BH1.RotateSum = BH1.TurboTimer = 0;
+	BH1.IsTurbo = false;
+
+	//Behaviourを設定
+	BehaviourNumber = 1;
+}
+
+void ACharacterBase::Tick(const float DeltaSeconds)
+{
+	Super::Tick(DeltaSeconds);
+	TimeSinceCreated+=DeltaSeconds;
+
+	//Behaviour
+	switch (BehaviourNumber)
+	{
+	case 1:
+		
+
+		//ターボ関連
+		if (BH1.IsTurbo) {
+			BH1.TurboTimer += DeltaSeconds;
+			if (BH1.TurboTimer >= BH1.TurboDuration) {
+				GetCharacterMovement()->MaxWalkSpeed = MaxSpeed;
+				BH1.TurboTimer = 0;
+				BH1.IsTurbo = false;
+			}
+		}
+		//回転関連
+		if (BH1.RotateDir != 0) {
+			float PredictedRotateSum = BH1.RotateSum + BH1.RotateSpeed * DeltaSeconds;
+			UE_LOG(LogTemp, Log, TEXT("%f"), PredictedRotateSum);
+			if (PredictedRotateSum >= 90) {
+				RootComponent->AddWorldRotation(FRotator(0.f, (90 - BH1.RotateSum) * BH1.RotateDir, 0.f));
+				BH1.RotateDir = 0;
+				BH1.RotateSum = 0;
+			}
+			else {
+				RootComponent->AddWorldRotation(FRotator(0.f, BH1.RotateSpeed * DeltaSeconds * BH1.RotateDir, 0.f));
+				BH1.RotateSum += BH1.RotateSpeed * DeltaSeconds;
+			}
+		}
+		//前に進む
+		if (BH1.RotateDir == 0) {
+			FVector ForwardVector = FRotationMatrix(FRotator(0, Controller->GetControlRotation().Yaw, 0)).GetUnitAxis(EAxis::X);
+			AddMovementInput(ForwardVector, 1);
+		}
+		break;
+	}
+}
+
+void ACharacterBase::MoveForward(float Value)
+{
+	/*
+	if ((Controller != nullptr) && (Value != 0.0f))
+	{
+		// find out which way is forward
+		const FRotator Rotation = Controller->GetControlRotation();
+		const FRotator YawRotation(0, Rotation.Yaw, 0);
+
+		// get forward vector
+		const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
+		AddMovementInput(Direction, Value);
+	}
+	*/
+}
+
+void ACharacterBase::MoveRight(float Value)
+{
+	switch (BehaviourNumber)
+	{
+	case 1:
+		//回転を開始する
+		if (BH1.RotateDir == 0) {
+			if (Value > 0)BH1.RotateDir = 1;
+			else if (Value < 0)BH1.RotateDir = -1;
+		}
+		break;
+	}
+	/*
+	if ( (Controller != nullptr) && (Value != 0.0f) )
+	{
+		// find out which way is right
+		const FRotator Rotation = Controller->GetControlRotation();
+		const FRotator YawRotation(0, Rotation.Yaw, 0);
+	
+		// get right vector 
+		const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
+		// add movement in that direction
+		AddMovementInput(Direction, Value);
+	}
+	*/
+}
+
+void ACharacterBase::Action1() {
+	switch (BehaviourNumber)
+	{
+	case 1:
+		if (!BH1.IsTurbo) {
+			GetCharacterMovement()->MaxWalkSpeed = TurboSpeed;
+			BH1.IsTurbo = true;
+		}
+		break;
+	}
 }
 
 void ACharacterBase::TouchStarted(ETouchIndex::Type FingerIndex, FVector Location)
@@ -119,48 +267,4 @@ void ACharacterBase::LookUpAtRate(float Rate)
 {
 	// calculate delta for this frame from the rate information
 	AddControllerPitchInput(Rate * TurnRateGamepad * GetWorld()->GetDeltaSeconds());
-}
-
-void ACharacterBase::BeginPlay()
-{
-	Super::BeginPlay();
-	//MiniMap->SetRelativeLocation(FVector(100,0,-40));
-	//MiniMap->SetRelativeRotation(FRotator(0,270,60));
-	//MiniMap->SetRelativeScale3D(FVector(0.3,0.3,0.3));
-	
-}
-
-void ACharacterBase::Tick(const float DeltaSeconds)
-{
-	Super::Tick(DeltaSeconds);
-	TimeSinceCreated+=DeltaSeconds;
-}
-
-void ACharacterBase::MoveForward(float Value)
-{
-	if ((Controller != nullptr) && (Value != 0.0f))
-	{
-		// find out which way is forward
-		const FRotator Rotation = Controller->GetControlRotation();
-		const FRotator YawRotation(0, Rotation.Yaw, 0);
-
-		// get forward vector
-		const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
-		AddMovementInput(Direction, Value);
-	}
-}
-
-void ACharacterBase::MoveRight(float Value)
-{
-	if ( (Controller != nullptr) && (Value != 0.0f) )
-	{
-		// find out which way is right
-		const FRotator Rotation = Controller->GetControlRotation();
-		const FRotator YawRotation(0, Rotation.Yaw, 0);
-	
-		// get right vector 
-		const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
-		// add movement in that direction
-		AddMovementInput(Direction, Value);
-	}
 }
