@@ -54,12 +54,14 @@ ACharacterBase::ACharacterBase()
 	FollowCamera->SetupAttachment(CameraBoom, USpringArmComponent::SocketName); // Attach the camera to the end of the boom and let the boom adjust to match the controller orientation
 	FollowCamera->bUsePawnControlRotation = false; // Camera does not rotate relative to arm
 
+	/*ˆê’UMiniMap‚Í‚È‚µ‚Å
 	MiniMap = CreateDefaultSubobject<UMiniMapComponent>(TEXT("MiniMap"));
 	MiniMap->SetupAttachment(CameraBoom);
 	MiniMap->SetRelativeLocation(FVector(200,0,-30));
 	MiniMap->SetRelativeRotation(FRotator(0,270,0));
 	MiniMap->SetRelativeScale3D(FVector(0.3,0.3,0.3));
 	MiniMap->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	*/
 
 	LimitCount = CreateDefaultSubobject<ULimitCountComponent>(TEXT("LimitCount"));
 	LimitCount->SetupAttachment(CameraBoom);
