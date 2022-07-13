@@ -1,4 +1,8 @@
-// Copyright Epic Games, Inc. All Rights Reserved.
+/*
+追う側と逃げる側双方の元となるクラス
+共通要素を設定したり、共通する動きを実装したりする
+子クラスでは、それぞれに独自の要素(メッシュや、システム上の役割)を実装する
+*/
 
 #include "CharacterBase.h"
 #include "Camera/CameraComponent.h"
