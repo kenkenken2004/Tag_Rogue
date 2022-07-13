@@ -3,3 +3,7 @@
 
 #include "Tag_RogueGameModeBase.h"
 
+void ATag_RogueGameModeBase::OnPostLogin(AController* NewPlayer)
+{
+	Super::OnPostLogin(NewPlayer);
+}

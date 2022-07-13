@@ -38,10 +38,8 @@ public:
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType,
 	                           FActorComponentTickFunction* ThisTickFunction) override;
-	UFUNCTION(Server,Reliable)
 	void Initialize();
-	UFUNCTION(Server, Reliable)
-	void UpdateMapDirection();
+	void UpdateMapDirection() const;
 	UTexture* CreateMiniMapTexture() const;
 	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty> &OutLifetimeProps)const override;
 };

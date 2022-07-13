@@ -26,6 +26,7 @@ public:
 	UPROPERTY(VisibleAnywhere)
 	int32 IntRemainingTime = 0;
 	bool bIsAssetDataLoaded = false;
+	bool bShouldSChangeNumbers = false;
 
 	UPROPERTY()
 	URogueAlpha_MapGenerator* MapGenerator;

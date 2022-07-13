@@ -35,11 +35,8 @@ public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType,
 	                           FActorComponentTickFunction* ThisTickFunction) override;
 
-	UFUNCTION(Server, Reliable)
 	void Initialize();
-	UFUNCTION(Server, Reliable)
-	void CheckShouldUpdateNumbers(float DeltaTime);
-	UFUNCTION(Server, Reliable)
+	void CheckShouldUpdateNumbers(float DeltaTime) const;
 	void UpdateNumbers() const;
 	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty> &OutLifetimeProps)const override;
 };

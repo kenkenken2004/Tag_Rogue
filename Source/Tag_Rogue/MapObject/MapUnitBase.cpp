@@ -24,7 +24,7 @@ AMapUnitBase::AMapUnitBase()
 	BodyComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("MapUnit"));
 	SetRootComponent(BodyComponent);
 	BodyComponent->SetRelativeScale3D(FVector(1,1,2));
-	SetReplicates(true);
+	bReplicates = true;
 	BodyComponent->SetIsReplicated(true);
 }
 

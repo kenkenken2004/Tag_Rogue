@@ -21,7 +21,7 @@ ULimitCountComponent::ULimitCountComponent()
 void ULimitCountComponent::BeginPlay()
 {
 	Super::BeginPlay();
-	OwnerPlayer = static_cast<ACharacterBase*>(GetAttachmentRootActor());
+	
 }
 
 
@@ -30,15 +30,13 @@ void ULimitCountComponent::TickComponent(const float DeltaTime, const ELevelTick
                                          FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-	AddRelativeLocation(FVector(0,0,3*DeltaTime*FMath::Cos(OwnerPlayer->TimeSinceCreated/0.5*2*PI)));
 	// ...
 }
 
-void ULimitCountComponent::CheckShouldUpdateNumbers_Implementation(const float DeltaTime)
+void ULimitCountComponent::CheckShouldUpdateNumbers(const float DeltaTime) const
 {
-	if(FMath::CeilToInt32(GameInstance->FloatRemainingTime) < GameInstance->IntRemainingTime)
+	if(GameInstance->bShouldSChangeNumbers)
 	{
-		GameInstance->IntRemainingTime = FMath::CeilToInt32(GameInstance->FloatRemainingTime);
 		UpdateNumbers();
 	}
 }
@@ -52,7 +50,7 @@ void ULimitCountComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>&
 	DOREPLIFETIME(ULimitCountComponent, OwnerPlayer);
 }
 
-void ULimitCountComponent::UpdateNumbers_Implementation() const
+void ULimitCountComponent::UpdateNumbers() const
 {
 	FString Left = TEXT("Tr2n_");
 	Left.AppendInt('0'+GameInstance->IntRemainingTime/10);
@@ -62,11 +60,11 @@ void ULimitCountComponent::UpdateNumbers_Implementation() const
 	UTexture* TRight = GameInstance->GetAssetObject<UTexture>(FName(Right));
     DigitLeft->SetTextureParameterValue(TEXT("Letter"), TLeft);
     DigitRight->SetTextureParameterValue(TEXT("Letter"), TRight);
-	UE_LOG(LogTemp, Warning, TEXT("%s"), *OwnerPlayer->GetName())
 }
 
-void ULimitCountComponent::Initialize_Implementation()
+void ULimitCountComponent::Initialize()
 {
+	OwnerPlayer = static_cast<ACharacterBase*>(GetAttachmentRootActor());
 	GameInstance = static_cast<UTag_RogueGameInstance*>(GetOwner()->GetGameInstance());
 	GameInstance->LoadAssets();
 	DisplayMesh = GameInstance->GetAssetObject<UStaticMesh>(TEXT("CountDisplay"));

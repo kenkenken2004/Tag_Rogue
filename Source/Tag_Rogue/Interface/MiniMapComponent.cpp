@@ -22,7 +22,6 @@ UMiniMapComponent::UMiniMapComponent()
 void UMiniMapComponent::BeginPlay()
 {
 	Super::BeginPlay();
-	Initialize();
 }
 
 
@@ -31,11 +30,10 @@ void UMiniMapComponent::TickComponent(float DeltaTime, ELevelTick TickType,
                                       FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-	AddRelativeLocation(FVector(0,0,3*DeltaTime*FMath::Cos(OwnerPlayer->TimeSinceCreated/1.0*2*PI)));
 	// ...
 }
 
-void UMiniMapComponent::Initialize_Implementation()
+void UMiniMapComponent::Initialize()
 {
 	OwnerPlayer = static_cast<ACharacterBase*>(GetAttachmentRootActor());
 	GameInstance = static_cast<UTag_RogueGameInstance*>(GetOwner()->GetGameInstance());
@@ -52,7 +50,7 @@ void UMiniMapComponent::Initialize_Implementation()
 	MapMaterial->SetScalarParameterValue(TEXT("Scale"),0.25);
 }
 
-void UMiniMapComponent::UpdateMapDirection_Implementation()
+void UMiniMapComponent::UpdateMapDirection() const
 {
 	MapMaterial->SetScalarParameterValue(TEXT("Rotation"),(OwnerPlayer->GetControlRotation().Yaw+90)/360.0);
 }

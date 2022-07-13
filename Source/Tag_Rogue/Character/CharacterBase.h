@@ -69,9 +69,8 @@ public:
 	/** Returns FollowCamera subobject **/
 	FORCEINLINE class UCameraComponent* GetFollowCamera() const { return FollowCamera; }
 
-	UFUNCTION(Server, Reliable)
+	UFUNCTION(Server,Reliable)
 	void SpawnRandom();
-
 	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty> &OutLifetimeProps)const override;
 };
 

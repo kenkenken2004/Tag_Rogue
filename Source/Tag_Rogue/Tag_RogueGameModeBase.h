@@ -13,4 +13,6 @@ UCLASS()
 class TAG_ROGUE_API ATag_RogueGameModeBase : public AGameModeBase
 {
 	GENERATED_BODY()
+
+	virtual void OnPostLogin(AController* NewPlayer) override;
 };

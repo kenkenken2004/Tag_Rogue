@@ -24,7 +24,7 @@ AHoloGlobe::AHoloGlobe()
 	Orbit3->SetupAttachment(CollisionMesh);
 	GlobeInitialPos = FVector(0,0,600);
 	SetActorScale3D(FVector(0.5,0.5,0.5));
-	SetReplicates(true);
+	bReplicates = true;
 }
 
 // Called when the game starts or when spawned

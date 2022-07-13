@@ -10,34 +10,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cf331540-c7ba-40e0-a96e-46ca470ed1b0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Content/Characters/BasicCharacter.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Tag_Rogue.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Tag_Rogue.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Config/DefaultEngine.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultEngine.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Characters/Character.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Characters/TagPlayerController.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Characters/TagPlayerController.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Level/GamePlayWorld.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Level/GamePlayWorld.umap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Level/MenuWorld.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Level/MenuWorld.umap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/MapObject/Gate/TitleMapGate.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/MapObject/Gate/TitleMapGate.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/TagGameMode.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/TagGameMode.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Character/CharacterBase.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Character/CharacterBase.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Character/CharacterBase.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Character/CharacterBase.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Interface/LimitCountComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Interface/LimitCountComponent.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Interface/LimitCountComponent.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Interface/LimitCountComponent.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Interface/MiniMapComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Interface/MiniMapComponent.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Interface/MiniMapComponent.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Interface/MiniMapComponent.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Level/GameMap_Alpha.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Level/GameMap_Alpha.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Level/GameMap_Alpha.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Level/GameMap_Alpha.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Level/TitleLevel.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Level/TitleLevel.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Map/TerrainMaker.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Map/TerrainMaker.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Map/TerrainMaker.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Map/TerrainMaker.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/MapObject/HoloGlobe.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/MapObject/HoloGlobe.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/MapObject/MapGate.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/MapObject/MapGate.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/MapObject/MapGate.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/MapObject/MapGate.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/MapObject/MapUnitBase.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/MapObject/MapUnitBase.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Tag_RogueGameInstance.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Tag_RogueGameInstance.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Tag_RogueGameInstance.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Tag_RogueGameInstance.h" afterDir="false" />
-    </list>
+    <list default="true" id="cf331540-c7ba-40e0-a96e-46ca470ed1b0" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -176,7 +149,7 @@
       <workItem from="1657504932502" duration="2710000" />
       <workItem from="1657517020198" duration="3768000" />
       <workItem from="1657634374466" duration="1017000" />
-      <workItem from="1657688688647" duration="23613000" />
+      <workItem from="1657688688647" duration="33231000" />
     </task>
     <servers />
   </component>

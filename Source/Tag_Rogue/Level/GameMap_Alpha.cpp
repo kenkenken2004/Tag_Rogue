@@ -3,11 +3,6 @@
 #include "Kismet/GameplayStatics.h"
 #include "Tag_Rogue/Interface/LimitCountComponent.h"
 
-void AGameMap_Alpha::TickOnServer_Implementation(const float DeltaSecond)
-{
-	if(GameInstance->FloatRemainingTime>0)GameInstance->FloatRemainingTime -= DeltaSecond;
-}
-
 AGameMap_Alpha::AGameMap_Alpha()
 {
 	PrimaryActorTick.bCanEverTick = true;
@@ -17,7 +12,16 @@ AGameMap_Alpha::AGameMap_Alpha()
 void AGameMap_Alpha::Tick(const float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
-	TickOnServer(DeltaSeconds);
+	if(IsValid(GameInstance) && GameInstance->FloatRemainingTime>0)
+	{
+		GameInstance->bShouldSChangeNumbers = false;
+		GameInstance->FloatRemainingTime -= DeltaSeconds;
+		if(FMath::CeilToInt32(GameInstance->FloatRemainingTime) < GameInstance->IntRemainingTime)
+		{
+			GameInstance->IntRemainingTime = FMath::CeilToInt32(GameInstance->FloatRemainingTime);
+			GameInstance->bShouldSChangeNumbers = true;
+		}
+	}
 }
 
 

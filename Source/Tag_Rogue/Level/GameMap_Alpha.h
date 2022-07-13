@@ -24,8 +24,6 @@ protected:
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 	UFUNCTION(BlueprintCallable, Server, Reliable)
 	void Initialize(UGameInstance* GameIns);
-	UFUNCTION(Server, Reliable)
-	void TickOnServer(float DeltaSecond);
 
 public:
 	AGameMap_Alpha();
