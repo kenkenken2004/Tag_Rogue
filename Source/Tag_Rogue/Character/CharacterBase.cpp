@@ -20,16 +20,16 @@
 
 ACharacterBase::ACharacterBase()
 {
-	// Set size for collision capsule
-	GetCapsuleComponent()->InitCapsuleSize(42.f, 96.0f);
-
+	//コライダーの形を初期化
+	GetCapsuleComponent()->InitCapsuleSize(84.f, 96.0f);
+	/*よくわからん設定を一旦ポイ
 	// set our turn rate for input
 	TurnRateGamepad = 50.f;
 
 	// Don't rotate when the controller rotates. Let that just affect the camera.
-	bUseControllerRotationPitch = false;
-	bUseControllerRotationYaw = false;
-	bUseControllerRotationRoll = false;
+	bUseControllerRotationPitch = true;
+	bUseControllerRotationYaw = true;
+	bUseControllerRotationRoll = true;
 
 	// Configure character movement
 	GetCharacterMovement()->bOrientRotationToMovement = true; // Character moves in the direction of input...	
@@ -42,30 +42,33 @@ ACharacterBase::ACharacterBase()
 	GetCharacterMovement()->MaxWalkSpeed = 500.f;
 	GetCharacterMovement()->MinAnalogWalkSpeed = 20.f;
 	GetCharacterMovement()->BrakingDecelerationWalking = 2000.f;
+	*/
 	
-	// Create a camera boom (pulls in towards the player if there is a collision)
+
+	// CameraBoomを設定
 	CameraBoom = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraBoom"));
 	CameraBoom->SetupAttachment(RootComponent);
 	CameraBoom->TargetArmLength = 400.0f; // The camera follows at this distance behind the character	
 	CameraBoom->bUsePawnControlRotation = true; // Rotate the arm based on the controller
 
-	// Create a follow camera
+	// カメラを設定
 	FollowCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("FollowCamera"));
 	FollowCamera->SetupAttachment(CameraBoom, USpringArmComponent::SocketName); // Attach the camera to the end of the boom and let the boom adjust to match the controller orientation
 	FollowCamera->bUsePawnControlRotation = false; // Camera does not rotate relative to arm
 
-	/*一旦MiniMapはなしで
+	/*一旦MiniMapとLimitCountはなしで
 	MiniMap = CreateDefaultSubobject<UMiniMapComponent>(TEXT("MiniMap"));
 	MiniMap->SetupAttachment(CameraBoom);
 	MiniMap->SetRelativeLocation(FVector(200,0,-30));
 	MiniMap->SetRelativeRotation(FRotator(0,270,0));
 	MiniMap->SetRelativeScale3D(FVector(0.3,0.3,0.3));
 	MiniMap->SetCollisionEnabled(ECollisionEnabled::NoCollision);
-	*/
+	
 
 	LimitCount = CreateDefaultSubobject<ULimitCountComponent>(TEXT("LimitCount"));
 	LimitCount->SetupAttachment(CameraBoom);
 	LimitCount->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	*/
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named ThirdPersonCharacter (to avoid direct content references in C++)
 }
@@ -121,9 +124,9 @@ void ACharacterBase::LookUpAtRate(float Rate)
 void ACharacterBase::BeginPlay()
 {
 	Super::BeginPlay();
-	MiniMap->SetRelativeLocation(FVector(100,0,-40));
-	MiniMap->SetRelativeRotation(FRotator(0,270,60));
-	MiniMap->SetRelativeScale3D(FVector(0.3,0.3,0.3));
+	//MiniMap->SetRelativeLocation(FVector(100,0,-40));
+	//MiniMap->SetRelativeRotation(FRotator(0,270,60));
+	//MiniMap->SetRelativeScale3D(FVector(0.3,0.3,0.3));
 	
 }
 

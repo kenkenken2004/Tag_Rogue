@@ -22,7 +22,7 @@ void AGameMap_Alpha::Tick(const float DeltaSeconds)
         	if(FMath::CeilToInt32(GameInstance->FloatRemainingTime) < GameInstance->IntRemainingTime)
         	{
         		GameInstance->IntRemainingTime = FMath::CeilToInt32(GameInstance->FloatRemainingTime);
-        		Player0->LimitCount->UpdateNumbers();
+        		//Player0->LimitCount->UpdateNumbers();
         	}
 	}
 }
@@ -70,8 +70,8 @@ APawn* AGameMap_Alpha::SpawnPlayer() const
 	}
 	
 	Player0->SetActorLocation(TerrainMaker->Cie_Convert(Y,X,CellSize));
-	Player0->MiniMap->Initialize(Generator, TerrainMaker);
-	Player0->LimitCount->Initialize();
-	Player0->LimitCount->UpdateNumbers();
+	//Player0->MiniMap->Initialize(Generator, TerrainMaker);
+	//Player0->LimitCount->Initialize();
+	//Player0->LimitCount->UpdateNumbers();
 	return Player0;
 }

@@ -4,5 +4,7 @@
 #include "CharacterFugitive.h"
 
 ACharacterFugitive::ACharacterFugitive() {
-	//UE_LOG(LogTemp, Warning, TEXT("%s"), "aaa");
+	UE_LOG(LogTemp, Warning, TEXT("aaaaa"));
+	//ƒƒbƒVƒ…‚ğİ’è
+
 }

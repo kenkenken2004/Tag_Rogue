@@ -22,11 +22,12 @@ class ACharacterBase : public ACharacter
 
 public:
 	ACharacterBase();
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
-	class UMiniMapComponent* MiniMap;
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
-	class ULimitCountComponent* LimitCount;
-	/** Base turn rate, in deg/sec. Other scaling may affect final turn rate. */
+
+	//UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
+	//class UMiniMapComponent* MiniMap;
+	//UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
+	//class ULimitCountComponent* LimitCount;
+
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Input)
 	float TurnRateGamepad;
 	float TimeSinceCreated = 0;
