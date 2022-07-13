@@ -4,6 +4,7 @@
 #include "MiniMapComponent.h"
 
 #include "CADKernel/UI/Display.h"
+#include "Net/UnrealNetwork.h"
 #include "Tag_Rogue/Character/CharacterBase.h"
 
 
@@ -13,7 +14,6 @@ UMiniMapComponent::UMiniMapComponent()
 	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
 	// off to improve performance if you don't need them.
 	PrimaryComponentTick.bCanEverTick = true;
-
 	// ...
 }
 
@@ -22,9 +22,7 @@ UMiniMapComponent::UMiniMapComponent()
 void UMiniMapComponent::BeginPlay()
 {
 	Super::BeginPlay();
-	OwnerPlayer = static_cast<ACharacterBase*>(GetAttachmentRootActor());
-	// ...
-	
+	Initialize();
 }
 
 
@@ -33,16 +31,17 @@ void UMiniMapComponent::TickComponent(float DeltaTime, ELevelTick TickType,
                                       FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-	MapMaterial->SetScalarParameterValue(TEXT("Rotation"),(OwnerPlayer->GetControlRotation().Yaw+90)/360.0);
 	AddRelativeLocation(FVector(0,0,3*DeltaTime*FMath::Cos(OwnerPlayer->TimeSinceCreated/1.0*2*PI)));
 	// ...
 }
 
-void UMiniMapComponent::Initialize(URogueAlpha_MapGenerator* Gen, UTerrainMaker* Ter)
+void UMiniMapComponent::Initialize_Implementation()
 {
-	Generater = Gen;
-	Maker = Ter;
+	OwnerPlayer = static_cast<ACharacterBase*>(GetAttachmentRootActor());
 	GameInstance = static_cast<UTag_RogueGameInstance*>(GetOwner()->GetGameInstance());
+	GameInstance->InitializeMapBuilders();
+	Generater = GameInstance->MapGenerator;
+	Maker = GameInstance->TerrainMaker;
 	GameInstance->LoadAssets();
 	DisplayMesh = GameInstance->GetAssetObject<UStaticMesh>(TEXT("SF_Display"));
 	SetStaticMesh(DisplayMesh);
@@ -51,6 +50,11 @@ void UMiniMapComponent::Initialize(URogueAlpha_MapGenerator* Gen, UTerrainMaker*
 	MapMaterial->SetScalarParameterValue(TEXT("MapHeight"),Generater->MapHeight*Maker->CellSize);
 	MapMaterial->SetScalarParameterValue(TEXT("MapWidth"),Generater->MapWidth*Maker->CellSize);
 	MapMaterial->SetScalarParameterValue(TEXT("Scale"),0.25);
+}
+
+void UMiniMapComponent::UpdateMapDirection_Implementation()
+{
+	MapMaterial->SetScalarParameterValue(TEXT("Rotation"),(OwnerPlayer->GetControlRotation().Yaw+90)/360.0);
 }
 
 UTexture* UMiniMapComponent::CreateMiniMapTexture() const
@@ -95,4 +99,12 @@ UTexture* UMiniMapComponent::CreateMiniMapTexture() const
 	free(Pixels);
 	Pixels = nullptr;
 	return Texture;
+}
+
+void UMiniMapComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
+{
+	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+	DOREPLIFETIME(UMiniMapComponent, OwnerPlayer);
+	DOREPLIFETIME(UMiniMapComponent, DisplayMesh);
+	DOREPLIFETIME(UMiniMapComponent, MapMaterial);
 }

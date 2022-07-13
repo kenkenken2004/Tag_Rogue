@@ -5,22 +5,22 @@
 #include "CoreMinimal.h"
 #include "Components/BoxComponent.h"
 #include "Engine/StaticMeshActor.h"
-#include "GameFramework/Actor.h"
 #include "Tag_Rogue/Tag_RogueGameInstance.h"
 #include "MapGate.generated.h"
+
+UENUM(BlueprintType)
+enum struct EGateState: uint8
+{
+	Opening UMETA(DisplayName="Opening"),
+	Closing UMETA(DisplayName="Closing"),
+	Opened UMETA(DisplayName="Opened"),
+	Closed UMETA(DisplayName="Closed")
+};
 
 UCLASS()
 class TAG_ROGUE_API AMapGate final : public AStaticMeshActor
 {
 	GENERATED_BODY()
-	enum struct EGateState
-	{
-		Opening,
-		Closing,
-		Opened,
-		Closed
-	};
-	
 	UPROPERTY()
 	UTag_RogueGameInstance* GameInstance;
 	UPROPERTY()
@@ -41,6 +41,7 @@ class TAG_ROGUE_API AMapGate final : public AStaticMeshActor
 	UStaticMesh* InnerBottomGateMesh;
 	UPROPERTY()
 	UStaticMesh* InnerTopGateMesh;
+	UPROPERTY(Replicated)
 	EGateState GateState = EGateState::Closed;
 	const float GateOpenedHeight = 60.0;
 	float GateHeight = 0;
@@ -63,8 +64,12 @@ protected:
 	void OnOverlapBegin(UPrimitiveComponent* OverlappedComponent,AActor* OtherActor,UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult &SweepResult);
 	UFUNCTION()
 	void OnComponentOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
-
+	
+	
 public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty> &OutLifetimeProps)const override;
+
 };
+

@@ -2,7 +2,6 @@
 
 
 #include "Tag_RogueGameInstance.h"
-
 #include "AssetRegistry/AssetRegistryModule.h"
 
 UTag_RogueGameInstance::UTag_RogueGameInstance()
@@ -10,7 +9,7 @@ UTag_RogueGameInstance::UTag_RogueGameInstance()
 	AssetDatas = TMap<FName, FAssetData>();
 }
 
-UTag_RogueGameInstance* UTag_RogueGameInstance::GetInstance()
+UTag_RogueGameInstance* UTag_RogueGameInstance::GetInstance() const
 {
 	if (GEngine)return Cast<UTag_RogueGameInstance>(GEngine->GetWorldContextFromGameViewport(GEngine->GameViewport)->OwningGameInstance);
 	return nullptr;
@@ -36,4 +35,19 @@ void UTag_RogueGameInstance::LoadAssets()
 		}
 	}
 	bIsAssetDataLoaded = true;
+}
+
+void UTag_RogueGameInstance::InitializeMapBuilders()
+{
+	if(IsValid(MapGenerator))return;
+	MapGenerator = NewObject<URogueAlpha_MapGenerator>(GetWorld());
+	MapGenerator->Construct(GameMapHeight,GameMapWidth);
+	MapGenerator->SetStructureParam(UMapGeneratorBase::EType::Plaza, PlazaSize, PlazaSize, PlazaNum);
+	MapGenerator->SetStructureParam(UMapGeneratorBase::EType::Room, RoomSize, RoomSize, RoomNum);
+	TerrainMaker = NewObject<UTerrainMaker>(GetWorld());
+	TerrainMaker->Construct(MapGenerator,CellSize);
+	MapGenerator->BuildMap();
+	MapGenerator->GetStructureString();
+	FloatRemainingTime = GameTimeLimit;
+	IntRemainingTime = GameTimeLimit;
 }

@@ -1,10 +1,12 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 #include "GameMap_Alpha.h"
 #include "Kismet/GameplayStatics.h"
-#include "Tag_Rogue/Character/CharacterBase.h"
 #include "Tag_Rogue/Interface/LimitCountComponent.h"
-#include "Tag_Rogue/Interface/MiniMap.h"
-#include "Tag_Rogue/Interface/MiniMapComponent.h"
+
+void AGameMap_Alpha::TickOnServer_Implementation(const float DeltaSecond)
+{
+	if(GameInstance->FloatRemainingTime>0)GameInstance->FloatRemainingTime -= DeltaSecond;
+}
 
 AGameMap_Alpha::AGameMap_Alpha()
 {
@@ -15,15 +17,7 @@ AGameMap_Alpha::AGameMap_Alpha()
 void AGameMap_Alpha::Tick(const float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
-	if(IsValidChecked(GameInstance))
-	{
-		if(GameInstance->FloatRemainingTime>0)GameInstance->FloatRemainingTime -= DeltaSeconds;
-        	if(FMath::CeilToInt32(GameInstance->FloatRemainingTime) < GameInstance->IntRemainingTime)
-        	{
-        		GameInstance->IntRemainingTime = FMath::CeilToInt32(GameInstance->FloatRemainingTime);
-        		Player0->LimitCount->UpdateNumbers();
-        	}
-	}
+	TickOnServer(DeltaSeconds);
 }
 
 
@@ -38,38 +32,10 @@ void AGameMap_Alpha::EndPlay(const EEndPlayReason::Type EndPlayReason)
 	Super::EndPlay(EndPlayReason);
 }
 
-void AGameMap_Alpha::Initialize(UGameInstance* GameIns)
+void AGameMap_Alpha::Initialize_Implementation(UGameInstance* GameIns)
 {
-	Player0 = static_cast<ACharacterBase*>(UGameplayStatics::GetPlayerPawn(this, 0));
 	GameInstance = static_cast<UTag_RogueGameInstance*>(GameIns);
 	GameInstance->LoadAssets();
-	Generator = NewObject<URogueAlpha_MapGenerator>(GetWorld());
-	Generator->Construct(GameMapHeight,GameMapWidth);
-	Generator->SetStructureParam(UMapGeneratorBase::EType::Plaza, PlazaSize, PlazaSize, PlazaNum);
-	Generator->SetStructureParam(UMapGeneratorBase::EType::Room, RoomSize, RoomSize, RoomNum);
-	TerrainMaker = NewObject<UTerrainMaker>(GetWorld());
-	TerrainMaker->Construct(Generator,GameInstance,CellSize);
-	Generator->BuildMap();
-	TerrainMaker->Build();
-	SpawnPlayer();
-	Generator->GetStructureString();
-	GameInstance->FloatRemainingTime = GameTimeLimit;
-	GameInstance->IntRemainingTime = GameTimeLimit;
-}
-
-APawn* AGameMap_Alpha::SpawnPlayer() const
-{
-	
-	int32 X=0;int32 Y=0;
-	while (Generator->GetCell(Y,X)->Attribution==UMapGeneratorBase::EType::Wall)
-	{
-		X = FMath::RandRange(0,Generator->MapWidth-1);
-		Y = FMath::RandRange(0,Generator->MapHeight-1);
-	}
-	
-	Player0->SetActorLocation(TerrainMaker->Cie_Convert(Y,X,CellSize));
-	Player0->MiniMap->Initialize(Generator, TerrainMaker);
-	Player0->LimitCount->Initialize();
-	Player0->LimitCount->UpdateNumbers();
-	return Player0;
+	GameInstance->InitializeMapBuilders();
+	GameInstance->TerrainMaker->Build();
 }

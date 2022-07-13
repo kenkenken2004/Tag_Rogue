@@ -15,17 +15,17 @@ class TAG_ROGUE_API UMiniMapComponent final : public UStaticMeshComponent
 {
 	GENERATED_BODY()
 public:
-	UPROPERTY()
+	UPROPERTY(Replicated)
 	ACharacterBase* OwnerPlayer;
 	UPROPERTY()
 	UTag_RogueGameInstance* GameInstance;
-	UPROPERTY()
+	UPROPERTY(Replicated)
 	UStaticMesh* DisplayMesh;
 	UPROPERTY()
 	URogueAlpha_MapGenerator* Generater;
 	UPROPERTY()
 	UTerrainMaker* Maker;
-	UPROPERTY()
+	UPROPERTY(Replicated)
 	UMaterialInstanceDynamic* MapMaterial;
 	// Sets default values for this component's properties
 	UMiniMapComponent();
@@ -38,7 +38,11 @@ public:
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType,
 	                           FActorComponentTickFunction* ThisTickFunction) override;
-
-	void Initialize(URogueAlpha_MapGenerator* Gen, UTerrainMaker*);
+	UFUNCTION(Server,Reliable)
+	void Initialize();
+	UFUNCTION(Server, Reliable)
+	void UpdateMapDirection();
 	UTexture* CreateMiniMapTexture() const;
+	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty> &OutLifetimeProps)const override;
 };
+
