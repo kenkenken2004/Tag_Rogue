@@ -9,8 +9,9 @@ ACharacterFugitive::ACharacterFugitive() {
 	SetMesh(TEXT("/Game/Characters/OriginalCharacter/CleaningRobot/CleaningRobot"));
 
 	//behaviourÇê›íË
-	BehaviourNumber = 1;
-	BH1.MaxSpeed = 300;
-	BH1.TurboSpeed = 600;
+	BehaviourNumber = 2;
+	BH2.MaxSpeed = 300;
+	BH2.TurboSpeed = 600;
+	BH2.RotateSpeed = 0.6;
 	ReloadWalkSpeed();
 }

@@ -49,7 +49,7 @@ ACharacterBase::ACharacterBase()
 	// CameraBoomを設定
 	CameraBoom = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraBoom"));
 	CameraBoom->SetupAttachment(GetCapsuleComponent());
-	CameraBoom->TargetArmLength = 100.0f; // The camera follows at this distance behind the character	
+	CameraBoom->TargetArmLength = 400.0f; // The camera follows at this distance behind the character	
 	CameraBoom->bUsePawnControlRotation = true; // Rotate the arm based on the controller
 
 	// カメラを設定
@@ -70,6 +70,9 @@ ACharacterBase::ACharacterBase()
 	LimitCount->SetupAttachment(CameraBoom);
 	LimitCount->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 	*/
+
+	//Behaviourを初期設定　派生クラスから好きに番号を変えたり、BHnの中身を変えたりしてよい
+	BehaviourNumber = 1;
 }
 
 
@@ -88,6 +91,9 @@ void ACharacterBase::ReloadWalkSpeed() {
 	switch (BehaviourNumber) {
 	case 1:
 		GetCharacterMovement()->MaxWalkSpeed = BH1.MaxSpeed;
+		break;
+	case 2:
+		GetCharacterMovement()->MaxWalkSpeed = BH2.MaxSpeed;
 		break;
 	}
 	
@@ -111,9 +117,6 @@ void ACharacterBase::BeginPlay()
 	//MiniMap->SetRelativeLocation(FVector(100,0,-40));
 	//MiniMap->SetRelativeRotation(FRotator(0,270,60));
 	//MiniMap->SetRelativeScale3D(FVector(0.3,0.3,0.3));
-	
-	//Behaviourを初期設定　派生クラスから好きに番号を変えたり、BH1の中身を変えたりしてよい
-	BehaviourNumber = 1;
 }
 
 void ACharacterBase::Tick(const float DeltaSeconds)
@@ -125,9 +128,7 @@ void ACharacterBase::Tick(const float DeltaSeconds)
 	switch (BehaviourNumber)
 	{
 	case 1:
-		
-
-		//ターボ関連
+		//ターボ終了
 		if (BH1.IsTurbo) {
 			BH1.TurboTimer += DeltaSeconds;
 			if (BH1.TurboTimer >= BH1.TurboDuration) {
@@ -136,10 +137,9 @@ void ACharacterBase::Tick(const float DeltaSeconds)
 				BH1.IsTurbo = false;
 			}
 		}
-		//回転関連
+		//回転する・回転終了
 		if (BH1.RotateDir != 0) {
 			float PredictedRotateSum = BH1.RotateSum + BH1.RotateSpeed * DeltaSeconds;
-			UE_LOG(LogTemp, Log, TEXT("%f"), PredictedRotateSum);
 			if (PredictedRotateSum >= 90) {
 				Controller->SetControlRotation(Controller->GetControlRotation()+FRotator(0.f, (90 - BH1.RotateSum) * BH1.RotateDir, 0.f));
 				BH1.RotateDir = 0;
@@ -172,6 +172,16 @@ void ACharacterBase::Tick(const float DeltaSeconds)
 
 void ACharacterBase::MoveForward(float Value)
 {
+	switch (BehaviourNumber) {
+	case 1:
+		break;
+	case 2:
+		//前に進む
+		FVector ForwardVector = FRotationMatrix(FRotator(0, Controller->GetControlRotation().Yaw, 0)).GetUnitAxis(EAxis::X);
+		AddMovementInput(ForwardVector, Value);
+		break;
+	}
+
 	/*
 	if ((Controller != nullptr) && (Value != 0.0f))
 	{
@@ -200,7 +210,7 @@ void ACharacterBase::MoveRight(float Value)
 
 	case 2:
 		//左右に回転する
-
+		Controller->SetControlRotation(Controller->GetControlRotation() + FRotator(0.f, BH2.RotateSpeed * Value, 0.f));
 
 		break;
 	}

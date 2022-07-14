@@ -47,8 +47,8 @@ protected:
 		float TurboSpeed = 500;
 		float TurboDuration = 3;//ターボする長さ
 		float TurboTimer = 0;//ターボしている長さ
-		bool IsTurbo = false;//今ターボしているか
-		float RotateSpeed = 180;//回転する速さ(deg/s)
+		bool IsTurbo = false;//今ターボしているか]
+		float RotateSpeed = 1;//回転する速さを表す係数
 	};
 
 	//入力を受け取るやつ
