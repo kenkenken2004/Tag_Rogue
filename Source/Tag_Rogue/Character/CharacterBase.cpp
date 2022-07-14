@@ -26,25 +26,11 @@ ACharacterBase::ACharacterBase()
 	//歩く速さの初期値を適用
 	ReloadWalkSpeed();
 
-	//本番要らなさそうな設定
-	//マウスを動かすと視点が動くが、このときカメラしか動かさないようにする
-	bUseControllerRotationPitch = true;
-	bUseControllerRotationYaw = true;
-	bUseControllerRotationRoll = true;
-	//動いている方向を向かせる
-	GetCharacterMovement()->bOrientRotationToMovement = false;
-	
-
-	///*よくわからん設定を一旦ポイ
-	// set our turn rate for input
-	TurnRateGamepad = 50.f;
-
-	
-
+	//今のところよくわからん設定・要らなさそうな設定
+	//よくわからん設定
 	// Configure character movement
 	 // Character moves in the direction of input...	
 	GetCharacterMovement()->RotationRate = FRotator(0.0f, 500.0f, 0.0f); // ...at this rotation rate
-
 	// Note: For faster iteration times these variables, and many more, can be tweaked in the Character Blueprint
 	// instead of recompiling to adjust them
 	GetCharacterMovement()->JumpZVelocity = 700.f;
@@ -52,9 +38,14 @@ ACharacterBase::ACharacterBase()
 	GetCharacterMovement()->MaxWalkSpeed = 500.f;
 	GetCharacterMovement()->MinAnalogWalkSpeed = 20.f;
 	GetCharacterMovement()->BrakingDecelerationWalking = 2000.f;
-	//*/
-	
+	//要らなさそうな設定
+	//マウスを動かすと視点が動くが、このときカメラしか動かさないようにする
+	bUseControllerRotationPitch = true;
+	bUseControllerRotationYaw = true;
+	bUseControllerRotationRoll = true;
 
+	//動いている方向を向かせる
+	GetCharacterMovement()->bOrientRotationToMovement = false;
 	// CameraBoomを設定
 	CameraBoom = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraBoom"));
 	CameraBoom->SetupAttachment(GetCapsuleComponent());
@@ -102,10 +93,6 @@ void ACharacterBase::ReloadWalkSpeed() {
 	
 }
 
-
-//////////////////////////////////////////////////////////////////////////
-// Input
-
 void ACharacterBase::SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent)
 {
 	//使用したもの
@@ -113,25 +100,6 @@ void ACharacterBase::SetupPlayerInputComponent(class UInputComponent* PlayerInpu
 	PlayerInputComponent->BindAxis("Move Right / Left", this, &ACharacterBase::MoveRight);
 	PlayerInputComponent->BindAction("Action1", IE_Pressed, this, &ACharacterBase::Action1);//アクション1ボタンが押されたらアクション1
 
-
-	// Set up gameplay key bindings
-	check(PlayerInputComponent);
-	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
-	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
-
-	
-
-	// We have 2 versions of the rotation bindings to handle different kinds of devices differently
-	// "turn" handles devices that provide an absolute delta, such as a mouse.
-	// "turnrate" is for devices that we choose to treat as a rate of change, such as an analog joystick
-	//PlayerInputComponent->BindAxis("Turn Right / Left Mouse", this, &APawn::AddControllerYawInput);
-	PlayerInputComponent->BindAxis("Turn Right / Left Gamepad", this, &ACharacterBase::TurnAtRate);
-	//PlayerInputComponent->BindAxis("Look Up / Down Mouse", this, &APawn::AddControllerPitchInput);
-	PlayerInputComponent->BindAxis("Look Up / Down Gamepad", this, &ACharacterBase::LookUpAtRate);
-
-	// handle touch devices
-	PlayerInputComponent->BindTouch(IE_Pressed, this, &ACharacterBase::TouchStarted);
-	PlayerInputComponent->BindTouch(IE_Released, this, &ACharacterBase::TouchStopped);
 }
 
 
@@ -262,26 +230,4 @@ void ACharacterBase::Action1() {
 		}
 		break;
 	}
-}
-
-void ACharacterBase::TouchStarted(ETouchIndex::Type FingerIndex, FVector Location)
-{
-	Jump();
-}
-
-void ACharacterBase::TouchStopped(ETouchIndex::Type FingerIndex, FVector Location)
-{
-	StopJumping();
-}
-
-void ACharacterBase::TurnAtRate(float Rate)
-{
-	// calculate delta for this frame from the rate information
-	AddControllerYawInput(Rate * TurnRateGamepad * GetWorld()->GetDeltaSeconds());
-}
-
-void ACharacterBase::LookUpAtRate(float Rate)
-{
-	// calculate delta for this frame from the rate information
-	AddControllerPitchInput(Rate * TurnRateGamepad * GetWorld()->GetDeltaSeconds());
 }
