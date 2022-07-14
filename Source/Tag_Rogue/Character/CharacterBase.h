@@ -12,7 +12,7 @@ class ACharacterBase : public ACharacter
 	GENERATED_BODY()
 
 //
-//ŠÖ”A\‘¢‘Ì
+//é–¢æ•°ã€æ§‹é€ ä½“
 //
 
 protected:
@@ -20,25 +20,25 @@ protected:
 
 	virtual void Tick(float DeltaSeconds) override;
 
-	void SetMesh(FString path);//ƒƒbƒVƒ…‚ğƒZƒbƒg‚·‚é@”h¶ƒNƒ‰ƒX‚©‚çŒÄ‚Ño‚·
+	void SetMesh(FString path);//ãƒ¡ãƒƒã‚·ãƒ¥ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ã€€æ´¾ç”Ÿã‚¯ãƒ©ã‚¹ã‹ã‚‰å‘¼ã³å‡ºã™
 
-	void ReloadVariables();//•à‚­‘¬‚³‚È‚Ç‚Ìƒpƒ‰ƒ[ƒ^[‚ğA¡‚Ìƒƒ“ƒo•Ï”‚Ì’l‚Éİ’è‚·‚é
+	void ReloadVariables();//æ­©ãé€Ÿã•ãªã©ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼ã‚’ã€ä»Šã®ãƒ¡ãƒ³ãƒå¤‰æ•°ã®å€¤ã«è¨­å®šã™ã‚‹
 
-	//‹ŒThird-human-4‚Ì“®‚«‚ğ‚³‚¹‚é‚Æ‚«‚Ì•Ï”
-	//Šî–{“I‚É‚¸‚Á‚Æ‘Oi‚µ‚Ä‚¢‚é
-	//¶‰Eƒ{ƒ^ƒ“‚ğ‰Ÿ‚·‚Æ‚»‚Ì•ûŒü‚É90“x‰ñ“]‚·‚é
-	//ƒ^[ƒ{‚ ‚è
-	//‰ñ“]‚Í—§‚¿~‚Ü‚é
+	//æ—§Third-human-4ã®å‹•ãã‚’ã•ã›ã‚‹ã¨ãã®å¤‰æ•°
+	//åŸºæœ¬çš„ã«ãšã£ã¨å‰é€²ã—ã¦ã„ã‚‹
+	//å·¦å³ãƒœã‚¿ãƒ³ã‚’æŠ¼ã™ã¨ãã®æ–¹å‘ã«90åº¦å›è»¢ã™ã‚‹
+	//ã‚¿ãƒ¼ãƒœã‚ã‚Š
+	//å›è»¢æ™‚ã¯ç«‹ã¡æ­¢ã¾ã‚‹
 	struct Behaviour1 {
-		float TurboDuration;//ƒ^[ƒ{‚·‚é’·‚³
-		float TurboTimer;//ƒ^[ƒ{‚µ‚Ä‚¢‚é’·‚³
-		bool IsTurbo;//¡ƒ^[ƒ{‚µ‚Ä‚¢‚é‚©
-		float RotateSpeed;//‰ñ“]‚·‚é‘¬‚³(deg/s)
-		float RotateSum;//¡‰ñ‚Ìˆê˜A‚Ì‰ñ“]‚ÅAŠù‚É‰ñ‚Á‚½Šp“x
-		float RotateDir;//‰ñ‚é•ûŒü(ƒIƒCƒ‰[ŠpZ³•ûŒü‚É‰ñ“]‚·‚é‚Æ‚«³)
+		float TurboDuration;//ã‚¿ãƒ¼ãƒœã™ã‚‹é•·ã•
+		float TurboTimer;//ã‚¿ãƒ¼ãƒœã—ã¦ã„ã‚‹é•·ã•
+		bool IsTurbo;//ä»Šã‚¿ãƒ¼ãƒœã—ã¦ã„ã‚‹ã‹
+		float RotateSpeed;//å›è»¢ã™ã‚‹é€Ÿã•(deg/s)
+		float RotateSum;//ä»Šå›ã®ä¸€é€£ã®å›è»¢ã§ã€æ—¢ã«å›ã£ãŸè§’åº¦
+		float RotateDir;//å›ã‚‹æ–¹å‘(ã‚ªã‚¤ãƒ©ãƒ¼è§’Zæ­£æ–¹å‘ã«å›è»¢ã™ã‚‹ã¨ãæ­£)
 	};
 
-	//“ü—Í‚ğó‚¯æ‚é‚â‚Â
+	//å…¥åŠ›ã‚’å—ã‘å–ã‚‹ã‚„ã¤
 	void MoveForward(float Value);
 
 	void MoveRight(float Value);
@@ -73,17 +73,17 @@ public:
 	FORCEINLINE class UCameraComponent* GetFollowCamera() const { return FollowCamera; }
 	
 //
-//•Ï”
+//å¤‰æ•°
 //
 protected:
-	//”šƒpƒ‰ƒ[ƒ^[
+	//æ•°å­—ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼
 	const float ColliderHeight = 50.0f;
 	const float ColliderDiameter = 25.0f;
 	float MaxSpeed = 300;
 	float TurboSpeed = 500;
-	int BehaviourNumber = 1;//‘€ì«‚Ì”Ô†@ŠeƒL[‚É‚æ‚é“ü—Í‚ÍA‚±‚Ì”Ô†‚É‚æ‚Á‚Ä©“®“I‚É•ªŠò‚·‚é
+	int BehaviourNumber = 1;//æ“ä½œæ€§ã®ç•ªå·ã€€å„ã‚­ãƒ¼ã«ã‚ˆã‚‹å…¥åŠ›ã¯ã€ã“ã®ç•ªå·ã«ã‚ˆã£ã¦è‡ªå‹•çš„ã«åˆ†å²ã™ã‚‹
 
-	//ƒNƒ‰ƒX“à‚Å‹¤—L‚·‚éˆê•Ï”
+	//ã‚¯ãƒ©ã‚¹å†…ã§å…±æœ‰ã™ã‚‹ä¸€æ™‚å¤‰æ•°
 	Behaviour1 BH1;
 	
 	/** Camera boom positioning the camera behind the character */

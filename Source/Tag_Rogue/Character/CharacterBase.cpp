@@ -1,7 +1,7 @@
 /*
-’Ç‚¤‘¤‚Æ“¦‚°‚é‘¤‘o•û‚ÌŒ³‚Æ‚È‚éƒNƒ‰ƒX
-‹¤’Ê—v‘f‚ğİ’è‚µ‚½‚èA‹¤’Ê‚·‚é“®‚«‚ğÀ‘•‚µ‚½‚è‚·‚é
-qƒNƒ‰ƒX‚Å‚ÍA‚»‚ê‚¼‚ê‚É“Æ©‚Ì—v‘f(ƒƒbƒVƒ…‚âAƒVƒXƒeƒ€ã‚Ì–ğŠ„)‚ğÀ‘•‚·‚é
+è¿½ã†å´ã¨é€ƒã’ã‚‹å´åŒæ–¹ã®å…ƒã¨ãªã‚‹ã‚¯ãƒ©ã‚¹
+å…±é€šè¦ç´ ã‚’è¨­å®šã—ãŸã‚Šã€å…±é€šã™ã‚‹å‹•ãã‚’å®Ÿè£…ã—ãŸã‚Šã™ã‚‹
+å­ã‚¯ãƒ©ã‚¹ã§ã¯ã€ãã‚Œãã‚Œã«ç‹¬è‡ªã®è¦ç´ (ãƒ¡ãƒƒã‚·ãƒ¥ã‚„ã€ã‚·ã‚¹ãƒ†ãƒ ä¸Šã®å½¹å‰²)ã‚’å®Ÿè£…ã™ã‚‹
 */
 
 #include "CharacterBase.h"
@@ -20,22 +20,22 @@
 
 ACharacterBase::ACharacterBase()
 {
-	//ƒRƒ‰ƒCƒ_[‚ÌŒ`‚ğ‰Šú‰»
+	//ã‚³ãƒ©ã‚¤ãƒ€ãƒ¼ã®å½¢ã‚’åˆæœŸåŒ–
 	GetCapsuleComponent()->InitCapsuleSize(ColliderDiameter, ColliderHeight);
 
-	//ƒpƒ‰ƒ[ƒ^[‚Ì‰Šú’l‚ğ“K—p
+	//ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼ã®åˆæœŸå€¤ã‚’é©ç”¨
 	ReloadVariables();
 
-	//–{”Ô—v‚ç‚È‚³‚»‚¤‚Èİ’è
-	//ƒ}ƒEƒX‚ğ“®‚©‚·‚Æ‹“_‚ª“®‚­‚ªA‚±‚Ì‚Æ‚«ƒJƒƒ‰‚µ‚©“®‚©‚³‚È‚¢‚æ‚¤‚É‚·‚é
+	//æœ¬ç•ªè¦ã‚‰ãªã•ãã†ãªè¨­å®š
+	//ãƒã‚¦ã‚¹ã‚’å‹•ã‹ã™ã¨è¦–ç‚¹ãŒå‹•ããŒã€ã“ã®ã¨ãã‚«ãƒ¡ãƒ©ã—ã‹å‹•ã‹ã•ãªã„ã‚ˆã†ã«ã™ã‚‹
 	bUseControllerRotationPitch = true;
 	bUseControllerRotationYaw = true;
 	bUseControllerRotationRoll = true;
-	//“®‚¢‚Ä‚¢‚é•ûŒü‚ğŒü‚©‚¹‚é
+	//å‹•ã„ã¦ã„ã‚‹æ–¹å‘ã‚’å‘ã‹ã›ã‚‹
 	GetCharacterMovement()->bOrientRotationToMovement = false;
 	
 
-	/*‚æ‚­‚í‚©‚ç‚ñİ’è‚ğˆê’Uƒ|ƒC
+	///*ã‚ˆãã‚ã‹ã‚‰ã‚“è¨­å®šã‚’ä¸€æ—¦ãƒã‚¤
 	// set our turn rate for input
 	TurnRateGamepad = 50.f;
 
@@ -52,21 +52,21 @@ ACharacterBase::ACharacterBase()
 	GetCharacterMovement()->MaxWalkSpeed = 500.f;
 	GetCharacterMovement()->MinAnalogWalkSpeed = 20.f;
 	GetCharacterMovement()->BrakingDecelerationWalking = 2000.f;
-	*/
+	//*/
 	
 
-	// CameraBoom‚ğİ’è
+	// CameraBoomã‚’è¨­å®š
 	CameraBoom = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraBoom"));
 	CameraBoom->SetupAttachment(GetCapsuleComponent());
 	CameraBoom->TargetArmLength = 400.0f; // The camera follows at this distance behind the character	
 	CameraBoom->bUsePawnControlRotation = true; // Rotate the arm based on the controller
 
-	// ƒJƒƒ‰‚ğİ’è
+	// ã‚«ãƒ¡ãƒ©ã‚’è¨­å®š
 	FollowCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("FollowCamera"));
 	FollowCamera->SetupAttachment(CameraBoom, USpringArmComponent::SocketName); // Attach the camera to the end of the boom and let the boom adjust to match the controller orientation
 	FollowCamera->bUsePawnControlRotation = true;
 
-	/*ˆê’UMiniMap‚ÆLimitCount‚Í‚È‚µ‚Å
+	/*ä¸€æ—¦MiniMapã¨LimitCountã¯ãªã—ã§
 	MiniMap = CreateDefaultSubobject<UMiniMapComponent>(TEXT("MiniMap"));
 	MiniMap->SetupAttachment(CameraBoom);
 	MiniMap->SetRelativeLocation(FVector(200,0,-30));
@@ -83,13 +83,13 @@ ACharacterBase::ACharacterBase()
 
 
 void ACharacterBase::SetMesh(FString path) {
-	//SkeletalMesh‚Åì¬
+	//SkeletalMeshã§ä½œæˆ
 	RobotMesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("RobotMesh"));
 	USkeletalMesh* MeshTmp = LoadObject<USkeletalMesh>(NULL, *path, NULL, LOAD_None, NULL);
 	RobotMesh->SetSkeletalMesh(MeshTmp);
-	//Root‚ÉƒAƒ^ƒbƒ`
+	//Rootã«ã‚¢ã‚¿ãƒƒãƒ
 	RobotMesh->SetupAttachment(RootComponent);
-	//’n–Ê‚É’…‚­‚æ‚¤‚É‚·‚é
+	//åœ°é¢ã«ç€ãã‚ˆã†ã«ã™ã‚‹
 	RobotMesh->SetRelativeLocation(FVector(0, 0, -ColliderHeight));
 }
 
@@ -103,10 +103,10 @@ void ACharacterBase::ReloadVariables() {
 
 void ACharacterBase::SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent)
 {
-	//g—p‚µ‚½‚à‚Ì
-	PlayerInputComponent->BindAxis("Move Forward / Backward", this, &ACharacterBase::MoveForward);//‘OŒã‚Ì“®‚«‚ğƒoƒCƒ“ƒh
+	//ä½¿ç”¨ã—ãŸã‚‚ã®
+	PlayerInputComponent->BindAxis("Move Forward / Backward", this, &ACharacterBase::MoveForward);//å‰å¾Œã®å‹•ãã‚’ãƒã‚¤ãƒ³ãƒ‰
 	PlayerInputComponent->BindAxis("Move Right / Left", this, &ACharacterBase::MoveRight);
-	PlayerInputComponent->BindAction("Action1", IE_Pressed, this, &ACharacterBase::Action1);//ƒAƒNƒVƒ‡ƒ“1ƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½‚çƒAƒNƒVƒ‡ƒ“1
+	PlayerInputComponent->BindAction("Action1", IE_Pressed, this, &ACharacterBase::Action1);//ã‚¢ã‚¯ã‚·ãƒ§ãƒ³1ãƒœã‚¿ãƒ³ãŒæŠ¼ã•ã‚ŒãŸã‚‰ã‚¢ã‚¯ã‚·ãƒ§ãƒ³1
 
 
 	// Set up gameplay key bindings
@@ -139,13 +139,13 @@ void ACharacterBase::BeginPlay()
 	//MiniMap->SetRelativeRotation(FRotator(0,270,60));
 	//MiniMap->SetRelativeScale3D(FVector(0.3,0.3,0.3));
 	
-	//ŠeBehaviour‚Ì‰Šúİ’è
+	//å„Behaviourã®åˆæœŸè¨­å®š
 	BH1.TurboDuration = 3;
 	BH1.RotateSpeed = 30;
 	BH1.RotateDir = BH1.RotateSum = BH1.TurboTimer = 0;
 	BH1.IsTurbo = false;
 
-	//Behaviour‚ğİ’è
+	//Behaviourã‚’è¨­å®š
 	BehaviourNumber = 1;
 }
 
@@ -160,7 +160,7 @@ void ACharacterBase::Tick(const float DeltaSeconds)
 	case 1:
 		
 
-		//ƒ^[ƒ{ŠÖ˜A
+		//ã‚¿ãƒ¼ãƒœé–¢é€£
 		if (BH1.IsTurbo) {
 			BH1.TurboTimer += DeltaSeconds;
 			if (BH1.TurboTimer >= BH1.TurboDuration) {
@@ -169,21 +169,21 @@ void ACharacterBase::Tick(const float DeltaSeconds)
 				BH1.IsTurbo = false;
 			}
 		}
-		//‰ñ“]ŠÖ˜A
+		//å›è»¢é–¢é€£
 		if (BH1.RotateDir != 0) {
 			float PredictedRotateSum = BH1.RotateSum + BH1.RotateSpeed * DeltaSeconds;
 			UE_LOG(LogTemp, Log, TEXT("%f"), PredictedRotateSum);
 			if (PredictedRotateSum >= 90) {
-				RootComponent->AddWorldRotation(FRotator(0.f, (90 - BH1.RotateSum) * BH1.RotateDir, 0.f));
+				Controller->SetControlRotation(Controller->GetControlRotation()+FRotator(0.f, (90 - BH1.RotateSum) * BH1.RotateDir, 0.f));
 				BH1.RotateDir = 0;
 				BH1.RotateSum = 0;
 			}
 			else {
-				RootComponent->AddWorldRotation(FRotator(0.f, BH1.RotateSpeed * DeltaSeconds * BH1.RotateDir, 0.f));
+				Controller->SetControlRotation(Controller->GetControlRotation()+FRotator(0.f, BH1.RotateSpeed * DeltaSeconds * BH1.RotateDir, 0.f));
 				BH1.RotateSum += BH1.RotateSpeed * DeltaSeconds;
 			}
 		}
-		//‘O‚Éi‚Ş
+		//å‰ã«é€²ã‚€
 		if (BH1.RotateDir == 0) {
 			FVector ForwardVector = FRotationMatrix(FRotator(0, Controller->GetControlRotation().Yaw, 0)).GetUnitAxis(EAxis::X);
 			AddMovementInput(ForwardVector, 1);
@@ -213,7 +213,7 @@ void ACharacterBase::MoveRight(float Value)
 	switch (BehaviourNumber)
 	{
 	case 1:
-		//‰ñ“]‚ğŠJn‚·‚é
+		//å›è»¢ã‚’é–‹å§‹ã™ã‚‹
 		if (BH1.RotateDir == 0) {
 			if (Value > 0)BH1.RotateDir = 1;
 			else if (Value < 0)BH1.RotateDir = -1;
