@@ -30,6 +30,12 @@ AMapGate::AMapGate()
 	Collision->InitBoxExtent(FVector(75,50,50));
 	Collision->OnComponentBeginOverlap.AddDynamic(this, &AMapGate::OnOverlapBegin);
 	Collision->OnComponentEndOverlap.AddDynamic(this, &AMapGate::OnComponentOverlapEnd);
+
+	OuterBottomGate->SetCollisionResponseToChannel(ECC_Camera, ECR_Ignore);
+	OuterTopGate->SetCollisionResponseToChannel(ECC_Camera, ECR_Ignore);
+	InnerBottomGate->SetCollisionResponseToChannel(ECC_Camera, ECR_Ignore);
+	InnerTopGate->SetCollisionResponseToChannel(ECC_Camera, ECR_Ignore);
+
 }
 
 // Called when the game starts or when spawned

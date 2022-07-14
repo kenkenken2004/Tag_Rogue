@@ -3,7 +3,17 @@
 
 #include "Tag_RogueGameModeBase.h"
 
-void ATag_RogueGameModeBase::OnPostLogin(AController* NewPlayer)
+
+ATag_RogueGameModeBase::ATag_RogueGameModeBase()
 {
-	Super::OnPostLogin(NewPlayer);
+}
+
+void ATag_RogueGameModeBase::TravelToGamePlayWorld()
+{
+	GetWorld()->ServerTravel(TEXT("GamePlayWorld"),false, false);
+}
+
+void ATag_RogueGameModeBase::TravelToMenuWorld()
+{
+	GetWorld()->ServerTravel(TEXT("MenuWorld"),false, false);
 }

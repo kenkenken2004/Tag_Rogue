@@ -13,6 +13,14 @@ UCLASS()
 class TAG_ROGUE_API ATag_RogueGameModeBase : public AGameModeBase
 {
 	GENERATED_BODY()
+public:
+	UPROPERTY(VisibleAnywhere,BlueprintReadOnly,Config)
+	bool bIsHostChaser = false;
 
-	virtual void OnPostLogin(AController* NewPlayer) override;
+	ATag_RogueGameModeBase();
+	
+	UFUNCTION(BlueprintCallable)
+	void TravelToGamePlayWorld();
+	UFUNCTION(BlueprintCallable)
+	void TravelToMenuWorld();
 };

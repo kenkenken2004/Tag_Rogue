@@ -64,6 +64,8 @@ ACharacterBase::ACharacterBase()
 
 	MiniMap->SetIsReplicated(true);
 	LimitCount->SetIsReplicated(true);
+	MiniMap->SetOnlyOwnerSee(true);
+	LimitCount->SetOnlyOwnerSee(true);
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named ThirdPersonCharacter (to avoid direct content references in C++)
 }
@@ -101,17 +103,17 @@ void ACharacterBase::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLi
 	DOREPLIFETIME(ACharacterBase, LimitCount);
 }
 
-void ACharacterBase::SpawnRandom_Implementation()
+void ACharacterBase::SpawnRandom()
 {
-	const UTag_RogueGameInstance* Instance = static_cast<UTag_RogueGameInstance*>(GetGameInstance());
+	UTag_RogueGameInstance* Instance = UTag_RogueGameInstance::GetInstance();
+	Instance->InitializeMapBuilders();
 	int32 X=0;int32 Y=0;
 	while (Instance->MapGenerator->GetCell(Y,X)->Attribution==UMapGeneratorBase::EType::Wall)
 	{
 		X = FMath::RandRange(0,Instance->MapGenerator->MapWidth-1);
 		Y = FMath::RandRange(0,Instance->MapGenerator->MapHeight-1);
 	}
-	X=0;Y=0;
-	SetActorLocation(FVector(X*Instance->CellSize,Y*Instance->CellSize, Instance->CellSize/2));
+	SetActorLocation(Instance->TerrainMaker->Cie_Convert(Y,X,Instance->CellSize));
 }
 
 void ACharacterBase::TouchStarted(ETouchIndex::Type FingerIndex, FVector Location)
@@ -139,7 +141,6 @@ void ACharacterBase::LookUpAtRate(float Rate)
 void ACharacterBase::BeginPlay()
 {
 	Super::BeginPlay();
-	//SpawnRandom();
 	if(!HasAuthority())return;
 	MiniMap->InitializeByServer();
 	MiniMap->Initialize();

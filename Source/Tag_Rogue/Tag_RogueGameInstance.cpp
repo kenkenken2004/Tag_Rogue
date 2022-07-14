@@ -3,6 +3,7 @@
 
 #include "Tag_RogueGameInstance.h"
 #include "AssetRegistry/AssetRegistryModule.h"
+#include "Level/GameMap_Alpha.h"
 
 UTag_RogueGameInstance::UTag_RogueGameInstance()
 {
@@ -50,4 +51,24 @@ void UTag_RogueGameInstance::InitializeMapBuilders()
 	MapGenerator->GetStructureString();
 	FloatRemainingTime = GameTimeLimit;
 	IntRemainingTime = GameTimeLimit;
+}
+
+void UTag_RogueGameInstance::ChaserWon()
+{
+	if(Settlement==ESettlement::Yet)
+	{
+		Settlement=ESettlement::Chaser;
+		OnChaserWon();
+		static_cast<AGameMap_Alpha*>(GetWorld()->GetLevelScriptActor())->OnGameEnd();
+	}
+}
+
+void UTag_RogueGameInstance::FugitiveWon()
+{
+	if(Settlement==ESettlement::Yet)
+	{
+		Settlement=ESettlement::Fugitive;
+		OnFugitiveWon();
+		static_cast<AGameMap_Alpha*>(GetWorld()->GetLevelScriptActor())->OnGameEnd();
+	}
 }

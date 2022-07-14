@@ -11,6 +11,15 @@
 /**
  * 
  */
+
+UENUM(BlueprintType)
+enum struct ESettlement: uint8
+{
+	Yet UMETA(DisplayName="Yet"),
+	Chaser UMETA(DisplayName="ChaserWon"),
+	Fugitive UMETA(DisplayName="FugitiveWon")
+};
+
 UCLASS()
 class TAG_ROGUE_API UTag_RogueGameInstance final : public UGameInstance
 {
@@ -21,12 +30,16 @@ public:
 	UTag_RogueGameInstance();
 	static UTag_RogueGameInstance* GetInstance();
 	static void DisplayDebugMessage(FString Message);
-	UPROPERTY(VisibleAnywhere)
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	float FloatRemainingTime = 0;
-	UPROPERTY(VisibleAnywhere)
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	int32 IntRemainingTime = 0;
 	bool bIsAssetDataLoaded = false;
 	bool bShouldSChangeNumbers = false;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	ESettlement Settlement = ESettlement::Yet;
+	
 
 	UPROPERTY()
 	URogueAlpha_MapGenerator* MapGenerator;
@@ -49,6 +62,9 @@ public:
 	int32 RoomNum = 9;
 	UPROPERTY(Config)
 	float CellSize = 300;
+	UPROPERTY(Config)
+	float MapScale = 0.25;
+	
 
 	
 	TArray<FName> AssetsPathArray = TArray<FName>
@@ -72,5 +88,13 @@ public:
 	}
 
 	void InitializeMapBuilders();
-	
+
+	UFUNCTION(BlueprintCallable)
+	void ChaserWon();
+	UFUNCTION(BlueprintCallable)
+	void FugitiveWon();
+	UFUNCTION(BlueprintImplementableEvent)
+	void OnChaserWon();
+	UFUNCTION(BlueprintImplementableEvent)
+	void OnFugitiveWon();
 };

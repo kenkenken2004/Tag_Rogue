@@ -50,7 +50,7 @@ void UMiniMapComponent::InitializeByServer()
 	MapHeight = Generater->MapHeight;
 	MapWidth = Generater->MapWidth;
 	CellSize = Maker->CellSize;
-	Scale = 0.25;
+	Scale = GameInstance->MapScale;
 	TextureBitArray = TArray<bool>();
 	for (int32 y=0;y<MapHeight;y++)
 	{

@@ -19,4 +19,5 @@ class TAG_ROGUE_API ATitleLevel : public ALevelScriptActor
 	UTag_RogueGameInstance* GameInstance;
 	
 	virtual void BeginPlay() override;
+	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 };

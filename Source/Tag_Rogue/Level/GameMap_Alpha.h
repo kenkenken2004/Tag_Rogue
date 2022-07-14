@@ -28,4 +28,7 @@ protected:
 public:
 	AGameMap_Alpha();
 	virtual void Tick(float DeltaSeconds) override;
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void OnGameEnd();
 };

@@ -10,3 +10,9 @@ void ATitleLevel::BeginPlay()
 	GameInstance->LoadAssets();
 	GameInstance->InitializeMapBuilders();
 }
+
+void ATitleLevel::EndPlay(const EEndPlayReason::Type EndPlayReason)
+{
+	Super::EndPlay(EndPlayReason);
+	SaveConfig();
+}
