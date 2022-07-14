@@ -58,7 +58,7 @@ ACharacterBase::ACharacterBase()
 	// CameraBoomを設定
 	CameraBoom = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraBoom"));
 	CameraBoom->SetupAttachment(GetCapsuleComponent());
-	CameraBoom->TargetArmLength = 400.0f; // The camera follows at this distance behind the character	
+	CameraBoom->TargetArmLength = 100.0f; // The camera follows at this distance behind the character	
 	CameraBoom->bUsePawnControlRotation = true; // Rotate the arm based on the controller
 
 	// カメラを設定
@@ -141,7 +141,7 @@ void ACharacterBase::BeginPlay()
 	
 	//各Behaviourの初期設定
 	BH1.TurboDuration = 3;
-	BH1.RotateSpeed = 30;
+	BH1.RotateSpeed = 180;
 	BH1.RotateDir = BH1.RotateSum = BH1.TurboTimer = 0;
 	BH1.IsTurbo = false;
 
