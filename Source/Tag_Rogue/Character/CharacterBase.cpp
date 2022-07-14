@@ -73,6 +73,9 @@ ACharacterBase::ACharacterBase()
 
 	//Behaviourを初期設定　派生クラスから好きに番号を変えたり、BHnの中身を変えたりしてよい
 	BehaviourNumber = 1;
+	
+	//派生クラスのタイミングで動き出せるように、一旦止める
+	bool CanMove = false;
 }
 
 
@@ -137,6 +140,7 @@ void ACharacterBase::Tick(const float DeltaSeconds)
 				BH1.IsTurbo = false;
 			}
 		}
+		if (!CanMove)break;
 		//回転する・回転終了
 		if (BH1.RotateDir != 0) {
 			float PredictedRotateSum = BH1.RotateSum + BH1.RotateSpeed * DeltaSeconds;
@@ -176,6 +180,7 @@ void ACharacterBase::MoveForward(float Value)
 	case 1:
 		break;
 	case 2:
+		if (!CanMove)break;
 		//前に進む
 		FVector ForwardVector = FRotationMatrix(FRotator(0, Controller->GetControlRotation().Yaw, 0)).GetUnitAxis(EAxis::X);
 		AddMovementInput(ForwardVector, Value);
@@ -201,6 +206,7 @@ void ACharacterBase::MoveRight(float Value)
 	switch (BehaviourNumber)
 	{
 	case 1:
+		if (!CanMove)break;
 		//回転を開始する
 		if (BH1.RotateDir == 0) {
 			if (Value > 0)BH1.RotateDir = 1;
@@ -209,6 +215,7 @@ void ACharacterBase::MoveRight(float Value)
 		break;
 
 	case 2:
+		if (!CanMove)break;
 		//左右に回転する
 		Controller->SetControlRotation(Controller->GetControlRotation() + FRotator(0.f, BH2.RotateSpeed * Value, 0.f));
 
