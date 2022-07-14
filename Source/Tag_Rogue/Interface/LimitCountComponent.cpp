@@ -33,39 +33,42 @@ void ULimitCountComponent::TickComponent(const float DeltaTime, const ELevelTick
 	// ...
 }
 
-void ULimitCountComponent::CheckShouldUpdateNumbers(const float DeltaTime) const
+void ULimitCountComponent::CheckShouldUpdateNumbers(const float DeltaTime)
 {
 	if(GameInstance->bShouldSChangeNumbers)
 	{
-		UpdateNumbers();
+		DigitLeftNumber = GameInstance->IntRemainingTime/10;
+		DigitRightNumber = GameInstance->IntRemainingTime%10;
 	}
+	UpdateNumbers();
 }
 
 void ULimitCountComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
 {
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 	DOREPLIFETIME(ULimitCountComponent, DisplayMesh);
-	DOREPLIFETIME(ULimitCountComponent, DigitLeft);
-	DOREPLIFETIME(ULimitCountComponent, DigitRight);
 	DOREPLIFETIME(ULimitCountComponent, OwnerPlayer);
+	DOREPLIFETIME(ULimitCountComponent, DigitLeftNumber);
+	DOREPLIFETIME(ULimitCountComponent, DigitRightNumber);
 }
 
-void ULimitCountComponent::UpdateNumbers() const
+void ULimitCountComponent::UpdateNumbers_Implementation()
 {
+	if(!IsValid(GameInstance))Initialize();
 	FString Left = TEXT("Tr2n_");
-	Left.AppendInt('0'+GameInstance->IntRemainingTime/10);
+	Left.AppendInt('0'+DigitLeftNumber);
 	FString Right = TEXT("Tr2n_");
-	Right.AppendInt('0'+GameInstance->IntRemainingTime%10);
+	Right.AppendInt('0'+DigitRightNumber);
 	UTexture* TLeft = GameInstance->GetAssetObject<UTexture>(FName(Left));
 	UTexture* TRight = GameInstance->GetAssetObject<UTexture>(FName(Right));
     DigitLeft->SetTextureParameterValue(TEXT("Letter"), TLeft);
     DigitRight->SetTextureParameterValue(TEXT("Letter"), TRight);
 }
 
-void ULimitCountComponent::Initialize()
+void ULimitCountComponent::Initialize_Implementation()
 {
 	OwnerPlayer = static_cast<ACharacterBase*>(GetAttachmentRootActor());
-	GameInstance = static_cast<UTag_RogueGameInstance*>(GetOwner()->GetGameInstance());
+	GameInstance = UTag_RogueGameInstance::GetInstance();
 	GameInstance->LoadAssets();
 	DisplayMesh = GameInstance->GetAssetObject<UStaticMesh>(TEXT("CountDisplay"));
 	SetStaticMesh(DisplayMesh);

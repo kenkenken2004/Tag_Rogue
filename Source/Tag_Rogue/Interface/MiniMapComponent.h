@@ -25,8 +25,19 @@ public:
 	URogueAlpha_MapGenerator* Generater;
 	UPROPERTY()
 	UTerrainMaker* Maker;
-	UPROPERTY(Replicated)
+	UPROPERTY()
 	UMaterialInstanceDynamic* MapMaterial;
+	UPROPERTY(Replicated)
+	float CellSize;
+	UPROPERTY(Replicated)
+	int32 MapHeight;
+	UPROPERTY(Replicated)
+	int32 MapWidth;
+	UPROPERTY(Replicated)
+	float Scale;
+	UPROPERTY(Replicated)
+	TArray<bool> TextureBitArray;
+
 	// Sets default values for this component's properties
 	UMiniMapComponent();
 
@@ -38,8 +49,11 @@ public:
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType,
 	                           FActorComponentTickFunction* ThisTickFunction) override;
+	UFUNCTION(NetMulticast, Reliable)
 	void Initialize();
-	void UpdateMapDirection() const;
+	void InitializeByServer();
+	UFUNCTION(NetMulticast, Reliable)
+	void UpdateMapDirection();
 	UTexture* CreateMiniMapTexture() const;
 	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty> &OutLifetimeProps)const override;
 };

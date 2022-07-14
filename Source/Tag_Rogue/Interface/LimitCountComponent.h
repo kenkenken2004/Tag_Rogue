@@ -20,10 +20,14 @@ public:
 	UTag_RogueGameInstance* GameInstance;
 	UPROPERTY(Replicated)
 	UStaticMesh* DisplayMesh;
-	UPROPERTY(Replicated)
+	UPROPERTY()
 	UMaterialInstanceDynamic* DigitLeft;
 	UPROPERTY(Replicated)
+	int32 DigitLeftNumber;
+	UPROPERTY()
 	UMaterialInstanceDynamic* DigitRight;
+	UPROPERTY(Replicated)
+	int32 DigitRightNumber;
 	UPROPERTY(Replicated)
 	ACharacterBase* OwnerPlayer; 
 protected:
@@ -35,8 +39,10 @@ public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType,
 	                           FActorComponentTickFunction* ThisTickFunction) override;
 
+	UFUNCTION(NetMulticast, Reliable)
 	void Initialize();
-	void CheckShouldUpdateNumbers(float DeltaTime) const;
-	void UpdateNumbers() const;
+	void CheckShouldUpdateNumbers(float DeltaTime);
+	UFUNCTION(NetMulticast, Reliable)
+	void UpdateNumbers();
 	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty> &OutLifetimeProps)const override;
 };

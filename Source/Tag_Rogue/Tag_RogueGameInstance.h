@@ -19,7 +19,7 @@ public:
 	//Member Variable
 	TMap<FName,FAssetData> AssetDatas;
 	UTag_RogueGameInstance();
-	UTag_RogueGameInstance* GetInstance() const;
+	static UTag_RogueGameInstance* GetInstance();
 	static void DisplayDebugMessage(FString Message);
 	UPROPERTY(VisibleAnywhere)
 	float FloatRemainingTime = 0;

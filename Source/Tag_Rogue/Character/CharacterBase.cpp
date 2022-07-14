@@ -140,28 +140,25 @@ void ACharacterBase::BeginPlay()
 {
 	Super::BeginPlay();
 	//SpawnRandom();
-	if(HasAuthority())
-	{
-		MiniMap->Initialize();
-		MiniMap->SetRelativeLocation(FVector(100,0,-40));
-		MiniMap->SetRelativeRotation(FRotator(0,270,60));
-		MiniMap->SetRelativeScale3D(FVector(0.3,0.3,0.3));
-		LimitCount->Initialize();
-		LimitCount->UpdateNumbers();
-	}
+	if(!HasAuthority())return;
+	MiniMap->InitializeByServer();
+	MiniMap->Initialize();
+	MiniMap->SetRelativeLocation(FVector(100,0,-40));
+	MiniMap->SetRelativeRotation(FRotator(0,270,60));
+	MiniMap->SetRelativeScale3D(FVector(0.3,0.3,0.3));
+	LimitCount->Initialize();
+	LimitCount->UpdateNumbers();
 }
 
 void ACharacterBase::Tick(const float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
-	if (HasAuthority())
-	{
-		TimeSinceCreated+=DeltaSeconds;
-		MiniMap->UpdateMapDirection();
-		MiniMap->AddRelativeLocation(FVector(0,0,3*DeltaSeconds*FMath::Cos(TimeSinceCreated/1.0*2*PI)));
-		LimitCount->CheckShouldUpdateNumbers(DeltaSeconds);
-		LimitCount->AddRelativeLocation(FVector(0,0,3*DeltaSeconds*FMath::Cos(TimeSinceCreated/0.5*2*PI)));
-	}
+	TimeSinceCreated+=DeltaSeconds;
+	if(!HasAuthority())return;
+	MiniMap->UpdateMapDirection();
+	MiniMap->AddRelativeLocation(FVector(0,0,3*DeltaSeconds*FMath::Cos(TimeSinceCreated/1.0*2*PI)));
+	LimitCount->CheckShouldUpdateNumbers(DeltaSeconds);
+	LimitCount->AddRelativeLocation(FVector(0,0,3*DeltaSeconds*FMath::Cos(TimeSinceCreated/0.5*2*PI)));
 }
 
 void ACharacterBase::MoveForward(const float Value)
