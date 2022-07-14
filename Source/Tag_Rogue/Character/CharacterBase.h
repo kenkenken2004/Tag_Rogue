@@ -22,7 +22,7 @@ protected:
 
 	void SetMesh(FString path);//メッシュをセットする　派生クラスから呼び出す
 
-	void ReloadVariables();//歩く速さなどのパラメーターを、今のメンバ変数の値に設定する
+	void ReloadWalkSpeed();//歩く速さを編集したのを適用する
 
 	//旧Third-human-4の動きをさせるときの変数
 	//基本的にずっと前進している
@@ -30,12 +30,25 @@ protected:
 	//ターボあり
 	//回転時は立ち止まる
 	struct Behaviour1 {
-		float TurboDuration;//ターボする長さ
-		float TurboTimer;//ターボしている長さ
-		bool IsTurbo;//今ターボしているか
-		float RotateSpeed;//回転する速さ(deg/s)
-		float RotateSum;//今回の一連の回転で、既に回った角度
-		float RotateDir;//回る方向(オイラー角Z正方向に回転するとき正)
+		float MaxSpeed = 300;
+		float TurboSpeed = 500;
+		float TurboDuration = 3;//ターボする長さ
+		float TurboTimer = 0;//ターボしている長さ
+		bool IsTurbo = false;;//今ターボしているか
+		float RotateSpeed = 180;//回転する速さ(deg/s)
+		float RotateSum = 0;//今回の一連の回転で、既に回った角度
+		float RotateDir = 0;//回る方向(オイラー角Z正方向に回転するとき正)
+	};
+
+	//左右を押すと回転、前を押すと進む、後ろを押すと戻るという従来通りのやつ
+	//回転に連動してカメラは動き、常にキャラクターを背後から撮影するようにする
+	struct Behaviour2 {
+		float MaxSpeed = 300;
+		float TurboSpeed = 500;
+		float TurboDuration = 3;//ターボする長さ
+		float TurboTimer = 0;//ターボしている長さ
+		bool IsTurbo = false;//今ターボしているか
+		float RotateSpeed = 180;//回転する速さ(deg/s)
 	};
 
 	//入力を受け取るやつ
@@ -44,6 +57,8 @@ protected:
 	void MoveRight(float Value);
 
 	void Action1();
+
+	//使ってないやつ
 	/**
 	 * Called via input to turn at a given rate.
 	 * @param Rate	This is a normalized rate, i.e. 1.0 means 100% of desired turn rate
@@ -79,12 +94,11 @@ protected:
 	//数字パラメーター
 	const float ColliderHeight = 50.0f;
 	const float ColliderDiameter = 25.0f;
-	float MaxSpeed = 300;
-	float TurboSpeed = 500;
 	int BehaviourNumber = 1;//操作性の番号　各キーによる入力は、この番号によって自動的に分岐する
 
 	//クラス内で共有する一時変数
 	Behaviour1 BH1;
+	Behaviour2 BH2;
 	
 	/** Camera boom positioning the camera behind the character */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))

@@ -8,8 +8,9 @@ ACharacterFugitive::ACharacterFugitive() {
 	//メッシュを設定
 	SetMesh(TEXT("/Game/Characters/OriginalCharacter/CleaningRobot/CleaningRobot"));
 
-	//パラメーターを設定
-	MaxSpeed = 300;
-	TurboSpeed = 600;
-	ReloadVariables();
+	//behaviourを設定
+	BehaviourNumber = 1;
+	BH1.MaxSpeed = 300;
+	BH1.TurboSpeed = 600;
+	ReloadWalkSpeed();
 }

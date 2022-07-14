@@ -23,8 +23,8 @@ ACharacterBase::ACharacterBase()
 	//コライダーの形を初期化
 	GetCapsuleComponent()->InitCapsuleSize(ColliderDiameter, ColliderHeight);
 
-	//パラメーターの初期値を適用
-	ReloadVariables();
+	//歩く速さの初期値を適用
+	ReloadWalkSpeed();
 
 	//本番要らなさそうな設定
 	//マウスを動かすと視点が動くが、このときカメラしか動かさないようにする
@@ -93,8 +93,13 @@ void ACharacterBase::SetMesh(FString path) {
 	RobotMesh->SetRelativeLocation(FVector(0, 0, -ColliderHeight));
 }
 
-void ACharacterBase::ReloadVariables() {
-	GetCharacterMovement()->MaxWalkSpeed = MaxSpeed;
+void ACharacterBase::ReloadWalkSpeed() {
+	switch (BehaviourNumber) {
+	case 1:
+		GetCharacterMovement()->MaxWalkSpeed = BH1.MaxSpeed;
+		break;
+	}
+	
 }
 
 
@@ -139,13 +144,7 @@ void ACharacterBase::BeginPlay()
 	//MiniMap->SetRelativeRotation(FRotator(0,270,60));
 	//MiniMap->SetRelativeScale3D(FVector(0.3,0.3,0.3));
 	
-	//各Behaviourの初期設定
-	BH1.TurboDuration = 3;
-	BH1.RotateSpeed = 180;
-	BH1.RotateDir = BH1.RotateSum = BH1.TurboTimer = 0;
-	BH1.IsTurbo = false;
-
-	//Behaviourを設定
+	//Behaviourを初期設定　派生クラスから好きに番号を変えたり、BH1の中身を変えたりしてよい
 	BehaviourNumber = 1;
 }
 
@@ -164,7 +163,7 @@ void ACharacterBase::Tick(const float DeltaSeconds)
 		if (BH1.IsTurbo) {
 			BH1.TurboTimer += DeltaSeconds;
 			if (BH1.TurboTimer >= BH1.TurboDuration) {
-				GetCharacterMovement()->MaxWalkSpeed = MaxSpeed;
+				GetCharacterMovement()->MaxWalkSpeed = BH1.MaxSpeed;
 				BH1.TurboTimer = 0;
 				BH1.IsTurbo = false;
 			}
@@ -187,6 +186,17 @@ void ACharacterBase::Tick(const float DeltaSeconds)
 		if (BH1.RotateDir == 0) {
 			FVector ForwardVector = FRotationMatrix(FRotator(0, Controller->GetControlRotation().Yaw, 0)).GetUnitAxis(EAxis::X);
 			AddMovementInput(ForwardVector, 1);
+		}
+		break;
+	case 2:
+		//ターボ終了
+		if (BH1.IsTurbo) {
+			BH1.TurboTimer += DeltaSeconds;
+			if (BH1.TurboTimer >= BH1.TurboDuration) {
+				GetCharacterMovement()->MaxWalkSpeed = BH1.MaxSpeed;
+				BH1.TurboTimer = 0;
+				BH1.IsTurbo = false;
+			}
 		}
 		break;
 	}
@@ -219,6 +229,12 @@ void ACharacterBase::MoveRight(float Value)
 			else if (Value < 0)BH1.RotateDir = -1;
 		}
 		break;
+
+	case 2:
+		//左右に回転する
+
+
+		break;
 	}
 	/*
 	if ( (Controller != nullptr) && (Value != 0.0f) )
@@ -239,8 +255,9 @@ void ACharacterBase::Action1() {
 	switch (BehaviourNumber)
 	{
 	case 1:
+	case 2:
 		if (!BH1.IsTurbo) {
-			GetCharacterMovement()->MaxWalkSpeed = TurboSpeed;
+			GetCharacterMovement()->MaxWalkSpeed = BH1.TurboSpeed;
 			BH1.IsTurbo = true;
 		}
 		break;
