@@ -64,6 +64,12 @@ public:
 	float CellSize = 300;
 	UPROPERTY(Config)
 	float MapScale = 0.25;
+	UPROPERTY(Config)
+	float RadarSensitivity = 5000;
+	UPROPERTY(Config)
+	float RadarDistExp = 0.5;
+	UPROPERTY(Config)
+	float PointerScale = 1;
 	
 
 	

@@ -156,6 +156,17 @@ void ACharacterBase::Tick(const float DeltaSeconds)
 	Super::Tick(DeltaSeconds);
 	TimeSinceCreated+=DeltaSeconds;
 	if(!HasAuthority())return;
+	float EnemyDistance = 1000000000;
+	float EnemyRotation = 0;
+	if(IsValid(Enemy))
+	{
+		const FVector RelativeLocation = Enemy->GetActorLocation() - GetActorLocation();
+		EnemyDistance = RelativeLocation.Size();
+		EnemyRotation = RelativeLocation.Rotation().Yaw - Controller->GetControlRotation().Yaw;
+		UE_LOG(LogTemp, Warning, TEXT("%f"),EnemyRotation);
+	}
+	MiniMap->EnemyDirection = - EnemyRotation / 360;
+	MiniMap->EnemyDistance = EnemyDistance;
 	MiniMap->UpdateMapDirection();
 	MiniMap->AddRelativeLocation(FVector(0,0,3*DeltaSeconds*FMath::Cos(TimeSinceCreated/1.0*2*PI)));
 	LimitCount->CheckShouldUpdateNumbers(DeltaSeconds);
