@@ -3,7 +3,6 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Components/ActorComponent.h"
 #include "Tag_Rogue/Tag_RogueGameInstance.h"
 #include "Tag_Rogue/Character/CharacterBase.h"
 #include "LimitCountComponent.generated.h"
@@ -19,13 +18,17 @@ public:
 	ULimitCountComponent();
 	UPROPERTY()
 	UTag_RogueGameInstance* GameInstance;
-	UPROPERTY()
+	UPROPERTY(Replicated)
 	UStaticMesh* DisplayMesh;
 	UPROPERTY()
 	UMaterialInstanceDynamic* DigitLeft;
+	UPROPERTY(Replicated)
+	int32 DigitLeftNumber;
 	UPROPERTY()
 	UMaterialInstanceDynamic* DigitRight;
-	UPROPERTY()
+	UPROPERTY(Replicated)
+	int32 DigitRightNumber;
+	UPROPERTY(Replicated)
 	ACharacterBase* OwnerPlayer; 
 protected:
 	// Called when the game starts
@@ -35,6 +38,11 @@ public:
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType,
 	                           FActorComponentTickFunction* ThisTickFunction) override;
+
+	UFUNCTION(NetMulticast, Reliable)
 	void Initialize();
-	void UpdateNumbers() const;
+	void CheckShouldUpdateNumbers(float DeltaTime);
+	UFUNCTION(NetMulticast, Reliable)
+	void UpdateNumbers();
+	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty> &OutLifetimeProps)const override;
 };

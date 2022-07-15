@@ -3,6 +3,8 @@
 
 #include "LimitCountComponent.h"
 
+#include "Net/UnrealNetwork.h"
+
 
 // Sets default values for this component's properties
 ULimitCountComponent::ULimitCountComponent()
@@ -19,22 +21,54 @@ ULimitCountComponent::ULimitCountComponent()
 void ULimitCountComponent::BeginPlay()
 {
 	Super::BeginPlay();
-	OwnerPlayer = static_cast<ACharacterBase*>(GetAttachmentRootActor());
+	
 }
 
 
 // Called every frame
-void ULimitCountComponent::TickComponent(float DeltaTime, ELevelTick TickType,
+void ULimitCountComponent::TickComponent(const float DeltaTime, const ELevelTick TickType,
                                          FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-	AddRelativeLocation(FVector(0,0,3*DeltaTime*FMath::Cos(OwnerPlayer->TimeSinceCreated/0.5*2*PI)));
 	// ...
 }
 
-void ULimitCountComponent::Initialize()
+void ULimitCountComponent::CheckShouldUpdateNumbers(const float DeltaTime)
 {
-	GameInstance = static_cast<UTag_RogueGameInstance*>(GetOwner()->GetGameInstance());
+	if(GameInstance->bShouldSChangeNumbers)
+	{
+		DigitLeftNumber = GameInstance->IntRemainingTime/10;
+		DigitRightNumber = GameInstance->IntRemainingTime%10;
+	}
+	UpdateNumbers();
+}
+
+void ULimitCountComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
+{
+	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+	DOREPLIFETIME(ULimitCountComponent, DisplayMesh);
+	DOREPLIFETIME(ULimitCountComponent, OwnerPlayer);
+	DOREPLIFETIME(ULimitCountComponent, DigitLeftNumber);
+	DOREPLIFETIME(ULimitCountComponent, DigitRightNumber);
+}
+
+void ULimitCountComponent::UpdateNumbers_Implementation()
+{
+	if(!IsValid(GameInstance))Initialize();
+	FString Left = TEXT("Tr2n_");
+	Left.AppendInt('0'+DigitLeftNumber);
+	FString Right = TEXT("Tr2n_");
+	Right.AppendInt('0'+DigitRightNumber);
+	UTexture* TLeft = GameInstance->GetAssetObject<UTexture>(FName(Left));
+	UTexture* TRight = GameInstance->GetAssetObject<UTexture>(FName(Right));
+    DigitLeft->SetTextureParameterValue(TEXT("Letter"), TLeft);
+    DigitRight->SetTextureParameterValue(TEXT("Letter"), TRight);
+}
+
+void ULimitCountComponent::Initialize_Implementation()
+{
+	OwnerPlayer = static_cast<ACharacterBase*>(GetAttachmentRootActor());
+	GameInstance = UTag_RogueGameInstance::GetInstance();
 	GameInstance->LoadAssets();
 	DisplayMesh = GameInstance->GetAssetObject<UStaticMesh>(TEXT("CountDisplay"));
 	SetStaticMesh(DisplayMesh);
@@ -43,17 +77,4 @@ void ULimitCountComponent::Initialize()
 	SetRelativeLocation(FVector(120,0,-20));
 	SetRelativeRotation(FRotator(0,270,30));
 	SetRelativeScale3D(FVector(0.1,0.1,0.1));
-}
-
-void ULimitCountComponent::UpdateNumbers() const
-{
-	FString Left = TEXT("Tr2n_");
-	Left.AppendInt('0'+GameInstance->IntRemainingTime/10);
-	FString Right = TEXT("Tr2n_");
-	Right.AppendInt('0'+GameInstance->IntRemainingTime%10);
-	UTexture* TLeft = GameInstance->GetAssetObject<UTexture>(FName(Left));
-	UTexture* TRight = GameInstance->GetAssetObject<UTexture>(FName(Right));
-	DigitLeft->SetTextureParameterValue(TEXT("Letter"), TLeft);
-	DigitRight->SetTextureParameterValue(TEXT("Letter"), TRight);
-	UE_LOG(LogTemp, Warning, TEXT("%s"), *Left);
 }

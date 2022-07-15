@@ -2,8 +2,8 @@
 
 
 #include "Tag_RogueGameInstance.h"
-
 #include "AssetRegistry/AssetRegistryModule.h"
+#include "Level/GameMap_Alpha.h"
 
 UTag_RogueGameInstance::UTag_RogueGameInstance()
 {
@@ -36,4 +36,39 @@ void UTag_RogueGameInstance::LoadAssets()
 		}
 	}
 	bIsAssetDataLoaded = true;
+}
+
+void UTag_RogueGameInstance::InitializeMapBuilders()
+{
+	if(IsValid(MapGenerator))return;
+	MapGenerator = NewObject<URogueAlpha_MapGenerator>(GetWorld());
+	MapGenerator->Construct(GameMapHeight,GameMapWidth);
+	MapGenerator->SetStructureParam(UMapGeneratorBase::EType::Plaza, PlazaSize, PlazaSize, PlazaNum);
+	MapGenerator->SetStructureParam(UMapGeneratorBase::EType::Room, RoomSize, RoomSize, RoomNum);
+	TerrainMaker = NewObject<UTerrainMaker>(GetWorld());
+	TerrainMaker->Construct(MapGenerator,CellSize);
+	MapGenerator->BuildMap();
+	MapGenerator->GetStructureString();
+	FloatRemainingTime = GameTimeLimit;
+	IntRemainingTime = GameTimeLimit;
+}
+
+void UTag_RogueGameInstance::ChaserWon()
+{
+	if(Settlement==ESettlement::Yet)
+	{
+		Settlement=ESettlement::Chaser;
+		OnChaserWon();
+		static_cast<AGameMap_Alpha*>(GetWorld()->GetLevelScriptActor())->OnGameEnd();
+	}
+}
+
+void UTag_RogueGameInstance::FugitiveWon()
+{
+	if(Settlement==ESettlement::Yet)
+	{
+		Settlement=ESettlement::Fugitive;
+		OnFugitiveWon();
+		static_cast<AGameMap_Alpha*>(GetWorld()->GetLevelScriptActor())->OnGameEnd();
+	}
 }
