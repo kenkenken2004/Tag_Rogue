@@ -9,16 +9,16 @@
 #include "GameMap_Alpha.generated.h"
 
 /**
- * 
+ *
  */
-UCLASS(Config=Game)
+UCLASS(Config = Game)
 class TAG_ROGUE_API AGameMap_Alpha final : public ALevelScriptActor
 {
 	GENERATED_BODY()
 protected:
 	UPROPERTY()
-	UTag_RogueGameInstance* GameInstance;
-	
+	UTag_RogueGameInstance * GameInstance;
+
 	//Functions
 	virtual void BeginPlay() override;
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;

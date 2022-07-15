@@ -75,7 +75,7 @@ ACharacterBase::ACharacterBase()
 	BehaviourNumber = 1;
 	
 	//派生クラスのタイミングで動き出せるように、一旦止める
-	bool CanMove = false;
+	CanMove = false;
 
 	MiniMap->SetIsReplicated(true);
 	LimitCount->SetIsReplicated(true);

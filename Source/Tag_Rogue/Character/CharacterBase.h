@@ -15,21 +15,10 @@ class ACharacterBase : public ACharacter
 //関数、構造体
 //
 
-	/** Follow camera */
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
-	class UCameraComponent* FollowCamera;
 	
 
 public:
 	ACharacterBase();
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"), Replicated)
-	class UMiniMapComponent* MiniMap;
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"), Replicated)
-	class ULimitCountComponent* LimitCount;
-	float TimeSinceCreated = 0;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
-	APawn* Enemy = nullptr;
 	
 protected:
 	virtual void BeginPlay() override;
@@ -108,17 +97,17 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	class UCameraComponent* FollowCamera;
 	
-	
 
 public:
-	ACharacterBase();
 
 	UPROPERTY(EditAnywhere)
 	USkeletalMeshComponent* RobotMesh;
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
-	class UMiniMapComponent* MiniMap;
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
-	class ULimitCountComponent* LimitCount;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"), Replicated)
+		class UMiniMapComponent* MiniMap;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"), Replicated)
+		class ULimitCountComponent* LimitCount;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+		APawn* Enemy = nullptr;
 
 	float TimeSinceCreated = 0;
 
