@@ -77,23 +77,23 @@ void ACharacterBase::SetupPlayerInputComponent(class UInputComponent* PlayerInpu
 {
 	// Set up gameplay key bindings
 	check(PlayerInputComponent);
-	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
-	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
+	//PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
+	//PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
 
-	PlayerInputComponent->BindAxis("Move Forward / Backward", this, &ACharacterBase::MoveForward);
-	PlayerInputComponent->BindAxis("Move Right / Left", this, &ACharacterBase::MoveRight);
+	//PlayerInputComponent->BindAxis("Move Forward / Backward", this, &ACharacterBase::MoveForward);
+	//PlayerInputComponent->BindAxis("Move Right / Left", this, &ACharacterBase::MoveRight);
 
 	// We have 2 versions of the rotation bindings to handle different kinds of devices differently
 	// "turn" handles devices that provide an absolute delta, such as a mouse.
 	// "turnrate" is for devices that we choose to treat as a rate of change, such as an analog joystick
-	PlayerInputComponent->BindAxis("Turn Right / Left Mouse", this, &APawn::AddControllerYawInput);
-	PlayerInputComponent->BindAxis("Turn Right / Left Gamepad", this, &ACharacterBase::TurnAtRate);
-	PlayerInputComponent->BindAxis("Look Up / Down Mouse", this, &APawn::AddControllerPitchInput);
-	PlayerInputComponent->BindAxis("Look Up / Down Gamepad", this, &ACharacterBase::LookUpAtRate);
+	//PlayerInputComponent->BindAxis("Turn Right / Left Mouse", this, &APawn::AddControllerYawInput);
+	//PlayerInputComponent->BindAxis("Turn Right / Left Gamepad", this, &ACharacterBase::TurnAtRate);
+	//PlayerInputComponent->BindAxis("Look Up / Down Mouse", this, &APawn::AddControllerPitchInput);
+	//PlayerInputComponent->BindAxis("Look Up / Down Gamepad", this, &ACharacterBase::LookUpAtRate);
 
 	// handle touch devices
-	PlayerInputComponent->BindTouch(IE_Pressed, this, &ACharacterBase::TouchStarted);
-	PlayerInputComponent->BindTouch(IE_Released, this, &ACharacterBase::TouchStopped);
+	//PlayerInputComponent->BindTouch(IE_Pressed, this, &ACharacterBase::TouchStarted);
+	//PlayerInputComponent->BindTouch(IE_Released, this, &ACharacterBase::TouchStopped);
 }
 
 void ACharacterBase::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
@@ -142,6 +142,7 @@ void ACharacterBase::BeginPlay()
 {
 	Super::BeginPlay();
 	if(!HasAuthority())return;
+	GameInstance = UTag_RogueGameInstance::GetInstance();
 	MiniMap->InitializeByServer();
 	MiniMap->Initialize();
 	MiniMap->SetRelativeLocation(FVector(100,0,-40));
@@ -154,8 +155,10 @@ void ACharacterBase::BeginPlay()
 void ACharacterBase::Tick(const float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
+	DeltaSecond = DeltaSeconds;
 	TimeSinceCreated+=DeltaSeconds;
 	if(!HasAuthority())return;
+	
 	float EnemyDistance = 1000000000;
 	float EnemyRotation = 0;
 	if(IsValid(Enemy))
@@ -163,7 +166,6 @@ void ACharacterBase::Tick(const float DeltaSeconds)
 		const FVector RelativeLocation = Enemy->GetActorLocation() - GetActorLocation();
 		EnemyDistance = RelativeLocation.Size();
 		EnemyRotation = RelativeLocation.Rotation().Yaw - Controller->GetControlRotation().Yaw;
-		UE_LOG(LogTemp, Warning, TEXT("%f"),EnemyRotation);
 	}
 	MiniMap->EnemyDirection = - EnemyRotation / 360;
 	MiniMap->EnemyDistance = EnemyDistance;
@@ -173,31 +175,25 @@ void ACharacterBase::Tick(const float DeltaSeconds)
 	LimitCount->AddRelativeLocation(FVector(0,0,3*DeltaSeconds*FMath::Cos(TimeSinceCreated/0.5*2*PI)));
 }
 
-void ACharacterBase::MoveForward(const float Value)
+void ACharacterBase::MoveForward_Implementation(const float Value)
 {
 	if ((Controller != nullptr) && (Value != 0.0f))
 	{
 		// find out which way is forward
-		const FRotator Rotation = Controller->GetControlRotation();
+		const FRotator Rotation = GetControlRotation();
 		const FRotator YawRotation(0, Rotation.Yaw, 0);
 
 		// get forward vector
 		const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
-		AddMovementInput(Direction, Value);
+		AddMovementInput(Direction, Value*DeltaSecond*PawnMoveSpeed);
 	}
 }
 
-void ACharacterBase::MoveRight(float Value)
+void ACharacterBase::MoveRight_Implementation(const float Value)
 {
 	if ( (Controller != nullptr) && (Value != 0.0f) )
 	{
-		// find out which way is right
-		const FRotator Rotation = Controller->GetControlRotation();
-		const FRotator YawRotation(0, Rotation.Yaw, 0);
-	
-		// get right vector 
-		const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
 		// add movement in that direction
-		AddMovementInput(Direction, Value);
+		AddControllerYawInput(Value*DeltaSecond*PawnRotateSpeed);
 	}
 }

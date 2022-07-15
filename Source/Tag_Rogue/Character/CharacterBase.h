@@ -4,9 +4,10 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "Tag_Rogue/Tag_RogueGameInstance.h"
 #include "CharacterBase.generated.h"
 
-UCLASS(config=Game)
+UCLASS(Config=Game)
 class ACharacterBase : public ACharacter
 {
 	GENERATED_BODY()
@@ -30,29 +31,41 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Input)
 	float TurnRateGamepad;
 	float TimeSinceCreated = 0;
+	float DeltaSecond = 0;
+		
+	UPROPERTY(Config)
+	float PawnMoveSpeed = 700;
+	UPROPERTY(Config)
+	float PawnRotateSpeed = 60;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
-	APawn* Enemy = nullptr;
+	ACharacterBase* Enemy = nullptr;
+	UPROPERTY()
+	UTag_RogueGameInstance* GameInstance;
 	
 protected:
 	virtual void BeginPlay() override;
 	virtual void Tick(float DeltaSeconds) override;
 	/** Called for forwards/backward input */
+	UFUNCTION(BlueprintCallable, Client,Reliable)
 	void MoveForward(float Value);
 
 	/** Called for side to side input */
+	UFUNCTION(BlueprintCallable, Client, Reliable)
 	void MoveRight(float Value);
 
 	/** 
 	 * Called via input to turn at a given rate. 
 	 * @param Rate	This is a normalized rate, i.e. 1.0 means 100% of desired turn rate
 	 */
+	UFUNCTION(BlueprintCallable)
 	void TurnAtRate(float Rate);
 
 	/**
 	 * Called via input to turn look up/down at a given rate. 
 	 * @param Rate	This is a normalized rate, i.e. 1.0 means 100% of desired turn rate
 	 */
+	UFUNCTION(BlueprintCallable)
 	void LookUpAtRate(float Rate);
 
 	/** Handler for when a touch input begins. */

@@ -20,7 +20,7 @@ enum struct ESettlement: uint8
 	Fugitive UMETA(DisplayName="FugitiveWon")
 };
 
-UCLASS()
+UCLASS(Config=Game)
 class TAG_ROGUE_API UTag_RogueGameInstance final : public UGameInstance
 {
 	GENERATED_BODY()
@@ -70,7 +70,6 @@ public:
 	float RadarDistExp = 0.5;
 	UPROPERTY(Config)
 	float PointerScale = 1;
-	
 
 	
 	TArray<FName> AssetsPathArray = TArray<FName>
