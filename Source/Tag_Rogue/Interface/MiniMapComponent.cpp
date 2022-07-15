@@ -51,6 +51,9 @@ void UMiniMapComponent::InitializeByServer()
 	MapWidth = Generater->MapWidth;
 	CellSize = Maker->CellSize;
 	Scale = GameInstance->MapScale;
+	RadarSensitivity = GameInstance->RadarSensitivity;
+	RadarDistExp = GameInstance->RadarDistExp;
+	PointerScale = GameInstance->PointerScale;
 	TextureBitArray = TArray<bool>();
 	for (int32 y=0;y<MapHeight;y++)
 	{
@@ -80,12 +83,17 @@ void UMiniMapComponent::Initialize_Implementation()
 	MapMaterial->SetScalarParameterValue(TEXT("MapHeight"),MapHeight*CellSize);
 	MapMaterial->SetScalarParameterValue(TEXT("MapWidth"),MapWidth*CellSize);
 	MapMaterial->SetScalarParameterValue(TEXT("Scale"),Scale);
+	MapMaterial->SetScalarParameterValue(TEXT("RadarSensitivity"),RadarSensitivity);
+	MapMaterial->SetScalarParameterValue(TEXT("RadarDistExp"),RadarDistExp);
+	MapMaterial->SetScalarParameterValue(TEXT("PointerScale"),PointerScale);
 }
 
 void UMiniMapComponent::UpdateMapDirection_Implementation()
 {
 	if(!IsValid(GameInstance))Initialize();
 	MapMaterial->SetScalarParameterValue(TEXT("Rotation"),(OwnerPlayer->GetControlRotation().Yaw+90)/360.0);
+	MapMaterial->SetScalarParameterValue(TEXT("EnemyArcRotation"),EnemyDirection);
+	MapMaterial->SetScalarParameterValue(TEXT("EnemyDistance"),EnemyDistance);
 }
 
 UTexture* UMiniMapComponent::CreateMiniMapTexture() const
@@ -142,4 +150,9 @@ void UMiniMapComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& Ou
 	DOREPLIFETIME(UMiniMapComponent, MapWidth);
 	DOREPLIFETIME(UMiniMapComponent, Scale);
 	DOREPLIFETIME(UMiniMapComponent, TextureBitArray);
+	DOREPLIFETIME(UMiniMapComponent, EnemyDirection);
+	DOREPLIFETIME(UMiniMapComponent, EnemyDistance);
+	DOREPLIFETIME(UMiniMapComponent, RadarSensitivity);
+	DOREPLIFETIME(UMiniMapComponent, RadarDistExp);
+	DOREPLIFETIME(UMiniMapComponent, PointerScale);
 }
