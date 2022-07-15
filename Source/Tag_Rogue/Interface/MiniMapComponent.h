@@ -37,10 +37,6 @@ public:
 	float Scale;
 	UPROPERTY(Replicated)
 	TArray<bool> TextureBitArray;
-	UPROPERTY(Replicated)
-	float EnemyArcRotation = 0;
-	UPROPERTY(Replicated)
-	float EnemyDistance = 100000000000;
 
 	// Sets default values for this component's properties
 	UMiniMapComponent();

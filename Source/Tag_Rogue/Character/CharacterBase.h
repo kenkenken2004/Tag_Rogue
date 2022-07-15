@@ -30,9 +30,6 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Input)
 	float TurnRateGamepad;
 	float TimeSinceCreated = 0;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
-	APawn* EnemyPawn = nullptr;
 	
 protected:
 	virtual void BeginPlay() override;
