@@ -30,6 +30,7 @@ void UMiniMapComponent::TickComponent(float DeltaTime, ELevelTick TickType,
                                       FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
+
 	// ...
 }
 
@@ -80,12 +81,18 @@ void UMiniMapComponent::Initialize_Implementation()
 	MapMaterial->SetScalarParameterValue(TEXT("MapHeight"),MapHeight*CellSize);
 	MapMaterial->SetScalarParameterValue(TEXT("MapWidth"),MapWidth*CellSize);
 	MapMaterial->SetScalarParameterValue(TEXT("Scale"),Scale);
+	//Below is not implementated in BluePrint
+	MapMaterial->SetScalarParameterValue(TEXT("EnemyDistance"), )
+	MapMaterial->SetScalarParameterValue(TEXT("EnemyArcRotaiton"),EnemyArcRotation);
+	MapMaterial->SetScalarParameterValue(TEXT("EnemyDistance"), EnemyDistance);
 }
 
 void UMiniMapComponent::UpdateMapDirection_Implementation()
 {
 	if(!IsValid(GameInstance))Initialize();
 	MapMaterial->SetScalarParameterValue(TEXT("Rotation"),(OwnerPlayer->GetControlRotation().Yaw+90)/360.0);
+	MapMaterial->SetScalarParameterValue(TEXT("EnemyArcRotaion"), EnemyArcRotation);
+	MapMaterial->SetScalarParameterValue(TEXT("EnemyDistance"), EnemyDistance);
 }
 
 UTexture* UMiniMapComponent::CreateMiniMapTexture() const
@@ -142,4 +149,6 @@ void UMiniMapComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& Ou
 	DOREPLIFETIME(UMiniMapComponent, MapWidth);
 	DOREPLIFETIME(UMiniMapComponent, Scale);
 	DOREPLIFETIME(UMiniMapComponent, TextureBitArray);
+	DOREPLIFETIME(UMiniMapComponent, EnemyArcRotation);
+	DOREPLIFETIME(UMiniMapComponent, EnemyDistance);
 }
