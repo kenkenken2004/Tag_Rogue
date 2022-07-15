@@ -1,5 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 #include "GameMap_Alpha.h"
+
+#include "GameFramework/GameSession.h"
 #include "Kismet/GameplayStatics.h"
 #include "Tag_Rogue/Interface/LimitCountComponent.h"
 

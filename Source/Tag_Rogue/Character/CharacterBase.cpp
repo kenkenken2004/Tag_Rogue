@@ -77,23 +77,23 @@ void ACharacterBase::SetupPlayerInputComponent(class UInputComponent* PlayerInpu
 {
 	// Set up gameplay key bindings
 	check(PlayerInputComponent);
-	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
-	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
+	//PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
+	//PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
 
-	PlayerInputComponent->BindAxis("Move Forward / Backward", this, &ACharacterBase::MoveForward);
-	PlayerInputComponent->BindAxis("Move Right / Left", this, &ACharacterBase::MoveRight);
+	//PlayerInputComponent->BindAxis("Move Forward / Backward", this, &ACharacterBase::MoveForward);
+	//PlayerInputComponent->BindAxis("Move Right / Left", this, &ACharacterBase::MoveRight);
 
 	// We have 2 versions of the rotation bindings to handle different kinds of devices differently
 	// "turn" handles devices that provide an absolute delta, such as a mouse.
 	// "turnrate" is for devices that we choose to treat as a rate of change, such as an analog joystick
-	PlayerInputComponent->BindAxis("Turn Right / Left Mouse", this, &APawn::AddControllerYawInput);
-	PlayerInputComponent->BindAxis("Turn Right / Left Gamepad", this, &ACharacterBase::TurnAtRate);
-	PlayerInputComponent->BindAxis("Look Up / Down Mouse", this, &APawn::AddControllerPitchInput);
-	PlayerInputComponent->BindAxis("Look Up / Down Gamepad", this, &ACharacterBase::LookUpAtRate);
+	//PlayerInputComponent->BindAxis("Turn Right / Left Mouse", this, &APawn::AddControllerYawInput);
+	//PlayerInputComponent->BindAxis("Turn Right / Left Gamepad", this, &ACharacterBase::TurnAtRate);
+	//PlayerInputComponent->BindAxis("Look Up / Down Mouse", this, &APawn::AddControllerPitchInput);
+	//PlayerInputComponent->BindAxis("Look Up / Down Gamepad", this, &ACharacterBase::LookUpAtRate);
 
 	// handle touch devices
-	PlayerInputComponent->BindTouch(IE_Pressed, this, &ACharacterBase::TouchStarted);
-	PlayerInputComponent->BindTouch(IE_Released, this, &ACharacterBase::TouchStopped);
+	//PlayerInputComponent->BindTouch(IE_Pressed, this, &ACharacterBase::TouchStarted);
+	//PlayerInputComponent->BindTouch(IE_Released, this, &ACharacterBase::TouchStopped);
 }
 
 void ACharacterBase::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
@@ -126,13 +126,13 @@ void ACharacterBase::TouchStopped(ETouchIndex::Type FingerIndex, FVector Locatio
 	StopJumping();
 }
 
-void ACharacterBase::TurnAtRate(float Rate)
+void ACharacterBase::TurnAtRate_Implementation(float Rate)
 {
 	// calculate delta for this frame from the rate information
 	AddControllerYawInput(Rate * TurnRateGamepad * GetWorld()->GetDeltaSeconds());
 }
 
-void ACharacterBase::LookUpAtRate(float Rate)
+void ACharacterBase::LookUpAtRate_Implementation(float Rate)
 {
 	// calculate delta for this frame from the rate information
 	AddControllerPitchInput(Rate * TurnRateGamepad * GetWorld()->GetDeltaSeconds());
@@ -156,6 +156,7 @@ void ACharacterBase::Tick(const float DeltaSeconds)
 	Super::Tick(DeltaSeconds);
 	TimeSinceCreated+=DeltaSeconds;
 	if(!HasAuthority())return;
+	
 	float EnemyDistance = 1000000000;
 	float EnemyRotation = 0;
 	if(IsValid(Enemy))
@@ -173,7 +174,7 @@ void ACharacterBase::Tick(const float DeltaSeconds)
 	LimitCount->AddRelativeLocation(FVector(0,0,3*DeltaSeconds*FMath::Cos(TimeSinceCreated/0.5*2*PI)));
 }
 
-void ACharacterBase::MoveForward(const float Value)
+void ACharacterBase::MoveForward_Implementation(const float Value)
 {
 	if ((Controller != nullptr) && (Value != 0.0f))
 	{
@@ -187,7 +188,7 @@ void ACharacterBase::MoveForward(const float Value)
 	}
 }
 
-void ACharacterBase::MoveRight(float Value)
+void ACharacterBase::MoveRight_Implementation(float Value)
 {
 	if ( (Controller != nullptr) && (Value != 0.0f) )
 	{

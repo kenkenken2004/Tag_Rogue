@@ -38,21 +38,25 @@ protected:
 	virtual void BeginPlay() override;
 	virtual void Tick(float DeltaSeconds) override;
 	/** Called for forwards/backward input */
+	UFUNCTION(Reliable, Client)
 	void MoveForward(float Value);
 
 	/** Called for side to side input */
+	UFUNCTION(Reliable, Client)
 	void MoveRight(float Value);
 
 	/** 
 	 * Called via input to turn at a given rate. 
 	 * @param Rate	This is a normalized rate, i.e. 1.0 means 100% of desired turn rate
 	 */
+	UFUNCTION(Reliable, Client)
 	void TurnAtRate(float Rate);
 
 	/**
 	 * Called via input to turn look up/down at a given rate. 
 	 * @param Rate	This is a normalized rate, i.e. 1.0 means 100% of desired turn rate
 	 */
+	UFUNCTION(Reliable, Client)
 	void LookUpAtRate(float Rate);
 
 	/** Handler for when a touch input begins. */

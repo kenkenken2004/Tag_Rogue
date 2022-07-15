@@ -10,7 +10,33 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cf331540-c7ba-40e0-a96e-46ca470ed1b0" name="Changes" comment="" />
+    <list default="true" id="cf331540-c7ba-40e0-a96e-46ca470ed1b0" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/CleaningRobot/AirVent.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/CleaningRobot/BlueLight.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/CleaningRobot/Body.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/CleaningRobot/Camera.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/CleaningRobot/CleaningRobot.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/CleaningRobot/CleaningRobot_PhysicsAsset.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/CleaningRobot/CleaningRobot_Skeleton.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/CleaningRobot/GreenLight.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/CleaningRobot/Hole.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/CleaningRobot/Pipe.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/CleaningRobot/monitor.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/FloatingRobot/Body.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/FloatingRobot/FloatingRobot.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/FloatingRobot/FloatingRobot_Skeleton.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/FloatingRobot/LunaticRedEyes.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Tag_Rogue.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Tag_Rogue.dir/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Config/DefaultInput.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultInput.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Characters/BasicCharacter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Characters/BasicCharacter.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Characters/Chaser.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Characters/Chaser.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Characters/Fugitive.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Characters/Fugitive.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Characters/TagPlayerController.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Characters/TagPlayerController.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/TagGameMode.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/TagGameMode.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Character/CharacterBase.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Character/CharacterBase.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Character/CharacterBase.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Character/CharacterBase.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Level/GameMap_Alpha.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Level/GameMap_Alpha.cpp" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -43,7 +69,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.45925215&quot;,
+    &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.45541707&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -152,6 +178,7 @@
       <workItem from="1657634374466" duration="1017000" />
       <workItem from="1657688688647" duration="33238000" />
       <workItem from="1657755173778" duration="29619000" />
+      <workItem from="1657913129594" duration="382000" />
     </task>
     <servers />
   </component>
