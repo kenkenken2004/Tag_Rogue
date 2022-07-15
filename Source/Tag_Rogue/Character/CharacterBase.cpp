@@ -112,10 +112,22 @@ void ACharacterBase::ReloadWalkSpeed() {
 
 void ACharacterBase::SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent)
 {
-	//使用したもの
-	PlayerInputComponent->BindAxis("Move Forward / Backward", this, &ACharacterBase::MoveForward);//前後の動きをバインド
-	PlayerInputComponent->BindAxis("Move Right / Left", this, &ACharacterBase::MoveRight);
-	PlayerInputComponent->BindAction("Action1", IE_Pressed, this, &ACharacterBase::Action1);//アクション1ボタンが押されたらアクション1
+	Super::SetupPlayerInputComponent(PlayerInputComponent);
+	check(PlayerInputComponent);
+
+	//ホスト側キャラクターとクライアント側キャラクターとで、異なるキーをバインドする
+	if (HasAuthority()) {//ホスト側
+		UE_LOG(LogTemp, Error, TEXT("a"));
+		PlayerInputComponent->BindAxis("Move Forward / Backward Host", this, &ACharacterBase::MoveForward);//前後の動きをバインド
+		PlayerInputComponent->BindAxis("Move Right / Left Host", this, &ACharacterBase::MoveRight);
+		PlayerInputComponent->BindAction("Action1 Host", IE_Pressed, this, &ACharacterBase::Action1);//アクション1ボタンが押されたらアクション1
+	}
+	else {//クライアント側
+		PlayerInputComponent->BindAxis("Move Forward / Backward Client", this, &ACharacterBase::MoveForward);//前後の動きをバインド
+		PlayerInputComponent->BindAxis("Move Right / Left Client", this, &ACharacterBase::MoveRight);
+		PlayerInputComponent->BindAction("Action1 Client", IE_Pressed, this, &ACharacterBase::Action1);//アクション1ボタンが押されたらアクション1
+
+	}
 
 }
 
@@ -145,6 +157,8 @@ void ACharacterBase::BeginPlay()
 {
 	Super::BeginPlay();
 	if(!HasAuthority())return;
+	
+
 	MiniMap->InitializeByServer();
 	MiniMap->Initialize();
 	MiniMap->SetRelativeLocation(FVector(100,0,-40));
@@ -158,6 +172,7 @@ void ACharacterBase::Tick(const float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
 	TimeSinceCreated+=DeltaSeconds;
+	if (!HasAuthority())return;
 
 	//Behaviour
 	switch (BehaviourNumber)
@@ -205,7 +220,7 @@ void ACharacterBase::Tick(const float DeltaSeconds)
 		break;
 	}
 
-	if(!HasAuthority())return;
+	//if(!HasAuthority())return;
 	float EnemyDistance = 1000000000;
 	float EnemyRotation = 0;
 	if(IsValid(Enemy))

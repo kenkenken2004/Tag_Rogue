@@ -1,14 +1,14 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "CharacterFugitive.h"
+#include "CharacterChaser.h"
 
-ACharacterFugitive::ACharacterFugitive() {
+ACharacterChaser::ACharacterChaser() {
 	//–ğŠ„‚ğİ’è
-	Role = "Fugitive";
+	Role = "Chaser";
 
 	//ƒƒbƒVƒ…‚ğİ’è
-	SetMesh(TEXT("/Game/Characters/OriginalCharacter/CleaningRobot/CleaningRobot"));
+	SetMesh(TEXT("/Game/Characters/OriginalCharacter/FloatingRobot/FloatingRobot"));
 
 	//behaviour‚ğİ’è
 	BehaviourNumber = 2;
