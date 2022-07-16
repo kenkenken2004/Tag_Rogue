@@ -28,6 +28,7 @@ public:
 	//Member Variable
 	TMap<FName,FAssetData> AssetDatas;
 	UTag_RogueGameInstance();
+	~UTag_RogueGameInstance();
 	static UTag_RogueGameInstance* GetInstance();
 	static void DisplayDebugMessage(FString Message);
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
@@ -75,7 +76,8 @@ public:
 	TArray<FName> AssetsPathArray = TArray<FName>
 	(
 		{
-			TEXT("/Game/MapObject/Earth/"),
+			TEXT("/Game/MapObject/StarsAndPlanet/"),
+			TEXT("/Game/MapObject/StarsAndPlanet/Earth"),
 			TEXT("/Game/MapObject/Gate/"),
 			TEXT("/Game/MapObject/MapUnit/"),
 			TEXT("/Game/MapObject/Material/"),

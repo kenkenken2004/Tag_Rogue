@@ -9,6 +9,7 @@ void ATitleLevel::BeginPlay()
 	GameInstance = static_cast<UTag_RogueGameInstance*>(GetGameInstance());
 	GameInstance->LoadAssets();
 	GameInstance->InitializeMapBuilders();
+	SaveConfig();
 }
 
 void ATitleLevel::EndPlay(const EEndPlayReason::Type EndPlayReason)

@@ -33,9 +33,9 @@ public:
 	float TimeSinceCreated = 0;
 	float DeltaSecond = 0;
 		
-	UPROPERTY(Config)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float PawnMoveSpeed = 700;
-	UPROPERTY(Config)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float PawnRotateSpeed = 60;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
