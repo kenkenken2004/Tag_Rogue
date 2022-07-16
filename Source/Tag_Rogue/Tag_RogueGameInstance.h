@@ -75,7 +75,8 @@ public:
 	TArray<FName> AssetsPathArray = TArray<FName>
 	(
 		{
-			TEXT("/Game/MapObject/Earth/"),
+			TEXT("/Game/MapObject/StarsAndPlanet/"),
+			TEXT("/Game/MapObject/StarsAndPlanet/Earth"),
 			TEXT("/Game/MapObject/Gate/"),
 			TEXT("/Game/MapObject/MapUnit/"),
 			TEXT("/Game/MapObject/Material/"),
