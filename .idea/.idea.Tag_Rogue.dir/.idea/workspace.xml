@@ -11,10 +11,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cf331540-c7ba-40e0-a96e-46ca470ed1b0" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Config/DefaultGameplayTags.ini" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/CleaningRobot/CleaningRobot_CleaningRobot_PhysicsAsset.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/CleaningRobot/CleaningRobot_CleaningRobot_Skeleton.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/CleaningRobot/Wheels.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/CleaningRobot/smile.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Tag_Rogue.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Tag_Rogue.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Characters/BasicCharacter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Characters/BasicCharacter.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Characters/TagPlayerController.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Characters/TagPlayerController.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/TagGameMode.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/TagGameMode.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Config/DefaultEngine.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultEngine.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Characters/Chaser.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Characters/Chaser.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Characters/Fugitive.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Characters/Fugitive.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/CleaningRobot/AirVent.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/CleaningRobot/AirVent.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/CleaningRobot/Body.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/CleaningRobot/Body.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/CleaningRobot/Camera.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/CleaningRobot/Camera.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/CleaningRobot/CleaningRobot.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/CleaningRobot/CleaningRobot.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/CleaningRobot/CleaningRobot_PhysicsAsset.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/CleaningRobot/CleaningRobot_Skeleton.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/CleaningRobot/Pipe.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/CleaningRobot/Pipe.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/CleaningRobot/monitor.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/CleaningRobot/monitor.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/FloatingRobot/Body.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/FloatingRobot/Body.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/FloatingRobot/FloatingRobot_Skeleton.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/FloatingRobot/FloatingRobot_Skeleton.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/FloatingRobot/LunaticRedEyes.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/FloatingRobot/LunaticRedEyes.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Level/MenuWorld.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Level/MenuWorld.umap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/MapObject/Gate/TitleMapGate.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/MapObject/Gate/TitleMapGate.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Character/CharacterBase.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Character/CharacterBase.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Character/CharacterBase.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Character/CharacterBase.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Tag_RogueGameInstance.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Tag_RogueGameInstance.h" afterDir="false" />
@@ -161,7 +179,7 @@
       <workItem from="1657688688647" duration="33238000" />
       <workItem from="1657755173778" duration="29619000" />
       <workItem from="1657913129594" duration="382000" />
-      <workItem from="1657934701055" duration="3187000" />
+      <workItem from="1657934701055" duration="8675000" />
     </task>
     <servers />
   </component>

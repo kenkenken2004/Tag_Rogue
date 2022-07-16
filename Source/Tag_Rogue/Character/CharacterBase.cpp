@@ -166,7 +166,6 @@ void ACharacterBase::Tick(const float DeltaSeconds)
 		const FVector RelativeLocation = Enemy->GetActorLocation() - GetActorLocation();
 		EnemyDistance = RelativeLocation.Size();
 		EnemyRotation = RelativeLocation.Rotation().Yaw - Controller->GetControlRotation().Yaw;
-		UE_LOG(LogTemp, Warning, TEXT("%f"),EnemyRotation);
 	}
 	MiniMap->EnemyDirection = - EnemyRotation / 360;
 	MiniMap->EnemyDistance = EnemyDistance;

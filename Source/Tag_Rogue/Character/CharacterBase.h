@@ -7,7 +7,7 @@
 #include "Tag_Rogue/Tag_RogueGameInstance.h"
 #include "CharacterBase.generated.h"
 
-UCLASS(config=Game)
+UCLASS(Config=Game)
 class ACharacterBase : public ACharacter
 {
 	GENERATED_BODY()

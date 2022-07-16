@@ -20,7 +20,7 @@ enum struct ESettlement: uint8
 	Fugitive UMETA(DisplayName="FugitiveWon")
 };
 
-UCLASS()
+UCLASS(Config=Game)
 class TAG_ROGUE_API UTag_RogueGameInstance final : public UGameInstance
 {
 	GENERATED_BODY()
