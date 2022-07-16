@@ -126,13 +126,13 @@ void ACharacterBase::TouchStopped(ETouchIndex::Type FingerIndex, FVector Locatio
 	StopJumping();
 }
 
-void ACharacterBase::TurnAtRate_Implementation(float Rate)
+void ACharacterBase::TurnAtRate(float Rate)
 {
 	// calculate delta for this frame from the rate information
 	AddControllerYawInput(Rate * TurnRateGamepad * GetWorld()->GetDeltaSeconds());
 }
 
-void ACharacterBase::LookUpAtRate_Implementation(float Rate)
+void ACharacterBase::LookUpAtRate(float Rate)
 {
 	// calculate delta for this frame from the rate information
 	AddControllerPitchInput(Rate * TurnRateGamepad * GetWorld()->GetDeltaSeconds());
@@ -142,6 +142,7 @@ void ACharacterBase::BeginPlay()
 {
 	Super::BeginPlay();
 	if(!HasAuthority())return;
+	GameInstance = UTag_RogueGameInstance::GetInstance();
 	MiniMap->InitializeByServer();
 	MiniMap->Initialize();
 	MiniMap->SetRelativeLocation(FVector(100,0,-40));
@@ -154,6 +155,7 @@ void ACharacterBase::BeginPlay()
 void ACharacterBase::Tick(const float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
+	DeltaSecond = DeltaSeconds;
 	TimeSinceCreated+=DeltaSeconds;
 	if(!HasAuthority())return;
 	
@@ -179,26 +181,20 @@ void ACharacterBase::MoveForward_Implementation(const float Value)
 	if ((Controller != nullptr) && (Value != 0.0f))
 	{
 		// find out which way is forward
-		const FRotator Rotation = Controller->GetControlRotation();
+		const FRotator Rotation = GetControlRotation();
 		const FRotator YawRotation(0, Rotation.Yaw, 0);
 
 		// get forward vector
 		const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
-		AddMovementInput(Direction, Value);
+		AddMovementInput(Direction, Value*DeltaSecond*PawnMoveSpeed);
 	}
 }
 
-void ACharacterBase::MoveRight_Implementation(float Value)
+void ACharacterBase::MoveRight_Implementation(const float Value)
 {
 	if ( (Controller != nullptr) && (Value != 0.0f) )
 	{
-		// find out which way is right
-		const FRotator Rotation = Controller->GetControlRotation();
-		const FRotator YawRotation(0, Rotation.Yaw, 0);
-	
-		// get right vector 
-		const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
 		// add movement in that direction
-		AddMovementInput(Direction, Value);
+		AddControllerYawInput(Value*DeltaSecond*PawnRotateSpeed);
 	}
 }

@@ -70,7 +70,6 @@ public:
 	float RadarDistExp = 0.5;
 	UPROPERTY(Config)
 	float PointerScale = 1;
-	
 
 	
 	TArray<FName> AssetsPathArray = TArray<FName>
