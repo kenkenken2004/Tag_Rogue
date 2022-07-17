@@ -25,7 +25,6 @@ void UTerrainMaker::Build()
 			PlaceMapUnitBase(y,x);
 		}
 	}
-	SpawnGlobe();
 }
 
 void UTerrainMaker::AddGate(const URogueAlpha_MapGenerator::FCell* Cell,

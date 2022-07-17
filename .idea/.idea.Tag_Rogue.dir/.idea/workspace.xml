@@ -11,27 +11,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cf331540-c7ba-40e0-a96e-46ca470ed1b0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Content/MapObject/StarsAndPlanet/EarthAndSun.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapObject/StarsAndPlanet/SunLight.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Tag_Rogue.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Tag_Rogue.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Config/DefaultEngine.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultEngine.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Characters/Chaser.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Characters/Chaser.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Characters/Fugitive.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Characters/Fugitive.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Interface/Widget/Title.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Interface/Widget/Title.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Level/MenuWorld.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Level/MenuWorld.umap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Level/VideoWorld.umap" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/MapObject/StarsAndPlanet/Earth/TitleEarth.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/MapObject/StarsAndPlanet/Earth/TitleEarth.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/MapObject/StarsAndPlanet/Earth/TitleEarthCloudMaterial.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/MapObject/StarsAndPlanet/Earth/TitleEarthCloudMaterial.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/MapObject/StarsAndPlanet/Earth/TitleEarthMaterial.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/MapObject/StarsAndPlanet/Earth/TitleEarthMaterial.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/MapObject/StarsAndPlanet/Sun.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/MapObject/StarsAndPlanet/Sun.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/MapObject/StarsAndPlanet/SunMaterial.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/MapObject/StarsAndPlanet/SunMaterial.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Character/CharacterBase.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Character/CharacterBase.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Level/GameMap_Alpha.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Level/GameMap_Alpha.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Level/TitleLevel.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Level/TitleLevel.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Tag_RogueGameInstance.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Tag_RogueGameInstance.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Tag_RogueGameInstance.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Tag_RogueGameInstance.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Tag_RogueGameModeBase.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Tag_RogueGameModeBase.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Tag_RogueGameModeBase.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Tag_RogueGameModeBase.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/MapObject/Material/Light1.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/MapObject/Material/Light1.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/MapObject/Material/Metal3.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/MapObject/Material/Metal3.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/MapObject/StarsAndPlanet/EarthAndSun.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/MapObject/StarsAndPlanet/EarthAndSun.uasset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
