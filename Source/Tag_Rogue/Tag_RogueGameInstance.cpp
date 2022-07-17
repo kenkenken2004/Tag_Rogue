@@ -10,6 +10,10 @@ UTag_RogueGameInstance::UTag_RogueGameInstance()
 	AssetDatas = TMap<FName, FAssetData>();
 }
 
+UTag_RogueGameInstance::~UTag_RogueGameInstance()
+{
+}
+
 UTag_RogueGameInstance* UTag_RogueGameInstance::GetInstance()
 {
 	if (GEngine)return Cast<UTag_RogueGameInstance>(GEngine->GetWorldContextFromGameViewport(GEngine->GameViewport)->OwningGameInstance);

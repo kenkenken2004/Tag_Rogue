@@ -28,6 +28,7 @@ public:
 	//Member Variable
 	TMap<FName,FAssetData> AssetDatas;
 	UTag_RogueGameInstance();
+	~UTag_RogueGameInstance();
 	static UTag_RogueGameInstance* GetInstance();
 	static void DisplayDebugMessage(FString Message);
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
