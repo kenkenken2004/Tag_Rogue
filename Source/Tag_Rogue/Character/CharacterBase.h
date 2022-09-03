@@ -32,12 +32,19 @@ public:
 	float TurnRateGamepad;
 	float TimeSinceCreated = 0;
 	float DeltaSecond = 0;
-		
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	float PawnMoveSpeed = 700;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	float PawnRotateSpeed = 60;
 
+	float PawnMoveSpeed = 0;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float PawnMoveMaxSpeed = 700;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float PawnMoveAcceleration = 250;
+
+	float PawnRotateSpeed = 0;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float PawnRotateMaxSpeed = 60;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float PawnRotateAcceleration = 20;
+	
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	ACharacterBase* Enemy = nullptr;
 	UPROPERTY()

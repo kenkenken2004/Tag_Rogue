@@ -19,6 +19,6 @@ void ATag_RogueGameModeBase::TravelToGamePlayWorld()
 
 void ATag_RogueGameModeBase::TravelToMenuWorld()
 {
-	UTag_RogueGameInstance::GetInstance()->Settlement = ESettlement::Yet;
 	GetWorld()->ServerTravel(TEXT("MenuWorld"),false, false);
+	//UTag_RogueGameInstance::GetInstance()->Settlement = ESettlement::Yet;
 }

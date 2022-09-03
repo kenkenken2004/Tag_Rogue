@@ -186,6 +186,19 @@ void ACharacterBase::MoveForward_Implementation(const float Value)
 		// get forward vector
 		const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
 		AddMovementInput(Direction, Value*DeltaSecond*PawnMoveSpeed);
+
+		// Acceleration
+		if (PawnMoveSpeed<PawnMoveMaxSpeed)
+		{
+			PawnMoveSpeed+=DeltaSecond*PawnMoveAcceleration;
+		}
+		else
+		{
+			PawnMoveSpeed = PawnMoveMaxSpeed;
+		}
+	}else if(Value==0.0f)
+	{
+		PawnMoveSpeed=0;
 	}
 }
 
@@ -195,5 +208,19 @@ void ACharacterBase::MoveRight_Implementation(const float Value)
 	{
 		// add movement in that direction
 		AddControllerYawInput(Value*DeltaSecond*PawnRotateSpeed);
+
+		// Acceleration
+		if (PawnRotateSpeed<PawnRotateMaxSpeed)
+		{
+			PawnRotateSpeed+=DeltaSecond*PawnRotateAcceleration;
+		}
+		else
+		{
+			PawnRotateSpeed = PawnRotateMaxSpeed;
+		}
+	}else if(Value==0.0f)
+	{
+		PawnRotateSpeed=0;
 	}
+	
 }
