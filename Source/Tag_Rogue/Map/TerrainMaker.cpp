@@ -2,6 +2,8 @@
 
 
 #include "TerrainMaker.h"
+
+#include "Tag_Rogue/MapObject/Desk.h"
 #include "Tag_Rogue/MapObject/HoloGlobe.h"
 #include "Tag_Rogue/MapObject/MapGate.h"
 #include "Tag_Rogue/MapObject/MapUnitBase.h"
@@ -25,6 +27,7 @@ void UTerrainMaker::Build()
 			PlaceMapUnitBase(y,x);
 		}
 	}
+	AddRoomObjects();
 }
 
 void UTerrainMaker::AddGate(const URogueAlpha_MapGenerator::FCell* Cell,
@@ -53,11 +56,42 @@ void UTerrainMaker::AddGate(const URogueAlpha_MapGenerator::FCell* Cell,
 		break;
 	}
 	Location += OffSet;
-	AMapGate* MapGate = GetWorld()->SpawnActor<AMapGate>(Location, Rotator);
+	UTag_RogueGameInstance::GetInstance()->LoadAssets();
+	UBlueprintGeneratedClass* BP = UTag_RogueGameInstance::GetInstance()->GetAssetObject<UBlueprintGeneratedClass>(TEXT("MapGate"));
+	AActor* MapGate = GetWorld()->SpawnActor<AActor>(BP,Location,Rotator);
 	MapGate->SetActorScale3D(FVector(CellSize / 100, CellSize / 100, CellSize / 100));
 }
 
-void UTerrainMaker::SpawnGlobe()
+void UTerrainMaker::AddRoomObjects() const
+{
+	for (const UMapGeneratorBase::FSpace* Space : Generator->SpaceList)
+	{
+		const int32 Direction = FMath::RandRange(0,3);
+		const FRotator Rotation = FRotator(0,Direction*90+90,0);
+		UTag_RogueGameInstance::GetInstance()->LoadAssets();
+		if (Space->Attribution==UMapGeneratorBase::EType::Plaza)
+		{
+			for (int PosY=Space->LeftTopCell->Py+1;PosY<Space->RightBottomCell->Py;PosY+=1+Direction%2)
+			{
+				for (int PosX=Space->LeftTopCell->Px+1;PosX<Space->RightBottomCell->Px;PosX+=2-Direction%2)
+				{
+					if (PosY!=Space->GetCenterCell()->Py&&PosX!=Space->GetCenterCell()->Px)
+					{
+						UMapGeneratorBase::FCell* Cell = Generator->GetCell(PosY,PosX);
+						GetWorld()->SpawnActor<AActor>(UTag_RogueGameInstance::GetInstance()->GetAssetObject<UBlueprintGeneratedClass>(TEXT("HoloDesk")),Cie_Convert(PosY, PosX,CellSize*(3/4.0)), Rotation);
+						Cell->HasObjects = true;
+					}
+				}
+			}
+		}else if (Space->Attribution==UMapGeneratorBase::EType::Room)
+		{
+			Space->GetCenterCell()->HasObjects = true;
+			GetWorld()->SpawnActor<AActor>(UTag_RogueGameInstance::GetInstance()->GetAssetObject<UBlueprintGeneratedClass>(TEXT("PowerTower")),Cie_Convert(Space->GetCenterCell()->Py, Space->GetCenterCell()->Px,170),Rotation);
+		}
+	}
+}
+
+void UTerrainMaker::SpawnGlobe() const
 {
 	for (int32 i = 0; i < Generator->SpaceList.Num(); i++)
 	{
@@ -68,6 +102,7 @@ void UTerrainMaker::SpawnGlobe()
 
 void UTerrainMaker::PlaceMapUnitBase(int32 Py, int32 Px) const
 {
+	UTag_RogueGameInstance::GetInstance()->LoadAssets();
 	AMapUnitBase::EMeshType MeshType = AMapUnitBase::EMeshType::Null;
 	FRotator Rotator = FRotator(0, 0, 0);
 	bool bIsXReversed = false;

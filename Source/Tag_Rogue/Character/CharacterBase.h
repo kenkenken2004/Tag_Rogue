@@ -23,22 +23,25 @@ class ACharacterBase : public ACharacter
 
 public:
 	ACharacterBase();
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"), Replicated)
-	class UMiniMapComponent* MiniMap;
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"), Replicated)
-	class ULimitCountComponent* LimitCount;
 	/** Base turn rate, in deg/sec. Other scaling may affect final turn rate. */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Input)
 	float TurnRateGamepad;
 	float TimeSinceCreated = 0;
 	float DeltaSecond = 0;
-		
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	float PawnMoveSpeed = 700;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	float PawnRotateSpeed = 60;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	float PawnMoveSpeed = 0;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float PawnMoveMaxSpeed = 700;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float PawnMoveAcceleration = 250;
+
+	float PawnRotateSpeed = 0;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float PawnRotateMaxSpeed = 60;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float PawnRotateAcceleration = 20;
+	
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Replicated)
 	ACharacterBase* Enemy = nullptr;
 	UPROPERTY()
 	UTag_RogueGameInstance* GameInstance;

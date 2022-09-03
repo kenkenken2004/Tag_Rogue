@@ -16,18 +16,21 @@ void AGameMap_Alpha::Tick(const float DeltaSeconds)
 	Super::Tick(DeltaSeconds);
 	if(IsValid(GameInstance))
 	{
-		if(GameInstance->FloatRemainingTime>0)
+		if (!GameInstance->DoesTimerStopped)
 		{
-			GameInstance->bShouldSChangeNumbers = false;
-			GameInstance->FloatRemainingTime -= DeltaSeconds;
-			if(FMath::CeilToInt32(GameInstance->FloatRemainingTime) < GameInstance->IntRemainingTime)
+			if(GameInstance->FloatRemainingTime>0)
 			{
-				GameInstance->IntRemainingTime = FMath::CeilToInt32(GameInstance->FloatRemainingTime);
-				GameInstance->bShouldSChangeNumbers = true;
+				GameInstance->bShouldSChangeNumbers = false;
+				GameInstance->FloatRemainingTime -= DeltaSeconds;
+				if(FMath::CeilToInt32(GameInstance->FloatRemainingTime) < GameInstance->IntRemainingTime)
+				{
+					GameInstance->IntRemainingTime = FMath::CeilToInt32(GameInstance->FloatRemainingTime);
+					GameInstance->bShouldSChangeNumbers = true;
+				}
+			}else if(GameInstance->IntRemainingTime==0 && GameInstance->Settlement == ESettlement::Yet)
+			{
+				GameInstance->FugitiveWon();
 			}
-		}else if(GameInstance->IntRemainingTime==0 && GameInstance->Settlement == ESettlement::Yet)
-		{
-			GameInstance->FugitiveWon();
 		}
 	}
 }

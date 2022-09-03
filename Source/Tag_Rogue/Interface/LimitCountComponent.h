@@ -19,8 +19,6 @@ public:
 	UPROPERTY()
 	UTag_RogueGameInstance* GameInstance;
 	UPROPERTY(Replicated)
-	UStaticMesh* DisplayMesh;
-	UPROPERTY()
 	UMaterialInstanceDynamic* DigitLeft;
 	UPROPERTY(Replicated)
 	int32 DigitLeftNumber;
@@ -29,7 +27,10 @@ public:
 	UPROPERTY(Replicated)
 	int32 DigitRightNumber;
 	UPROPERTY(Replicated)
-	ACharacterBase* OwnerPlayer; 
+	ACharacterBase* OwnerPlayer;
+	UPROPERTY(Replicated)
+	float ColorLerp = 0.0;
+	
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;

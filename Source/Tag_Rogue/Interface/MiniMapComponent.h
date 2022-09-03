@@ -19,8 +19,6 @@ public:
 	ACharacterBase* OwnerPlayer;
 	UPROPERTY()
 	UTag_RogueGameInstance* GameInstance;
-	UPROPERTY(Replicated)
-	UStaticMesh* DisplayMesh;
 	UPROPERTY()
 	URogueAlpha_MapGenerator* Generater;
 	UPROPERTY()
@@ -40,7 +38,7 @@ public:
 	UPROPERTY(Replicated)
 	float EnemyDirection;
 	UPROPERTY(Replicated)
-	float EnemyDistance;
+	float EnemyDistance = 10000000000;
 	UPROPERTY(Replicated)
 	float RadarSensitivity;
 	UPROPERTY(Replicated)

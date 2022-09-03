@@ -23,34 +23,35 @@ class TAG_ROGUE_API AMapGate final : public AStaticMeshActor
 	GENERATED_BODY()
 	UPROPERTY()
 	UTag_RogueGameInstance* GameInstance;
-	UPROPERTY()
-	UBoxComponent* Collision;
-	UPROPERTY()
-	UStaticMeshComponent* OuterBottomGate;
-	UPROPERTY()
-	UStaticMeshComponent* OuterTopGate;
-	UPROPERTY()
-	UStaticMeshComponent* InnerBottomGate;
-	UPROPERTY()
-	UStaticMeshComponent* InnerTopGate;
-	UPROPERTY()
-	UStaticMesh* OuterBottomGateMesh;
-	UPROPERTY()
-	UStaticMesh* OuterTopGateMesh;
-	UPROPERTY()
-	UStaticMesh* InnerBottomGateMesh;
-	UPROPERTY()
-	UStaticMesh* InnerTopGateMesh;
 	UPROPERTY(Replicated)
 	EGateState GateState = EGateState::Closed;
 	const float GateOpenedHeight = 60.0;
 	float GateHeight = 0;
 	int32 OverlappingNumber = 0;
 	UPROPERTY(EditAnywhere)
-	float GateOpenCloseTime = 0.25;
+	float GateOpenCloseTime = 1;
 public:
 	// Sets default values for this actor's properties
 	AMapGate();
+
+	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	UBoxComponent* Collision;
+	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	UStaticMeshComponent* OuterBottomGate;
+	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	UStaticMeshComponent* OuterTopGate;
+	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	UStaticMeshComponent* InnerBottomGate;
+	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	UStaticMeshComponent* InnerTopGate;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UAudioComponent* OuterCloseAudio;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UAudioComponent* InnerCloseAudio;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UAudioComponent* OuterOpenAudio;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UAudioComponent* InnerOpenAudio;
 
 protected:
 	// Called when the game starts or when spawned

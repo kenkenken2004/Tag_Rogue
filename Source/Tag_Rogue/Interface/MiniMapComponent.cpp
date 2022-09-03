@@ -3,7 +3,6 @@
 
 #include "MiniMapComponent.h"
 
-#include "CADKernel/UI/Display.h"
 #include "Net/UnrealNetwork.h"
 #include "Tag_Rogue/Character/CharacterBase.h"
 
@@ -22,6 +21,9 @@ UMiniMapComponent::UMiniMapComponent()
 void UMiniMapComponent::BeginPlay()
 {
 	Super::BeginPlay();
+	if(!GetAttachmentRootActor()->HasAuthority())return;
+	InitializeByServer();
+	Initialize();
 }
 
 
@@ -30,6 +32,14 @@ void UMiniMapComponent::TickComponent(float DeltaTime, ELevelTick TickType,
                                       FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
+	if(IsValid(OwnerPlayer->Enemy))
+	{
+		const FVector RelativePosition = OwnerPlayer->Enemy->GetActorLocation() - OwnerPlayer->GetActorLocation();
+		EnemyDistance = RelativePosition.Size();
+		EnemyDirection = RelativePosition.Rotation().Yaw - OwnerPlayer->GetControlRotation().Yaw;
+		EnemyDirection = - EnemyDirection / 360;
+	}
+	UpdateMapDirection();
 	// ...
 }
 
@@ -42,9 +52,6 @@ void UMiniMapComponent::InitializeByServer()
 		GameInstance->InitializeMapBuilders();
 		Generater = GameInstance->MapGenerator;
 		Maker = GameInstance->TerrainMaker;
-		GameInstance->LoadAssets();
-		DisplayMesh = GameInstance->GetAssetObject<UStaticMesh>(TEXT("SF_Display"));
-		SetStaticMesh(DisplayMesh);
 	}
 	
 	MapHeight = Generater->MapHeight;
@@ -73,9 +80,6 @@ void UMiniMapComponent::Initialize_Implementation()
 		GameInstance->InitializeMapBuilders();
 		Generater = GameInstance->MapGenerator;
         Maker = GameInstance->TerrainMaker;
-        GameInstance->LoadAssets();
-		DisplayMesh = GameInstance->GetAssetObject<UStaticMesh>(TEXT("SF_Display"));
-		SetStaticMesh(DisplayMesh);
 	}
 	
 	MapMaterial = CreateAndSetMaterialInstanceDynamic(0);
@@ -91,6 +95,7 @@ void UMiniMapComponent::Initialize_Implementation()
 void UMiniMapComponent::UpdateMapDirection_Implementation()
 {
 	if(!IsValid(GameInstance))Initialize();
+
 	MapMaterial->SetScalarParameterValue(TEXT("Rotation"),(OwnerPlayer->GetControlRotation().Yaw+90)/360.0);
 	MapMaterial->SetScalarParameterValue(TEXT("EnemyArcRotation"),EnemyDirection);
 	MapMaterial->SetScalarParameterValue(TEXT("EnemyDistance"),EnemyDistance);
@@ -144,7 +149,6 @@ void UMiniMapComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& Ou
 {
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 	DOREPLIFETIME(UMiniMapComponent, OwnerPlayer);
-	DOREPLIFETIME(UMiniMapComponent, DisplayMesh);
 	DOREPLIFETIME(UMiniMapComponent, CellSize);
 	DOREPLIFETIME(UMiniMapComponent, MapHeight);
 	DOREPLIFETIME(UMiniMapComponent, MapWidth);

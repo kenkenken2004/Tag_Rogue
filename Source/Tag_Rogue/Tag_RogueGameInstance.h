@@ -46,6 +46,8 @@ public:
 	URogueAlpha_MapGenerator* MapGenerator;
 	UPROPERTY()
 	UTerrainMaker* TerrainMaker;
+	UPROPERTY(BlueprintReadWrite)
+	bool DoesTimerStopped = false;
 	
 	UPROPERTY(Config)
 	float GameTimeLimit = 60;
@@ -81,16 +83,35 @@ public:
 			TEXT("/Game/MapObject/Gate/"),
 			TEXT("/Game/MapObject/MapUnit/"),
 			TEXT("/Game/MapObject/Material/"),
-			TEXT("/Game/Interface/Display/"),
+			TEXT("/Game/Interface/Map/"),
 			TEXT("/Game/Interface/Font/Tr2n/"),
-			TEXT("/Game/Interface/Count/")
+			TEXT("/Game/Interface/Count/"),
+			TEXT("/Game/Interface/UI/"),
+			TEXT("/Game/MapObject/Desk/"),
+			TEXT("/Game/MapObject/PowerTower/")
 		}
 	);
 	
 	void LoadAssets();
 	template <typename T> T* GetAssetObject(const FName AssetName)
 	{
-		UObject* Instant = AssetDatas[AssetName].GetAsset();
+		FName Key;
+		if (AssetDatas.Contains(FName(AssetName.ToString()+TEXT("_C"))))
+		{
+			Key = FName(AssetName.ToString()+TEXT("_C"));
+			UObject* Instant = AssetDatas[Key].GetAsset();
+			return static_cast<T*>(Instant);
+		}
+		Key = AssetName;
+		UObject* Instant;
+		if (std::is_same_v<T,UBlueprintGeneratedClass>)
+		{
+			Instant = Cast<UBlueprint>(AssetDatas[Key].GetAsset())->GeneratedClass;
+		}
+		else
+		{
+			Instant = AssetDatas[Key].GetAsset();
+		}
 		return static_cast<T*>(Instant);
 	}
 

@@ -2,6 +2,8 @@
 
 #include "MapUnitBase.h"
 
+#include "Tag_Rogue/Tag_RogueGameInstance.h"
+
 void AMapUnitBase::InitEnumName()
 {
 	EnumName = TMap<EMeshType, FName>();
@@ -32,14 +34,13 @@ AMapUnitBase::AMapUnitBase()
 void AMapUnitBase::BeginPlay()
 {
 	Super::BeginPlay();
-	GameInstance = Cast<UTag_RogueGameInstance, UGameInstance>(GetGameInstance());
 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 }
 
 void AMapUnitBase::SetMesh(const FName Path)
 {
-	BodyMesh = GameInstance->GetAssetObject<UStaticMesh>(Path);
+	BodyMesh = UTag_RogueGameInstance::GetInstance()->GetAssetObject<UStaticMesh>(Path);
 	BodyComponent->SetStaticMesh(BodyMesh);
 }
 
