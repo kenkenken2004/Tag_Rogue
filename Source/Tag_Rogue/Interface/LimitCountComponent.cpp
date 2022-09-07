@@ -74,7 +74,7 @@ void ULimitCountComponent::Initialize_Implementation()
 	SetStaticMesh(DisplayMesh);
 	DigitLeft = CreateAndSetMaterialInstanceDynamic(0);
 	DigitRight = CreateAndSetMaterialInstanceDynamic(1);
-	SetRelativeLocation(FVector(120,0,-20));
-	SetRelativeRotation(FRotator(0,270,30));
+	SetRelativeLocation(FVector(120,0,50));
+	SetRelativeRotation(FRotator(0,270,-30));
 	SetRelativeScale3D(FVector(0.1,0.1,0.1));
 }
