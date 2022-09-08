@@ -145,9 +145,9 @@ void ACharacterBase::BeginPlay()
 	GameInstance = UTag_RogueGameInstance::GetInstance();
 	MiniMap->InitializeByServer();
 	MiniMap->Initialize();
-	MiniMap->SetRelativeLocation(FVector(100,0,-40));
-	MiniMap->SetRelativeRotation(FRotator(0,270,60));
-	MiniMap->SetRelativeScale3D(FVector(0.3,0.3,0.3));
+	//MiniMap->SetRelativeLocation(FVector(100,0,-40));
+	//MiniMap->SetRelativeRotation(FRotator(0,270,60));
+	//MiniMap->SetRelativeScale3D(FVector(0.3,0.3,0.3));
 	LimitCount->Initialize();
 	LimitCount->UpdateNumbers();
 }
@@ -170,9 +170,9 @@ void ACharacterBase::Tick(const float DeltaSeconds)
 	MiniMap->EnemyDirection = - EnemyRotation / 360;
 	MiniMap->EnemyDistance = EnemyDistance;
 	MiniMap->UpdateMapDirection();
-	MiniMap->AddRelativeLocation(FVector(0,0,3*DeltaSeconds*FMath::Cos(TimeSinceCreated/1.0*2*PI)));
+	//MiniMap->AddRelativeLocation(FVector(0,0,3*DeltaSeconds*FMath::Cos(TimeSinceCreated/1.0*2*PI)));
 	LimitCount->CheckShouldUpdateNumbers(DeltaSeconds);
-	LimitCount->AddRelativeLocation(FVector(0,0,3*DeltaSeconds*FMath::Cos(TimeSinceCreated/0.5*2*PI)));
+	//LimitCount->AddRelativeLocation(FVector(0,0,3*DeltaSeconds*FMath::Cos(TimeSinceCreated/0.5*2*PI)));
 }
 
 void ACharacterBase::MoveForward_Implementation(const float Value)

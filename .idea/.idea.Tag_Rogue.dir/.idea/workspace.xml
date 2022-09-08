@@ -11,14 +11,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cf331540-c7ba-40e0-a96e-46ca470ed1b0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Content/Interface/UI/PlayUIBase.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/UI/UIMaterial.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Widget/PlayUI.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Tag_Rogue.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Tag_Rogue.dir/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Characters/BasicCharacter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Characters/BasicCharacter.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Characters/Chaser.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Characters/Chaser.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Characters/Fugitive.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Characters/Fugitive.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Interface/Widget/Defeat.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Interface/Widget/Defeat.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Level/GamePlayWorld.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Level/GamePlayWorld.umap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Interface/Display/DisplayMaterial.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Interface/Display/DisplayMaterial.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Interface/UI/PlayUIBase.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Interface/UI/PlayUIBase.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Interface/UI/UIMaterial.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Interface/UI/UIMaterial.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Character/CharacterBase.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Character/CharacterBase.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Interface/LimitCountComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Interface/LimitCountComponent.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -170,6 +170,7 @@
       <workItem from="1662180059691" duration="4398000" />
       <workItem from="1662203803751" duration="4826000" />
       <workItem from="1662554140908" duration="1838000" />
+      <workItem from="1662623097537" duration="2726000" />
     </task>
     <servers />
   </component>
