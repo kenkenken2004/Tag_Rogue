@@ -81,9 +81,10 @@ public:
 			TEXT("/Game/MapObject/Gate/"),
 			TEXT("/Game/MapObject/MapUnit/"),
 			TEXT("/Game/MapObject/Material/"),
-			TEXT("/Game/Interface/Display/"),
+			TEXT("/Game/Interface/Map/"),
 			TEXT("/Game/Interface/Font/Tr2n/"),
-			TEXT("/Game/Interface/Count/")
+			TEXT("/Game/Interface/Count/"),
+			TEXT("/Game/Interface/UI/")
 		}
 	);
 	
