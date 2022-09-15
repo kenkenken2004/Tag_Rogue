@@ -11,29 +11,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cf331540-c7ba-40e0-a96e-46ca470ed1b0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Content/Interface/AlertMaterial.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/CAUTION.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/DistanceIndicatorMaterial.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Map/DisplayMaterial.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Map/MiniMapEnemyPointer.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Map/MiniMapPointer.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Map/SF_Display.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Map/SideMaterial.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Interface/DistanceIndicator.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Interface/DistanceIndicator.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Interface/CompassMaterial.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Tag_Rogue.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Tag_Rogue.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Config/DefaultEngine.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultEngine.ini" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Characters/BasicCharacter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Characters/BasicCharacter.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Characters/Chaser.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Characters/Chaser.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Characters/Fugitive.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Characters/Fugitive.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Interface/Count/CountDisplay.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Interface/Count/CountDisplay.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Interface/Count/CountMaterial.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Interface/Count/CountMaterial.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Interface/Display/DisplayMaterial.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Interface/Display/MiniMapEnemyPointer.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Interface/Display/MiniMapPointer.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Interface/Display/SF_Display.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Interface/Display/SideMaterial.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Tag_RogueGameInstance.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Tag_RogueGameInstance.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Interface/DistanceIndicatorMaterial.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Interface/DistanceIndicatorMaterial.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Interface/Map/DisplayMaterial.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Interface/Map/DisplayMaterial.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Interface/UI/PlayUIBase.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Interface/UI/PlayUIBase.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Level/MenuWorld.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Level/MenuWorld.umap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/MapObject/Material/Light1.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/MapObject/Material/Light1.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/MapObject/Material/Light2.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/MapObject/Material/Light2.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/MapObject/StarsAndPlanet/EarthAndSun.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/MapObject/StarsAndPlanet/EarthAndSun.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/MapObject/StarsAndPlanet/Sun.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/MapObject/StarsAndPlanet/Sun.uasset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,22 +50,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "XThreadsFramesViewSplitterKey": "0.44774687",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "configurable.group.language",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.44774687&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.language&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="Tag_Rogue" type="Uproject" factoryName="rider.uproject">
       <option name="PROJECT_FILE_PATH" value="$PROJECT_DIR$/Tag_Rogue.uproject" />
@@ -188,6 +176,9 @@
       <workItem from="1662623097537" duration="5926000" />
       <workItem from="1662630502439" duration="1115000" />
       <workItem from="1662632825839" duration="5420000" />
+      <workItem from="1662710034662" duration="2017000" />
+      <workItem from="1663161452816" duration="819000" />
+      <workItem from="1663230321232" duration="6054000" />
     </task>
     <servers />
   </component>
