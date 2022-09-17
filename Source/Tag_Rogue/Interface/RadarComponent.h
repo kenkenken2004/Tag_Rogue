@@ -4,29 +4,28 @@
 
 #include "CoreMinimal.h"
 #include "Components/StaticMeshComponent.h"
-#include "Tag_Rogue/Tag_RogueGameInstance.h"
 #include "Tag_Rogue/Character/CharacterBase.h"
-#include "Compass.generated.h"
+#include "RadarComponent.generated.h"
 
 /**
  * 
  */
 UCLASS(ClassGroup=(Custom), meta=(BlueprintSpawnableComponent))
-class TAG_ROGUE_API UCompass : public UStaticMeshComponent
+class TAG_ROGUE_API URadarComponent : public UStaticMeshComponent
 {
 	GENERATED_BODY()
-
-	UCompass();
+	URadarComponent();
 	UPROPERTY()
 	UTag_RogueGameInstance* GameInstance;
 	UPROPERTY(Replicated)
 	ACharacterBase* OwnerPlayer;
 	UPROPERTY()
-	UMaterialInstanceDynamic* CompassMaterial;
+	UMaterialInstanceDynamic* RadarMaterial;
 	UPROPERTY(Replicated)
-	float Direction = 0;
+	float EnemyDistance = 0;
 	UPROPERTY(Replicated)
 	float EnemyDirection = 0;
+
 protected:
 	virtual void BeginPlay() override;
 public:
@@ -34,7 +33,7 @@ public:
 	UFUNCTION(NetMulticast, Reliable)
 	void Initialize();
 	UFUNCTION(NetMulticast, Reliable)
-	void UpdateCompass();
+	void UpdateRadar();
 	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty> &OutLifetimeProps)const override;
 
 };

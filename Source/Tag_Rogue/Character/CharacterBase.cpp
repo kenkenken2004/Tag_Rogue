@@ -9,7 +9,6 @@
 #include "GameFramework/SpringArmComponent.h"
 #include "Net/UnrealNetwork.h"
 #include "Tag_Rogue/Interface/LimitCountComponent.h"
-#include "Tag_Rogue/Interface/MiniMap.h"
 #include "Tag_Rogue/Interface/MiniMapComponent.h"
 
 //////////////////////////////////////////////////////////////////////////

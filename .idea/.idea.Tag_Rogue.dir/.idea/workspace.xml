@@ -11,17 +11,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cf331540-c7ba-40e0-a96e-46ca470ed1b0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Content/Interface/CompassMaterial.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Interface/Radar.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Interface/RadarMaterial.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Interface/RadarComponent.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Interface/RadarComponent.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Tag_Rogue.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Tag_Rogue.dir/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Characters/BasicCharacter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Characters/BasicCharacter.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Interface/DistanceIndicatorMaterial.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Interface/DistanceIndicatorMaterial.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Effect/NewNiagaraSystem.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Effect/Particle.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Effect/ParticleMaterial.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Interface/CompassMaterial.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Interface/CompassMaterial.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Interface/Map/DisplayMaterial.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Interface/Map/DisplayMaterial.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Interface/UI/PlayUIBase.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Interface/UI/PlayUIBase.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Level/MenuWorld.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Level/MenuWorld.umap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/MapObject/Material/Light1.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/MapObject/Material/Light1.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/MapObject/Material/Light2.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/MapObject/Material/Light2.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/MapObject/StarsAndPlanet/EarthAndSun.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/MapObject/StarsAndPlanet/EarthAndSun.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/MapObject/StarsAndPlanet/Sun.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/MapObject/StarsAndPlanet/Sun.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Level/GamePlayWorld.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Level/GamePlayWorld.umap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Character/CharacterBase.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Character/CharacterBase.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Interface/Compass.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Interface/Compass.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Interface/MiniMap.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Interface/MiniMap.h" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,11 +36,12 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Intermediate/Build/Win64/UnrealEditor/Inc/Tag_Rogue/DistanceIndicator.gen.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Intermediate/Build/Win64/UnrealEditor/Inc/Tag_Rogue/LimitCountComponent.gen.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Intermediate/Build/Win64/UnrealEditor/Inc/Tag_Rogue/MiniMapComponent.gen.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Intermediate/Build/Win64/UnrealEditor/Inc/Tag_Rogue/MiniMapComponent.gen.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Tag_Rogue/Map/MapGeneratorBase.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Tag_Rogue/Map/MapGeneratorBase.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Tag_Rogue/Map/RogueAlpha_MapGenerator.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Tag_Rogue/Map/RogueAlpha_MapGenerator.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../../Program Files/Epic Games/UE_5.0/Engine/Source/Runtime/Engine/Private/Components/CharacterMovementComponent.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Program Files/Epic Games/UE_5.0/Engine/Source/Runtime/Engine/Private/UnrealEngine.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Program Files/Epic Games/UE_5.0/Engine/Source/ThirdParty/mimalloc/include/mimalloc-internal.h" root0="SKIP_HIGHLIGHTING" />
   </component>
@@ -179,6 +185,8 @@
       <workItem from="1662710034662" duration="2017000" />
       <workItem from="1663161452816" duration="819000" />
       <workItem from="1663230321232" duration="6054000" />
+      <workItem from="1663333247212" duration="4073000" />
+      <workItem from="1663373042051" duration="3581000" />
     </task>
     <servers />
   </component>
