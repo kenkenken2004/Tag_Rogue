@@ -11,22 +11,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cf331540-c7ba-40e0-a96e-46ca470ed1b0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Content/Interface/Radar.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/RadarMaterial.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Interface/RadarComponent.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Interface/RadarComponent.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Interface/UI/Shading.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/MapObject/Desk/DeskDisplayMaterial.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/MapObject/Desk/DeskMesh.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/MapObject/Desk/HoloDocumentPicture.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/Tag_Rogue/MapObject/Desk.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/Tag_Rogue/MapObject/Desk.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Tag_Rogue.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Tag_Rogue.dir/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Characters/BasicCharacter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Characters/BasicCharacter.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Effect/NewNiagaraSystem.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Effect/Particle.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Effect/ParticleMaterial.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Interface/CompassMaterial.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Interface/CompassMaterial.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Interface/Map/DisplayMaterial.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Interface/Map/DisplayMaterial.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Characters/Chaser.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Characters/Chaser.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Characters/Fugitive.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Characters/Fugitive.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Interface/Font/FontMaterial.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Interface/Font/FontMaterial.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Interface/RadarMaterial.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Interface/RadarMaterial.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Interface/UI/UIMaterial.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Interface/UI/UIMaterial.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Interface/Widget/Title.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Interface/Widget/Title.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Level/GamePlayWorld.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Level/GamePlayWorld.umap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Character/CharacterBase.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Character/CharacterBase.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Interface/Compass.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Interface/Compass.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Interface/MiniMap.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Interface/MiniMap.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Level/MenuWorld.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Level/MenuWorld.umap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/MapObject/Material/Light1.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/MapObject/Material/Light1.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Map/TerrainMaker.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Map/TerrainMaker.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Map/TerrainMaker.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Map/TerrainMaker.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/MapObject/MapUnitBase.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/MapObject/MapUnitBase.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/MapObject/MapUnitBase.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/MapObject/MapUnitBase.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Tag_RogueGameInstance.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Tag_RogueGameInstance.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -187,6 +193,8 @@
       <workItem from="1663230321232" duration="6054000" />
       <workItem from="1663333247212" duration="4073000" />
       <workItem from="1663373042051" duration="3581000" />
+      <workItem from="1663411970240" duration="5948000" />
+      <workItem from="1663459054425" duration="6744000" />
     </task>
     <servers />
   </component>

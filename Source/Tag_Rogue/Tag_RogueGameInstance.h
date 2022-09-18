@@ -84,7 +84,8 @@ public:
 			TEXT("/Game/Interface/Map/"),
 			TEXT("/Game/Interface/Font/Tr2n/"),
 			TEXT("/Game/Interface/Count/"),
-			TEXT("/Game/Interface/UI/")
+			TEXT("/Game/Interface/UI/"),
+			TEXT("/Game/MapObject/Desk/")
 		}
 	);
 	

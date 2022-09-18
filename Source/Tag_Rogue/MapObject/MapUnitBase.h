@@ -4,8 +4,6 @@
 
 #include "CoreMinimal.h"
 #include "Engine/StaticMeshActor.h"
-#include "GameFramework/Actor.h"
-#include "Tag_Rogue/Tag_RogueGameInstance.h"
 #include "MapUnitBase.generated.h"
 
 UCLASS()
@@ -13,11 +11,10 @@ class TAG_ROGUE_API AMapUnitBase final : public AStaticMeshActor
 {
 	GENERATED_BODY()
 	UPROPERTY()
-	UTag_RogueGameInstance* GameInstance;
-	UPROPERTY()
 	UStaticMeshComponent* BodyComponent;
 	UPROPERTY()
 	UStaticMesh* BodyMesh;
+	
 public:
 	
 	enum struct EMeshType
