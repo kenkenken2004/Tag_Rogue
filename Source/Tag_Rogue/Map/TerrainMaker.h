@@ -21,7 +21,7 @@ class TAG_ROGUE_API UTerrainMaker final : public UObject
 	
 	void PlaceMapUnitBase(int32,int32) const;
 	void AddGate(const URogueAlpha_MapGenerator::FCell*,const URogueAlpha_MapGenerator::EDirection) const;
-	void AddRoomObjects();
+	void AddRoomObjects() const;
 	void SpawnGlobe();
 
 public:

@@ -28,7 +28,7 @@ ACharacterBase::ACharacterBase()
 	bUseControllerRotationRoll = false;
 
 	// Configure character movement
-	GetCharacterMovement()->bOrientRotationToMovement = true; // Character moves in the direction of input...	
+	GetCharacterMovement()->bOrientRotationToMovement = false; // Character moves in the direction of input...	
 	GetCharacterMovement()->RotationRate = FRotator(0.0f, 500.0f, 0.0f); // ...at this rotation rate
 
 	// Note: For faster iteration times these variables, and many more, can be tweaked in the Character Blueprint
@@ -107,7 +107,7 @@ void ACharacterBase::SpawnRandom()
 	UTag_RogueGameInstance* Instance = UTag_RogueGameInstance::GetInstance();
 	Instance->InitializeMapBuilders();
 	int32 X=0;int32 Y=0;
-	while (Instance->MapGenerator->GetCell(Y,X)->Attribution==UMapGeneratorBase::EType::Wall)
+	while (Instance->MapGenerator->GetCell(Y,X)->Attribution==UMapGeneratorBase::EType::Wall||Instance->MapGenerator->GetCell(Y,X)->HasObjects)
 	{
 		X = FMath::RandRange(0,Instance->MapGenerator->MapWidth-1);
 		Y = FMath::RandRange(0,Instance->MapGenerator->MapHeight-1);

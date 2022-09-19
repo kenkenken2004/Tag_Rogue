@@ -60,7 +60,7 @@ void UTerrainMaker::AddGate(const URogueAlpha_MapGenerator::FCell* Cell,
 	MapGate->SetActorScale3D(FVector(CellSize / 100, CellSize / 100, CellSize / 100));
 }
 
-void UTerrainMaker::AddRoomObjects()
+void UTerrainMaker::AddRoomObjects() const
 {
 	for (const UMapGeneratorBase::FSpace* Space : Generator->SpaceList)
 	{
@@ -78,7 +78,7 @@ void UTerrainMaker::AddRoomObjects()
 						UMapGeneratorBase::FCell* Cell = Generator->GetCell(PosY,PosX);
 						ADesk* Desk = GetWorld()->SpawnActor<ADesk>(Cie_Convert(PosY, PosX,CellSize*(3/4.0)), Rotation);
 						Desk->SetDeskMesh();
-						Cell->Attribution = UMapGeneratorBase::EType::Wall;
+						Cell->HasObjects = true;
 					}
 				}
 			}

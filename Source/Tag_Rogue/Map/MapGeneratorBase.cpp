@@ -11,6 +11,7 @@ UMapGeneratorBase::FCell::FCell(const int32 Y, const int32 X,const EType Attr, U
 	IsJunction = false;
 	IsCorner = false;
 	IsGate = false;
+	HasObjects = false;
 	Direction = EDirection::Null;
 }
 

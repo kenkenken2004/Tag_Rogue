@@ -46,6 +46,7 @@ public:
 		bool IsJunction;
 		bool IsCorner;
 		bool IsGate;
+		bool HasObjects;
 		EDirection Direction;
 		UMapGeneratorBase* Gen; //所有されるMapGenerator
 		FCell(int32, int32, UMapGeneratorBase*); //属性無しのコンストラクタ。このとき属性はWallとなる。

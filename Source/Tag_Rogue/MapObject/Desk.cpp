@@ -13,6 +13,7 @@ ADesk::ADesk()
 	DeskComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Desk"));
 	SetRootComponent(DeskComponent);
 	DeskComponent->SetIsReplicated(true);
+	SetReplicates(true);
 }
 
 // Called when the game starts or when spawned
@@ -20,6 +21,7 @@ void ADesk::BeginPlay()
 {
 	Super::BeginPlay();
 	PrimaryActorTick.bCanEverTick = true;
+	DeskComponent->SetIsReplicated(true);
 }
 
 // Called every frame
