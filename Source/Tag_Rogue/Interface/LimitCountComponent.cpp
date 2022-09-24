@@ -49,7 +49,6 @@ void ULimitCountComponent::CheckShouldUpdateNumbers(const float DeltaTime)
 void ULimitCountComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
 {
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
-	DOREPLIFETIME(ULimitCountComponent, DisplayMesh);
 	DOREPLIFETIME(ULimitCountComponent, OwnerPlayer);
 	DOREPLIFETIME(ULimitCountComponent, DigitLeftNumber);
 	DOREPLIFETIME(ULimitCountComponent, DigitRightNumber);

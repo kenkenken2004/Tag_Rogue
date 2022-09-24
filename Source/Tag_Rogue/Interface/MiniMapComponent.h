@@ -19,8 +19,6 @@ public:
 	ACharacterBase* OwnerPlayer;
 	UPROPERTY()
 	UTag_RogueGameInstance* GameInstance;
-	UPROPERTY(Replicated)
-	UStaticMesh* DisplayMesh;
 	UPROPERTY()
 	URogueAlpha_MapGenerator* Generater;
 	UPROPERTY()

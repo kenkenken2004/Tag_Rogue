@@ -56,7 +56,7 @@ void UTerrainMaker::AddGate(const URogueAlpha_MapGenerator::FCell* Cell,
 		break;
 	}
 	Location += OffSet;
-	AMapGate* MapGate = GetWorld()->SpawnActor<AMapGate>(Location, Rotator);
+	AActor* MapGate = GetWorld()->SpawnActor<AActor>(Cast<UBlueprint>(UTag_RogueGameInstance::GetInstance()->GetAssetObject<UBlueprint>(TEXT("MapGate")))->GeneratedClass,Location,Rotator);
 	MapGate->SetActorScale3D(FVector(CellSize / 100, CellSize / 100, CellSize / 100));
 }
 
@@ -84,10 +84,7 @@ void UTerrainMaker::AddRoomObjects() const
 			}
 		}else if (Space->Attribution==UMapGeneratorBase::EType::Room)
 		{
-			const UBlueprint* GeneratedBP = Cast<UBlueprint>(UTag_RogueGameInstance::GetInstance()->GetAssetObject<UBlueprint>(TEXT("PowerTower")));
-			AActor* PowerTower = GetWorld()->SpawnActor<AActor>(GeneratedBP->GeneratedClass,Cie_Convert(Space->GetCenterCell()->Py, Space->GetCenterCell()->Px,170),Rotation);
-			PowerTower->SetReplicates(true);
-			
+			GetWorld()->SpawnActor<AActor>(Cast<UBlueprint>(UTag_RogueGameInstance::GetInstance()->GetAssetObject<UBlueprint>(TEXT("PowerTower")))->GeneratedClass,Cie_Convert(Space->GetCenterCell()->Py, Space->GetCenterCell()->Px,170),Rotation);
 		}
 	}
 }

@@ -17,7 +17,12 @@ AMapGate::AMapGate()
 	OuterTopGate = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("OuterTop"));
 	InnerBottomGate = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("InnerBottom"));
 	InnerTopGate = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("InnerTop"));
+	USceneComponent* Temp = GetRootComponent();
 	SetRootComponent(Collision);
+	Temp->DetachFromComponent({EDetachmentRule::KeepRelative,true});
+	Temp->UnregisterComponent();
+	Temp->ConditionalBeginDestroy();
+	Temp = nullptr;
 	OuterBottomGate->SetupAttachment(RootComponent);
 	OuterTopGate->SetupAttachment(RootComponent);
 	InnerBottomGate->SetupAttachment(RootComponent);
@@ -43,15 +48,6 @@ void AMapGate::BeginPlay()
 {
 	Super::BeginPlay();
 	GameInstance = Cast<UTag_RogueGameInstance, UGameInstance>(GetGameInstance());
-	GameInstance->LoadAssets();
-	InnerBottomGateMesh = GameInstance->GetAssetObject<UStaticMesh>(TEXT("SF_Gate_InnerBottomGate"));
-	InnerTopGateMesh    = GameInstance->GetAssetObject<UStaticMesh>(TEXT("SF_Gate_InnerTopGate"));
-	OuterBottomGateMesh = GameInstance->GetAssetObject<UStaticMesh>(TEXT("SF_Gate_OuterBottomGate"));
-	OuterTopGateMesh    = GameInstance->GetAssetObject<UStaticMesh>(TEXT("SF_Gate_OuterTopGate"));
-	InnerBottomGate->SetStaticMesh(InnerBottomGateMesh);
-	InnerTopGate->SetStaticMesh(InnerTopGateMesh);
-	OuterBottomGate->SetStaticMesh(OuterBottomGateMesh);
-	OuterTopGate->SetStaticMesh(OuterTopGateMesh);
 }
 
 void AMapGate::DoorManipulation(const float DeltaTime)
@@ -144,5 +140,4 @@ void AMapGate::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetime
 {
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 	DOREPLIFETIME(AMapGate, GateState);
-	
 }

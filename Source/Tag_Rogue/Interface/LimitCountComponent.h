@@ -19,8 +19,6 @@ public:
 	UPROPERTY()
 	UTag_RogueGameInstance* GameInstance;
 	UPROPERTY(Replicated)
-	UStaticMesh* DisplayMesh;
-	UPROPERTY()
 	UMaterialInstanceDynamic* DigitLeft;
 	UPROPERTY(Replicated)
 	int32 DigitLeftNumber;

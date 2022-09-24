@@ -149,7 +149,6 @@ void UMiniMapComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& Ou
 {
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 	DOREPLIFETIME(UMiniMapComponent, OwnerPlayer);
-	DOREPLIFETIME(UMiniMapComponent, DisplayMesh);
 	DOREPLIFETIME(UMiniMapComponent, CellSize);
 	DOREPLIFETIME(UMiniMapComponent, MapHeight);
 	DOREPLIFETIME(UMiniMapComponent, MapWidth);
