@@ -47,7 +47,7 @@ class TAG_ROGUE_API AMapGate final : public AStaticMeshActor
 	float GateHeight = 0;
 	int32 OverlappingNumber = 0;
 	UPROPERTY(EditAnywhere)
-	float GateOpenCloseTime = 0.5;
+	float GateOpenCloseTime = 1;
 public:
 	// Sets default values for this actor's properties
 	AMapGate();

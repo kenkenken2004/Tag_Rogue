@@ -67,7 +67,7 @@ void UTerrainMaker::AddRoomObjects() const
 		const int32 Direction = FMath::RandRange(0,3);
 		const FRotator Rotation = FRotator(0,Direction*90+90,0);
 		UTag_RogueGameInstance::GetInstance()->LoadAssets();
-		if (Space->Attribution==UMapGeneratorBase::EType::Plaza||Space->Attribution==UMapGeneratorBase::EType::Room)
+		if (Space->Attribution==UMapGeneratorBase::EType::Plaza)
 		{
 			for (int PosY=Space->LeftTopCell->Py+1;PosY<Space->RightBottomCell->Py;PosY+=1+Direction%2)
 			{
@@ -84,12 +84,15 @@ void UTerrainMaker::AddRoomObjects() const
 			}
 		}else if (Space->Attribution==UMapGeneratorBase::EType::Room)
 		{
+			const UBlueprint* GeneratedBP = Cast<UBlueprint>(UTag_RogueGameInstance::GetInstance()->GetAssetObject<UBlueprint>(TEXT("PowerTower")));
+			AActor* PowerTower = GetWorld()->SpawnActor<AActor>(GeneratedBP->GeneratedClass,Cie_Convert(Space->GetCenterCell()->Py, Space->GetCenterCell()->Px,170),Rotation);
+			PowerTower->SetReplicates(true);
 			
 		}
 	}
 }
 
-void UTerrainMaker::SpawnGlobe()
+void UTerrainMaker::SpawnGlobe() const
 {
 	for (int32 i = 0; i < Generator->SpaceList.Num(); i++)
 	{

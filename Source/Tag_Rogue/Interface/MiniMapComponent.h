@@ -40,7 +40,7 @@ public:
 	UPROPERTY(Replicated)
 	float EnemyDirection;
 	UPROPERTY(Replicated)
-	float EnemyDistance;
+	float EnemyDistance = 10000000000;
 	UPROPERTY(Replicated)
 	float RadarSensitivity;
 	UPROPERTY(Replicated)

@@ -21,7 +21,9 @@ ULimitCountComponent::ULimitCountComponent()
 void ULimitCountComponent::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	if(!GetAttachmentRootActor()->HasAuthority())return;
+	Initialize();
+	UpdateNumbers();
 }
 
 
@@ -30,7 +32,7 @@ void ULimitCountComponent::TickComponent(const float DeltaTime, const ELevelTick
                                          FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-	// ...
+	CheckShouldUpdateNumbers(DeltaTime);
 }
 
 void ULimitCountComponent::CheckShouldUpdateNumbers(const float DeltaTime)
@@ -40,6 +42,7 @@ void ULimitCountComponent::CheckShouldUpdateNumbers(const float DeltaTime)
 		DigitLeftNumber = GameInstance->IntRemainingTime/10;
 		DigitRightNumber = GameInstance->IntRemainingTime%10;
 	}
+	ColorLerp = GameInstance->DoesTimerStopped?1.0:0.0;
 	UpdateNumbers();
 }
 
@@ -50,6 +53,7 @@ void ULimitCountComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>&
 	DOREPLIFETIME(ULimitCountComponent, OwnerPlayer);
 	DOREPLIFETIME(ULimitCountComponent, DigitLeftNumber);
 	DOREPLIFETIME(ULimitCountComponent, DigitRightNumber);
+	DOREPLIFETIME(ULimitCountComponent, ColorLerp);
 }
 
 void ULimitCountComponent::UpdateNumbers_Implementation()
@@ -63,6 +67,8 @@ void ULimitCountComponent::UpdateNumbers_Implementation()
 	UTexture* TRight = GameInstance->GetAssetObject<UTexture>(FName(Right));
     DigitLeft->SetTextureParameterValue(TEXT("Letter"), TLeft);
     DigitRight->SetTextureParameterValue(TEXT("Letter"), TRight);
+	DigitLeft->SetScalarParameterValue(TEXT("ColorLerp"), ColorLerp);
+	DigitRight->SetScalarParameterValue(TEXT("ColorLerp"), ColorLerp);
 }
 
 void ULimitCountComponent::Initialize_Implementation()
@@ -70,11 +76,6 @@ void ULimitCountComponent::Initialize_Implementation()
 	OwnerPlayer = static_cast<ACharacterBase*>(GetAttachmentRootActor());
 	GameInstance = UTag_RogueGameInstance::GetInstance();
 	GameInstance->LoadAssets();
-	DisplayMesh = GameInstance->GetAssetObject<UStaticMesh>(TEXT("CountDisplay"));
-	SetStaticMesh(DisplayMesh);
 	DigitLeft = CreateAndSetMaterialInstanceDynamic(0);
 	DigitRight = CreateAndSetMaterialInstanceDynamic(1);
-	//SetRelativeLocation(FVector(120,0,50));
-	//SetRelativeRotation(FRotator(0,270,-30));
-	//SetRelativeScale3D(FVector(0.1,0.1,0.1));
 }

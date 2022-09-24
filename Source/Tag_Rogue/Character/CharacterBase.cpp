@@ -49,22 +49,7 @@ ACharacterBase::ACharacterBase()
 	FollowCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("FollowCamera"));
 	FollowCamera->SetupAttachment(CameraBoom, USpringArmComponent::SocketName); // Attach the camera to the end of the boom and let the boom adjust to match the controller orientation
 	FollowCamera->bUsePawnControlRotation = false; // Camera does not rotate relative to arm
-
-	MiniMap = CreateDefaultSubobject<UMiniMapComponent>(TEXT("MiniMap"));
-	MiniMap->SetupAttachment(CameraBoom);
-	MiniMap->SetRelativeLocation(FVector(200,0,-30));
-	MiniMap->SetRelativeRotation(FRotator(0,270,0));
-	MiniMap->SetRelativeScale3D(FVector(0.3,0.3,0.3));
-	MiniMap->SetCollisionEnabled(ECollisionEnabled::NoCollision);
-
-	LimitCount = CreateDefaultSubobject<ULimitCountComponent>(TEXT("LimitCount"));
-	LimitCount->SetupAttachment(CameraBoom);
-	LimitCount->SetCollisionEnabled(ECollisionEnabled::NoCollision);
-
-	MiniMap->SetIsReplicated(true);
-	LimitCount->SetIsReplicated(true);
-	MiniMap->SetOnlyOwnerSee(true);
-	LimitCount->SetOnlyOwnerSee(true);
+	
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named ThirdPersonCharacter (to avoid direct content references in C++)
 }
@@ -98,8 +83,6 @@ void ACharacterBase::SetupPlayerInputComponent(class UInputComponent* PlayerInpu
 void ACharacterBase::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
 {
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
-	DOREPLIFETIME(ACharacterBase, MiniMap);
-	DOREPLIFETIME(ACharacterBase, LimitCount);
 }
 
 void ACharacterBase::SpawnRandom()
@@ -142,13 +125,6 @@ void ACharacterBase::BeginPlay()
 	Super::BeginPlay();
 	if(!HasAuthority())return;
 	GameInstance = UTag_RogueGameInstance::GetInstance();
-	MiniMap->InitializeByServer();
-	MiniMap->Initialize();
-	//MiniMap->SetRelativeLocation(FVector(100,0,-40));
-	//MiniMap->SetRelativeRotation(FRotator(0,270,60));
-	//MiniMap->SetRelativeScale3D(FVector(0.3,0.3,0.3));
-	LimitCount->Initialize();
-	LimitCount->UpdateNumbers();
 }
 
 void ACharacterBase::Tick(const float DeltaSeconds)
@@ -156,22 +132,6 @@ void ACharacterBase::Tick(const float DeltaSeconds)
 	Super::Tick(DeltaSeconds);
 	DeltaSecond = DeltaSeconds;
 	TimeSinceCreated+=DeltaSeconds;
-	if(!HasAuthority())return;
-	
-	float EnemyDistance = 1000000000;
-	float EnemyRotation = 0;
-	if(IsValid(Enemy))
-	{
-		const FVector RelativeLocation = Enemy->GetActorLocation() - GetActorLocation();
-		EnemyDistance = RelativeLocation.Size();
-		EnemyRotation = RelativeLocation.Rotation().Yaw - Controller->GetControlRotation().Yaw;
-	}
-	MiniMap->EnemyDirection = - EnemyRotation / 360;
-	MiniMap->EnemyDistance = EnemyDistance;
-	MiniMap->UpdateMapDirection();
-	//MiniMap->AddRelativeLocation(FVector(0,0,3*DeltaSeconds*FMath::Cos(TimeSinceCreated/1.0*2*PI)));
-	LimitCount->CheckShouldUpdateNumbers(DeltaSeconds);
-	//LimitCount->AddRelativeLocation(FVector(0,0,3*DeltaSeconds*FMath::Cos(TimeSinceCreated/0.5*2*PI)));
 }
 
 void ACharacterBase::MoveForward_Implementation(const float Value)

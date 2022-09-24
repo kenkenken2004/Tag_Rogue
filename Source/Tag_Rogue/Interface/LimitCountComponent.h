@@ -29,7 +29,10 @@ public:
 	UPROPERTY(Replicated)
 	int32 DigitRightNumber;
 	UPROPERTY(Replicated)
-	ACharacterBase* OwnerPlayer; 
+	ACharacterBase* OwnerPlayer;
+	UPROPERTY(Replicated)
+	float ColorLerp = 0.0;
+	
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;

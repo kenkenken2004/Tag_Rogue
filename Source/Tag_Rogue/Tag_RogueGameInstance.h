@@ -46,6 +46,8 @@ public:
 	URogueAlpha_MapGenerator* MapGenerator;
 	UPROPERTY()
 	UTerrainMaker* TerrainMaker;
+	UPROPERTY(BlueprintReadWrite)
+	bool DoesTimerStopped = false;
 	
 	UPROPERTY(Config)
 	float GameTimeLimit = 60;
@@ -85,7 +87,8 @@ public:
 			TEXT("/Game/Interface/Font/Tr2n/"),
 			TEXT("/Game/Interface/Count/"),
 			TEXT("/Game/Interface/UI/"),
-			TEXT("/Game/MapObject/Desk/")
+			TEXT("/Game/MapObject/Desk/"),
+			TEXT("/Game/MapObject/PowerTower/")
 		}
 	);
 	
