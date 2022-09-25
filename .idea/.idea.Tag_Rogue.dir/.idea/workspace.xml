@@ -11,16 +11,38 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cf331540-c7ba-40e0-a96e-46ca470ed1b0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Content/MapObject/Gate/MapGate.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Characters/BGM.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Characters/EmergencySignal.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Characters/MachineNoise.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Characters/SignalSound.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/MapObject/Desk/HoloDesk.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/MapObject/Desk/HoloSound.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/MapObject/Gate/CloseSound.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/MapObject/Gate/OpenSound.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/MapObject/PowerTower/ElectricSound.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Sounds/ElectricDischarge.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Sounds/GateClose.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Sounds/GateOpen.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Sounds/SoundAttenuation.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Sounds/deep_bass_vib.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Sounds/emergency_signal.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Sounds/moving.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Sounds/pipipi.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Sounds/satan_cyber45.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Tag_Rogue.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Tag_Rogue.dir/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Characters/BasicCharacter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Characters/BasicCharacter.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Characters/Chaser.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Characters/Chaser.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Characters/Fugitive.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Characters/Fugitive.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Characters/MenuViewer.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Characters/MenuViewer.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Interface/LockOnCursorMaterial.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Interface/LockOnCursorMaterial.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Level/GamePlayWorld.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Level/GamePlayWorld.umap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Level/MenuWorld.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Level/MenuWorld.umap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/MapObject/Gate/MapGate.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/MapObject/Gate/MapGate.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/MapObject/Gate/TitleMapGate.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/MapObject/Gate/TitleMapGate.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/MapObject/PowerTower/PowerTower.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/MapObject/PowerTower/PowerTower.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Interface/LimitCountComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Interface/LimitCountComponent.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Interface/LimitCountComponent.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Interface/LimitCountComponent.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Interface/MiniMapComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Interface/MiniMapComponent.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Interface/MiniMapComponent.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Interface/MiniMapComponent.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Map/TerrainMaker.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Map/TerrainMaker.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/MapObject/Desk.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/MapObject/Desk.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/MapObject/Desk.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/MapObject/Desk.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/MapObject/MapGate.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/MapObject/MapGate.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/MapObject/MapGate.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/MapObject/MapGate.h" afterDir="false" />
     </list>
@@ -52,22 +74,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "XThreadsFramesViewSplitterKey": "0.45018727",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "configurable.group.language",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.45018727&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.language&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="Tag_Rogue" type="Uproject" factoryName="rider.uproject">
       <option name="PROJECT_FILE_PATH" value="$PROJECT_DIR$/Tag_Rogue.uproject" />
@@ -192,6 +214,7 @@
       <workItem from="1663838312342" duration="614000" />
       <workItem from="1663899174435" duration="7061000" />
       <workItem from="1664019796269" duration="8807000" />
+      <workItem from="1664067291504" duration="8051000" />
     </task>
     <servers />
   </component>

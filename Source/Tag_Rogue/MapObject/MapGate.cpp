@@ -3,6 +3,7 @@
 
 #include "MapGate.h"
 
+#include "Components/AudioComponent.h"
 #include "Net/UnrealNetwork.h"
 
 
@@ -17,6 +18,11 @@ AMapGate::AMapGate()
 	OuterTopGate = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("OuterTop"));
 	InnerBottomGate = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("InnerBottom"));
 	InnerTopGate = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("InnerTop"));
+	OuterCloseAudio = CreateDefaultSubobject<UAudioComponent>(TEXT("OuterCloseAudio"));
+	InnerCloseAudio = CreateDefaultSubobject<UAudioComponent>(TEXT("InnerCloseAudio"));
+	OuterOpenAudio = CreateDefaultSubobject<UAudioComponent>(TEXT("OuterOpenAudio"));
+	InnerOpenAudio = CreateDefaultSubobject<UAudioComponent>(TEXT("InnerOpenAudio"));
+
 	USceneComponent* Temp = GetRootComponent();
 	SetRootComponent(Collision);
 	Temp->DetachFromComponent({EDetachmentRule::KeepRelative,true});
@@ -27,6 +33,10 @@ AMapGate::AMapGate()
 	OuterTopGate->SetupAttachment(RootComponent);
 	InnerBottomGate->SetupAttachment(RootComponent);
 	InnerTopGate->SetupAttachment(RootComponent);
+	OuterCloseAudio->SetupAttachment(RootComponent);
+	InnerCloseAudio->SetupAttachment(RootComponent);
+	OuterOpenAudio->SetupAttachment(RootComponent);
+	InnerOpenAudio->SetupAttachment(RootComponent);
 
 	//SetUp Detection Box
 	Collision->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
@@ -61,6 +71,7 @@ void AMapGate::DoorManipulation(const float DeltaTime)
 		}
 		else if(InnerTopGate->GetRelativeLocation().Z==0 && InnerBottomGate->GetRelativeLocation().Z==0)
 		{
+			OuterCloseAudio->Activate(false);
 			OuterTopGate->AddRelativeLocation(FVector(0,0,-1*(DeltaTime/(GateOpenCloseTime/2))*GateOpenedHeight));
 			OuterBottomGate->AddRelativeLocation(FVector(0,0,1*(DeltaTime/(GateOpenCloseTime/2))*GateOpenedHeight));
 			if(OuterTopGate->GetRelativeLocation().Z<0)OuterTopGate->SetRelativeLocation(FVector(0,0,0));
@@ -68,6 +79,7 @@ void AMapGate::DoorManipulation(const float DeltaTime)
 		}
 		else
 		{
+			InnerCloseAudio->Activate(false);
 			InnerTopGate->AddRelativeLocation(FVector(0,0,-1*(DeltaTime/(GateOpenCloseTime/2))*GateOpenedHeight));
 			InnerBottomGate->AddRelativeLocation(FVector(0,0,1*(DeltaTime/(GateOpenCloseTime/2))*GateOpenedHeight));
 			if(InnerTopGate->GetRelativeLocation().Z<0)InnerTopGate->SetRelativeLocation(FVector(0,0,0));
@@ -81,6 +93,7 @@ void AMapGate::DoorManipulation(const float DeltaTime)
 		}
 		else if(OuterTopGate->GetRelativeLocation().Z==GateOpenedHeight && OuterBottomGate->GetRelativeLocation().Z==-GateOpenedHeight)
 		{
+			InnerOpenAudio->Activate(false);
 			InnerTopGate->AddRelativeLocation(FVector(0,0,1*(DeltaTime/(GateOpenCloseTime/2))*GateOpenedHeight));
 			InnerBottomGate->AddRelativeLocation(FVector(0,0,-1*(DeltaTime/(GateOpenCloseTime/2))*GateOpenedHeight));
 			if(InnerTopGate->GetRelativeLocation().Z>GateOpenedHeight)InnerTopGate->SetRelativeLocation(FVector(0,0,GateOpenedHeight));
@@ -88,6 +101,7 @@ void AMapGate::DoorManipulation(const float DeltaTime)
 		}
 		else
 		{
+			OuterOpenAudio->Activate(false);
 			OuterTopGate->AddRelativeLocation(FVector(0,0,1*(DeltaTime/(GateOpenCloseTime/2))*GateOpenedHeight));
 			OuterBottomGate->AddRelativeLocation(FVector(0,0,-1*(DeltaTime/(GateOpenCloseTime/2))*GateOpenedHeight));
 			if(OuterTopGate->GetRelativeLocation().Z>GateOpenedHeight)OuterTopGate->SetRelativeLocation(FVector(0,0,GateOpenedHeight));
@@ -101,12 +115,18 @@ void AMapGate::DoorManipulation(const float DeltaTime)
 
 void AMapGate::Open()
 {
-	if(GateState!=EGateState::Opened)GateState=EGateState::Opening;
+	if(GateState!=EGateState::Opened)
+	{
+		GateState=EGateState::Opening;
+	}
 }
 
 void AMapGate::Close()
 {
-	if(GateState!=EGateState::Closed)GateState=EGateState::Closing;
+	if(GateState!=EGateState::Closed)
+	{
+		GateState=EGateState::Closing;
+	}
 }
 
 void AMapGate::OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,

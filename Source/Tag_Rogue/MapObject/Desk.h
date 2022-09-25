@@ -3,18 +3,19 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Engine/StaticMeshActor.h"
 #include "GameFramework/Actor.h"
 #include "Desk.generated.h"
 
 UCLASS()
-class TAG_ROGUE_API ADesk : public AActor
+class TAG_ROGUE_API ADesk : public AStaticMeshActor
 {
 	GENERATED_BODY()
-	UPROPERTY()
+	
+public:
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UStaticMeshComponent* DeskComponent;
-	UPROPERTY()
-	UStaticMesh* DeskMesh;
-public:	
 	// Sets default values for this actor's properties
 	ADesk();
 
@@ -25,5 +26,4 @@ protected:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-	void SetDeskMesh();
 };

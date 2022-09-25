@@ -76,14 +76,14 @@ void UTerrainMaker::AddRoomObjects() const
 					if (PosY!=Space->GetCenterCell()->Py&&PosX!=Space->GetCenterCell()->Px)
 					{
 						UMapGeneratorBase::FCell* Cell = Generator->GetCell(PosY,PosX);
-						ADesk* Desk = GetWorld()->SpawnActor<ADesk>(Cie_Convert(PosY, PosX,CellSize*(3/4.0)), Rotation);
-						Desk->SetDeskMesh();
+						GetWorld()->SpawnActor<AActor>(Cast<UBlueprint>(UTag_RogueGameInstance::GetInstance()->GetAssetObject<UBlueprint>(TEXT("HoloDesk")))->GeneratedClass,Cie_Convert(PosY, PosX,CellSize*(3/4.0)), Rotation);
 						Cell->HasObjects = true;
 					}
 				}
 			}
 		}else if (Space->Attribution==UMapGeneratorBase::EType::Room)
 		{
+			Space->GetCenterCell()->HasObjects = true;
 			GetWorld()->SpawnActor<AActor>(Cast<UBlueprint>(UTag_RogueGameInstance::GetInstance()->GetAssetObject<UBlueprint>(TEXT("PowerTower")))->GeneratedClass,Cie_Convert(Space->GetCenterCell()->Py, Space->GetCenterCell()->Px,170),Rotation);
 		}
 	}

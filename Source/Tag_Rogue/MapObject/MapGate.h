@@ -44,6 +44,14 @@ public:
 	UStaticMeshComponent* InnerBottomGate;
 	UPROPERTY(EditAnywhere,BlueprintReadWrite)
 	UStaticMeshComponent* InnerTopGate;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UAudioComponent* OuterCloseAudio;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UAudioComponent* InnerCloseAudio;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UAudioComponent* OuterOpenAudio;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UAudioComponent* InnerOpenAudio;
 
 protected:
 	// Called when the game starts or when spawned
