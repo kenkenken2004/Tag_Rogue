@@ -11,40 +11,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cf331540-c7ba-40e0-a96e-46ca470ed1b0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Content/Characters/BGM.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Characters/EmergencySignal.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Characters/MachineNoise.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Characters/SignalSound.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapObject/Desk/HoloDesk.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapObject/Desk/HoloSound.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapObject/Gate/CloseSound.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapObject/Gate/OpenSound.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapObject/PowerTower/ElectricSound.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Sounds/ElectricDischarge.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Sounds/GateClose.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Sounds/GateOpen.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Sounds/SoundAttenuation.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Sounds/deep_bass_vib.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Sounds/emergency_signal.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Sounds/moving.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Sounds/pipipi.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Sounds/satan_cyber45.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Characters/BeepSound.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Characters/TitleSound.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/MapObject/PowerTower/Material/PowerTowerLight3.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Sounds/SpaceSound.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Sounds/TurnOnRobot1.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Sounds/TurnOnRobot2.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Sounds/beep.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Sounds/dead-sound.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Sounds/fanfare1.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Sounds/fanfare2.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Tag_Rogue.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Tag_Rogue.dir/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Characters/BGM.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Characters/BGM.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Characters/BasicCharacter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Characters/BasicCharacter.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Characters/Chaser.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Characters/Chaser.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Characters/Fugitive.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Characters/Fugitive.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Characters/MenuViewer.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Characters/MenuViewer.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Interface/LockOnCursorMaterial.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Interface/LockOnCursorMaterial.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Level/GamePlayWorld.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Level/GamePlayWorld.umap" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Level/MenuWorld.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Level/MenuWorld.umap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/MapObject/Gate/MapGate.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/MapObject/Gate/MapGate.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/MapObject/Gate/TitleMapGate.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/MapObject/Gate/TitleMapGate.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/MapObject/PowerTower/PowerTower.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/MapObject/PowerTower/PowerTower.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Map/TerrainMaker.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Map/TerrainMaker.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/MapObject/Desk.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/MapObject/Desk.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/MapObject/Desk.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/MapObject/Desk.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/MapObject/MapGate.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/MapObject/MapGate.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/MapObject/MapGate.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/MapObject/MapGate.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/MapObject/PowerTower/PowerTowerRotor.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/MapObject/PowerTower/PowerTowerRotor.uasset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -215,6 +199,7 @@
       <workItem from="1663899174435" duration="7061000" />
       <workItem from="1664019796269" duration="8807000" />
       <workItem from="1664067291504" duration="8051000" />
+      <workItem from="1664090147371" duration="1266000" />
     </task>
     <servers />
   </component>
