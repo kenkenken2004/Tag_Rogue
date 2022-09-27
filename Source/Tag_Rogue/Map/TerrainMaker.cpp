@@ -56,7 +56,9 @@ void UTerrainMaker::AddGate(const URogueAlpha_MapGenerator::FCell* Cell,
 		break;
 	}
 	Location += OffSet;
-	AActor* MapGate = GetWorld()->SpawnActor<AActor>(Cast<UBlueprint>(UTag_RogueGameInstance::GetInstance()->GetAssetObject<UBlueprint>(TEXT("MapGate")))->GeneratedClass,Location,Rotator);
+	UTag_RogueGameInstance::GetInstance()->LoadAssets();
+	UBlueprintGeneratedClass* BP = UTag_RogueGameInstance::GetInstance()->GetAssetObject<UBlueprintGeneratedClass>(TEXT("MapGate"));
+	AActor* MapGate = GetWorld()->SpawnActor<AActor>(BP,Location,Rotator);
 	MapGate->SetActorScale3D(FVector(CellSize / 100, CellSize / 100, CellSize / 100));
 }
 
@@ -76,7 +78,7 @@ void UTerrainMaker::AddRoomObjects() const
 					if (PosY!=Space->GetCenterCell()->Py&&PosX!=Space->GetCenterCell()->Px)
 					{
 						UMapGeneratorBase::FCell* Cell = Generator->GetCell(PosY,PosX);
-						GetWorld()->SpawnActor<AActor>(Cast<UBlueprint>(UTag_RogueGameInstance::GetInstance()->GetAssetObject<UBlueprint>(TEXT("HoloDesk")))->GeneratedClass,Cie_Convert(PosY, PosX,CellSize*(3/4.0)), Rotation);
+						GetWorld()->SpawnActor<AActor>(UTag_RogueGameInstance::GetInstance()->GetAssetObject<UBlueprintGeneratedClass>(TEXT("HoloDesk")),Cie_Convert(PosY, PosX,CellSize*(3/4.0)), Rotation);
 						Cell->HasObjects = true;
 					}
 				}
@@ -84,7 +86,7 @@ void UTerrainMaker::AddRoomObjects() const
 		}else if (Space->Attribution==UMapGeneratorBase::EType::Room)
 		{
 			Space->GetCenterCell()->HasObjects = true;
-			GetWorld()->SpawnActor<AActor>(Cast<UBlueprint>(UTag_RogueGameInstance::GetInstance()->GetAssetObject<UBlueprint>(TEXT("PowerTower")))->GeneratedClass,Cie_Convert(Space->GetCenterCell()->Py, Space->GetCenterCell()->Px,170),Rotation);
+			GetWorld()->SpawnActor<AActor>(UTag_RogueGameInstance::GetInstance()->GetAssetObject<UBlueprintGeneratedClass>(TEXT("PowerTower")),Cie_Convert(Space->GetCenterCell()->Py, Space->GetCenterCell()->Px,170),Rotation);
 		}
 	}
 }
@@ -100,6 +102,7 @@ void UTerrainMaker::SpawnGlobe() const
 
 void UTerrainMaker::PlaceMapUnitBase(int32 Py, int32 Px) const
 {
+	UTag_RogueGameInstance::GetInstance()->LoadAssets();
 	AMapUnitBase::EMeshType MeshType = AMapUnitBase::EMeshType::Null;
 	FRotator Rotator = FRotator(0, 0, 0);
 	bool bIsXReversed = false;

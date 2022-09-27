@@ -41,7 +41,7 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float PawnRotateAcceleration = 20;
 	
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Replicated)
 	ACharacterBase* Enemy = nullptr;
 	UPROPERTY()
 	UTag_RogueGameInstance* GameInstance;

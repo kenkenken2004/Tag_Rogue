@@ -95,7 +95,23 @@ public:
 	void LoadAssets();
 	template <typename T> T* GetAssetObject(const FName AssetName)
 	{
-		UObject* Instant = AssetDatas[AssetName].GetAsset();
+		FName Key;
+		if (AssetDatas.Contains(FName(AssetName.ToString()+TEXT("_C"))))
+		{
+			Key = FName(AssetName.ToString()+TEXT("_C"));
+			UObject* Instant = AssetDatas[Key].GetAsset();
+			return static_cast<T*>(Instant);
+		}
+		Key = AssetName;
+		UObject* Instant;
+		if (std::is_same_v<T,UBlueprintGeneratedClass>)
+		{
+			Instant = Cast<UBlueprint>(AssetDatas[Key].GetAsset())->GeneratedClass;
+		}
+		else
+		{
+			Instant = AssetDatas[Key].GetAsset();
+		}
 		return static_cast<T*>(Instant);
 	}
 

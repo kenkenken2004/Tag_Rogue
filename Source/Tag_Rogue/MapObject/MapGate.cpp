@@ -22,13 +22,7 @@ AMapGate::AMapGate()
 	InnerCloseAudio = CreateDefaultSubobject<UAudioComponent>(TEXT("InnerCloseAudio"));
 	OuterOpenAudio = CreateDefaultSubobject<UAudioComponent>(TEXT("OuterOpenAudio"));
 	InnerOpenAudio = CreateDefaultSubobject<UAudioComponent>(TEXT("InnerOpenAudio"));
-
-	USceneComponent* Temp = GetRootComponent();
 	SetRootComponent(Collision);
-	Temp->DetachFromComponent({EDetachmentRule::KeepRelative,true});
-	Temp->UnregisterComponent();
-	Temp->ConditionalBeginDestroy();
-	Temp = nullptr;
 	OuterBottomGate->SetupAttachment(RootComponent);
 	OuterTopGate->SetupAttachment(RootComponent);
 	InnerBottomGate->SetupAttachment(RootComponent);
