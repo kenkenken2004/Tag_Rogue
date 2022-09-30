@@ -11,16 +11,33 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cf331540-c7ba-40e0-a96e-46ca470ed1b0" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/GuardingRobot/Arm.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/GuardingRobot/ArmHole.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/GuardingRobot/Belt.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/GuardingRobot/Chest.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/GuardingRobot/ChestHole.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/GuardingRobot/Eyes.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/GuardingRobot/EyesFrame.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/GuardingRobot/Finger.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/GuardingRobot/Foot.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/GuardingRobot/GuardingRobot.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/GuardingRobot/GuardingRobotAnimationBP.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/GuardingRobot/GuardingRobot_Anim_RightArmature_Idle.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/GuardingRobot/GuardingRobot_Anim_RightIKTarget_Idle.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/GuardingRobot/GuardingRobot_PhysicsAsset.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/GuardingRobot/GuardingRobot_Skeleton.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/GuardingRobot/HatFabric.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/GuardingRobot/HatHisashi.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/GuardingRobot/Head.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/GuardingRobot/Land1-Bone.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/GuardingRobot/Land1-Face.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/GuardingRobot/Leg.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/GuardingRobot/Shoulder.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/GuardingRobot/Stomach.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/GuardingRobot/TKLogo.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Tag_Rogue.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Tag_Rogue.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/MyTag_RogueGameInstance.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/MyTag_RogueGameInstance.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Character/CharacterBase.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Character/CharacterBase.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Character/CharacterBase.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Character/CharacterBase.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Level/GameMap_Alpha.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Level/GameMap_Alpha.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Level/TitleLevel.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Level/TitleLevel.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Tag_RogueGameInstance.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Tag_RogueGameInstance.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Tag_RogueGameInstance.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Tag_RogueGameInstance.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Tag_RogueGameModeBase.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Tag_RogueGameModeBase.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Tag_RogueGameModeBase.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Tag_RogueGameModeBase.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Characters/Chaser.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Characters/Chaser.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Level/MenuWorld.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Level/MenuWorld.umap" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -202,6 +219,7 @@
       <workItem from="1664361016432" duration="3091000" />
       <workItem from="1664368183907" duration="12000" />
       <workItem from="1664499470157" duration="3715000" />
+      <workItem from="1664544098198" duration="990000" />
     </task>
     <servers />
   </component>
