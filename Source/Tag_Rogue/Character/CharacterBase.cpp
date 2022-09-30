@@ -128,6 +128,11 @@ void ACharacterBase::BeginPlay()
 	GameInstance = UTag_RogueGameInstance::GetInstance();
 }
 
+void ACharacterBase::EndPlay(const EEndPlayReason::Type EndPlayReason)
+{
+	Super::EndPlay(EndPlayReason);
+}
+
 void ACharacterBase::Tick(const float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);

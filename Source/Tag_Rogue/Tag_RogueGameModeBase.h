@@ -15,6 +15,8 @@ class TAG_ROGUE_API ATag_RogueGameModeBase : public AGameModeBase
 	GENERATED_BODY()
 public:
 	UPROPERTY(EditAnywhere,BlueprintReadWrite, Config)
+	bool bIsPlayRoleRandom = true;
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Config)
 	bool bIsHostChaser = false;
 	ATag_RogueGameModeBase();
 	
@@ -22,4 +24,5 @@ public:
 	void TravelToGamePlayWorld();
 	UFUNCTION(BlueprintCallable)
 	void TravelToMenuWorld();
+	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 };

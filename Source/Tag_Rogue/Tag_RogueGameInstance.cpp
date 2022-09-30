@@ -76,3 +76,8 @@ void UTag_RogueGameInstance::FugitiveWon()
 		static_cast<AGameMap_Alpha*>(GetWorld()->GetLevelScriptActor())->OnGameEnd();
 	}
 }
+
+void UTag_RogueGameInstance::BeginDestroy()
+{
+	Super::BeginDestroy();
+}

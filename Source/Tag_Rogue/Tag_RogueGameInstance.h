@@ -125,4 +125,5 @@ public:
 	void OnChaserWon();
 	UFUNCTION(BlueprintImplementableEvent)
 	void OnFugitiveWon();
+	virtual void BeginDestroy() override;
 };

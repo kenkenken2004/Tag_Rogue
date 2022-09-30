@@ -11,14 +11,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cf331540-c7ba-40e0-a96e-46ca470ed1b0" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Tag_Rogue.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Tag_Rogue.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Config/DefaultGame.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultGame.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Characters/Chaser.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Characters/Chaser.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Characters/Fugitive.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Characters/Fugitive.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Config/DefaultEngine.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultEngine.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Characters/MenuViewer.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Characters/MenuViewer.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/GuardingRobot/GuardingRobotAnimationBP.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/GuardingRobot/GuardingRobotAnimationBP.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Interface/Widget/Title.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Interface/Widget/Title.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Level/GamePlayWorld.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Level/GamePlayWorld.umap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/MyTag_RogueGameInstance.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/MyTag_RogueGameInstance.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/TagGameMode.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/TagGameMode.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Tag_RogueGameModeBase.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Tag_RogueGameModeBase.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Level/MenuWorld.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Level/MenuWorld.umap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/MapObject/Desk/DeskDisplayMaterial.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/MapObject/Desk/DeskDisplayMaterial.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/MapObject/Material/Light1.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/MapObject/Material/Light1.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/MapObject/Material/Light2.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/MapObject/Material/Light2.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/MapObject/PowerTower/Material/LightningMaterial.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/MapObject/PowerTower/Material/LightningMaterial.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/MapObject/PowerTower/Material/PowerTowerLight3.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/MapObject/PowerTower/Material/PowerTowerLight3.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/MapObject/StarsAndPlanet/EarthAndSun.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/MapObject/StarsAndPlanet/EarthAndSun.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/MapObject/StarsAndPlanet/Sun.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/MapObject/StarsAndPlanet/Sun.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/MapObject/StarsAndPlanet/SunMaterial.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/MapObject/StarsAndPlanet/SunMaterial.uasset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,6 +42,7 @@
     <setting file="file://$PROJECT_DIR$/Source/Tag_Rogue/Map/MapGeneratorBase.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Tag_Rogue/Map/RogueAlpha_MapGenerator.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Tag_Rogue/Map/RogueAlpha_MapGenerator.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../../Program Files/Epic Games/UE_5.0/Engine/Source/Editor/Kismet/Private/BlueprintEditor.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Program Files/Epic Games/UE_5.0/Engine/Source/Runtime/Engine/Private/Components/CharacterMovementComponent.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Program Files/Epic Games/UE_5.0/Engine/Source/Runtime/Engine/Private/UnrealEngine.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Program Files/Epic Games/UE_5.0/Engine/Source/ThirdParty/mimalloc/include/mimalloc-internal.h" root0="SKIP_HIGHLIGHTING" />
@@ -198,6 +208,15 @@
       <workItem from="1664278353133" duration="2657000" />
       <workItem from="1664361016432" duration="3091000" />
       <workItem from="1664368183907" duration="12000" />
+      <workItem from="1664499470157" duration="3715000" />
+      <workItem from="1664544098198" duration="990000" />
+      <workItem from="1664618497881" duration="4877000" />
+      <workItem from="1665140098341" duration="1193000" />
+      <workItem from="1665321553497" duration="1191000" />
+      <workItem from="1665473204388" duration="3901000" />
+      <workItem from="1665562052602" duration="639000" />
+      <workItem from="1665665611044" duration="596000" />
+      <workItem from="1665739599193" duration="708000" />
     </task>
     <servers />
   </component>

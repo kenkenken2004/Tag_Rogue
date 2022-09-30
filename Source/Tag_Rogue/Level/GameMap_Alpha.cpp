@@ -40,7 +40,6 @@ void AGameMap_Alpha::BeginPlay()
 {
 	Super::BeginPlay();
 	Initialize(GetGameInstance());
-	SaveConfig();
 }
 
 void AGameMap_Alpha::EndPlay(const EEndPlayReason::Type EndPlayReason)

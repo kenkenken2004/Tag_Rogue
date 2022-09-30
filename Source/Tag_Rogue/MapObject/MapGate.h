@@ -17,7 +17,7 @@ enum struct EGateState: uint8
 	Closed UMETA(DisplayName="Closed")
 };
 
-UCLASS()
+UCLASS(Config=Game)
 class TAG_ROGUE_API AMapGate final : public AStaticMeshActor
 {
 	GENERATED_BODY()
@@ -28,12 +28,12 @@ class TAG_ROGUE_API AMapGate final : public AStaticMeshActor
 	const float GateOpenedHeight = 60.0;
 	float GateHeight = 0;
 	int32 OverlappingNumber = 0;
-	UPROPERTY(EditAnywhere)
-	float GateOpenCloseTime = 1;
+	
 public:
 	// Sets default values for this actor's properties
 	AMapGate();
-
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Config)
+	float GateOpenCloseTime = 1;
 	UPROPERTY(EditAnywhere,BlueprintReadWrite)
 	UBoxComponent* Collision;
 	UPROPERTY(EditAnywhere,BlueprintReadWrite)
@@ -65,6 +65,7 @@ protected:
 	void OnOverlapBegin(UPrimitiveComponent* OverlappedComponent,AActor* OtherActor,UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult &SweepResult);
 	UFUNCTION()
 	void OnComponentOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
+	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 	
 	
 public:
