@@ -22,3 +22,9 @@ void ATag_RogueGameModeBase::TravelToMenuWorld()
 	GetWorld()->ServerTravel(TEXT("MenuWorld"),false, false);
 	//UTag_RogueGameInstance::GetInstance()->Settlement = ESettlement::Yet;
 }
+
+void ATag_RogueGameModeBase::EndPlay(const EEndPlayReason::Type EndPlayReason)
+{
+	Super::EndPlay(EndPlayReason);
+	SaveConfig();
+}

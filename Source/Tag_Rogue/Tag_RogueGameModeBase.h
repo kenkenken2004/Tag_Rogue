@@ -22,4 +22,5 @@ public:
 	void TravelToGamePlayWorld();
 	UFUNCTION(BlueprintCallable)
 	void TravelToMenuWorld();
+	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 };

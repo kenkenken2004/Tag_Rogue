@@ -48,6 +48,7 @@ public:
 	
 protected:
 	virtual void BeginPlay() override;
+	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 	virtual void Tick(float DeltaSeconds) override;
 	/** Called for forwards/backward input */
 	UFUNCTION(BlueprintCallable, Client,Reliable)
