@@ -143,6 +143,12 @@ void AMapGate::OnComponentOverlapEnd(UPrimitiveComponent* OverlappedComponent, A
 	}
 }
 
+void AMapGate::EndPlay(const EEndPlayReason::Type EndPlayReason)
+{
+	Super::EndPlay(EndPlayReason);
+	SaveConfig();
+}
+
 // Called every frame
 void AMapGate::Tick(const float DeltaTime)
 {
