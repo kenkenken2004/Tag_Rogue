@@ -25,6 +25,16 @@ class TAG_ROGUE_API URadarComponent : public UStaticMeshComponent
 	float EnemyDistance = 0;
 	UPROPERTY(Replicated)
 	float EnemyDirection = 0;
+	UPROPERTY(Replicated)
+	float SelfRotation = 0;
+	UPROPERTY(Replicated)
+	float SelfLocationX = 0;
+	UPROPERTY(Replicated)
+	float SelfLocationY = 0;
+	UPROPERTY(Replicated)
+	float SelfLocationX_0 = 0;
+	UPROPERTY(Replicated)
+	float SelfLocationY_0 = 0;
 
 protected:
 	virtual void BeginPlay() override;

@@ -11,26 +11,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cf331540-c7ba-40e0-a96e-46ca470ed1b0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/GuardingRobot/GuardingRobot_Skeleton_Sequence.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Interface/lattice.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/GuardingRobot/GuardingRobot_DefaltPose.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Characters/PosingChaser.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Characters/PosingFugitive.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Tag_Rogue.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Tag_Rogue.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Config/DefaultEngine.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultEngine.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Characters/BasicCharacter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Characters/BasicCharacter.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Characters/Chaser.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Characters/Chaser.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Characters/Fugitive.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Characters/Fugitive.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/GuardingRobot/Arm.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/GuardingRobot/Arm.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/GuardingRobot/GuardingRobotAnimationBP.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/GuardingRobot/GuardingRobotAnimationBP.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/GuardingRobot/GuardingRobot_Anim_RightArmature_Idle.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/GuardingRobot/GuardingRobot_Anim_RightArmature_Idle.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/GuardingRobot/GuardingRobot_Anim_RightArmature_Idle.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/GuardingRobot/GuardingRobot_Anim_RightIKTarget_Idle.uasset" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/GuardingRobot/GuardingRobot_Skeleton.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/GuardingRobot/GuardingRobot_Skeleton.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Interface/Font/FontMaterial.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Interface/Font/FontMaterial.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/GuardingRobot/GuardingRobot_Skeleton_Sequence.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Interface/Map/DisplayMaterial.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Interface/Map/DisplayMaterial.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Interface/RadarMaterial.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Interface/RadarMaterial.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Level/MenuWorld.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Level/MenuWorld.umap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/MapObject/Gate/CloseSound.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/MapObject/Gate/CloseSound.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/MapObject/Gate/MapGate.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/MapObject/Gate/MapGate.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/MapObject/Gate/TitleMapGate.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/MapObject/Gate/TitleMapGate.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/TagGameMode.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/TagGameMode.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/MapObject/MapGate.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/MapObject/MapGate.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/MapObject/MapGate.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/MapObject/MapGate.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Tag_RogueGameModeBase.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Tag_RogueGameModeBase.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Tag_RogueGameModeBase.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Tag_RogueGameModeBase.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Level/GamePlayWorld.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Level/GamePlayWorld.umap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Interface/RadarComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Interface/RadarComponent.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Tag_Rogue/Interface/RadarComponent.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Tag_Rogue/Interface/RadarComponent.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -213,7 +210,10 @@
       <workItem from="1664368183907" duration="12000" />
       <workItem from="1664499470157" duration="3715000" />
       <workItem from="1664544098198" duration="990000" />
-      <workItem from="1664618497881" duration="4451000" />
+      <workItem from="1664618497881" duration="4877000" />
+      <workItem from="1665140098341" duration="1193000" />
+      <workItem from="1665321553497" duration="1191000" />
+      <workItem from="1665473204388" duration="3901000" />
     </task>
     <servers />
   </component>

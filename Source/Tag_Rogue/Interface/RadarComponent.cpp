@@ -14,6 +14,9 @@ void URadarComponent::BeginPlay()
 {
 	Super::BeginPlay();
 	Initialize();
+	SelfLocationX_0 = OwnerPlayer->GetActorLocation().X;
+	SelfLocationY_0 = OwnerPlayer->GetActorLocation().Y;
+
 }
 
 void URadarComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
@@ -23,7 +26,10 @@ void URadarComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActor
 	{
 		const FVector RelativePosition = OwnerPlayer->Enemy->GetActorLocation() - OwnerPlayer->GetActorLocation();
 		EnemyDistance = RelativePosition.Size();
+		SelfRotation = OwnerPlayer->GetControlRotation().Yaw / 360;
 		EnemyDirection = - (RelativePosition.Rotation().Yaw  - OwnerPlayer->GetControlRotation().Yaw) / 360;
+		SelfLocationX = OwnerPlayer->GetActorLocation().X - SelfLocationX_0;
+		SelfLocationY = OwnerPlayer->GetActorLocation().Y - SelfLocationY_0;
 		UpdateRadar();
 	}
 }
@@ -34,6 +40,11 @@ void URadarComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutL
 	DOREPLIFETIME(URadarComponent, OwnerPlayer);
 	DOREPLIFETIME(URadarComponent, EnemyDistance);
 	DOREPLIFETIME(URadarComponent, EnemyDirection);
+	DOREPLIFETIME(URadarComponent, SelfRotation);
+	DOREPLIFETIME(URadarComponent, SelfLocationX);
+	DOREPLIFETIME(URadarComponent, SelfLocationY);
+	DOREPLIFETIME(URadarComponent, SelfLocationX_0);
+	DOREPLIFETIME(URadarComponent, SelfLocationY_0);
 }
 
 void URadarComponent::UpdateRadar_Implementation()
@@ -42,6 +53,9 @@ void URadarComponent::UpdateRadar_Implementation()
 	{
 		RadarMaterial->SetScalarParameterValue(TEXT("EnemyDistance"),EnemyDistance);
 		RadarMaterial->SetScalarParameterValue(TEXT("EnemyDirection"),EnemyDirection);
+		RadarMaterial->SetScalarParameterValue(TEXT("SelfRotation"),SelfRotation);
+		RadarMaterial->SetScalarParameterValue(TEXT("SelfLocationX"),SelfLocationX);
+		RadarMaterial->SetScalarParameterValue(TEXT("SelfLocationY"),SelfLocationY);
 	}
 }
 
