@@ -29,17 +29,21 @@ public:
 	float TimeSinceCreated = 0;
 	float DeltaSecond = 0;
 
-	float PawnMoveSpeed = 0;
+	float PawnForwardMoveSpeed = 0;
+	float PawnRightMoveSpeed = 0;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float PawnMoveMaxSpeed = 700;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float PawnMoveAcceleration = 250;
 
 	float PawnRotateSpeed = 0;
+	float PawnLookUpSpeed = 0;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float PawnRotateMaxSpeed = 60;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float PawnRotateAcceleration = 20;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float PawnMaxElevationAngle = 45;
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Replicated)
 	ACharacterBase* Enemy = nullptr;
@@ -62,14 +66,14 @@ protected:
 	 * Called via input to turn at a given rate. 
 	 * @param Rate	This is a normalized rate, i.e. 1.0 means 100% of desired turn rate
 	 */
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION(BlueprintCallable, Client, Reliable)
 	void TurnAtRate(float Rate);
 
 	/**
 	 * Called via input to turn look up/down at a given rate. 
 	 * @param Rate	This is a normalized rate, i.e. 1.0 means 100% of desired turn rate
 	 */
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION(BlueprintCallable, Client, Reliable)
 	void LookUpAtRate(float Rate);
 
 	/** Handler for when a touch input begins. */
