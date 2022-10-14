@@ -5,8 +5,8 @@
 #include "Components/CapsuleComponent.h"
 #include "Components/InputComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
-#include "GameFramework/Controller.h"
 #include "GameFramework/SpringArmComponent.h"
+#include "Kismet/KismetSystemLibrary.h"
 #include "Net/UnrealNetwork.h"
 #include "Tag_Rogue/Interface/LimitCountComponent.h"
 #include "Tag_Rogue/Interface/MiniMapComponent.h"
@@ -109,18 +109,6 @@ void ACharacterBase::TouchStopped(ETouchIndex::Type FingerIndex, FVector Locatio
 	StopJumping();
 }
 
-void ACharacterBase::TurnAtRate(float Rate)
-{
-	// calculate delta for this frame from the rate information
-	AddControllerYawInput(Rate * TurnRateGamepad * GetWorld()->GetDeltaSeconds());
-}
-
-void ACharacterBase::LookUpAtRate(float Rate)
-{
-	// calculate delta for this frame from the rate information
-	AddControllerPitchInput(Rate * TurnRateGamepad * GetWorld()->GetDeltaSeconds());
-}
-
 void ACharacterBase::BeginPlay()
 {
 	Super::BeginPlay();
@@ -150,25 +138,53 @@ void ACharacterBase::MoveForward_Implementation(const float Value)
 
 		// get forward vector
 		const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
-		AddMovementInput(Direction, Value*DeltaSecond*PawnMoveSpeed);
+		AddMovementInput(Direction, Value*DeltaSecond*PawnForwardMoveSpeed);
 
 		// Acceleration
-		if (PawnMoveSpeed<PawnMoveMaxSpeed)
+		if (PawnForwardMoveSpeed*PawnForwardMoveSpeed+PawnRightMoveSpeed*PawnRightMoveSpeed<PawnMoveMaxSpeed*PawnMoveMaxSpeed)
 		{
-			PawnMoveSpeed+=DeltaSecond*PawnMoveAcceleration;
+			PawnForwardMoveSpeed+=DeltaSecond*PawnMoveAcceleration;
 		}
 		else
 		{
-			PawnMoveSpeed = PawnMoveMaxSpeed;
+			PawnForwardMoveSpeed = PawnMoveMaxSpeed;
 		}
 	}else if(Value==0.0f)
 	{
-		PawnMoveSpeed=0;
+		PawnForwardMoveSpeed=0;
 	}
 }
 
 void ACharacterBase::MoveRight_Implementation(const float Value)
 {
+	if ((Controller != nullptr) && (Value != 0.0f))
+	{
+		// find out which way is forward
+		const FRotator Rotation = GetControlRotation();
+		const FRotator YawRotation(0, Rotation.Yaw, 0);
+
+		// get forward vector
+		const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
+		AddMovementInput(Direction, Value*DeltaSecond*PawnRightMoveSpeed);
+
+		// Acceleration
+		if (PawnForwardMoveSpeed*PawnForwardMoveSpeed+PawnRightMoveSpeed*PawnRightMoveSpeed<PawnMoveMaxSpeed*PawnMoveMaxSpeed)
+		{
+			PawnRightMoveSpeed+=DeltaSecond*PawnMoveAcceleration;
+		}
+		else
+		{
+			PawnRightMoveSpeed = PawnMoveMaxSpeed;
+		}
+	}else if(Value==0.0f)
+	{
+		PawnRightMoveSpeed=0;
+	}
+}
+
+void ACharacterBase::TurnAtRate_Implementation(const float Value)
+{
+	// calculate delta for this frame from the rate information
 	if ( (Controller != nullptr) && (Value != 0.0f) )
 	{
 		// add movement in that direction
@@ -187,5 +203,31 @@ void ACharacterBase::MoveRight_Implementation(const float Value)
 	{
 		PawnRotateSpeed=0;
 	}
-	
+}
+
+void ACharacterBase::LookUpAtRate_Implementation(const float Value)
+{
+	// calculate delta for this frame from the rate information
+	if ( (Controller != nullptr) && (Value != 0.0f))
+	{
+		float Angle = GetControlRotation().Pitch<=180?GetControlRotation().Pitch:GetControlRotation().Pitch-360;
+		// add movement in that direction
+		if(!((Angle > PawnMaxElevationAngle && Value < 0) || (Angle < -PawnMaxElevationAngle && Value > 0)))
+		{
+			AddControllerPitchInput(Value*DeltaSecond*PawnLookUpSpeed);
+		}
+
+		// Acceleration
+		if (PawnLookUpSpeed<PawnRotateMaxSpeed)
+		{
+			PawnLookUpSpeed+=DeltaSecond*PawnRotateAcceleration;
+		}
+		else
+		{
+			PawnLookUpSpeed = PawnRotateMaxSpeed;
+		}
+	}else if(Value==0.0f)
+	{
+		PawnLookUpSpeed=0;
+	}
 }
