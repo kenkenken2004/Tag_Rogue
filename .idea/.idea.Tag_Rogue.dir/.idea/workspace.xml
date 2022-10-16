@@ -11,75 +11,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cf331540-c7ba-40e0-a96e-46ca470ed1b0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/CleaningRobot/CleaningRobot_AnimBlueprint.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/CleaningRobot/CleaningRobot_DefaultSequence.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/CleaningRobot/CleaningRobot_Skeleton.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/GuardingRobot/Flame/Flame.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/GuardingRobot/Material/Arm.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/GuardingRobot/Material/ArmHole.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/GuardingRobot/Material/Belt.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/GuardingRobot/Material/Chest.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/GuardingRobot/Material/ChestHole.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/GuardingRobot/Material/Eyes.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/GuardingRobot/Material/EyesFrame.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/GuardingRobot/Material/Finger.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/GuardingRobot/Material/Foot.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/GuardingRobot/Material/HatFabric.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/GuardingRobot/Material/HatHisashi.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/GuardingRobot/Material/Head.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/GuardingRobot/Material/Land1-Bone.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/GuardingRobot/Material/Land1-Face.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/GuardingRobot/Material/Leg.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/GuardingRobot/Material/Shoulder.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/GuardingRobot/Material/Stomach.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/GuardingRobot/Material/TKLogo.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/StarterContent/Particles/Materials/M_Fire_SubUV.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/StarterContent/Particles/Materials/M_Heat_Distortion.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/StarterContent/Particles/Materials/M_Radial_Gradient.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/StarterContent/Particles/Materials/M_Spark.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/StarterContent/Particles/Materials/M_radial_ramp.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/StarterContent/Particles/Materials/M_smoke_subUV.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/StarterContent/Particles/Materials/m_flare_01.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/StarterContent/Particles/P_Fire.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/StarterContent/Particles/P_Smoke.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/StarterContent/Textures/T_Fire_SubUV.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/StarterContent/Textures/T_Fire_Tiled_D.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/StarterContent/Textures/T_Frame_M.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/StarterContent/Textures/T_Frame_N.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/StarterContent/Textures/T_Smoke_SubUV.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/StarterContent/Textures/T_Smoke_Tiled_D.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Tag_Rogue.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Tag_Rogue.dir/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Characters/Chaser.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Characters/Chaser.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Characters/Fugitive.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Characters/Fugitive.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/CleaningRobot/CleaningRobot.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/CleaningRobot/CleaningRobot.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/CleaningRobot/CleaningRobot_CleaningRobot_PhysicsAsset.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/CleaningRobot/CleaningRobot_CleaningRobot_Skeleton.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/GuardingRobot/Arm.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/GuardingRobot/ArmHole.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/GuardingRobot/Belt.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/GuardingRobot/Chest.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/GuardingRobot/ChestHole.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/GuardingRobot/Eyes.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/GuardingRobot/EyesFrame.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/GuardingRobot/Finger.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/GuardingRobot/Foot.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/GuardingRobot/GuardingRobot.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/GuardingRobot/GuardingRobot.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/GuardingRobot/GuardingRobotAnimationBP.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/GuardingRobot/GuardingRobotAnimationBP.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/GuardingRobot/GuardingRobot_Skeleton.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/GuardingRobot/GuardingRobot_Skeleton.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/GuardingRobot/HatFabric.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/GuardingRobot/HatHisashi.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/GuardingRobot/Head.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/GuardingRobot/Land1-Bone.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/GuardingRobot/Land1-Face.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/GuardingRobot/Leg.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/GuardingRobot/Shoulder.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/GuardingRobot/Stomach.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Characters/OriginalCharacter/GuardingRobot/TKLogo.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Characters/PosingChaser.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Characters/PosingChaser.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Characters/PosingFugitive.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Characters/PosingFugitive.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Level/FadeIn_2.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Level/MenuWorld.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Level/MenuWorld.umap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/MapObject/Material/Light1.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/MapObject/Material/Light1.uasset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -271,6 +204,7 @@
       <workItem from="1665739599193" duration="2390000" />
       <workItem from="1665747435285" duration="4384000" />
       <workItem from="1665888450788" duration="2894000" />
+      <workItem from="1665925309084" duration="601000" />
     </task>
     <servers />
   </component>
