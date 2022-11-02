@@ -18,9 +18,13 @@ void ATag_RogueGameModeBase::TravelToGamePlayWorld()
 
 void ATag_RogueGameModeBase::TravelToMenuWorld()
 {
-	if (bIsPlayRoleRandom)
+	if (bIsPlayRoleRandom&&!bIsAlternating)
 	{
 		bIsHostChaser = FMath::RandBool();
+	}
+	if (!bIsPlayRoleRandom&&bIsAlternating)
+	{
+		bIsHostChaser = !bIsHostChaser;
 	}
 	SaveConfig();
 	GetWorld()->ServerTravel(TEXT("MenuWorld"),false, false);

@@ -15,9 +15,11 @@ class TAG_ROGUE_API ATag_RogueGameModeBase : public AGameModeBase
 	GENERATED_BODY()
 public:
 	UPROPERTY(EditAnywhere,BlueprintReadWrite, Config)
-	bool bIsPlayRoleRandom = true;
+	bool bIsPlayRoleRandom = false;
 	UPROPERTY(EditAnywhere,BlueprintReadWrite, Config)
-	bool bIsHostChaser = false;
+	bool bIsHostChaser = true;
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Config)
+	bool bIsAlternating = true;
 	ATag_RogueGameModeBase();
 	
 	UFUNCTION(BlueprintCallable)

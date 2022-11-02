@@ -36,14 +36,6 @@ public:
 	UPROPERTY(Replicated)
 	TArray<bool> TextureBitArray;
 	UPROPERTY(Replicated)
-	float EnemyDirection;
-	UPROPERTY(Replicated)
-	float EnemyDistance = 10000000000;
-	UPROPERTY(Replicated)
-	float RadarSensitivity;
-	UPROPERTY(Replicated)
-	float RadarDistExp;
-	UPROPERTY(Replicated)
 	float PointerScale;
 	// Sets default values for this component's properties
 	UMiniMapComponent();

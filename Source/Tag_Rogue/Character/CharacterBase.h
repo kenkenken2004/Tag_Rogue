@@ -38,12 +38,17 @@ public:
 
 	float PawnRotateSpeed = 0;
 	float PawnLookUpSpeed = 0;
+	float MoveForwardDirection = 1;
+	float MoveRightDirection = 1;
+	float RotateDirection = 1;
+	float LookUpDirection = 1;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float PawnRotateMaxSpeed = 60;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float PawnRotateAcceleration = 20;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float PawnMaxElevationAngle = 45;
+	float MoveStopRatio = 1;
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Replicated)
 	ACharacterBase* Enemy = nullptr;

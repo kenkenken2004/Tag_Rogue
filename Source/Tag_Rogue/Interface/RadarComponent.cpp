@@ -51,11 +51,11 @@ void URadarComponent::UpdateRadar_Implementation()
 {
 	if (IsValid(RadarMaterial))
 	{
-		RadarMaterial->SetScalarParameterValue(TEXT("EnemyDistance"),EnemyDistance);
+		RadarMaterial->SetScalarParameterValue(TEXT("EnemyDistance"),EnemyDistance / GameInstance->RadarMaxDistance);
 		RadarMaterial->SetScalarParameterValue(TEXT("EnemyDirection"),EnemyDirection);
 		RadarMaterial->SetScalarParameterValue(TEXT("SelfRotation"),SelfRotation);
-		RadarMaterial->SetScalarParameterValue(TEXT("SelfLocationX"),SelfLocationX);
-		RadarMaterial->SetScalarParameterValue(TEXT("SelfLocationY"),SelfLocationY);
+		RadarMaterial->SetScalarParameterValue(TEXT("SelfLocationX"),SelfLocationX / GameInstance->RadarMaxDistance);
+		RadarMaterial->SetScalarParameterValue(TEXT("SelfLocationY"),SelfLocationY / GameInstance->RadarMaxDistance);
 	}
 }
 

@@ -49,30 +49,34 @@ public:
 	UPROPERTY(BlueprintReadWrite)
 	bool DoesTimerStopped = false;
 	
-	UPROPERTY(Config)
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Config)
 	float GameTimeLimit = 60;
-	UPROPERTY(Config)
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Config)
 	int32 GameMapHeight = 50;
-	UPROPERTY(Config)
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Config)
 	int32 GameMapWidth = 50;
-	UPROPERTY(Config)
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Config)
 	int32 PlazaSize = 9;
-	UPROPERTY(Config)
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Config)
 	int32 RoomSize = 5;
-	UPROPERTY(Config)
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Config)
 	int32 PlazaNum = 4;
-	UPROPERTY(Config)
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Config)
 	int32 RoomNum = 9;
-	UPROPERTY(Config)
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Config)
 	float CellSize = 300;
-	UPROPERTY(Config)
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Config)
 	float MapScale = 0.25;
-	UPROPERTY(Config)
-	float RadarSensitivity = 5000;
-	UPROPERTY(Config)
-	float RadarDistExp = 0.5;
-	UPROPERTY(Config)
-	float PointerScale = 1;
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Config)
+	float MapPointerScale = 1;
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Config)
+	float RadarMaxDistance = 10000;
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Config)
+	float MoveStopRatio = 1;
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Config)
+	float HostSensitivity = 1;
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Config)
+	float ClientSensitivity = 0.1;
 
 	
 	TArray<FName> AssetsPathArray = TArray<FName>
